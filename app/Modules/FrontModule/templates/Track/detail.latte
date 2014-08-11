@@ -1,0 +1,30 @@
+{block content}
+
+	<div id="eventpage">
+		<div class="event width-100 float-left">
+			<div class="event-description width-100 float-left margin-bot-70">
+				 <div class="event-date">{$track->date->format('l d, F Y')}</div>
+				 <h1><a href="">
+                 	{$track->getName()}
+                 	</a></h1>
+				 <div class="part width-100 float-left">
+					<div class="bar overall-bg float-left">
+						{$track->getDistance()} km
+					</div>
+					<div class="info overall float-left">
+						<p>{$track->getTimeInSeconds()|getSpanTimeFromSecondsNumber}</p>
+						<p>{$track->getTimeInSeconds()|getSpanTimeFromSecondsText}</p>
+					</div>
+					<div class="bar partial-bg float-right">
+						{$track->getAvgSpeed()} km/h
+					</div>
+					<div class="info partial float-right text-align-right">
+                    	<p>{$track->getMaxSpeed()}</p>
+                    	<p>MAX KM/H</p>
+                    </div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+{/block}
