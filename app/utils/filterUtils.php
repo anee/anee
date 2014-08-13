@@ -3,13 +3,14 @@
  * Created by PhpStorm.
  * User: Phantom
  * Date: 13.8.14
- * Time: 15:45
+ * Time: 18:24
  */
 
 namespace App\Utils;
 
 
-class timeUtils {
+class filterUtils {
+
 
     public static function timeSubFilterTime($filterTime)
     {
@@ -24,6 +25,21 @@ class timeUtils {
             return $time->sub(new \DateInterval('P365D'));
         } else {
             return $time;
+        }
+    }
+
+    public static function checkArray($filterArray)
+    {
+        $values = array(
+            'search' => '',
+            'filterCategory' => '',
+            'filterTransport' => '',
+            'filterTime' => '',
+        );
+        if($filterArray == NULL) {
+            return $values;
+        } else {
+            return array_merge($values, $filterArray);
         }
     }
 } 

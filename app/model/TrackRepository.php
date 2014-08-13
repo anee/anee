@@ -11,7 +11,7 @@ namespace App\Model;
 
 use Nette;
 use Kdyby\Doctrine\EntityDao;
-use App\Utils\TimeUtils;
+use App\Utils\FilterUtils;
 
 
 class TrackRepository extends Nette\Object {
@@ -90,7 +90,7 @@ class TrackRepository extends Nette\Object {
             if($values['filterTime'] != '') {
                 $qb
                     ->andWhere('e.date >= :date')
-                    ->setParameter('date', TimeUtils::timeSubFilterTime($values['filterTime']));
+                    ->setParameter('date', FilterUtils::timeSubFilterTime($values['filterTime']));
             }
             if($values['filterTransport'] != '') {
                 $qb

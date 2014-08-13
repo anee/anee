@@ -18,111 +18,45 @@
 
 <!-- Fixed top menu -->
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-<div id="top-menu-search" class="float-left">
-	<div id="top-menu-search-ref" class="float-left"">
-		<a onclick="searchBarVisibility('search-bar');"></a>
+	<div id="top-menu-search" class="float-left">
+		<div id="top-menu-search-ref" class="float-left"">
+			<a onclick="searchBarVisibility('search-bar');"></a>
+		</div>
 	</div>
-</div>
-{*<div id="top-menu-map">
-	<ul class="nav navbar-nav map">
-		<li><a href="" class="map">Show map</a></li>
-	</ul>
-</div>*}
-<div id="right-menu-ref" class="float-right">
-	<a onclick="rightMenuVisibility('right-menu');"></a>
-</div>
-<div id="top-menu-social" class="float-right">
-	<ul class="nav navbar-nav social">
-		<li><a href="https://twitter.com/ldrahnik" title="Twitter" class="twitter"></a></li>
-		<li><a href="https://www.facebook.com/lukas.drahnik" title="Facebook" class="facebook"></a></li>
-	</ul>
-</div>
-<div id="top-menu-title">Anee</div>
+	{*<div id="top-menu-map">
+		<ul class="nav navbar-nav map">
+			<li><a href="" class="map">Show map</a></li>
+		</ul>
+	</div>*}
+	<div id="right-menu-ref" class="float-right">
+		<a onclick="rightMenuVisibility('right-menu');"></a>
+	</div>
+	<div id="top-menu-social" class="float-right">
+		<ul class="nav navbar-nav social">
+			<li><a href="https://twitter.com/ldrahnik" title="Twitter" class="twitter"></a></li>
+			<li><a href="https://www.facebook.com/lukas.drahnik" title="Facebook" class="facebook"></a></li>
+		</ul>
+	</div>
+	<div id="top-menu-title">
+		Anee
+	</div>
 </div>
 
 <!-- Search bar -->
 <div id="search-bar" style="display:none;">
-<li class="dropdown">
 
-{form searchForm}
+	{*{$searchForm->render('begin')}
+		{input search}
+	{$searchForm->render('end')}*}
 
-{input search}
-<div id="search-bar-filters" class="float-right">
-{input filterCategory}
-{input filterTransport}
-{input filterTime}
-</div>
-{*{input username, class=>jesteVicSuperDupperTrida}*}
-
-{/form}
-
-{*{control searchForm}
-	<form n:name=searchForm class="float-left">
-		<input n:name=search>
-		<input n:name=select>
-		<input n:name=options>
-		<input n:name=filterCategory>
-	</form>*}
-	{*<div id="search-bar-filters" class="float-right">
-		{*<ul class="nav navbar-nav">
-			<li class="dropdown">
-				{if $presenter->getParameter('category') == ''}
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Any category <span class="caret"></span></a>
-				{else}
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">{$presenter->getParameter('category')} <span class="caret"></span></a>
-				{/if}
-				<ul class="dropdown-menu">
-					<li n:class="$presenter->getParameter('category') == '' ? 'active'">
-                       	<a n:href="this category => ''">Any category</a>
-                    </li>
-					<li n:class="$presenter->getParameter('category') == 'Tvents' ? 'active'">
-                    	<a n:href="this category => Events">Events</a>
-                    </li>
-                    <li n:class="$presenter->getParameter('category') == 'Tracks' ? 'active'">
-                    	<a n:href="this category => Tracks">Tracks</a>
-                    </li>
-				</ul>
-			</li>
-			<li class="dropdown">
-            				{if $presenter->getParameter('transport') == ''}
-            					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Any transport <span class="caret"></span></a>
-            				{else}
-            					<a href="#" class="dropdown-toggle" data-toggle="dropdown">{$presenter->getParameter('transport')} <span class="caret"></span></a>
-            				{/if}
-            				<ul class="dropdown-menu">
-            					<li n:class="$presenter->getParameter('transport') == '' ? 'active'">
-                                   	<a n:href="this transport => ''">Any transport</a>
-                                </li>
-            					<li n:class="$presenter->getParameter('transport') == 'By Cycling' ? 'active'">
-                                	<a n:href="this transport => 'By cycling'">By cycling</a>
-                                </li>
-                                <li n:class="$presenter->getParameter('transport') == 'By Running' ? 'active'">
-                                	<a n:href="this transport => 'By running'">By running</a>
-                                </li>
-            				</ul>
-            			</li>
-			{*<li class="dropdown">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Any transport <span class="caret"></span></a>
-				<ul class="dropdown-menu">
-					<li><a href="#">Any transport</a></li>
-					<li><a href="#">By cycling</a></li>
-					<li><a href="#">By running</a></li>
-				</ul>
-			</li>
-			<li class="dropdown">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Any time <span class="caret"></span></a>
-				<ul class="dropdown-menu">
-					<li><a href="#">Any time</a></li>
-					<li><a href="#">Past hour</a></li>
-					<li><a href="#">Past week</a></li>
-					<li><a href="#">Past month</a></li>
-					<li><a href="#">Past year</a></li>
-					<li class="divider"></li>
-					<li><a href="#">Custom range...</a></li>
-				</ul>
-			</li>
-		</ul>
-	</div>*}
+	{form searchForm}
+		{input search}
+		<div id="search-bar-filters" class="float-right">
+				{input filterCategory class=>test}
+				{input filterTransport}
+				{input filterTime}
+		</div>
+	{/form}
 </div>
 
 <!-- Begin page content -->
@@ -139,16 +73,24 @@
 	<div class="part width-100 margin-bot-40 float-left">
 	    <ul class="float-left">
             <li class="selected float-left">
-        		<span class="highlight">{$eventsCount}</span><a href=""> Events</a>
+        		<span class="highlight">{$eventsCount}</span><a href="
+        		{var $args = [filterCategory => Events]}
+                {link Search:default (expand) $args}"> Events</a>
         	</li>
         	<li class="float-left">
-        		<span class="highlight">{$tracksCount}</span><a href=""> Tracks</a>
+        		<span class="highlight">{$tracksCount}</span><a href="
+        		{var $args = [filterCategory => Tracks]}
+                {link Search:default (expand) $args}"> Tracks</a>
         	</li>
         	<li class="float-left">
-        		<span class="highlight">{$placesCount}</span><a href=""> Places</a>
+        		<span class="highlight">{$placesCount}</span><a href="
+        		{var $args = [filterCategory => Places]}
+                {link Search:default (expand) $args}"> Places</a>
         	</li>
         	<li class="float-left">
-        		<span class="highlight">{$photosCount}</span><a href="{plink :Front:Photo:default}"> Photos</a>
+        		<span class="highlight">{$photosCount}</span><a href="
+        		{var $args = [filterCategory => Photos]}
+                {link Search:default (expand) $args}"> Photos</a>
             </li>
         </ul>
 	</div>
@@ -167,18 +109,26 @@
     	</div>
     	<div class="part width-100 margin-bot-40 float-left">
     	    <ul class="float-left">
-                <li class="selected float-left">
-            		<span class="highlight">{$eventsCount}</span><a href=""> Events</a>
-            	</li>
-            	<li class="float-left">
-            		<span class="highlight">{$tracksCount}</span><a href=""> Tracks</a>
-            	</li>
-            	<li class="float-left">
-            		<span class="highlight">{$placesCount}</span><a href=""> Places</a>
-            	</li>
-            	<li class="float-left">
-            		<span class="highlight">{$photosCount}</span><a href=""> Photos</a>
-                </li>
+            <li class="selected float-left">
+        		<span class="highlight">{$eventsCount}</span><a href="
+        		{var $args = [filterCategory => Events]}
+                {link Search:default (expand) $args}"> Events</a>
+        	</li>
+        	<li class="float-left">
+        		<span class="highlight">{$tracksCount}</span><a href="
+        		{var $args = [filterCategory => Tracks]}
+                {link Search:default (expand) $args}"> Tracks</a>
+        	</li>
+        	<li class="float-left">
+        		<span class="highlight">{$placesCount}</span><a href="
+        		{var $args = [filterCategory => Places]}
+                {link Search:default (expand) $args}"> Places</a>
+        	</li>
+        	<li class="float-left">
+        		<span class="highlight">{$photosCount}</span><a href="
+        		{var $args = [filterCategory => Photos]}
+                {link Search:default (expand) $args}"> Photos</a>
+            </li>
             </ul>
     	</div>
     	<div class="part summary width-100 float-left">

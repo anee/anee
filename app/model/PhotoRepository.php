@@ -11,7 +11,7 @@ namespace App\Model;
 
 use Nette;
 use Kdyby\Doctrine\EntityDao;
-use App\Utils\TimeUtils;
+use App\Utils\FilterUtils;
 
 
 class PhotoRepository extends Nette\Object {
@@ -79,12 +79,13 @@ class PhotoRepository extends Nette\Object {
                 $qb
                     ->where($qb->expr()->like('e.eventFrom', ':search'))
                     ->orWhere($qb->expr()->like('e.eventTo', ':search'))
+                    ->orWhere($qb->expr()->like('e.place', ':search'))
                     ->setParameter('search', '%' . $values['search'] . '%');
             }
             if($values['filterTime'] != '') {
                 $qb
                     ->andWhere('e.date >= :date')
-                    ->setParameter('date', TimeUtils::timeSubFilterTime($values['filterTime']));
+                    ->setParameter('date', FilterUtils::timeSubFilterTime($values['filterTime']));
             }
             $qb
                 ->orderBy('e.id', 'DESC');

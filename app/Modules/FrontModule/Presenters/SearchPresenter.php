@@ -3,6 +3,7 @@
 namespace App\Modules\FrontModule\Presenters;
 
 use App\Modules\FrontModule\Forms;
+use App\Utils\FilterUtils;
 
 
 /**
@@ -10,16 +11,19 @@ use App\Modules\FrontModule\Forms;
  */
 class SearchPresenter extends BasePresenter
 {
+    public $values;
 
     public function actionDefault()
     {
-
+        $this->values = FilterUtils::checkArray($this->getParameter('values'));
     }
 
 	public function renderDefault()
 	{
-        dump($this->getParameters());
-        die();
-        $this->template->search = '';//$this->getParameter('values' => 'search');
+        $this->template->values = $this->values;
+        $this->template->places = $this->placeRepository->findByFilters($this->values);
+        $this->template->events = $this->eventRepository->findByFilters($this->values);
+        $this->template->tracks = $this->trackRepository->findByFilters($this->values);
+        $this->template->photos = $this->photoRepository->findByFilters($this->values);
 	}
 }
