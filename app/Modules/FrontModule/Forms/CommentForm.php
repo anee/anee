@@ -25,11 +25,11 @@ class CommentForm extends Nette\Object
         $form = new Form;
         $form->addText('text')->setAttribute('placeholder', 'Your view...');
         $form->addSubmit('send', '');
-        $form->onSuccess[] = $this->processForm;
+        $form->onSuccess[] = $this->succes;
         return $form;
     }
 
-    public function processForm($form)
+    public function succes($form)
     {
 
     }

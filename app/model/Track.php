@@ -24,7 +24,7 @@ class Track extends \Kdyby\Doctrine\Entities\IdentifiedEntity
     protected $from;
 
     /**
-     * @ORM\Column(type="string", nullable=false)
+     * @ORM\Column(type="string", nullable=true)
      */
     protected $to;
 
@@ -77,7 +77,7 @@ class Track extends \Kdyby\Doctrine\Entities\IdentifiedEntity
 
     public function getName()
     {
-        if ($this->getFrom() == $this->getTo())
+        if ($this->getFrom() == $this->getTo() || $this->getTo() == NULL)
             return 'Near '.$this->getFrom();
         else
             return 'From '.$this->getFrom() .' to ' . $this->getTo();

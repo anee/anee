@@ -41,7 +41,6 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
         $template->tracksCount = count($this->trackRepository->findAll());
         $template->distanceSum = round($this->trackRepository->distanceSum() + $this->eventRepository->distanceSum(), 2);
 
-
         // HELPERS
         $template->addFilter('thumb', array($this->thumbHelper, 'process'));
         $template->addFilter('strtolower', function($text)
