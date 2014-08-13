@@ -3,65 +3,179 @@
 	<div id="searchpage">
 		<div id="search-title" class="width-100 float-left margin-bot-70">
 			<div class="part float-left width-100 border-bottom float-left">
-				<p class="float-left padding-top-5"><span class="highlight">2</span> Results for <span class="highlight"><a href="">{$search}</a></span> {*in <span class="highlight"><a href="">Events</a></span>, <span class="highlight"><a href="">By bike</a></span>, <span class="highlight"><a href="">Past week</a></span></p>*}
+				<p class="float-left padding-top-5"><span class="highlight">
+				{if $values['filterCategory'] == 'Events'}
+					{count($events)}
+				{elseif $values['filterCategory'] == 'Tracks'}
+					{count($tracks)}
+				{elseif $values['filterCategory'] == 'Places'}
+					{count($places)}
+				{elseif $values['filterCategory'] == 'Photos'}
+					{count($photos)}
+				{else}
+					{count($events) + count($tracks) + count($places) + count($photos)}
+				{/if}
+				</span> Results
+				{if $values['search'] != ""}
+					for <span class="highlight"><a href="">{$values['search']}</a></span>
+				{/if}
+				{if $values['filterCategory'] != ""}
+                	in <span class="highlight"><a href="">{$values['filterCategory']}</a></span>
+                {/if}
+                {if $values['filterCategory'] != "" && ($values['filterTransport'] != "" || $values['filterTime'] != "")}
+                ,
+                {/if}
+                {if $values['filterTransport'] != ""}
+                	<span class="highlight"><a href="">{$values['filterTransport']}</a></span>
+                {/if}
+                {if $values['filterTransport'] != "" && $values['filterTime']!= ""}
+                ,
+                {/if}
+                {if $values['filterTime'] != ""}
+                	<span class="highlight"><a href="">{$values['filterTime']}</a></span>
+               	{/if}
+               	</p>
 				<ul class="float-right">
-					<li class="selected float-left">
-						<span class="highlight">1</span><a href=""> Events</a>
+					<li n:class="$values['filterCategory'] == 'Events' ? 'selected'">
+						<span class="highlight">{count($events)}</span><a href="
+						{var $args = array('values' => array_merge($values, [filterCategory => Events]))}
+                        {link Search:default (expand) $args}"> Events</a>
 					</li>
-					<li class="float-left">
-						<span class="highlight">2</span><a href=""> Tracks</a>
+					<li n:class="$values['filterCategory'] == 'Tracks' ? 'selected'">
+						<span class="highlight">{count($tracks)}</span><a href="
+						{var $args = array('values' => array_merge($values, [filterCategory => Tracks]))}
+                        {link Search:default (expand) $args}"> Tracks</a>
 					</li>
-					<li class="float-left">
-						<span class="highlight">1</span><a href=""> Places</a>
+					<li n:class="$values['filterCategory'] == 'Places' ? 'selected'">
+						<span class="highlight">{count($places)}</span><a href="
+						{var $args = array('values' => array_merge($values, [filterCategory => Places]))}
+                        {link Search:default (expand) $args}"> Places</a>
 					</li>
-					<li class="float-left">
-						<span class="highlight">7</span><a href=""> Photos</a>
+					<li n:class="$values['filterCategory'] == 'Photos' ? 'selected'">
+						<span class="highlight">{count($photos)}</span><a href="
+						{var $args = array('values' => array_merge($values, [filterCategory => Photos]))}
+                        {link Search:default (expand) $args}"> Photos</a>
 					</li>
 				</ul>
 				<div style="clear: both;"></div>
 			</div>
 		</div>
-		{*<div id="search-results" class="width-100 float-left">
-			<div class="part width-100 float-left margin-bot-40">
-				<div class="part width-100 margin-bot-20 border-bottom float-left">
-					<h4 class="float-left"><a href="">Near Nová Bystřice</a> <span class="not-highlight">by bike</span></h4>
-					<p class="float-right margin-bot-5"><span class="highlight">16</span> hours ago</p>
-					<div style="clear: both;"></div>
+				{if count($events) != 0 && ($values['filterCategory'] == 'Events' || $values['filterCategory'] == '')}
+				<div id="search-results" class="width-100 float-left margin-bot-70">
+					{foreach $events as $event}
+						<div class="part width-100 float-left margin-bot-40">
+            				<div class="part width-100 margin-bot-20 border-bottom float-left">
+            					<h4 class="float-left"><a href="">{$event->getName()}</a> <span class="not-highlight"> {$event->getTransport()}</span></h4>
+            					<p class="float-right margin-bot-5"><span class="highlight">{$event->getDate()|getDateAgoNumber}</span> {$event->getDate()|getDateAgoText}</p>
+            					<div style="clear: both;"></div>
+            				</div>
+            				<div class="part width-100 float-left">
+            					<div class="bar overall-bg float-left">
+            						{$event->getDistance()} km
+            					</div>
+            					<div class="info overall float-left">
+            						<p>{$event->getTimeInSeconds()|getSpanTimeFromSecondsNumber}</p>
+                                    <p>{$event->getTimeInSeconds()|getSpanTimeFromSecondsText}</p>
+            					</div>
+                                <div class="bar partial-bg float-right">
+                                	{$event->getTimeInSecondsTrip()|getSpanTimeFromSecondsNumber} {$event->getTimeInSecondsTrip()|getSpanTimeFromSecondsText|strtolower}
+                                </div>
+                                <div class="info partial float-right text-align-right">
+                                	<p>{$event->getAvgSpeed()}</p>
+                                	<p>KM PER {$event->getTimeInSecondsTrip()|getSpanTimeFromSecondsTextValue}</p>
+                                </div>
+            				</div>
+            			</div>
+					{/foreach}
 				</div>
-				<div class="part width-100 float-left">
-					<div class="bar overall-bg float-left">
-						38,5 km
-					</div>
-					<div class="info overall float-left">
-						<p>48,7</p>
-						<p>MINUTES</p>
-					</div>
-					<div class="bar partial-bg float-right">
-						21,7 km/h
-					</div>
+				{/if}
+				{if count($tracks) != 0 && ($values['filterCategory'] == 'Tracks' || $values['filterCategory'] == '')}
+				<div id="search-results" class="width-100 float-left margin-bot-70">
+					{foreach $tracks as $track}
+						<div class="part width-100 float-left margin-bot-40">
+            				<div class="part width-100 margin-bot-20 border-bottom float-left">
+            					<h4 class="float-left"><a href="">{$track->getName()}</a> <span class="not-highlight"> {$track->getTransport()}</span></h4>
+            					<p class="float-right margin-bot-5"><span class="highlight">{$track->getDate()|getDateAgoNumber}</span> {$track->getDate()|getDateAgoText}</p>
+            					<div style="clear: both;"></div>
+            				</div>
+            				<div class="part width-100 float-left">
+            					<div class="bar overall-bg float-left">
+            						{$track->getDistance()} km
+            					</div>
+            					<div class="info overall float-left">
+            						<p>{$track->getTimeInSeconds()|getSpanTimeFromSecondsNumber}</p>
+                                    <p>{$track->getTimeInSeconds()|getSpanTimeFromSecondsText}</p>
+            					</div>
+            					<div class="bar partial-bg float-right">
+            						{$track->getAvgSpeed()} km/h
+            					</div>
+            					<div class="info partial float-right text-align-right">
+                                 	<p>{$track->getMaxSpeed()}</p>
+                                 	<p>MAX KM/H</p>
+                                </div>
+            				</div>
+            			</div>
+					{/foreach}
 				</div>
-			</div>
+				{/if}
+				{if count($places) != 0 && ($values['filterCategory'] == 'Places' || $values['filterCategory'] == '')}
+				<div id="search-results" class="width-100 float-left margin-bot-70">
+					{foreach $places as $place}
+						<div class="part width-100 float-left margin-bot-40">
+            				<div class="part width-100 margin-bot-20 border-bottom float-left">
+            					<h4 class="float-left"><a href="">{$place->getName()}</a></h4>
+            					{*<p class="float-right margin-bot-5"><span class="highlight">{$event->getDate()|getDateAgoNumber}</span> {$event->getDate()|getDateAgoText}</p>*}
+            					<div style="clear: both;"></div>
+            				</div>
+            				<div class="part width-100 float-left">
+            					<div class="bar overall-bg float-left">
+            						{*{$event->getDistance()} km*}
+            					</div>
+            					<div class="info overall float-left">
+            						{*<p>{$event->getTimeInSeconds()|getSpanTimeFromSecondsNumber}</p>
+                                    <p>{$event->getTimeInSeconds()|getSpanTimeFromSecondsText}</p>*}
+            					</div>
+            					<div class="bar partial-bg float-right">
+            						{*{$event->getAvgSpeed()} km/h*}
+            					</div>
+            					<div class="info partial float-right text-align-right">
+                                 	{*<p>{$event->getMaxSpeed()}</p>
+                                 	<p>MAX KM/H</p>*}
+                                </div>
+            				</div>
+            			</div>
+					{/foreach}
+				</div>
+				{/if}
+				{if count($photos) != 0 && ($values['filterCategory'] == 'Photos' || $values['filterCategory'] == '')}
+				<div class="photos-summary-vertical text-align-center">
+                	<ul>
+                		{foreach $photos as $photo}
+                			 <div class="padding-top-100"" id="{$photo->getName()}">
+                				    <li>
+                				        <a href="{link Photo:default}#{$photo->getName()}"><img src="{$photo->getPath()|thumb:'860x'}"></a>
+                					    <div class="part padding-top-5">
+                						    {if $photo->getEventFrom() != NULL && $photo->getEventTo() != NULL}
+                						        <p class="float-left">from <span class="highlight"><a href="">{$photo->getEventFrom()}</a></span> to <span class="highlight"><a href="">{$photo->getEventTo()}</a></span>
+                						    {elseif $photo->getEventFrom() != NULL}
+                                                <p class="float-left">near <span class="highlight"><a href="">Nová Bystřice</a></span>
+                                            {/if}
+                						    {if $photo->getEventFrom() != NULL && $photo->getPlace() != NULL}
+                						        ,
+                						    {/if}
+                						    {if $photo->getPlace() != NULL}
+                						        near <a class="highlight" href="">{$photo->getPlace()}</a></p>
+                						    {/if}
+                						    <p class="float-right margin-bot-5"><span class="highlight">{$photo->getDate()|getDateAgoNumber}</span> {$photo->getDate()|getDateAgoText}</p>
+                						    <div style="clear: both;"></div>
+                					    </div>
+                				</li>
+                		  	 </div>
+                        {/foreach}
+                	</ul>
+                </div>
+                {/if}
 
-			<div class="part width-100 float-left margin-bot-40">
-				<div class="part width-100 margin-bot-20 border-bottom float-left">
-					<h4 class="float-left"><a href="">Near Nová Bystřice</a> <span class="not-highlight">by bike</span></h4>
-					<p class="float-right margin-bot-5"><span class="highlight">16</span> hours ago</p>
-					<div style="clear: both;"></div>
-				</div>
-				<div class="part width-100 float-left">
-					<div class="bar overall-bg float-left">
-						38,5 km
-					</div>
-					<div class="info overall float-left">
-						<p>48,7</p>
-						<p>MINUTES</p>
-					</div>
-					<div class="bar partial-bg float-right">
-						21,7 km/h
-					</div>
-				</div>
-			</div>
-		</div>*}
 	</div>
 
 {/block}
