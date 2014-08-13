@@ -58,36 +58,31 @@ class EventRepository extends Nette\Object {
 
     public function findByFilters($values)
     {
-        if($values['filterCategory'] == 'Events' || $values['filterCategory'] == '') {
+        $qb = $this->events->createQueryBuilder();
+        $qb
+            ->select('e')
+            ->from('App\Model\Event', 'e');
 
-            $qb = $this->events->createQueryBuilder();
+        if($values['search'] != '') {
             $qb
-                ->select('e')
-                ->from('App\Model\Event', 'e');
-
-            if($values['search'] != '') {
-                $qb
-                    ->where($qb->expr()->like('e.from', ':search'))
-                    ->orWhere($qb->expr()->like('e.to', ':search'))
-                    ->orWhere($qb->expr()->like('e.description', ':search'))
-                    ->setParameter('search', '%' . $values['search'] . '%');
-            }
-            if($values['filterTime'] != '') {
-                $qb
-                    ->andWhere('e.date >= :date')
-                    ->setParameter('date', FilterUtils::timeSubFilterTime($values['filterTime']));
-            }
-            if($values['filterTransport'] != '') {
-                $qb
-                    ->andWhere('e.transport >= :transport')
-                    ->setParameter('transport', $values['filterTransport']);
-            }
-            $qb
-                ->orderBy('e.id', 'DESC');
-
-            return $qb->getQuery()->getResult();
-        } else {
-            return array();
+                ->where($qb->expr()->like('e.from', ':search'))
+                ->orWhere($qb->expr()->like('e.to', ':search'))
+                ->orWhere($qb->expr()->like('e.description', ':search'))
+                ->setParameter('search', '%' . $values['search'] . '%');
         }
+        if($values['filterTime'] != '') {
+            $qb
+                ->andWhere('e.date >= :date')
+                ->setParameter('date', FilterUtils::timeSubFilterTime($values['filterTime']));
+        }
+        if($values['filterTransport'] != '') {
+            $qb
+                ->andWhere('e.transport >= :transport')
+                ->setParameter('transport', $values['filterTransport']);
+        }
+        $qb
+            ->orderBy('e.id', 'DESC');
+
+        return $qb->getQuery()->getResult();
     }
 }

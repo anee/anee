@@ -68,31 +68,26 @@ class PhotoRepository extends Nette\Object {
 
     public function findByFilters($values)
     {
-        if($values['filterCategory'] == 'Photos' || $values['filterCategory'] == '') {
+        $qb = $this->photos->createQueryBuilder();
+        $qb
+            ->select('e')
+            ->from('App\Model\Photo', 'e');
 
-            $qb = $this->photos->createQueryBuilder();
+        if($values['search'] != '') {
             $qb
-                ->select('e')
-                ->from('App\Model\Photo', 'e');
-
-            if($values['search'] != '') {
-                $qb
-                    ->where($qb->expr()->like('e.eventFrom', ':search'))
-                    ->orWhere($qb->expr()->like('e.eventTo', ':search'))
-                    ->orWhere($qb->expr()->like('e.place', ':search'))
-                    ->setParameter('search', '%' . $values['search'] . '%');
-            }
-            if($values['filterTime'] != '') {
-                $qb
-                    ->andWhere('e.date >= :date')
-                    ->setParameter('date', FilterUtils::timeSubFilterTime($values['filterTime']));
-            }
-            $qb
-                ->orderBy('e.id', 'DESC');
-
-            return $qb->getQuery()->getResult();
-        } else {
-            return array();
+                ->where($qb->expr()->like('e.eventFrom', ':search'))
+                ->orWhere($qb->expr()->like('e.eventTo', ':search'))
+                ->orWhere($qb->expr()->like('e.place', ':search'))
+                ->setParameter('search', '%' . $values['search'] . '%');
         }
+        if($values['filterTime'] != '') {
+            $qb
+                ->andWhere('e.date >= :date')
+                ->setParameter('date', FilterUtils::timeSubFilterTime($values['filterTime']));
+        }
+        $qb
+            ->orderBy('e.id', 'DESC');
+
+        return $qb->getQuery()->getResult();
     }
 }
