@@ -40,4 +40,27 @@ class PlaceRepository extends Nette\Object {
     {
         $this->places->delete($this->findById($id));
     }
+
+    public function findByFilters($values)
+    {
+        if($values['filterCategory'] == 'Places' || $values['filterCategory'] == '') {
+
+                $qb = $this->places->createQueryBuilder();
+                $qb
+                    ->select('e')
+                    ->from('App\Model\Place', 'e');
+
+                if($values['search'] != '') {
+                    $qb
+                        ->where($qb->expr()->like('e.name', ':name'))
+                        ->setParameter('name', '%' . $values['search'] . '%');
+                }
+                $qb
+                    ->orderBy('e.id', 'DESC');
+
+                return $qb->getQuery()->getResult();
+        } else {
+            return array();
+        }
+    }
 }
