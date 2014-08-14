@@ -2,23 +2,27 @@
 
 namespace App\Modules\FrontModule\Presenters;
 
-use App\Modules\FrontModule\Forms;
+use Nette;
 
 /**
  * Homepage presenter.
  */
 class EventPresenter extends BasePresenter
 {
-    /** @var Forms\CommentForm @inject */
-    public $commentFormFactory;
 
-	public function renderDefault()
-	{
+    /** @var \App\Model\EventRepository @inject*/
+    public $eventRepository;
 
-	}
+    public $event;
 
-    protected function createComponentCommentForm()
+    public function renderDetail($id)
     {
-        return $this->commentFormFactory->create();
+        $this->event = $this->eventRepository->findById($id);
+
+        if ($this->event == null) {
+            throw new Nette\Application\BadRequestException;
+        } else {
+            $this->template->event = $this->event;
+        }
     }
 }
