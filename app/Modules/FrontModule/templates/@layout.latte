@@ -49,14 +49,26 @@
 		{input search}
 	{$searchForm->render('end')}*}
 
-	{form searchForm}
+{form searchForm}
+	{input search}
+	<div id="search-bar-filters" class="float-right">
+		{$form->render($form['filterTime'])}
+		{$form->render($form['filterTransport'])}
+		{$form->render($form['filterCategory'])}
+	</div>
+
+{/form}
+
+
+
+	{*{form searchForm}
 		{input search}
 		<div id="search-bar-filters" class="float-right">
 				{input filterCategory class=>test}
 				{input filterTransport}
 				{input filterTime}
 		</div>
-	{/form}
+	{/form}*}
 </div>
 
 <!-- Begin page content -->

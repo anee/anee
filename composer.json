@@ -15,10 +15,11 @@
 		}
 	],
 	"require": {
-		"php": ">= 5.3.7",
+		"php": ">= 5.5.11",
 		"nette/nette": "~2.2.0",
 		"kdyby/doctrine": "@dev",
-		"kappa/thumbnails-helper": "@dev"
+		"kappa/thumbnails-helper": "@dev",
+		"instante/bootstrap-3-renderer": "@dev"
 	},
 	"require-dev": {
 		"nette/tester": "~1.0"

@@ -11,6 +11,8 @@ namespace App\Modules\FrontModule\Forms;
 
 use Nette;
 use Nette\Application\UI\Form;
+use Instante\Bootstrap3Renderer\BootstrapRenderer;
+
 
 class SearchForm extends Nette\Object
 {
@@ -26,37 +28,38 @@ class SearchForm extends Nette\Object
         $this->presenter = $presenter;
 
         $form = new Form;
+        $form->setRenderer(new BootstrapRenderer);
         $form->addText('search')->setAttribute('placeholder', 'Search...');
         $category = array(
-            'Any category',
-            'Events',
-            'Tracks',
-            'Places',
-            'Photos',
+            '' => 'Any category',
+            'Events' => 'Events',
+            'Tracks' => 'Tracks',
+            'Places' => 'Places',
+            'Photos' => 'Photos',
         );
         $transport = array(
-            'Any transport',
-            'By cycle',
-            'By run',
+            '' => 'Any transport',
+            'By cycle' => 'By cycle',
+            'By run' => 'By run',
         );
         $time = array(
-            'Any time',
-			'Past hour',
-			'Past week',
-			'Past month',
-            'Past year',
-			'Custom range...',
+            '' => 'Any time',
+			'Past hour' => 'Past hour',
+            'Past week' => 'Past week',
+            'Past month' => 'Past month',
+            'Past year' => 'Past year',
+        /* 'Custom range...' => 'Custom range...',*/
         );
         $form->addSelect('filterCategory', NULL, $category);
-        $form->addSelect('filterTransport', NULL, $category);
-        $form->addSelect('filterTime', NULL, $category);
+        $form->addSelect('filterTransport', NULL, $transport);
+        $form->addSelect('filterTime', NULL, $time);
         $form->addSubmit('send', '');
-        $form->onSuccess[] = $this->processForm;
+        $form->onSuccess[] = $this->succes;
         return $form;
     }
 
-    public function processForm($form)
+    public function succes($form)
     {
-        $this->presenter->redirect(':Front:Search:default', array('values' => $form->values));
+        $this->presenter->redirect('Search:default', array('values' => $form->values));
     }
 }

@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c9110b50d8c40ecc36ec6cf9d0e6d638",
+    "hash": "5586fabd8857cea87208cc606ccbd7a7",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -556,6 +556,48 @@
                 "orm"
             ],
             "time": "2014-07-11 03:05:53"
+        },
+        {
+            "name": "instante/bootstrap-3-renderer",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://bitbucket.org/mistylab/instante-bootstrap3renderer.git",
+                "reference": "23a2e9fe43f92400feab2408e80e6f62d3e4fb6d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://bitbucket.org/mistylab/instante-bootstrap3renderer/get/23a2e9fe43f92400feab2408e80e6f62d3e4fb6d.zip",
+                "reference": "23a2e9fe43f92400feab2408e80e6f62d3e4fb6d",
+                "shasum": ""
+            },
+            "require": {
+                "nette/nette": "~2.1"
+            },
+            "require-dev": {
+                "jakub-onderka/php-parallel-lint": "~0.6",
+                "nette/tester": "@dev"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Instante\\Bootstrap3Renderer\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause",
+                "GPL-2.0",
+                "GPL-3.0"
+            ],
+            "description": "Nette forms renderer with bootstrap 3",
+            "keywords": [
+                "Forms",
+                "bootstrap",
+                "bootstrap3",
+                "nette"
+            ],
+            "time": "2014-08-07 13:11:49"
         },
         {
             "name": "kappa/filesystem",
@@ -2374,7 +2416,8 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "kdyby/doctrine": 20,
-        "kappa/thumbnails-helper": 20
+        "kappa/thumbnails-helper": 20,
+        "instante/bootstrap-3-renderer": 20
     },
     "prefer-stable": false,
     "platform": {

@@ -154,6 +154,9 @@ h1 a:hover, h2 a:hover, h4 a:hover {
 .padding-right-5 {
     padding-right: 5px;
 }
+.padding-right-2-p {
+    padding-right: 2%;
+}
 .padding-right-10 {
     padding-right: 10px;
 }
@@ -186,6 +189,12 @@ h1 a:hover, h2 a:hover, h4 a:hover {
 }
 .width-25 {
     width: 25%;
+}
+.width-40 {
+    width: 40%;
+}
+.width-60 {
+    width: 60%;
 }
 .width-50 {
     width: 50%;
@@ -238,7 +247,7 @@ h1 a:hover, h2 a:hover, h4 a:hover {
     background-color: #F0886D;
 }
 
-/* PLUGINS - photos-summary-vertical
+/* SEARCH - photos-summary-vertical
 ----------------------------------------------------------*/
 .photos-summary-vertical ul li .part {
     width: 860px;
@@ -247,7 +256,7 @@ h1 a:hover, h2 a:hover, h4 a:hover {
 
 /* PLUGINS - comments-summary
 ----------------------------------------------------------*/
-.comments-summary input[type="text"] {
+/*.comments-summary input[type="text"] {
     padding: 3px 20px 0;
     width: 90%; height: 50px;
     background-color: white;
@@ -263,7 +272,7 @@ h1 a:hover, h2 a:hover, h4 a:hover {
 }
 .comments-summary input[type="submit"]:hover {
     background-color: #80c2c2;
-}
+}*/
 
 /* PLUGINS - event
 ----------------------------------------------------------*/
@@ -322,26 +331,41 @@ h1 a:hover, h2 a:hover, h4 a:hover {
     color: #37bfbd;
     border: none;
 }
-#search-bar-filters .dropdown-toggle {
+#search-bar-filters {
+    padding-top: 4px;
     color: #e1e3e4;
-    padding-top: 11px;
-    height: 29px;
 }
-#search-bar-filters a:hover, #search-bar-filters a:focus, .nav .open>a, .nav .open>a:hover, .nav .open>a:focus {
-    background-color: white;
+#search-bar-filters .col-sm-2 {
+    display: none;
 }
-#search-bar-filters ul .dropdown-menu {
+#search-bar-filters .col-sm-10 {
+    padding: 0;
+}
+#search-bar-filters .form-group {
+    float: right;
+    margin-bottom: 0;
+    padding-left: 20px;
+}
+#search-bar-filters .form-control {
+    cursor: pointer;
+    font-size: 16px;
+    width: auto;
+    border: none;
+    box-shadow: none;
+    color: #d5d9d8;
+}
+#search-bar-filters .form-control:last-child {
+    padding-right: 0;
+    margin-right: 12px;
+}
+#search-bar-filters .form-control:hover, #search-bar-filters .form-control:active,
+#search-bar-filters .form-control:visited, #search-bar-filters .form-control:focus {
+    border: none;
+    box-shadow: none;
+}
+#search-bar-filters .form-control option {
+    color: #f4f4f4;
     background-color: #6e797a;
-}
-#search-bar-filters li a {
-    color: white;
-}
-#search-bar-filters li a:hover {
-    color: #6e797a;
-}
-#search-bar-filters  .dropdown-menu>.active>a, .dropdown-menu>.active>a:hover, .dropdown-menu>.active>a:focus {
-    color: #6e797a;
-    background-color: white;
 }
 
 /* TOP MENU TITLE
@@ -379,9 +403,6 @@ h1 a:hover, h2 a:hover, h4 a:hover {
     padding-top: 16px;
     background-repeat: no-repeat;
     background-position: left top;
-    -webkit-transition: background-color 0.3s ease-in-out;
-    -moz-transition: background-color 0.3s ease-in-out;
-    -o-transition: background-color 0.3s ease-in-out;
     transition: background-color 0.3s ease-in-out;
 }
 #top-menu-map .map li a.map { background-image: url(../images/map-icon.png); }
@@ -401,13 +422,10 @@ h1 a:hover, h2 a:hover, h4 a:hover {
     display: inline-block;
     background-repeat: no-repeat;
     background-position: center top;
-    -webkit-transition: background-color 0.3s ease-in-out;
-    -moz-transition: background-color 0.3s ease-in-out;
-    -o-transition: background-color 0.3s ease-in-out;
     transition: background-color 0.3s ease-in-out;
 }
-#top-menu-social .social li a.twitter { background-image: url(../images/twitter-icon.png); }
-#top-menu-social .social li a.facebook { background-image: url(../images/facebook-icon.png); }
+#top-menu-social .social li a.twitter { background-image: url(../images/icon-twitter.png); }
+#top-menu-social .social li a.facebook { background-image: url(../images/icon-facebook.png); }
 #top-menu-social .social li a:hover.twitter { background-position: center bottom; }
 #top-menu-social .social li a:hover.facebook { background-position: center bottom; }
 
@@ -494,6 +512,7 @@ h1 a:hover, h2 a:hover, h4 a:hover {
 /* SEARCH-TITLE
 ----------------------------------------------------------*/
 #search-title li {
+    float: left;
     padding: 5px 15px 0 15px;
 }
 #search-title .align-left {
@@ -509,14 +528,4 @@ h1 a:hover, h2 a:hover, h4 a:hover {
 }
 #search-title .part {
     height: 29px;
-}
-
-/* HOMEPAGE
-----------------------------------------------------------*/
-#homepage .event-description {
-    height: 448px;
-    margin-left: 625px;
-}
-#homepage .event-description .event-text {
-    height: 184px;
 }
