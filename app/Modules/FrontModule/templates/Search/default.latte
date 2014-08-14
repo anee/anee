@@ -65,7 +65,10 @@
 					{foreach $events as $event}
 						<div class="part width-100 float-left margin-bot-40">
             				<div class="part width-100 margin-bot-20 border-bottom float-left">
-            					<h4 class="float-left"><a href="">{$event->getName()}</a> <span class="not-highlight"> {$event->getTransport()}</span></h4>
+            					<h4 class="float-left"><a href="
+            						{link Event:detail, $event->getId()}">
+                                	{$event->getName()}
+                                </a> <span class="not-highlight"> {$event->getTransport()}</span></h4>
             					<p class="float-right margin-bot-5"><span class="highlight">{$event->getDate()|getDateAgoNumber}</span> {$event->getDate()|getDateAgoText}</p>
             					<div style="clear: both;"></div>
             				</div>
@@ -94,7 +97,10 @@
 					{foreach $tracks as $track}
 						<div class="part width-100 float-left margin-bot-40">
             				<div class="part width-100 margin-bot-20 border-bottom float-left">
-            					<h4 class="float-left"><a href="">{$track->getName()}</a> <span class="not-highlight"> {$track->getTransport()}</span></h4>
+            					<h4 class="float-left"><a href="
+                                	{link Track:detail, $track->getId()}">
+                                	{$track->getName()}
+                                 </a> <span class="not-highlight"> {$track->getTransport()}</span></h4>
             					<p class="float-right margin-bot-5"><span class="highlight">{$track->getDate()|getDateAgoNumber}</span> {$track->getDate()|getDateAgoText}</p>
             					<div style="clear: both;"></div>
             				</div>
@@ -123,8 +129,11 @@
 					{foreach $places as $place}
 						<div class="part width-100 float-left margin-bot-40">
             				<div class="part width-100 margin-bot-20 border-bottom float-left">
-            					<h4 class="float-left"><a href="">{$place->getName()}</a></h4>
-            					{*<p class="float-right margin-bot-5"><span class="highlight">{$event->getDate()|getDateAgoNumber}</span> {$event->getDate()|getDateAgoText}</p>*}
+            					<h4 class="float-left"><a href="
+            					{var $args = array('values' => [search => $place->getName()])}
+                                {link Search:default (expand) $args}
+                                ">{$place->getName()}</a></h4>
+            					<p class="float-right margin-bot-5"><span class="highlight">{$place->getLastUpdate()|getDateAgoNumber}</span> {$place->getLastUpdate()|getDateAgoText}</p>
             					<div style="clear: both;"></div>
             				</div>
             				<div class="part width-100 float-left">
@@ -153,7 +162,10 @@
                 		{foreach $photos as $photo}
                 			 <div class="padding-top-100"" id="{$photo->getName()}">
                 				    <li>
-                				        <a href="{link Photo:default}#{$photo->getName()}"><img src="{$photo->getPath()|thumb:'860x'}"></a>
+                				        <a href="
+                				        {var $args = array('values' => array_merge($values, [filterCategory => Photos]))}
+                                        {link Search:default (expand) $args}#{$photo->getName()}
+                                        "><img src="{$photo->getPath()|thumb:'860x'}"></a>
                 					    <div class="part padding-top-5">
                 						    {if $photo->getEventFrom() != NULL && $photo->getEventTo() != NULL}
                 						        <p class="float-left">from <span class="highlight"><a href="">{$photo->getEventFrom()}</a></span> to <span class="highlight"><a href="">{$photo->getEventTo()}</a></span>

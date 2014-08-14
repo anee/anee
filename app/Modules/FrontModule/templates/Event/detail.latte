@@ -3,6 +3,33 @@
 	<div id="eventpage">
 		<div class="event width-100 float-left">
 			<div class="event-description width-100 float-left margin-bot-70">
+				 <div class="event-date">{$event->date->format('l d, F Y')}</div>
+				 <h1><a href="">
+                 	{$event->getName()}
+                 	</a></h1>
+				 <div class="part width-100 float-left">
+					<div class="bar overall-bg float-left">
+						{$event->getDistance()} km
+					</div>
+					<div class="info overall float-left">
+            			<p>{$event->getTimeInSeconds()|getSpanTimeFromSecondsNumber}</p>
+                        <p>{$event->getTimeInSeconds()|getSpanTimeFromSecondsText}</p>
+					</div>
+					<div class="bar partial-bg float-right">
+						{$event->getTimeInSecondsTrip()|getSpanTimeFromSecondsNumber} {$event->getTimeInSecondsTrip()|getSpanTimeFromSecondsText|strtolower}
+					</div>
+					<div class="info partial float-right text-align-right">
+						<p>{$event->getAvgSpeed()}</p>
+                       	<p>KM PER {$event->getTimeInSecondsTrip()|getSpanTimeFromSecondsTextValue}</p>
+                    </div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	{*<div id="eventpage">
+		<div class="event width-100 float-left">
+			<div class="event-description width-100 float-left margin-bot-70">
 				<div class="event-date">Wednesday 02, July</div>
 				<h1><a href="">From Nová Bystřice to Rijeka</a></h1>
 				{*<div class="event-text float-left margin-bot-70"><p>
@@ -21,25 +48,6 @@
 						<canvas id="canvas" height="180" width="1280"></canvas>
 					</div>
 				</div>*}
-
-				<div class="part width-100 float-left">
-					<div class="bar overall-bg float-left">
-						849,8 km
-					</div>
-					<div class="info overall float-left">
-						<p>48,5</p>
-						<p>HOURS</p>
-					</div>
-
-					<div class="bar partial-bg float-right">
-						7 days
-					</div>
-					<div class="info partial float-right text-align-right">
-                    	<p>124,5</p>
-                    	<p>KM PER DAY</p>
-                    </div>
-				</div>
-			</div>
 
 			{*<div class="photos-summary width-100 float-left margin-bot-70">
 				<div class="part margin-bot-20 border-bottom">
