@@ -68,6 +68,10 @@ class Place extends \Kdyby\Doctrine\Entities\IdentifiedEntity
 
     public function getAvgDistance()
     {
-        return round($this->getDistance() / count($this->tracks), 2);
+        if (count($this->tracks) > 0) {
+            return round($this->getDistance() / count($this->tracks), 2);
+        } else {
+            return 0;
+        }
     }
 }
