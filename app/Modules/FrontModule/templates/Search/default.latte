@@ -129,18 +129,18 @@
             				</div>
             				<div class="part width-100 float-left">
             					<div class="bar overall-bg float-left">
-            						{*{$event->getDistance()} km*}
+            						{$place->getDistance()} km
             					</div>
             					<div class="info overall float-left">
-            						{*<p>{$event->getTimeInSeconds()|getSpanTimeFromSecondsNumber}</p>
-                                    <p>{$event->getTimeInSeconds()|getSpanTimeFromSecondsText}</p>*}
+            						<p>{$place->getTimeInSeconds()|getSpanTimeFromSecondsNumber}</p>
+                                    <p>{$place->getTimeInSeconds()|getSpanTimeFromSecondsText}</p>
             					</div>
             					<div class="bar partial-bg float-right">
-            						{*{$event->getAvgSpeed()} km/h*}
+            						{count($place->getTracks())} tracks
             					</div>
             					<div class="info partial float-right text-align-right">
-                                 	{*<p>{$event->getMaxSpeed()}</p>
-                                 	<p>MAX KM/H</p>*}
+                                 	<p>{$place->getAvgDistance()}</p>
+                                 	<p>KM PER TRACK</p>
                                 </div>
             				</div>
             			</div>

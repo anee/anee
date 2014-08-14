@@ -21,16 +21,6 @@ class Track extends \Kdyby\Doctrine\Entities\IdentifiedEntity
     /**
      * @ORM\Column(type="string", nullable=false)
      */
-    protected $from;
-
-    /**
-     * @ORM\Column(type="string", nullable=true)
-     */
-    protected $to;
-
-    /**
-     * @ORM\Column(type="string", nullable=false)
-     */
     protected $transport;
 
     /**
@@ -49,22 +39,29 @@ class Track extends \Kdyby\Doctrine\Entities\IdentifiedEntity
     protected $maxSpeed;
 
     /**
-     * @ORM\Column(type="float", nullable=false)
-     */
-    protected $avgSpeed;
-
-    /**
      * @ORM\Column(type="datetime", nullable=false)
      */
     protected $date;
 
-    public function __construct($distance, $timeInSeconds, $maxSpeed, $averageSpeed, $date)
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Model\Place", inversedBy="tracks")
+     */
+    protected $place;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Model\Place", inversedBy="tracks")
+     */
+    protected $placeTo;
+
+
+    public function __construct($transport, $distance, $timeInSeconds, $maxSpeed, $date, $place)
     {
+        $this->transport = $transport;
         $this->distance = $distance;
         $this->timeInSeconds = $timeInSeconds;
         $this->maxSpeed = $maxSpeed;
-        $this->averageSpeed = $averageSpeed;
         $this->date = $date;
+        $this->place = $place;
     }
 
     /**
@@ -77,9 +74,14 @@ class Track extends \Kdyby\Doctrine\Entities\IdentifiedEntity
 
     public function getName()
     {
-        if ($this->getFrom() == $this->getTo() || $this->getTo() == NULL)
-            return 'Near '.$this->getFrom();
+        if ($this->placeTo == NULL || $this->place->getName() == $this->placeTo->getName())
+            return 'Near '.$this->place->getName();
         else
-            return 'From '.$this->getFrom() .' to ' . $this->getTo();
+            return 'From '.$this->place->getName() .' to ' . $this->placeTo->getName();
+    }
+
+    public function getAvgSpeed()
+    {
+        return round((($this->distance * 1000) / $this->timeInSeconds) * 3.6, 2);
     }
 }

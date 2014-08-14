@@ -20,7 +20,7 @@ class PlaceFacade extends Nette\Object
 
     private $www;
 
-    public function __construct(Placeepository $placeRepository, $www)
+    public function __construct(PlaceRepository $placeRepository, $www)
     {
         $this->placeRepository = $placeRepository;
         $this->www = $www;

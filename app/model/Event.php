@@ -26,16 +26,6 @@ class Event extends \Kdyby\Doctrine\Entities\IdentifiedEntity
     /**
      * @ORM\Column(type="string", nullable=false)
      */
-    protected $from;
-
-    /**
-     * @ORM\Column(type="string", nullable=false)
-     */
-    protected $to;
-
-    /**
-     * @ORM\Column(type="string", nullable=false)
-     */
     protected $transport;
 
     /**
@@ -58,6 +48,17 @@ class Event extends \Kdyby\Doctrine\Entities\IdentifiedEntity
      */
     protected $date;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Model\Place", inversedBy="events")
+     */
+    protected $place;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Model\Place", inversedBy="events")
+     */
+    protected $placeTo;
+
+
     public function __construct($distance, $timeInSeconds, $date)
     {
         $this->distance = $distance;
@@ -75,10 +76,10 @@ class Event extends \Kdyby\Doctrine\Entities\IdentifiedEntity
 
     public function getName()
     {
-        if ($this->getFrom() == $this->getTo())
-            return 'Near '.$this->getFrom();
+        if ($this->placeTo == NULL || $this->place->getName() == $this->placeTo->getName())
+            return 'Near '.$this->place->getName();
         else
-            return 'From '.$this->getFrom() .' to ' . $this->getTo();
+            return 'From '.$this->place->getName() .' to ' . $this->placeTo->getName();
     }
 
     public function getAvgSpeed()

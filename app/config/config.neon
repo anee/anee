@@ -27,8 +27,8 @@ services:
     eventRepository: App\Model\eventRepository(@doctrine.dao(App\Model\Event))
     placeFacade: App\Model\placeFacade(@placeRepository, %wwwDir%)
     placeRepository: App\Model\placeRepository(@doctrine.dao(App\Model\Place))
-    photoFacade: App\Model\PhotoFacade(@photoRepository, %wwwDir%)
-    photoRepository: App\Model\PhotoRepository(@doctrine.dao(App\Model\Photo))
+    photoFacade: App\Model\photoFacade(@photoRepository, %wwwDir%)
+    photoRepository: App\Model\photoRepository(@doctrine.dao(App\Model\Photo))
     - App\Modules\FrontModule\Forms\SearchForm
     - App\Modules\FrontModule\Forms\CommentForm
     - App\RouterFactory
