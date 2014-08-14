@@ -74,4 +74,26 @@ class Place extends \Kdyby\Doctrine\Entities\IdentifiedEntity
             return 0;
         }
     }
+
+    public function getLastUpdate()
+    {
+        if(count($this->events) > 0 || count($this->tracks)) {
+            $dateTime = new DateTime();
+            $count = 0;
+            foreach($this->events as $event){
+                if($count == 0 || $event->getDate() > $dateTime) {
+                    $dateTime = $event->getDate();
+                }
+                $count++;
+            }
+            foreach($this->tracks as $track){
+                if($track->getDate() > $dateTime) {
+                    $dateTime = $track->getDate();
+                }
+            }
+            return $dateTime;
+        } else {
+            return NULL;
+        }
+    }
 }
