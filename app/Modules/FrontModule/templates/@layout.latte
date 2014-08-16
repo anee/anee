@@ -44,31 +44,14 @@
 
 <!-- Search bar -->
 <div id="search-bar" style="display:none;">
-
-	{*{$searchForm->render('begin')}
-		{input search}
-	{$searchForm->render('end')}*}
-
-{form searchForm}
-	{input search}
-	<div id="search-bar-filters" class="float-right">
-		{$form->render($form['filterTime'])}
-		{$form->render($form['filterTransport'])}
-		{$form->render($form['filterCategory'])}
-	</div>
-
-{/form}
-
-
-
-	{*{form searchForm}
+	{form searchForm}
 		{input search}
 		<div id="search-bar-filters" class="float-right">
-				{input filterCategory class=>test}
-				{input filterTransport}
-				{input filterTime}
+			{$form->render($form['filterTime'])}
+			{$form->render($form['filterTransport'])}
+			{$form->render($form['filterCategory'])}
 		</div>
-	{/form}*}
+	{/form}
 </div>
 
 <!-- Begin page content -->
@@ -83,28 +66,28 @@
 		<div style="clear: both;"></div>
 	</div>
 	<div class="part width-100 margin-bot-40 float-left">
-	    <ul class="float-left">
+    	 <ul class="float-left">
             <li class="selected float-left">
         		<span class="highlight">{$eventsCount}</span><a href="
-        		{var $args = [filterCategory => Events]}
+                {var $args = array('values' => array('filterCategory' => 'Events'))}
                 {link Search:default (expand) $args}"> Events</a>
         	</li>
         	<li class="float-left">
         		<span class="highlight">{$tracksCount}</span><a href="
-        		{var $args = [filterCategory => Tracks]}
+                {var $args = array('values' => array('filterCategory' => 'Tracks'))}
                 {link Search:default (expand) $args}"> Tracks</a>
         	</li>
         	<li class="float-left">
         		<span class="highlight">{$placesCount}</span><a href="
-        		{var $args = [filterCategory => Places]}
+                {var $args = array('values' => array('filterCategory' => 'Places'))}
                 {link Search:default (expand) $args}"> Places</a>
         	</li>
         	<li class="float-left">
         		<span class="highlight">{$photosCount}</span><a href="
-        		{var $args = [filterCategory => Photos]}
+                {var $args = array('values' => array('filterCategory' => 'Photos'))}
                 {link Search:default (expand) $args}"> Photos</a>
             </li>
-        </ul>
+         </ul>
 	</div>
 	<div class="part summary width-100 float-left">
 		<div class="bar overall-bg float-left">{$distanceSum} km</div>
@@ -123,22 +106,22 @@
     	    <ul class="float-left">
             <li class="selected float-left">
         		<span class="highlight">{$eventsCount}</span><a href="
-        		{var $args = [filterCategory => Events]}
+                {var $args = array('values' => array('filterCategory' => 'Events'))}
                 {link Search:default (expand) $args}"> Events</a>
         	</li>
         	<li class="float-left">
         		<span class="highlight">{$tracksCount}</span><a href="
-        		{var $args = [filterCategory => Tracks]}
+                {var $args = array('values' => array('filterCategory' => 'Tracks'))}
                 {link Search:default (expand) $args}"> Tracks</a>
         	</li>
         	<li class="float-left">
         		<span class="highlight">{$placesCount}</span><a href="
-        		{var $args = [filterCategory => Places]}
+                {var $args = array('values' => array('filterCategory' => 'Places'))}
                 {link Search:default (expand) $args}"> Places</a>
         	</li>
         	<li class="float-left">
         		<span class="highlight">{$photosCount}</span><a href="
-        		{var $args = [filterCategory => Photos]}
+                {var $args = array('values' => array('filterCategory' => 'Photos'))}
                 {link Search:default (expand) $args}"> Photos</a>
             </li>
             </ul>
