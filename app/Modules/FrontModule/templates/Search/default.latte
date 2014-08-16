@@ -133,7 +133,11 @@
             					{var $args = array('values' => [search => $place->getName()])}
                                 {link Search:default (expand) $args}
                                 ">{$place->getName()}</a></h4>
-            					<p class="float-right margin-bot-5"><span class="highlight">{$place->getLastUpdate()|getDateAgoNumber}</span> {$place->getLastUpdate()|getDateAgoText}</p>
+            					<p class="float-right margin-bot-5"><span class="highlight">
+            					{if $place->getLastUpdate() != NULL}
+            						{$place->getLastUpdate()|getDateAgoNumber}</span>
+            						{$place->getLastUpdate()|getDateAgoText}</p>
+            					{/if}
             					<div style="clear: both;"></div>
             				</div>
             				<div class="part width-100 float-left">
