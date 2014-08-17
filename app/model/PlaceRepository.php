@@ -26,19 +26,32 @@ class PlaceRepository extends Nette\Object {
         $this->places->save($work);
     }
 
+    public function remove($id)
+    {
+        $this->places->delete($this->findById($id));
+    }
+
     public function findAll()
     {
-        return $this->places->findBy(array(), array('id' => 'DESC'));
+        $qb = $this->places->createQueryBuilder();
+        $qb
+            ->select('e')
+            ->from('App\Model\Place', 'e')
+            ->orderBy('e.id', 'DESC');
+
+        return $qb->getQuery()->getResult();
     }
 
     public function findById($id)
     {
-        return $this->places->find($id);
-    }
+        $qb = $this->places->createQueryBuilder();
+        $qb
+            ->select('e')
+            ->from('App\Model\Place', 'e')
+            ->where('e.id = :id')
+            ->setParameter('id', $id);
 
-    public function remove($id)
-    {
-        $this->places->delete($this->findById($id));
+        return $qb->getQuery()->getSingleResult();
     }
 
     public function findByFilters($values)

@@ -28,42 +28,54 @@ class PhotoRepository extends Nette\Object {
         $this->photos->save($photo);
     }
 
+    public function remove($id)
+    {
+        $this->photos->delete($this->findById($id));
+    }
+
     public function findLast()
     {
-        return $this->photos->findOneBy(array(), array('id' => 'DESC'), 1);
+        $qb = $this->photos->createQueryBuilder();
+        $qb
+            ->select('e')
+            ->from('App\Model\Photo', 'e')
+            ->orderBy('e.id', 'DESC');
+
+        return $qb->getQuery()->setMaxResults(1)->getSingleResult();
     }
 
     public function findLastByCount($count)
     {
-        return $this->photos->findBy(array(), array('id' => 'DESC'), $count);
-    }
+        $qb = $this->photos->createQueryBuilder();
+        $qb
+            ->select('e')
+            ->from('App\Model\Photo', 'e')
+            ->orderBy('e.id', 'DESC');
 
-    public function findFromEnd($position)
-    {
-        $counter = 0;
-        $photos = $this->photos->findBy(array(), array('id' => 'DESC'));
-
-        foreach($photos as $photo) {
-            $counter ++;
-            if ($counter == $position)
-                return $photo;
-            }
-        return NULL;
+        return $qb->getQuery()->setMaxResults($count)->getResult();
     }
 
     public function findAll()
     {
-        return $this->photos->findBy(array(), array('id' => 'DESC'));
+        $qb = $this->photos->createQueryBuilder();
+        $qb
+            ->select('e')
+            ->from('App\Model\Photo', 'e')
+            ->orderBy('e.id', 'DESC');
+
+        return $qb->getQuery()->getResult();
     }
 
     public function findById($id)
     {
-        return $this->photos->find($id);
-    }
+        $qb = $this->photos->createQueryBuilder();
+        $qb
+            ->select('e')
+            ->from('App\Model\Photos', 'e')
+            ->where('e.id = :id')
+            ->setParameter('id', $id);
 
-    public function remove($id)
-    {
-        $this->photos->delete($this->findById($id));
+        return $qb->getQuery()->getSingleResult();
     }
 
     public function findByFilters($values)

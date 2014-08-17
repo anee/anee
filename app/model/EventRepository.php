@@ -27,24 +27,43 @@ class EventRepository extends Nette\Object {
         $this->events->save($event);
     }
 
+    public function remove($id)
+    {
+        $this->events->delete($this->findById($id));
+    }
+
     public function findAll()
     {
-        return $this->events->findBy(array(), array('id' => 'DESC'));
+        $qb = $this->events->createQueryBuilder();
+        $qb
+            ->select('e')
+            ->from('App\Model\Event', 'e')
+            ->orderBy('e.id', 'DESC');
+
+        return $qb->getQuery()->getResult();
     }
 
     public function findLast()
     {
-        return $this->events->findOneBy(array(), array('id' => 'DESC'), 1);
+        $qb = $this->events->createQueryBuilder();
+        $qb
+            ->select('e')
+            ->from('App\Model\Event', 'e')
+            ->orderBy('e.id', 'DESC');
+
+        return $qb->getQuery()->setMaxResults(1)->getSingleResult();
     }
 
     public function findById($id)
     {
-        return $this->events->find($id);
-    }
+        $qb = $this->events->createQueryBuilder();
+        $qb
+            ->select('e')
+            ->from('App\Model\Event', 'e')
+            ->where('e.id = :id')
+            ->setParameter('id', $id);
 
-    public function remove($id)
-    {
-        $this->events->delete($this->findById($id));
+        return $qb->getQuery()->getSingleResult();
     }
 
     public function distanceSum()

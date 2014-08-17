@@ -64,52 +64,59 @@
 		</div>
 
 		<div class="tracks-summary width-100 float-left">
-			<div class="part width-50 float-left padding-right-20">
-				<div class="part width-100 margin-bot-20 border-bottom float-left">
-					<h2 class="float-left"><a href="">{$track->getName()} </a><span class="not-highlight">{$track->getTransport()}</span></h2>
-					<p class="float-right margin-bot-5"><span class="highlight">{$track->getDate()|getDateAgoNumber}</span> {$track->getDate()|getDateAgoText}</p>
-					<div style="clear: both;"></div>
-				</div>
-				<div class="part width-100 float-left">
-					<div class="bar overall-bg float-left">
-						{$track->getDistance()} km
-					</div>
-					<div class="info overall float-left">
-						<p>{$track->getTimeInSeconds()|getSpanTimeFromSecondsNumber}</p>
-                        <p>{$track->getTimeInSeconds()|getSpanTimeFromSecondsText}</p>
-					</div>
-					<div class="bar partial-bg float-right">
-						{$track->getAvgSpeed()} km/h
-					</div>
-				    <div class="info partial float-right text-align-right">
-                    	<p>{$track->getMaxSpeed()}</p>
-                        <p>MAX KM/H</p>
-                    </div>
-				</div>
-			</div>
-			<div class="part width-50 float-left padding-left-20">
-				<div class="part width-100 margin-bot-20 border-bottom float-left">
-					<h2 class="float-left"><a href="">{$track2->getName()} </a> <span class="not-highlight">{$track2->getTransport()}</span></h2>
-					<p class="float-right margin-bot-0"><span class="highlight">{$track2->getDate()|getDateAgoNumber}</span> {$track2->getDate()|getDateAgoText}</p>
-					<div style="clear: both;"></div>
-				</div>
-				<div class="part width-100 float-left">
-					<div class="bar overall-bg float-left">
-						{$track2->getDistance()} km
-					</div>
-					<div class="info overall float-left">
-						<p>{$track2->getTimeInSeconds()|getSpanTimeFromSecondsNumber}</p>
-                        <p>{$track2->getTimeInSeconds()|getSpanTimeFromSecondsText}</p>
-					</div>
-					<div class="bar partial-bg float-right">
-						{$track2->getAvgSpeed()} km/h
-					</div>
-					<div class="info partial float-right text-align-right">
-                    	<p>{$track2->getMaxSpeed()}</p>
-                        <p>MAX KM/H</p>
-                    </div>
-				</div>
-			</div>
+
+		{foreach $tracks as $track}
+        	{if $iterator->getCounter() == 1}
+        	<div class="part width-50 float-left padding-right-20">
+            				<div class="part width-100 margin-bot-20 border-bottom float-left">
+            					<h2 class="float-left"><a href="">{$track->getName()} </a><span class="not-highlight">{$track->getTransport()}</span></h2>
+            					<p class="float-right margin-bot-5"><span class="highlight">{$track->getDate()|getDateAgoNumber}</span> {$track->getDate()|getDateAgoText}</p>
+            					<div style="clear: both;"></div>
+            				</div>
+            				<div class="part width-100 float-left">
+            					<div class="bar overall-bg float-left">
+            						{$track->getDistance()} km
+            					</div>
+            					<div class="info overall float-left">
+            						<p>{$track->getTimeInSeconds()|getSpanTimeFromSecondsNumber}</p>
+                                    <p>{$track->getTimeInSeconds()|getSpanTimeFromSecondsText}</p>
+            					</div>
+            					<div class="bar partial-bg float-right">
+            						{$track->getAvgSpeed()} km/h
+            					</div>
+            				    <div class="info partial float-right text-align-right">
+                                	<p>{$track->getMaxSpeed()}</p>
+                                    <p>MAX KM/H</p>
+                                </div>
+            				</div>
+            			</div>
+        	{/if}
+        	{if $iterator->getCounter() == 2}
+        				<div class="part width-50 float-left padding-left-20">
+            				<div class="part width-100 margin-bot-20 border-bottom float-left">
+            					<h2 class="float-left"><a href="">{$track->getName()} </a> <span class="not-highlight">{$track->getTransport()}</span></h2>
+            					<p class="float-right margin-bot-0"><span class="highlight">{$track->getDate()|getDateAgoNumber}</span> {$track->getDate()|getDateAgoText}</p>
+            					<div style="clear: both;"></div>
+            				</div>
+            				<div class="part width-100 float-left">
+            					<div class="bar overall-bg float-left">
+            						{$track->getDistance()} km
+            					</div>
+            					<div class="info overall float-left">
+            						<p>{$track->getTimeInSeconds()|getSpanTimeFromSecondsNumber}</p>
+                                    <p>{$track->getTimeInSeconds()|getSpanTimeFromSecondsText}</p>
+            					</div>
+            					<div class="bar partial-bg float-right">
+            						{$track->getAvgSpeed()} km/h
+            					</div>
+            					<div class="info partial float-right text-align-right">
+                                	<p>{$track->getMaxSpeed()}</p>
+                                    <p>MAX KM/H</p>
+                                </div>
+            				</div>
+            			</div>
+           	{/if}
+		{/foreach}
 		</div>
 	</div>
 

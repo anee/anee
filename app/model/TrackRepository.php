@@ -28,39 +28,54 @@ class TrackRepository extends Nette\Object {
         $this->tracks->save($track);
     }
 
+    public function remove($id)
+    {
+        $this->tracks->delete($this->findById($id));
+    }
+
     public function findAll()
     {
-        return $this->tracks->findBy(array(), array('id' => 'DESC'));
+        $qb = $this->tracks->createQueryBuilder();
+        $qb
+            ->select('e')
+            ->from('App\Model\Track', 'e')
+            ->orderBy('e.id', 'DESC');
+
+        return $qb->getQuery()->getResult();
     }
 
     public function findLast()
     {
-        return $this->tracks->findOneBy(array(), array('id' => 'DESC'), 1);
+        $qb = $this->tracks->createQueryBuilder();
+        $qb
+            ->select('e')
+            ->from('App\Model\Track', 'e')
+            ->orderBy('e.id', 'DESC');
+
+        return $qb->getQuery()->setMaxResults(1)->getSingleResult();
     }
 
-    public function findBeforeLast()
+    public function findLastByCount($count)
     {
-        $counter = 0;
-        $tracks = $this->tracks->findBy(array(), array('id' => 'DESC'), 2);
+        $qb = $this->tracks->createQueryBuilder();
+        $qb
+            ->select('e')
+            ->from('App\Model\Track', 'e')
+            ->orderBy('e.id', 'DESC');
 
-        foreach($tracks as $track) {
-            if ($counter == 0) {
-                $counter ++;
-            } else {
-                return $track;
-            }
-        }
-        return NULL;
+        return $qb->getQuery()->setMaxResults($count)->getResult();
     }
 
     public function findById($id)
     {
-        return $this->tracks->find($id);
-    }
+        $qb = $this->tracks->createQueryBuilder();
+        $qb
+            ->select('e')
+            ->from('App\Model\Track', 'e')
+            ->where('e.id = :id')
+            ->setParameter('id', $id);
 
-    public function remove($id)
-    {
-        $this->tracks->delete($this->findById($id));
+        return $qb->getQuery()->getSingleResult();
     }
 
     public function distanceSum()
