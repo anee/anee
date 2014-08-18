@@ -171,17 +171,31 @@
                                         {link Search:default (expand) $args}#{$photo->getName()}
                                         "><img src="{$photo->getPath()|thumb:'860x'}"></a>
                 					    <div class="part padding-top-5">
-                						    {if $photo->getEventFrom() != NULL && $photo->getEventTo() != NULL}
-                						        <p class="float-left">from <span class="highlight"><a href="">{$photo->getEventFrom()}</a></span> to <span class="highlight"><a href="">{$photo->getEventTo()}</a></span>
-                						    {elseif $photo->getEventFrom() != NULL}
+                					    {if $photo->event != NULL}
+                						    {if $photo->event->place->name != NULL && $photo->event->placeTo->name != NULL}
+                						        <p class="float-left">from <span class="highlight"><a href="">{$photo->event->place->name}</a></span> to <span class="highlight"><a href="">{$photo->event->placeTo->name}</a></span>
+                						    {elseif $photo->event->place->name != NULL}
                                                 <p class="float-left">near <span class="highlight"><a href="">Nová Bystřice</a></span>
                                             {/if}
-                						    {if $photo->getEventFrom() != NULL && $photo->getPlace() != NULL}
+                						    {if $photo->event->place->name != NULL && $photo->getPlace() != NULL}
                 						        ,
                 						    {/if}
                 						    {if $photo->getPlace() != NULL}
                 						        near <a class="highlight" href="">{$photo->getPlace()}</a></p>
                 						    {/if}
+										{elseif $photo->track != NULL}
+                						    {if $photo->track->place->name != NULL && $photo->track->placeTo->name != NULL}
+                						        <p class="float-left">from <span class="highlight"><a href="">{$photo->track->place->name}</a></span> to <span class="highlight"><a href="">{$photo->track->placeTo->name}</a></span>
+                						    {elseif $photo->track->place->name != NULL}
+                                                <p class="float-left">near <span class="highlight"><a href="">Nová Bystřice</a></span>
+                                            {/if}
+                						    {if $photo->track->place->name != NULL && $photo->place != NULL}
+                						        ,
+                						    {/if}
+                						    {if $photo->place != NULL}
+                						        near <a class="highlight" href="">{$photo->place->name}</a></p>
+                						    {/if}
+                						 {/if}
                 						    <p class="float-right margin-bot-5"><span class="highlight">{$photo->getDate()|getDateAgoNumber}</span> {$photo->getDate()|getDateAgoText}</p>
                 						    <div style="clear: both;"></div>
                 					    </div>
