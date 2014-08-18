@@ -53,6 +53,11 @@ class Track extends \Kdyby\Doctrine\Entities\IdentifiedEntity
      */
     protected $placeTo;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Model\Photo", mappedBy="tracks")
+     */
+    protected $photos;
+
 
     public function __construct($transport, $distance, $timeInSeconds, $maxSpeed, $date, $place)
     {

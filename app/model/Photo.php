@@ -34,20 +34,19 @@ class Photo extends \Kdyby\Doctrine\Entities\IdentifiedEntity
     protected $date;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\ManyToOne(targetEntity="App\Model\Place", inversedBy="photos")
      */
     protected $place;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\ManyToOne(targetEntity="App\Model\Event", inversedBy="photos")
      */
-    protected $eventFrom;
+    protected $event;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\ManyToOne(targetEntity="App\Model\Track", inversedBy="photos")
      */
-    protected $eventTo;
-
+    protected $track;
 
     public function __construct($name, $path, $place, $eventFrom, $eventTo)
     {

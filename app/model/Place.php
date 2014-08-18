@@ -34,6 +34,11 @@ class Place extends \Kdyby\Doctrine\Entities\IdentifiedEntity
      */
     protected $events;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Model\Photo", mappedBy="place")
+     */
+    protected $photos;
+
     public function __construct($name)
     {
         $this->name = $name;

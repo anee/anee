@@ -58,6 +58,11 @@ class Event extends \Kdyby\Doctrine\Entities\IdentifiedEntity
      */
     protected $placeTo;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Model\Photo", mappedBy="events")
+     */
+    protected $photos;
+
 
     public function __construct($distance, $timeInSeconds, $date)
     {

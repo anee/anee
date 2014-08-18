@@ -87,8 +87,11 @@ class PhotoRepository extends Nette\Object {
 
         if($values['search'] != '') {
             $qb
-                ->where($qb->expr()->like('e.eventFrom', ':search'))
-                ->orWhere($qb->expr()->like('e.eventTo', ':search'))
+                ->join('e.event', 'a')
+                ->join('a.place', 'b')
+                ->join('a.placeTo', 'c')
+                ->where($qb->expr()->like('b.name', ':search'))
+                ->orWhere($qb->expr()->like('c.name', ':search'))
                 ->orWhere($qb->expr()->like('e.place', ':search'))
                 ->setParameter('search', '%' . $values['search'] . '%');
         }
