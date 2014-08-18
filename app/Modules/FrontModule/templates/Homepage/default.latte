@@ -9,7 +9,9 @@
 			</div>
 			<div class="event-description float-left width-60">
 				<div class="event-date"><p>{$event->date->format('l d, F Y')}</p></div>
-				<h1><a href="">{$event->getName()}</a><span class="not-highlight"> {$event->getTransport()}</span></h1>
+				<h1><a href="
+				    {link Event:detail, $event->getId()}
+				">{$event->getName()}</a><span class="not-highlight"> {$event->getTransport()}</span></h1>
 				<div class="event-text float-left margin-bot-70"><p>
 						{$event->getDescription()}
 				</p></div>
@@ -39,7 +41,10 @@
 
 		<div class="photos-summary width-100 float-left margin-bot-70">
 			<div class="part margin-bot-20 border-bottom">
-				<h2 class="float-left"><a href="">Photos</a></h2>
+				<h2 class="float-left"><a href="
+					{var $args = array('values' => [filterCategory => Photos])}
+                    {link Search:default (expand) $args}
+				">Photos</a></h2>
 				<p class="float-right margin-bot-5"><span class="highlight">{$photos[0]->getDate()|getDateAgoNumber}</span> {$photos[0]->getDate()|getDateAgoText}</p>
 				<div style="clear: both;"></div>
 			</div>
@@ -67,9 +72,11 @@
 
 		{foreach $tracks as $track}
         	{if $iterator->getCounter() == 1}
-        	<div class="part width-50 float-left padding-right-20">
+        				<div class="part width-50 float-left padding-right-20">
             				<div class="part width-100 margin-bot-20 border-bottom float-left">
-            					<h2 class="float-left"><a href="">{$track->getName()} </a><span class="not-highlight">{$track->getTransport()}</span></h2>
+            					<h2 class="float-left"><a href="
+                                	{link Track:detail, $track->getId()}
+            					">{$track->getName()} </a><span class="not-highlight">{$track->getTransport()}</span></h2>
             					<p class="float-right margin-bot-5"><span class="highlight">{$track->getDate()|getDateAgoNumber}</span> {$track->getDate()|getDateAgoText}</p>
             					<div style="clear: both;"></div>
             				</div>
@@ -94,7 +101,9 @@
         	{if $iterator->getCounter() == 2}
         				<div class="part width-50 float-left padding-left-20">
             				<div class="part width-100 margin-bot-20 border-bottom float-left">
-            					<h2 class="float-left"><a href="">{$track->getName()} </a> <span class="not-highlight">{$track->getTransport()}</span></h2>
+            					<h2 class="float-left"><a href="
+            						{link Track:detail, $track->getId()}
+            					">{$track->getName()} </a> <span class="not-highlight">{$track->getTransport()}</span></h2>
             					<p class="float-right margin-bot-0"><span class="highlight">{$track->getDate()|getDateAgoNumber}</span> {$track->getDate()|getDateAgoText}</p>
             					<div style="clear: both;"></div>
             				</div>
