@@ -85,9 +85,7 @@ class EventRepository extends Nette\Object {
         if($values['search'] != '') {
             $qb
                 ->join('e.place', 'a')
-                ->join('e.placeTo', 'b')
                 ->where($qb->expr()->like('a.name', ':search'))
-                ->orWhere($qb->expr()->like('b.name', ':search'))
                 ->orWhere($qb->expr()->like('e.description', ':search'))
                 ->setParameter('search', '%' . $values['search'] . '%');
         }

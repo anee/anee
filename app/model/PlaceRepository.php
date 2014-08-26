@@ -69,6 +69,7 @@ class PlaceRepository extends Nette\Object {
         $qb
             ->orderBy('e.id', 'DESC');
 
+
         return $qb->getQuery()->getResult();
     }
 }
