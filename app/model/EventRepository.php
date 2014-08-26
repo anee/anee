@@ -51,7 +51,7 @@ class EventRepository extends Nette\Object {
             ->from('App\Model\Event', 'e')
             ->orderBy('e.id', 'DESC');
 
-        return $qb->getQuery()->setMaxResults(1)->getSingleResult();
+        return $qb->getQuery()->setMaxResults(1)->getOneOrNullResult();
     }
 
     public function findById($id)

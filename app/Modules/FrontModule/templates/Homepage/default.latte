@@ -1,10 +1,11 @@
 {block content}
 
 	<div id="homepage">
+	{if $event != NULL}
 		<div class="event float-left width-100 margin-bot-70">
 			<div class="part float-left padding-right-2-p width-40">
 				<li>
-					<a href=""><img class="width-100" src="/anee/www/images/photos/Photo_homeP_test.jpg"></a>
+					<a href=""><img class="width-100" src="{$event->getLastPhoto()->filePath}"></a>
 				</li>
 			</div>
 			<div class="event-description float-left width-60">
@@ -38,7 +39,9 @@
 				</div>
 			</div>
 		</div>
+		{/if}
 
+		{if count($photos) > 3}
 		<div class="photos-summary width-100 float-left margin-bot-70">
 			<div class="part margin-bot-20 border-bottom">
 				<h2 class="float-left"><a href="
@@ -52,21 +55,22 @@
 				<ul>
 					{foreach $photos as $photo}
 						{if $iterator->getCounter() == 1}
-							<div class="part float-left width-25"><li><a href=""><img class="width-100 padding-right-15" src="{$photo->getPath()}"/></a></li></div>
+							<div class="part float-left width-25"><li><a href=""><img class="width-100 padding-right-15" src="{$photo->getFilePath()}"/></a></li></div>
 						{/if}
 						{if $iterator->getCounter() == 2}
-                        	<div class="part float-left width-25"><li><a href=""><img class="width-100 padding-left-5 padding-right-10" src="{$photo->getPath()}"/></a></li></div>
+                        	<div class="part float-left width-25"><li><a href=""><img class="width-100 padding-left-5 padding-right-10" src="{$photo->getFilePath()}"/></a></li></div>
                         {/if}
 						{if $iterator->getCounter() == 3}
-                        	<div class="part float-left width-25"><li><a href=""><img class="width-100 padding-left-10 padding-right-5" src="{$photo->getPath()}"/></a></li></div>
+                        	<div class="part float-left width-25"><li><a href=""><img class="width-100 padding-left-10 padding-right-5" src="{$photo->getFilePath()}"/></a></li></div>
 						{/if}
 						{if $iterator->getCounter() == 4}
-                        	<div class="part float-left width-25"><li><a href=""><img class="width-100 padding-left-15" src="{$photo->getPath()}"/></a></li></div>
+                        	<div class="part float-left width-25"><li><a href=""><img class="width-100 padding-left-15" src="{$photo->getFilePath()}"/></a></li></div>
                         {/if}
 					{/foreach}
 				</ul>
 			</div>
 		</div>
+		{/if}
 
 		<div class="tracks-summary width-100 float-left">
 

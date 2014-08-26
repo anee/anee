@@ -59,10 +59,9 @@ class Event extends \Kdyby\Doctrine\Entities\IdentifiedEntity
     protected $placeTo;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Model\Photo", mappedBy="events")
+     * @ORM\OneToMany(targetEntity="App\Model\Photo", mappedBy="event")
      */
-    protected $photos;
-
+    protected $eventPhotos;
 
     public function __construct($distance, $timeInSeconds, $date)
     {
@@ -90,5 +89,10 @@ class Event extends \Kdyby\Doctrine\Entities\IdentifiedEntity
     public function getAvgSpeed()
     {
         return ($this->getDistance()/($this->getTimeInSecondsTrip()/(60*60*24)));
+    }
+
+    public function getLastPhoto()
+    {
+        return $this->eventPhotos->last();
     }
 }

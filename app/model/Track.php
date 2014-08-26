@@ -54,7 +54,7 @@ class Track extends \Kdyby\Doctrine\Entities\IdentifiedEntity
     protected $placeTo;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Model\Photo", mappedBy="tracks")
+     * @ORM\OneToMany(targetEntity="App\Model\Photo", mappedBy="track")
      */
     protected $photos;
 
