@@ -97,14 +97,14 @@ class PhotoRepository extends Nette\Object {
                 ->leftJoin('e.event', 'o')
                 ->where('o IS NOT NULL')
                 ->join('o.place', 'p')
-                ->leftJoin('p.placeTo','q')
+                ->leftJoin('o.placeTo','q')
                 ->where('q IS NOT NULL')
                 //place
                 ->leftJoin('e.place', 'a')
                 ->where('a IS NOT NULL')
                 ->where($qb->expr()->like('g.name', ':search'))
                 ->orWhere($qb->expr()->like('h.name', ':search'))
-                ->orWhere($qb->expr()->like('o.name', ':search'))
+                ->orWhere($qb->expr()->like('q.name', ':search'))
                 ->orWhere($qb->expr()->like('p.name', ':search'))
                 ->orWhere($qb->expr()->like('a.name', ':search'))
                 ->setParameter('search', '%' . $values['search'] . '%');
