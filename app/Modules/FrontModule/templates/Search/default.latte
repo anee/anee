@@ -171,7 +171,7 @@
                                         {link Search:default (expand) $args}#{$photo->getFileName()}
                                         {*"><img src="{$photo->getFilePath()|thumb:'860x'}"></a>*}
                                         "><img class="width-50" src="{$photo->getFilePath()}"></a>
-                					    <div class="part padding-top-5">
+                					    <div class="part width-50 margin-auto padding-top-5">
 										{if $photo->event != NULL}
                 						    {if $photo->event->placeTo != NULL}
                 						        <p class="float-left">from <span class="highlight"><a href="">{$photo->event->place->name}</a></span> to <span class="highlight"><a href="">{$photo->event->placeTo->name}</a></span>
