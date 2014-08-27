@@ -169,7 +169,8 @@
                 				        <a href="
                 				        {var $args = array('values' => array_merge($values, [filterCategory => Photos]))}
                                         {link Search:default (expand) $args}#{$photo->getFileName()}
-                                        "><img src="{$photo->getFilePath()|thumb:'860x'}"></a>
+                                        {*"><img src="{$photo->getFilePath()|thumb:'860x'}"></a>*}
+                                        "><img class="width-50" src="{$photo->getFilePath()}"></a>
                 					    <div class="part padding-top-5">
 										{if $photo->event != NULL}
                 						    {if $photo->event->placeTo != NULL}
@@ -190,7 +191,6 @@
                 						        ,
                 							{/if}
                                         {else}
-
                                         {/if}
                 						    {if $photo->place != NULL && ($photo->track != NULL || $photo->event != NULL)}
                 						        <a class="highlight" href="">{$photo->place->name}</a></p>
@@ -199,14 +199,13 @@
                 						    {/if}
                 						    <p class="float-right margin-bot-5"><span class="highlight">{$photo->getDate()|getDateAgoNumber}</span> {$photo->getDate()|getDateAgoText}</p>
                 						    <div style="clear: both;"></div>
-                					    </div>
-                 					 </div>
-                				</li>
+                					     </div>
+                				    </li>
                 		  	 </div>
                         {/foreach}
                 	</ul>
                 </div>
-                {/if}
+            {/if}
 
 	</div>
 
