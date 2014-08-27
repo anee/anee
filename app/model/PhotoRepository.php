@@ -39,7 +39,7 @@ class PhotoRepository extends Nette\Object {
         $qb
             ->select('e')
             ->from('App\Model\Photo', 'e')
-            ->orderBy('e.id', 'DESC');
+            ->orderBy('e.date', 'DESC');
 
         return $qb->getQuery()->setMaxResults(1)->getSingleResult();
     }
@@ -50,7 +50,7 @@ class PhotoRepository extends Nette\Object {
         $qb
             ->select('e')
             ->from('App\Model\Photo', 'e')
-            ->orderBy('e.id', 'DESC');
+            ->orderBy('e.date', 'DESC');
 
         return $qb->getQuery()->setMaxResults($count)->getResult();
     }
@@ -61,7 +61,7 @@ class PhotoRepository extends Nette\Object {
         $qb
             ->select('e')
             ->from('App\Model\Photo', 'e')
-            ->orderBy('e.id', 'DESC');
+            ->orderBy('e.date', 'DESC');
 
         return $qb->getQuery()->getResult();
     }
@@ -115,7 +115,7 @@ class PhotoRepository extends Nette\Object {
                 ->setParameter('date', FilterUtils::timeSubFilterTime($values['filterTime']));
         }
         $qb
-            ->orderBy('e.id', 'DESC');
+            ->orderBy('e.date', 'DESC');
         return $qb->getQuery()->getResult();
     }
 }

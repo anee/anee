@@ -39,7 +39,7 @@ class TrackRepository extends Nette\Object {
         $qb
             ->select('e')
             ->from('App\Model\Track', 'e')
-            ->orderBy('e.id', 'DESC');
+            ->orderBy('e.date', 'DESC');
 
         return $qb->getQuery()->getResult();
     }
@@ -50,7 +50,7 @@ class TrackRepository extends Nette\Object {
         $qb
             ->select('e')
             ->from('App\Model\Track', 'e')
-            ->orderBy('e.id', 'DESC');
+            ->orderBy('e.date', 'DESC');
 
         return $qb->getQuery()->setMaxResults(1)->getSingleResult();
     }
@@ -61,7 +61,7 @@ class TrackRepository extends Nette\Object {
         $qb
             ->select('e')
             ->from('App\Model\Track', 'e')
-            ->orderBy('e.id', 'DESC');
+            ->orderBy('e.date', 'DESC');
 
         return $qb->getQuery()->setMaxResults($count)->getResult();
     }
@@ -114,7 +114,7 @@ class TrackRepository extends Nette\Object {
                 ->setParameter('transport', $values['filterTransport']);
         }
         $qb
-            ->orderBy('e.id', 'DESC');
+            ->orderBy('e.date', 'DESC');
 
         return $qb->getQuery()->getResult();
     }

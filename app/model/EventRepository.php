@@ -38,7 +38,7 @@ class EventRepository extends Nette\Object {
         $qb
             ->select('e')
             ->from('App\Model\Event', 'e')
-            ->orderBy('e.id', 'DESC');
+            ->orderBy('e.date', 'DESC');
 
         return $qb->getQuery()->getResult();
     }
@@ -49,7 +49,7 @@ class EventRepository extends Nette\Object {
         $qb
             ->select('e')
             ->from('App\Model\Event', 'e')
-            ->orderBy('e.id', 'DESC');
+            ->orderBy('e.date', 'DESC');
 
         return $qb->getQuery()->setMaxResults(1)->getOneOrNullResult();
     }
@@ -103,7 +103,7 @@ class EventRepository extends Nette\Object {
                 ->setParameter('transport', $values['filterTransport']);
         }
         $qb
-            ->orderBy('e.id', 'DESC');
+            ->orderBy('e.date', 'DESC');
 
 
         return $qb->getQuery()->getResult();
