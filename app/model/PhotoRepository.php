@@ -87,11 +87,26 @@ class PhotoRepository extends Nette\Object {
 
         if($values['search'] != '') {
             $qb
-                ->join('e.event', 'a')
-                ->join('a.place', 'b')
-                ->join('e.place', 'c')
-                ->where($qb->expr()->like('c.name', ':search'))
-                ->orWhere($qb->expr()->like('b.name', ':search'))
+                //track
+                ->leftJoin('e.track', 'b')
+                ->where('b IS NOT NULL')
+                ->join('b.place', 'g')
+                ->leftJoin('b.placeTo','h')
+                ->where('h IS NOT NULL')
+                //event
+                ->leftJoin('e.event', 'o')
+                ->where('o IS NOT NULL')
+                ->join('o.place', 'p')
+                ->leftJoin('p.placeTo','q')
+                ->where('q IS NOT NULL')
+                //place
+                ->leftJoin('e.place', 'a')
+                ->where('a IS NOT NULL')
+                ->where($qb->expr()->like('g.name', ':search'))
+                ->orWhere($qb->expr()->like('h.name', ':search'))
+                ->orWhere($qb->expr()->like('o.name', ':search'))
+                ->orWhere($qb->expr()->like('p.name', ':search'))
+                ->orWhere($qb->expr()->like('a.name', ':search'))
                 ->setParameter('search', '%' . $values['search'] . '%');
         }
         if($values['filterTime'] != '') {
@@ -101,7 +116,6 @@ class PhotoRepository extends Nette\Object {
         }
         $qb
             ->orderBy('e.id', 'DESC');
-
         return $qb->getQuery()->getResult();
     }
 }

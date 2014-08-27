@@ -85,7 +85,10 @@ class EventRepository extends Nette\Object {
         if($values['search'] != '') {
             $qb
                 ->join('e.place', 'a')
+                ->leftJoin('e.placeTo', 'b')
+                ->where('b IS NOT NULL')
                 ->where($qb->expr()->like('a.name', ':search'))
+                ->orWhere($qb->expr()->like('b.name', ':search'))
                 ->orWhere($qb->expr()->like('e.description', ':search'))
                 ->setParameter('search', '%' . $values['search'] . '%');
         }
@@ -101,6 +104,7 @@ class EventRepository extends Nette\Object {
         }
         $qb
             ->orderBy('e.id', 'DESC');
+
 
         return $qb->getQuery()->getResult();
     }

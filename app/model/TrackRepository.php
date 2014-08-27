@@ -97,7 +97,10 @@ class TrackRepository extends Nette\Object {
         if($values['search'] != '') {
             $qb
                 ->join('e.place', 'a')
+                ->leftJoin('e.placeTo', 'b')
+                ->where('b IS NOT NULL')
                 ->where($qb->expr()->like('a.name', ':search'))
+                ->where($qb->expr()->like('b.name', ':search'))
                 ->setParameter('search', '%' . $values['search'] . '%');
         }
         if($values['filterTime'] != '') {
