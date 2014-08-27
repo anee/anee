@@ -177,18 +177,25 @@
                 						    {else}
                                                 <p class="float-left">near <span class="highlight"><a href="">{$photo->event->place->name}</a></span>
                                             {/if}
+                							{if $photo->place != NULL}
+                						        ,
+                							{/if}
                                         {elseif $photo->track != NULL}
 											{if $photo->track->placeTo != NULL}
                  						        <p class="float-left">from <span class="highlight"><a href="">{$photo->track->place->name}</a></span> to <span class="highlight"><a href="">{$photo->track->placeTo->name}</a></span>
                  						    {else}
                                                  <p class="float-left">near <span class="highlight"><a href="">{$photo->track->place->name}</a></span>
-                                             {/if}
-                                        {/if}
-                						{if $photo->place != NULL && ($photo->event || $photo->track != NULL)}
+                                            {/if}
+                							{if $photo->place != NULL}
                 						        ,
-                						{/if}
-                						    {if $photo->place != NULL}
+                							{/if}
+                                        {else}
+
+                                        {/if}
+                						    {if $photo->place != NULL && ($photo->track != NULL || $photo->event != NULL)}
                 						        <a class="highlight" href="">{$photo->place->name}</a></p>
+                						    {elseif $photo->place != NULL}
+                						    	<a class="highlight float-left" href="">{$photo->place->name}</a></p>
                 						    {/if}
                 						    <p class="float-right margin-bot-5"><span class="highlight">{$photo->getDate()|getDateAgoNumber}</span> {$photo->getDate()|getDateAgoText}</p>
                 						    <div style="clear: both;"></div>
