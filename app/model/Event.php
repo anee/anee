@@ -19,7 +19,7 @@ class Event extends \Kdyby\Doctrine\Entities\IdentifiedEntity
 {
 
     /**
-     * @ORM\Column(type="string", nullable=false)
+     * @ORM\Column(type="text", nullable=false)
      */
     protected $description;
 
