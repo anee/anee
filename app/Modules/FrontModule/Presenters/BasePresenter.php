@@ -15,9 +15,6 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
     /** @var Forms\SearchForm @inject */
     public $searchFormFactory;
 
-    /** @var \Kappa\ThumbnailsHelper\ThumbnailsHelper @inject*/
-    public $thumbHelper;
-
     /** @var \App\Model\PhotoRepository @inject*/
     public $photoRepository;
 
@@ -43,7 +40,6 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 
         // HELPERS
         Utils\helpers::loader($template);
-        $template->addFilter('thumb', array($this->thumbHelper, 'process'));
 
         return $template;
     }

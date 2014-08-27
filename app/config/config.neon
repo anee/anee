@@ -35,11 +35,7 @@ services:
     router: @App\RouterFactory::createRouter
 
 extensions:
-    thumb: Kappa\ThumbnailsHelper\DI\ThumbnailsHelperExtension
     console: Kdyby\Console\DI\ConsoleExtension
     events: Kdyby\Events\DI\EventsExtension
     annotations: Kdyby\Annotations\DI\AnnotationsExtension
     doctrine: Kdyby\Doctrine\DI\OrmExtension
-
-thumb:
-    thumbDir: %wwwDir%/images/photos/thumbs

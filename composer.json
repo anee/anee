@@ -18,7 +18,6 @@
 		"php": ">= 5.5.11",
 		"nette/nette": "~2.2.0",
 		"kdyby/doctrine": "@dev",
-		"kappa/thumbnails-helper": "@dev",
 		"instante/bootstrap-3-renderer": "@dev"
 	},
 	"require-dev": {
