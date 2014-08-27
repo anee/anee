@@ -92,8 +92,13 @@ class Place extends \Kdyby\Doctrine\Entities\IdentifiedEntity
                 $count++;
             }
             foreach($this->tracks as $track){
-                if($track->getDate() > $dateTime) {
+                if($count == 0 || $track->getDate() > $dateTime) {
                     $dateTime = $track->getDate();
+                }
+            }
+            foreach($this->photos as $photo){
+                if($count == 0 || $photo->getDate() > $dateTime) {
+                    $dateTime = $photo->getDate();
                 }
             }
             return $dateTime;
