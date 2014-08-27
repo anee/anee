@@ -15,8 +15,8 @@ use Kdyby\Doctrine\EntityDao;
 
 class EventFacade extends Nette\Object
 {
-    /** @var \App\Model\TrackRepository */
-    public $trackRepository;
+    /** @var \App\Model\EventRepository */
+    public $eventRepository;
 
     private $www;
 
