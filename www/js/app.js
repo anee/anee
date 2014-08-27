@@ -3,7 +3,6 @@
  */
 $(function(){
     window.onresize = resize;
-
     //window.onload = load;
 });
 
@@ -106,19 +105,6 @@ function toggleRightMenuCenter(id) {
         document.getElementById('wrapper').style.backgroundColor = "black";
     }
 }
-
-/*
- SEARCH FILTERS
- */
-/*$(".dropdown-menu li a").click(function(){
-    var selText = $(this).text();
-    $(this).parents('.dropdown').find('.dropdown-toggle').html(selText+' <span class="caret"></span>');
-});*/
-
-/*$("#btnSearch").click(function(){             // text do vyhledavani
-    alert($('.btn-select').text()+", "+$('.btn-select2').text());
-});*/
-
 
 /*
 GRAPH
