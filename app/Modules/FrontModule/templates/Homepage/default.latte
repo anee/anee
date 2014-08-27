@@ -3,12 +3,16 @@
 	<div id="homepage">
 	{if $event != NULL}
 		<div class="event float-left width-100 margin-bot-70">
+			{if $event->getPhoto() != NULL}
 			<div class="part float-left padding-right-2-p width-40">
 				<li>
-					<a href=""><img class="width-100" src="{$event->getLastPhoto()->filePath}"></a>
+					<a href=""><img class="width-100" src="{$event->getPhoto()->filePath}"></a>
 				</li>
 			</div>
 			<div class="event-description float-left width-60">
+			{else}
+			<div class="event-description float-left width-100">
+			{/if}
 				<div class="event-date"><p>{$event->date->format('l d, F Y')}</p></div>
 				<h1><a href="
 				    {link Event:detail, $event->getId()}

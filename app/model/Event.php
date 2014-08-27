@@ -63,6 +63,11 @@ class Event extends \Kdyby\Doctrine\Entities\IdentifiedEntity
      */
     protected $eventPhotos;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Model\Photo", inversedBy="event")
+     */
+    protected $photo;
+
     public function __construct($distance, $timeInSeconds, $date)
     {
         $this->distance = $distance;
