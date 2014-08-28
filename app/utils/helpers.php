@@ -28,7 +28,7 @@ class helpers {
                 $value = round($seconds/60, 2);
             else if($seconds < 60*60*24)
                 $value = round($seconds/(60 * 60), 2);
-            else if($seconds < 60*60*60*30)
+            else if($seconds < 60*60*24*30)
                 $value = round($seconds/(60 * 60 * 24), 2);
             else
                 $value = round($seconds/(60 * 60 * 24 * 30), 2);
@@ -84,7 +84,7 @@ class helpers {
                 $value = round((date('U') - $date->format('U'))/(60));
             else if($seconds < 60*60*24)
                 $value = round((date('U') - $date->format('U'))/(60 * 60));
-            else if($seconds < 60*60*60*30)
+            else if($seconds < 60*60*24*30)
                 $value = round((date('U') - $date->format('U'))/(60 * 60 * 24));
             else
                 $value = round((date('U') - $date->format('U'))/(60 * 60 * 24 * 30));
@@ -102,7 +102,7 @@ class helpers {
                 $value = " minute";
             else if($seconds < 60*60*24)
                 $value = " hour";
-            else if($seconds < 60*60*60*30)
+            else if($seconds < 60*60*24*30)
                 $value = " day";
             else
                 $value = " month";
