@@ -82,23 +82,25 @@ class Place extends \Kdyby\Doctrine\Entities\IdentifiedEntity
 
     public function getLastUpdate()
     {
-        if(count($this->events) > 0 || count($this->tracks)) {
+        if(count($this->events) > 0 || count($this->tracks) || count($this->photos)) {
             $dateTime = new DateTime();
             $count = 0;
             foreach($this->events as $event){
                 if($count == 0 || $event->getDate() > $dateTime) {
                     $dateTime = $event->getDate();
+                    $count++;
                 }
-                $count++;
             }
             foreach($this->tracks as $track){
                 if($count == 0 || $track->getDate() > $dateTime) {
                     $dateTime = $track->getDate();
+                    $count++;
                 }
             }
             foreach($this->photos as $photo){
                 if($count == 0 || $photo->getDate() > $dateTime) {
                     $dateTime = $photo->getDate();
+                    $count++;
                 }
             }
             return $dateTime;
