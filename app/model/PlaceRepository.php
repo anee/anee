@@ -35,13 +35,9 @@ class PlaceRepository extends Nette\Object {
     {
         $qb = $this->places->createQueryBuilder();
         $qb
-            ->select('e', 'COUNT(b) AS HIDDEN tracksCount')
-
+            ->select('e')
             ->from('App\Model\Place', 'e')
-            ->leftJoin('e.tracks', 'b')
-
-            ->orderBy('tracksCount', 'DESC');
-            /*->addOrderby('COUNT(e.tracks)', 'DESC');*/
+            ->orderBy('e.name', 'ASC');
 
         return $qb->getQuery()->getResult();
     }
@@ -71,7 +67,7 @@ class PlaceRepository extends Nette\Object {
                 ->setParameter('name', '%' . $values['search'] . '%');
         }
         $qb
-            ->orderBy('e.id', 'DESC');
+            ->orderBy('e.name', 'DESC');
 
 
         return $qb->getQuery()->getResult();
