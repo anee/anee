@@ -93,7 +93,7 @@ class Event extends \Kdyby\Doctrine\Entities\IdentifiedEntity
 
     public function getAvgSpeed()
     {
-        return round(($this->getDistance()/($this->getTimeInSecondsTrip()/(60*60*24))), 2);
+        return round(($this->getDistance()/($this->getTimeInSecondsTrip()/(60*60*24))), 0);
     }
 
     public function getLastPhoto()
