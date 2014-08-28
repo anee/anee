@@ -140,6 +140,7 @@
             					{/if}
             					<div style="clear: both;"></div>
             				</div>
+            				{if count($place->getTracks()) > 0}
             				<div class="part width-100 float-left">
             					<div class="bar overall-bg float-left">
             						{$place->getDistance()} km
@@ -156,6 +157,7 @@
                                  	<p>KM PER TRACK</p>
                                 </div>
             				</div>
+            				{/if}
             			</div>
 					{/foreach}
 				</div>
