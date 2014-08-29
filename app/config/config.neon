@@ -12,7 +12,7 @@ php:
 
 nette:
 	application:
-		errorPresenter: Error
+		errorPresenter: 'Error:Error'
 		mapping:
 			*: App\Modules\*Module\Presenters\*Presenter
 
