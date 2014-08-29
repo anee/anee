@@ -90,13 +90,13 @@ class PhotoRepository extends Nette\Object {
                 //track
                 ->leftJoin('e.track', 'b')
                 ->where('b IS NOT NULL')
-                ->join('b.place', 'g')
+                ->leftJoin('b.place', 'g')
                 ->leftJoin('b.placeTo','h')
                 ->where('h IS NOT NULL')
                 //event
                 ->leftJoin('e.event', 'o')
                 ->where('o IS NOT NULL')
-                ->join('o.place', 'p')
+                ->leftJoin('o.place', 'p')
                 ->leftJoin('o.placeTo','q')
                 ->where('q IS NOT NULL')
                 //place
