@@ -75,7 +75,7 @@ class TrackRepository extends Nette\Object {
             ->where('e.id = :id')
             ->setParameter('id', $id);
 
-        return $qb->getQuery()->getSingleResult();
+        return $qb->getQuery()->getOneOrNullResult();
     }
 
     public function distanceSum()
