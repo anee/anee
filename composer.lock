@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "fa867408d73c0c2e0a5109e34ab35133",
+    "hash": "78c6e66e18a2230da36680421a4ed0c9",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -598,6 +598,165 @@
                 "nette"
             ],
             "time": "2014-08-07 13:11:49"
+        },
+        {
+            "name": "kappa/filesystem",
+            "version": "v4.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Kappa-org/FileSystem.git",
+                "reference": "37147012cafe77acbf4effb043b8c03f4c1f64b1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Kappa-org/FileSystem/zipball/37147012cafe77acbf4effb043b8c03f4c1f64b1",
+                "reference": "37147012cafe77acbf4effb043b8c03f4c1f64b1",
+                "shasum": ""
+            },
+            "require": {
+                "kappa/utils": "~1.0",
+                "nette/finder": "~2.2",
+                "php": ">= 5.3.3"
+            },
+            "require-dev": {
+                "kappa/tester": "1.1.*",
+                "nette/http": "~2.2"
+            },
+            "suggest": {
+                "nette/http": "For using FileUpload as File::upload"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Kappa": "src/"
+                },
+                "classmap": [
+                    "src/Kappa/FileSystem/exceptions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Ondřej Záruba",
+                    "homepage": "http://zaruba-ondrej.cz/"
+                }
+            ],
+            "description": "Easy system for work with files and directories",
+            "homepage": "https://github.com/Kappa-org/FileSystem",
+            "keywords": [
+                "Kappa",
+                "directories",
+                "file system",
+                "files",
+                "nette"
+            ],
+            "time": "2014-05-25 21:44:52"
+        },
+        {
+            "name": "kappa/thumbnails-helper",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Kappa-org/Thumbnails-Helper.git",
+                "reference": "be2dc92a6e37c87ca85cd730956c46924c5c6095"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Kappa-org/Thumbnails-Helper/zipball/be2dc92a6e37c87ca85cd730956c46924c5c6095",
+                "reference": "be2dc92a6e37c87ca85cd730956c46924c5c6095",
+                "shasum": ""
+            },
+            "require": {
+                "kappa/filesystem": "~4.2.0",
+                "nette/di": "~2.2",
+                "nette/utils": "~2.2",
+                "php": ">= 5.3.6"
+            },
+            "require-dev": {
+                "kappa/tester": "1.1.*",
+                "nette/nette": "@dev"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Kappa": "src/"
+                },
+                "classmap": [
+                    "src/Kappa/ThumbnailsHelper/exceptions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Ondřej Záruba",
+                    "homepage": "http://zaruba-ondrej.cz/"
+                }
+            ],
+            "description": "Simple and intelligent system for creating and work with thumbnails",
+            "homepage": "https://github.com/Kappa-org/Thumbnails-Helper",
+            "keywords": [
+                "Kappa",
+                "Thumbnails",
+                "framework",
+                "helpers",
+                "nette"
+            ],
+            "time": "2014-05-25 22:12:40"
+        },
+        {
+            "name": "kappa/utils",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Kappa-org/Utils.git",
+                "reference": "da44a72a2478a0b219f41b9a66570a3f2e5d723d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Kappa-org/Utils/zipball/da44a72a2478a0b219f41b9a66570a3f2e5d723d",
+                "reference": "da44a72a2478a0b219f41b9a66570a3f2e5d723d",
+                "shasum": ""
+            },
+            "require": {
+                "nette/utils": "~2.2"
+            },
+            "require-dev": {
+                "kappa/tester": "1.1.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Kappa": "src/"
+                },
+                "classmap": [
+                    "src/Kappa/Utils/exceptions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Ondřej Záruba",
+                    "homepage": "http://zaruba-ondrej.cz"
+                }
+            ],
+            "description": "Collection of utilities",
+            "homepage": "https://github.com/Kappa-org/Utils",
+            "keywords": [
+                "Kappa",
+                "nette",
+                "utilities",
+                "utils"
+            ],
+            "time": "2014-05-15 09:28:50"
         },
         {
             "name": "kdyby/annotations",
@@ -2257,7 +2416,8 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "kdyby/doctrine": 20,
-        "instante/bootstrap-3-renderer": 20
+        "instante/bootstrap-3-renderer": 20,
+        "kappa/thumbnails-helper": 20
     },
     "prefer-stable": false,
     "platform": {

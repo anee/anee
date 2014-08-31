@@ -27,6 +27,9 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
     /** @var \App\Model\PlaceRepository @inject*/
     public $placeRepository;
 
+    /** @var \Kappa\ThumbnailsHelper\ThumbnailsHelper @inject*/
+    public $thumbnailsHelper;
+
     protected function createTemplate($class = NULL)
     {
         $template = parent::createTemplate($class);
@@ -40,6 +43,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 
         // HELPERS
         Utils\helpers::loader($template);
+        $template->addFilter('thumb', array($this->thumbnailsHelper, 'process'));
 
         return $template;
     }

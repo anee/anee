@@ -280,6 +280,11 @@ h1 a:hover, h2 a:hover, h4 a:hover {
     line-height: 190%;
 }
 
+/* PLUGINS - photos
+----------------------------------------------------------*/
+.photos-summary-vertical .photo-description {
+    width: 860px;
+}
 /* SEARCH TOP
 ----------------------------------------------------------*/
 #top-menu-search {
