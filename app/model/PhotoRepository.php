@@ -66,6 +66,16 @@ class PhotoRepository extends Nette\Object {
         return $qb->getQuery()->getResult();
     }
 
+    public function findAllCount()
+    {
+        $qb = $this->photos->createQueryBuilder();
+        $qb
+            ->select('COUNT(e.id)')
+            ->from('App\Model\Photo', 'e');
+
+        return $qb->getQuery()->getSingleScalarResult();
+    }
+
     public function findById($id)
     {
         $qb = $this->photos->createQueryBuilder();

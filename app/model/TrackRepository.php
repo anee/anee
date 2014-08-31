@@ -55,6 +55,16 @@ class TrackRepository extends Nette\Object {
         return $qb->getQuery()->setMaxResults(1)->getSingleResult();
     }
 
+    public function findAllCount()
+    {
+        $qb = $this->tracks->createQueryBuilder();
+        $qb
+            ->select('COUNT(e.id)')
+            ->from('App\Model\Track', 'e');
+
+        return $qb->getQuery()->getSingleScalarResult();
+    }
+
     public function findLastByCount($count)
     {
         $qb = $this->tracks->createQueryBuilder();

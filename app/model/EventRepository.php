@@ -43,6 +43,16 @@ class EventRepository extends Nette\Object {
         return $qb->getQuery()->getResult();
     }
 
+    public function findAllCount()
+    {
+        $qb = $this->events->createQueryBuilder();
+        $qb
+            ->select('COUNT(e.id)')
+            ->from('App\Model\Event', 'e');
+
+        return $qb->getQuery()->getSingleScalarResult();
+    }
+
     public function findLast()
     {
         $qb = $this->events->createQueryBuilder();

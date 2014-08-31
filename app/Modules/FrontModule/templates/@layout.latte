@@ -85,30 +85,30 @@
 	<div class="part width-100 margin-bot-40 float-left">
     	 <ul class="float-left">
             <li class="selected float-left">
-        		<span class="highlight">{$eventsCount}</span><a href="
+        		<span class="highlight">{$dataCounts['Events']}</span><a href="
                 {var $args = array('values' => array('filterCategory' => 'Events'))}
                 {link Search:default (expand) $args}"> Events</a>
         	</li>
         	<li class="float-left">
-        		<span class="highlight">{$tracksCount}</span><a href="
+        		<span class="highlight">{$dataCounts['Tracks']}</span><a href="
                 {var $args = array('values' => array('filterCategory' => 'Tracks'))}
                 {link Search:default (expand) $args}"> Tracks</a>
         	</li>
         	<li class="float-left">
-        		<span class="highlight">{$placesCount}</span><a href="
+        		<span class="highlight">{$dataCounts['Places']}</span><a href="
                 {var $args = array('values' => array('filterCategory' => 'Places'))}
                 {link Search:default (expand) $args}"> Places</a>
         	</li>
         	<li class="float-left">
-        		<span class="highlight">{$photosCount}</span><a href="
+        		<span class="highlight">{$dataCounts['Photos']}</span><a href="
                 {var $args = array('values' => array('filterCategory' => 'Photos'))}
                 {link Search:default (expand) $args}"> Photos</a>
             </li>
          </ul>
 	</div>
 	<div class="part summary width-100 float-left">
-		<div class="bar overall-bg float-left">{$distanceSum} km</div>
-		<div class="bar partial-bg float-right">{$tracksCount + $eventsCount} total</div>
+		<div class="bar overall-bg float-left">{$dataCounts['Distance']} km</div>
+		<div class="bar partial-bg float-right">{$dataCounts['Tracks'] + $dataCounts['Events']} total</div>
 	</div>
 </div>
 
@@ -122,30 +122,30 @@
     	<div class="part width-100 margin-bot-40 float-left">
     	    <ul class="float-left">
             <li class="selected float-left">
-        		<span class="highlight">{$eventsCount}</span><a href="
+        		<span class="highlight">{$dataCounts['Events']}</span><a href="
                 {var $args = array('values' => array('filterCategory' => 'Events'))}
                 {link Search:default (expand) $args}"> Events</a>
         	</li>
         	<li class="float-left">
-        		<span class="highlight">{$tracksCount}</span><a href="
+        		<span class="highlight">{$dataCounts['Tracks']}</span><a href="
                 {var $args = array('values' => array('filterCategory' => 'Tracks'))}
                 {link Search:default (expand) $args}"> Tracks</a>
         	</li>
         	<li class="float-left">
-        		<span class="highlight">{$placesCount}</span><a href="
+        		<span class="highlight">{$dataCounts['Places']}</span><a href="
                 {var $args = array('values' => array('filterCategory' => 'Places'))}
                 {link Search:default (expand) $args}"> Places</a>
         	</li>
         	<li class="float-left">
-        		<span class="highlight">{$photosCount}</span><a href="
+        		<span class="highlight">{$dataCounts['Photos']}</span><a href="
                 {var $args = array('values' => array('filterCategory' => 'Photos'))}
                 {link Search:default (expand) $args}"> Photos</a>
             </li>
             </ul>
     	</div>
     	<div class="part summary width-100 float-left">
-    		<div class="bar overall-bg float-left">{$distanceSum} km</div>
-    		<div class="bar partial-bg float-right">{$tracksCount + $eventsCount} total</div>
+    		<div class="bar overall-bg float-left">{$dataCounts['Distance']} km</div>
+    		<div class="bar partial-bg float-right">{$dataCounts['Tracks'] + $dataCounts['Events']} total</div>
     	</div>
 </div>
 </div>

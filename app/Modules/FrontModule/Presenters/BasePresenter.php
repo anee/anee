@@ -34,12 +34,14 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
     {
         $template = parent::createTemplate($class);
 
-        // RIGHT MENU INFO
-        $template->eventsCount = count($this->eventRepository->findAll());
-        $template->placesCount = count($this->placeRepository->findAll());
-        $template->photosCount = count($this->photoRepository->findAll());
-        $template->tracksCount = count($this->trackRepository->findAll());
-        $template->distanceSum = round($this->trackRepository->distanceSum() + $this->eventRepository->distanceSum(), 2);
+        // RIGHT MENU
+        $template->dataCounts = array(
+            'Events' => $this->eventRepository->findAllCount(),
+            'Tracks' => $this->trackRepository->findAllCount(),
+            'Places' => $this->placeRepository->findAllCount(),
+            'Photos' => $this->photoRepository->findAllCount(),
+            'Distance' => round($this->trackRepository->distanceSum() + $this->eventRepository->distanceSum(), 2)
+        );
 
         // HELPERS
         Utils\helpers::loader($template);

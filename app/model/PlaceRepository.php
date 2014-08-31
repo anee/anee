@@ -42,6 +42,16 @@ class PlaceRepository extends Nette\Object {
         return $qb->getQuery()->getResult();
     }
 
+    public function findAllCount()
+    {
+        $qb = $this->places->createQueryBuilder();
+        $qb
+            ->select('COUNT(e.id)')
+            ->from('App\Model\Place', 'e');
+
+        return $qb->getQuery()->getSingleScalarResult();
+    }
+
     public function findById($id)
     {
         $qb = $this->places->createQueryBuilder();
