@@ -39,11 +39,6 @@ class Event extends \Kdyby\Doctrine\Entities\IdentifiedEntity
     protected $timeInSeconds;
 
     /**
-     * @ORM\Column(type="float", nullable=false)
-     */
-    protected $timeInSecondsTrip;
-
-    /**
      * @ORM\Column(type="datetime", nullable=false)
      */
     protected $date;
@@ -93,7 +88,7 @@ class Event extends \Kdyby\Doctrine\Entities\IdentifiedEntity
 
     public function getAvgSpeed()
     {
-        return round(($this->getDistance()/($this->getTimeInSecondsTrip()/(60*60*24))), 0);
+        return round(($this->getDistance()/($this->getTimeInSeconds()/(60*60*24))), 0);
     }
 
     public function getLastPhoto()

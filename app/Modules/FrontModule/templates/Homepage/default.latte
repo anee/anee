@@ -29,16 +29,12 @@
 					<div class="bar overall-bg float-left">
 						{$event->getDistance()} km
 					</div>
-					<div class="info overall float-left">
-						<p>{$event->getTimeInSeconds()|getSpanTimeFromSecondsNumber}</p>
-                    	<p>{$event->getTimeInSeconds()|getSpanTimeFromSecondsText}</p>
-					</div>
 					<div class="bar partial-bg float-right">
-                    	{$event->getTimeInSecondsTrip()|getSpanTimeFromSecondsNumber} {$event->getTimeInSecondsTrip()|getSpanTimeFromSecondsText|strtolower}
+                    	{$event->getTimeInSeconds()|getSpanTimeFromSecondsNumber} {$event->getTimeInSeconds()|getSpanTimeFromSecondsText|strtolower}
                     </div>
 					<div class="info partial float-right text-align-right">
 						<p>{$event->getAvgSpeed()}</p>
-						<p>KM PER {$event->getTimeInSecondsTrip()|getSpanTimeFromSecondsTextValue}</p>
+						<p>KM PER {$event->getTimeInSeconds()|getSpanTimeFromSecondsTextValue}</p>
 					</div>
 				</div>
 			</div>
