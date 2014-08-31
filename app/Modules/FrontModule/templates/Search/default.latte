@@ -4,20 +4,11 @@
 		<div id="search-title" class="width-100 float-left margin-bot-70">
 			<div class="part float-left width-100 border-bottom float-left">
 				<p class="float-left padding-top-5"><span class="highlight">
-				{if $values['filterCategory'] == 'Events'}
-					{count($events)}
-				{elseif $values['filterCategory'] == 'Tracks'}
-					{count($tracks)}
-				{elseif $values['filterCategory'] == 'Places'}
-					{count($places)}
-				{elseif $values['filterCategory'] == 'Photos'}
-					{count($photos)}
-				{else}
-					{count($events) + count($tracks) + count($places) + count($photos)}
-				{/if}
+					{$results['Count']}
 				</span> Results
 				{if $values['search'] != ""}
-					for <span class="highlight"><a href="">{$values['search']}</a></span>
+					for
+					<span class="highlight"><a href="">{$values['search']}</a></span>
 				{/if}
 				{if $values['filterCategory'] != ""}
                 	in <span class="highlight"><a href="">{$values['filterCategory']}</a></span>
@@ -37,22 +28,22 @@
                	</p>
 				<ul class="float-right">
 					<li n:class="$values['filterCategory'] == 'Events' ? 'selected'">
-						<span class="highlight">{count($events)}</span><a href="
+						<span class="highlight">{$results['EventsCount']}</span><a href="
 						{var $args = array('values' => array_merge($values, [filterCategory => Events]))}
                         {link Search:default (expand) $args}"> Events</a>
 					</li>
 					<li n:class="$values['filterCategory'] == 'Tracks' ? 'selected'">
-						<span class="highlight">{count($tracks)}</span><a href="
+						<span class="highlight">{$results['TracksCount']}</span><a href="
 						{var $args = array('values' => array_merge($values, [filterCategory => Tracks]))}
                         {link Search:default (expand) $args}"> Tracks</a>
 					</li>
 					<li n:class="$values['filterCategory'] == 'Places' ? 'selected'">
-						<span class="highlight">{count($places)}</span><a href="
+						<span class="highlight">{$results['PlacesCount']}</span><a href="
 						{var $args = array('values' => array_merge($values, [filterCategory => Places]))}
                         {link Search:default (expand) $args}"> Places</a>
 					</li>
 					<li n:class="$values['filterCategory'] == 'Photos' ? 'selected'">
-						<span class="highlight">{count($photos)}</span><a href="
+						<span class="highlight">{$results['PhotosCount']}</span><a href="
 						{var $args = array('values' => array_merge($values, [filterCategory => Photos]))}
                         {link Search:default (expand) $args}"> Photos</a>
 					</li>
@@ -60,9 +51,9 @@
 				<div style="clear: both;"></div>
 			</div>
 		</div>
-				{if count($events) != 0 && ($values['filterCategory'] == 'Events' || $values['filterCategory'] == '')}
+			{if count($results['Events']) > 0}
 				<div id="search-results" class="width-100 float-left margin-bot-70">
-					{foreach $events as $event}
+					{foreach $results['Events'] as $event}
 						<div class="part width-100 float-left margin-bot-40">
             				<div class="part width-100 margin-bot-20 border-bottom float-left">
             					<h4 class="float-left"><a href="
@@ -76,25 +67,22 @@
             					<div class="bar overall-bg float-left">
             						{$event->getDistance()} km
             					</div>
-            					<div class="info overall float-left">
-            						<p>{$event->getTimeInSeconds()|getSpanTimeFromSecondsNumber}</p>
-                                    <p>{$event->getTimeInSeconds()|getSpanTimeFromSecondsText}</p>
-            					</div>
                                 <div class="bar partial-bg float-right">
-                                	{$event->getTimeInSecondsTrip()|getSpanTimeFromSecondsNumber} {$event->getTimeInSecondsTrip()|getSpanTimeFromSecondsText|strtolower}
+                                	{$event->getTimeInSeconds()|getSpanTimeFromSecondsNumber} {$event->getTimeInSeconds()|getSpanTimeFromSecondsText|strtolower}
                                 </div>
                                 <div class="info partial float-right text-align-right">
                                 	<p>{$event->getAvgSpeed()}</p>
-                                	<p>KM PER {$event->getTimeInSecondsTrip()|getSpanTimeFromSecondsTextValue}</p>
+                                	<p>KM PER {$event->getTimeInSeconds()|getSpanTimeFromSecondsTextValue}</p>
                                 </div>
             				</div>
             			</div>
 					{/foreach}
 				</div>
-				{/if}
-				{if count($tracks) != 0 && ($values['filterCategory'] == 'Tracks' || $values['filterCategory'] == '')}
+			{/if}
+
+			{if count($results['Tracks']) > 0}
 				<div id="search-results" class="width-100 float-left margin-bot-70">
-					{foreach $tracks as $track}
+					{foreach $results['Tracks'] as $track}
 						<div class="part width-100 float-left margin-bot-40">
             				<div class="part width-100 margin-bot-20 border-bottom float-left">
             					<h4 class="float-left"><a href="
@@ -123,10 +111,11 @@
             			</div>
 					{/foreach}
 				</div>
-				{/if}
-				{if count($places) != 0 && ($values['filterCategory'] == 'Places' || $values['filterCategory'] == '')}
+			{/if}
+
+			{if count($results['Places']) > 0}
 				<div id="search-results" class="width-100 float-left margin-bot-70">
-					{foreach $places as $place}
+					{foreach $results['Places'] as $place}
 						<div class="part width-100 float-left margin-bot-40">
             				<div class="part width-100 margin-bot-20 border-bottom float-left">
             					<h4 class="float-left"><a href="
@@ -161,11 +150,12 @@
             			</div>
 					{/foreach}
 				</div>
-				{/if}
-				{if count($photos) != 0 && ($values['filterCategory'] == 'Photos' || $values['filterCategory'] == '')}
+			{/if}
+
+			{if count($results['Photos']) > 0}
 				<div class="photos-summary-vertical text-align-center">
                 	<ul>
-                		{foreach $photos as $photo}
+					{foreach $results['Photos'] as $photo}
                 			 <div class="padding-top-100"" id="{$photo->getFileName()}">
                 				    <li>
                 				        <a href="
@@ -207,7 +197,6 @@
                 	</ul>
                 </div>
             {/if}
-
 	</div>
 
 {/block}

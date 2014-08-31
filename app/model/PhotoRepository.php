@@ -90,9 +90,54 @@ class PhotoRepository extends Nette\Object {
 
     public function findByFilters($values)
     {
+        if($values['filterCategory'] == 'Photos' || $values['filterCategory'] == '') {
+            $qb = $this->photos->createQueryBuilder();
+            $qb
+                ->select('e')
+                ->from('App\Model\Photo', 'e');
+
+            if($values['search'] != '') {
+                $qb
+                    //track
+                    ->leftJoin('e.track', 'b')
+                    ->where('b IS NOT NULL')
+                    ->leftJoin('b.place', 'g')
+                    ->leftJoin('b.placeTo','h')
+                    ->where('h IS NOT NULL')
+                    //event
+                    ->leftJoin('e.event', 'o')
+                    ->where('o IS NOT NULL')
+                    ->leftJoin('o.place', 'p')
+                    ->leftJoin('o.placeTo','q')
+                    ->where('q IS NOT NULL')
+                    //place
+                    ->leftJoin('e.place', 'a')
+                    ->where('a IS NOT NULL')
+                    ->where($qb->expr()->like('g.name', ':search'))
+                    ->orWhere($qb->expr()->like('h.name', ':search'))
+                    ->orWhere($qb->expr()->like('q.name', ':search'))
+                    ->orWhere($qb->expr()->like('p.name', ':search'))
+                    ->orWhere($qb->expr()->like('a.name', ':search'))
+                    ->setParameter('search', '%' . $values['search'] . '%');
+            }
+            if($values['filterTime'] != '') {
+                $qb
+                    ->andWhere('e.date >= :date')
+                    ->setParameter('date', FilterUtils::timeSubFilterTime($values['filterTime']));
+            }
+            $qb
+                ->orderBy('e.date', 'DESC');
+            return $qb->getQuery()->getResult();
+        } else {
+            return array();
+        }
+    }
+
+    public function findByFiltersCount($values)
+    {
         $qb = $this->photos->createQueryBuilder();
         $qb
-            ->select('e')
+            ->select('COUNT(e.id)')
             ->from('App\Model\Photo', 'e');
 
         if($values['search'] != '') {
@@ -124,8 +169,6 @@ class PhotoRepository extends Nette\Object {
                 ->andWhere('e.date >= :date')
                 ->setParameter('date', FilterUtils::timeSubFilterTime($values['filterTime']));
         }
-        $qb
-            ->orderBy('e.date', 'DESC');
-        return $qb->getQuery()->getResult();
+        return $qb->getQuery()->getSingleScalarResult();
     }
 }

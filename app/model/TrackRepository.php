@@ -99,11 +99,46 @@ class TrackRepository extends Nette\Object {
 
     public function findByFilters($values)
     {
+        if($values['filterCategory'] == 'Places' || $values['filterCategory'] == '') {
+            $qb = $this->tracks->createQueryBuilder();
+            $qb
+                ->select('e')
+                ->from('App\Model\Track', 'e');
+
+            if($values['search'] != '') {
+                $qb
+                    ->join('e.place', 'a')
+                    ->leftJoin('e.placeTo', 'b')
+                    ->where('b IS NOT NULL')
+                    ->where($qb->expr()->like('a.name', ':search'))
+                    ->where($qb->expr()->like('b.name', ':search'))
+                    ->setParameter('search', '%' . $values['search'] . '%');
+            }
+            if($values['filterTime'] != '') {
+                $qb
+                    ->andWhere('e.date >= :date')
+                    ->setParameter('date', FilterUtils::timeSubFilterTime($values['filterTime']));
+            }
+            if($values['filterTransport'] != '') {
+                $qb
+                    ->andWhere('e.transport >= :transport')
+                    ->setParameter('transport', $values['filterTransport']);
+            }
+            $qb
+                ->orderBy('e.date', 'DESC');
+
+            return $qb->getQuery()->getResult();
+        } else {
+            return array();
+        }
+    }
+
+    public function findByFiltersCount($values)
+    {
         $qb = $this->tracks->createQueryBuilder();
         $qb
-            ->select('e')
+            ->select('COUNT(e.id)')
             ->from('App\Model\Track', 'e');
-
         if($values['search'] != '') {
             $qb
                 ->join('e.place', 'a')
@@ -123,9 +158,6 @@ class TrackRepository extends Nette\Object {
                 ->andWhere('e.transport >= :transport')
                 ->setParameter('transport', $values['filterTransport']);
         }
-        $qb
-            ->orderBy('e.date', 'DESC');
-
-        return $qb->getQuery()->getResult();
+        return $qb->getQuery()->getSingleScalarResult();
     }
 }
