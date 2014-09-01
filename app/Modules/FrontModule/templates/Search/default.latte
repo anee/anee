@@ -167,7 +167,7 @@
                 			 <div class="padding-top-100"" id="{$photo->getFileName()}">
                 				    <li>
                 				        <a href="
-                				        {var $args = array('values' => array_merge($values, [filterCategory => Photos]))}
+                				        {var $args = array('values' => array_merge($values, [filterCategory => array('Photos')]))}
                                         {link Search:default (expand) $args}#{$photo->getFileName()}
                                         "><img src="{$photo->getFilePath()|thumb:'860x'}"></a>
                 					    <div class="part photo-description margin-auto padding-top-5">
