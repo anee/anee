@@ -90,7 +90,39 @@ class PhotoRepository extends Nette\Object {
 
     public function findByFilters($values)
     {
-        if(FilterUtils::arrayContainsOrEmpty('Photos', $values['filterCategory']) == true) {
+        if(FilterUtils::arrayContainsOrEmpty('Photos', $values['filterCategory']) == true && $values['filterEntity'] != '' && $values['filterEntityId'] != '') {
+            $qb = $this->photos->createQueryBuilder();
+            $qb
+                ->select('e')
+                ->from('App\Model\Photo', 'e');
+            if($values['filterEntity'] == 'Event') {
+                $qb
+                    ->leftJoin('e.event', 'o')
+                    ->where('o IS NOT NULL')
+                    ->where($qb->expr()->like('o.id', ':filterEntityId'))
+                    ->setParameter('filterEntityId', $values['filterEntityId']);
+            } elseif($values['filterEntity'] == 'Track') {
+                $qb
+                    ->leftJoin('e.track', 'o')
+                    ->where('o IS NOT NULL')
+                    ->where($qb->expr()->like('o.id', ':filterEntityId'))
+                    ->setParameter('filterEntityId', $values['filterEntityId']);
+            } elseif($values['filterEntity'] == 'Place') {
+                $qb
+                    ->leftJoin('e.place', 'o')
+                    ->where('o IS NOT NULL')
+                    ->where($qb->expr()->like('o.id', ':filterEntityId'))
+                    ->setParameter('filterEntityId', $values['filterEntityId']);
+            }
+            if($values['filterTime'] != '') {
+                $qb
+                    ->andWhere('e.date >= :date')
+                    ->setParameter('date', FilterUtils::timeSubFilterTime($values['filterTime']));
+            }
+            $qb
+                ->orderBy('e.date', 'DESC');
+            return $qb->getQuery()->getResult();
+        } elseif(FilterUtils::arrayContainsOrEmpty('Photos', $values['filterCategory']) == true) {
             $qb = $this->photos->createQueryBuilder();
             $qb
                 ->select('e')

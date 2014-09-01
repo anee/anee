@@ -125,5 +125,18 @@ class helpers {
             }
             return '';
         });
+        $template->addFilter('arrayContainsOrEmpty', function($value, $array)
+        {
+            if(empty($array) == true) {
+                return true;
+            } else {
+                foreach($array as $i => $v) {
+                    if($v == $value) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
     }
 } 

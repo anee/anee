@@ -99,7 +99,7 @@ class TrackRepository extends Nette\Object {
 
     public function findByFilters($values)
     {
-        if(FilterUtils::arrayContainsOrEmpty('Places', $values['filterCategory']) == true) {
+        if(FilterUtils::arrayContainsOrEmpty('Tracks', $values['filterCategory']) == true) {
         $qb = $this->tracks->createQueryBuilder();
         $qb
             ->select('e')

@@ -31,9 +31,12 @@ class filterUtils {
     public static function checkArray($filterArray)
     {
         $values = array(
+            'search' => '',
             'filterCategory' => array(),
             'filterTransport' => '',
-            'filterTime' => ''
+            'filterTime' => '',
+            'filterEntity' => '',
+            'filterEntityId' => ''
         );
 
         if($filterArray == NULL) {

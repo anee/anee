@@ -19,18 +19,22 @@
 						, <span class="highlight"><a href="">{$category}</a></span>
 					{/if}
 				{/foreach}
+				{if $values['filterEntity'] != "" && $template->arrayContainsOrEmpty('Photos', $values['filterCategory'])}
+					during <span class="highlight"><a href="
+					{link $results['EntityUrl'], $results['EntityObject']->getId()}
+                                            ">{$results['EntityObject']->getName()}</a></span>
+				{/if}
                 {if $values['filterTransport'] != ""}
                 	by <span class="highlight"><a href="">{$values['filterTransport']}</a></span>
                 {/if}
                 {if $values['filterTime'] != ""}
-                	{if $values['filterTransport'] != "" || empty($values['filterCategory']) != true || $values['search'] != ""}
+                	{if $values['filterTransport'] != "" || empty($values['filterCategory']) != true || $values['search'] != "" || $values['filterEntity'] != ""}
                                 ,
                     {/if}
                 	<span class="highlight"><a href="">{$values['filterTime']}</a></span>
                	{/if}
                	</p>
 				<ul class="float-right">
-				{dump $template->selectedOrNothing('Events', $values['filterCategory'])}
 					<li class="{$template->selectedOrNothing('Events', $values['filterCategory'])}">
 						<span class="highlight">{$results['EventsCount']}</span><a href="
 						{var $args = array('values' => array_merge($values, [filterCategory => array('Events')]))}
@@ -123,7 +127,7 @@
 						<div class="part width-100 float-left margin-bot-40">
             				<div class="part width-100 margin-bot-20 border-bottom float-left">
             					<h4 class="float-left"><a href="
-            					{var $args = array('values' => [search => $place->getName(), filterCategory => array('Events', 'Tracks')])}
+            					{var $args = array('values' => [search => $place->getName(), filterCategory => array('Events', 'Tracks', 'Photos')])}
                                 {link Search:default (expand) $args}
                                 ">{$place->getName()}</a></h4>
             					<p class="float-right margin-bot-5"><span class="highlight">
