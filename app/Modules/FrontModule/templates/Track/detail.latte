@@ -7,7 +7,7 @@
 				 <h1><a href="">
                  	{$track->getName()}
                  	</a></h1>
-				 <div class="part width-100 float-left">
+				 <div class="part width-100 float-left margin-bot-70">
 					<div class="bar overall-bg float-left">
 						{$track->getDistance()} km
 					</div>
@@ -23,6 +23,38 @@
                     	<p>MAX KM/H</p>
                     </div>
 				</div>
+				{if count($track->photos) > 0}
+
+
+                                                            		<div class="photos-summary width-100 float-left margin-bot-70">
+                                                            			<div class="part margin-bot-20 border-bottom">
+                                                            				<h2 class="float-left"><a href="
+                                                            					{var $args = array('values' => array('filterCategory' => array('Photos'), 'filterEntity' => 'Track', 'filterEntityId' => $track->getId()))}
+                                                                                {link Search:default (expand) $args}
+                                                            				">Photos</a></h2>
+                                                            				<p class="float-right margin-bot-5"><span class="highlight">{$track->photos[0]->date|getDateAgoNumber}</span> {$track->photos[0]->date|getDateAgoText}</p>
+                                                            				<div style="clear: both;"></div>
+                                                            			</div>
+                                                            			<div class="part width-100 float-left">
+                                                            				<ul>
+                                                            					{foreach $track->photos as $photo}
+                                                            						{if $iterator->getCounter() == 1}
+                                                            							<div class="part float-left width-25"><li><a href=""><img class="width-100 padding-right-15" src="{$photo->filePath|thumb:'451x'}"/></a></li></div>
+                                                            						{/if}
+                                                            						{if $iterator->getCounter() == 2}
+                                                                                    	<div class="part float-left width-25"><li><a href=""><img class="width-100 padding-left-5 padding-right-10" src="{$photo->filePath|thumb:'451x'}"/></a></li></div>
+                                                                                    {/if}
+                                                            						{if $iterator->getCounter() == 3}
+                                                                                    	<div class="part float-left width-25"><li><a href=""><img class="width-100 padding-left-10 padding-right-5" src="{$photo->filePath|thumb:'451x'}"/></a></li></div>
+                                                            						{/if}
+                                                            						{if $iterator->getCounter() == 4}
+                                                                                    	<div class="part float-left width-25"><li><a href=""><img class="width-100 padding-left-15" src="{$photo->filePath|thumb:'451x'}"/></a></li></div>
+                                                                                    {/if}
+                                                            					{/foreach}
+                                                            				</ul>
+                                                            			</div>
+                                                            		</div>
+                                                            		{/if}
 			</div>
 		</div>
 	</div>
