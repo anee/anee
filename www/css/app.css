@@ -301,11 +301,9 @@ h1 a:hover, h2 a:hover, h4 a:hover {
 #top-menu-search #top-menu-search-ref {
     width: 168px; height: 28px;
     border-bottom: 2px solid white;
-    background-repeat: no-repeat;
-    background-position: right;
-    background-image: url(../images/search.png);
+    background: url(../images/search.png) no-repeat right;
 }
-#top-menu-search #top-menu-search-ref a{
+#top-menu-search #top-menu-search-ref a {
     position: absolute;
     width: 240px; height: 55px;
     top: 0;
@@ -402,12 +400,11 @@ h1 a:hover, h2 a:hover, h4 a:hover {
     opacity: 0.5;
     width: 110px; height: 50px;
     padding-top: 16px;
-    background-repeat: no-repeat;
-    background-position: left top;
+    background: left top no-repeat;
     transition: background-color 0.3s ease-in-out;
 }
-#top-menu-map .map li a.map { background-image: url(../images/map-icon.png); }
-#top-menu-map .map li a:hover.map { background-position: left bottom; opacity: 1;}
+#top-menu-map .map li a.map { background: url(../images/icons.png) -0px -0px; }
+#top-menu-map .map li a:hover.map { background: url(../images/icons.png) -0px -50px; opacity: 1;}
 
 /* TOP MENU SOCIAL
 ----------------------------------------------------------*/
@@ -421,14 +418,13 @@ h1 a:hover, h2 a:hover, h4 a:hover {
     width: 50px; height: 50px;
     padding: 0;
     display: inline-block;
-    background-repeat: no-repeat;
-    background-position: center top;
+    background: center top no-repeat;
     transition: background-color 0.3s ease-in-out;
 }
-#top-menu-social .social li a.twitter { background-image: url(../images/icon-twitter.png); }
-#top-menu-social .social li a.facebook { background-image: url(../images/icon-facebook.png); }
-#top-menu-social .social li a:hover.twitter { background-position: center bottom; }
-#top-menu-social .social li a:hover.facebook { background-position: center bottom; }
+#top-menu-social .social li a.twitter { background: url(../images/icons.png) -61px -0px; }
+#top-menu-social .social li a.facebook { background: url(../images/icons.png) -122px -0px; }
+#top-menu-social .social li a:hover.twitter { background: url(../images/icons.png) -61px -50px; }
+#top-menu-social .social li a:hover.facebook { background: url(../images/icons.png) -122px -50px; }
 
 /* RIGHT MENU
 ----------------------------------------------------------*/
@@ -436,10 +432,7 @@ h1 a:hover, h2 a:hover, h4 a:hover {
     padding-right: 50px;
     cursor: pointer;
     width: 140px; height: 55px;
-    background-color: #d5d9d8;
-    background-repeat: no-repeat;
-    background-position: 20px 20px;
-    background-image: url(../images/right-menu.png);
+    background: url(../images/right-menu.png) 20px 20px no-repeat #d5d9d8;
 }
 #right-menu-ref:hover {
     opacity: 0.7;
