@@ -11,6 +11,7 @@ namespace App\Model;
 
 use Nette;
 use Kdyby\Doctrine\EntityDao;
+use App\Utils\FilterUtils;
 
 class PlaceRepository extends Nette\Object {
 
@@ -66,7 +67,7 @@ class PlaceRepository extends Nette\Object {
 
     public function findByFilters($values)
     {
-        if($values['filterCategory'] == 'Places' || $values['filterCategory'] == '') {
+        if(FilterUtils::arrayContainsOrEmpty('Places', $values['filterCategory']) == true) {
             $qb = $this->places->createQueryBuilder();
             $qb
                 ->select('e')

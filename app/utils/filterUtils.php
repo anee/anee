@@ -31,15 +31,39 @@ class filterUtils {
     public static function checkArray($filterArray)
     {
         $values = array(
-            'search' => '',
-            'filterCategory' => '',
+            'filterCategory' => array(),
             'filterTransport' => '',
-            'filterTime' => '',
+            'filterTime' => ''
         );
+
         if($filterArray == NULL) {
             return $values;
         } else {
             return array_merge($values, $filterArray);
         }
+    }
+
+    public static function arrayContainsOrEmpty($value, $array)
+    {
+        if(empty($array) == true) {
+            return true;
+        } else {
+            foreach($array as $i => $v) {
+                if($v == $value) {
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+
+    public static function arrayContains($value, $array)
+    {
+        foreach($array as $i => $v) {
+            if($v == $value) {
+                return true;
+            }
+        }
+        return false;
     }
 } 

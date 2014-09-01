@@ -90,7 +90,7 @@ class PhotoRepository extends Nette\Object {
 
     public function findByFilters($values)
     {
-        if($values['filterCategory'] == 'Photos' || $values['filterCategory'] == '') {
+        if(FilterUtils::arrayContainsOrEmpty('Photos', $values['filterCategory']) == true) {
             $qb = $this->photos->createQueryBuilder();
             $qb
                 ->select('e')

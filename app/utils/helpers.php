@@ -116,5 +116,14 @@ class helpers {
 
             return $value;
         });
+        $template->addFilter('selectedOrNothing', function($value, $array)
+        {
+            foreach($array as $i => $v) {
+                if($v == $value) {
+                    return 'selected';
+                }
+            }
+            return '';
+        });
     }
 } 

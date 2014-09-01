@@ -39,8 +39,8 @@ class SearchForm extends Nette\Object
         );
         $transport = array(
             '' => 'Any transport',
-            'By cycle' => 'By cycle',
-            'By run' => 'By run',
+            'Cycling' => 'Cycling',
+            'Running' => 'Running',
         );
         $time = array(
             '' => 'Any time',
@@ -50,7 +50,7 @@ class SearchForm extends Nette\Object
             'Past year' => 'Past year',
         /* 'Custom range...' => 'Custom range...',*/
         );
-        $form->addSelect('filterCategory', NULL, $category);
+        $form->addMultiSelect('filterCategory', NULL, $category);
         $form->addSelect('filterTransport', NULL, $transport);
         $form->addSelect('filterTime', NULL, $time);
         $form->addSubmit('send', '');

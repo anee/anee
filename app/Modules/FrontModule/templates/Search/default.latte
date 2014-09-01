@@ -10,41 +10,45 @@
 					for
 					<span class="highlight"><a href="">{$values['search']}</a></span>
 				{/if}
-				{if $values['filterCategory'] != ""}
-                	in <span class="highlight"><a href="">{$values['filterCategory']}</a></span>
-                {/if}
-                {if $values['filterCategory'] != "" && ($values['filterTransport'] != "" || $values['filterTime'] != "")}
-                ,
-                {/if}
+				{var $first = 0}
+				{foreach $values['filterCategory'] as $u => $category}
+					{if $first == 0 && $category != ""}
+						in <span class="highlight"><a href="">{$category}</a></span>
+						{var $first = 1}
+					{elseif $category != ""}
+						, <span class="highlight"><a href="">{$category}</a></span>
+					{/if}
+				{/foreach}
                 {if $values['filterTransport'] != ""}
-                	<span class="highlight"><a href="">{$values['filterTransport']}</a></span>
-                {/if}
-                {if $values['filterTransport'] != "" && $values['filterTime']!= ""}
-                ,
+                	by <span class="highlight"><a href="">{$values['filterTransport']}</a></span>
                 {/if}
                 {if $values['filterTime'] != ""}
+                	{if $values['filterTransport'] != "" || empty($values['filterCategory']) != true || $values['search'] != ""}
+                                ,
+                    {/if}
                 	<span class="highlight"><a href="">{$values['filterTime']}</a></span>
                	{/if}
                	</p>
 				<ul class="float-right">
-					<li n:class="$values['filterCategory'] == 'Events' ? 'selected'">
+				{dump $template->selectedOrNothing('Events', $values['filterCategory'])}
+					<li class="{$template->selectedOrNothing('Events', $values['filterCategory'])}">
 						<span class="highlight">{$results['EventsCount']}</span><a href="
-						{var $args = array('values' => array_merge($values, [filterCategory => Events]))}
+						{var $args = array('values' => array_merge($values, [filterCategory => array('Events')]))}
                         {link Search:default (expand) $args}"> Events</a>
 					</li>
-					<li n:class="$values['filterCategory'] == 'Tracks' ? 'selected'">
+					<li class="{$template->selectedOrNothing('Tracks', $values['filterCategory'])}">
 						<span class="highlight">{$results['TracksCount']}</span><a href="
-						{var $args = array('values' => array_merge($values, [filterCategory => Tracks]))}
+						{var $args = array('values' => array_merge($values, [filterCategory => array('Tracks')]))}
                         {link Search:default (expand) $args}"> Tracks</a>
 					</li>
-					<li n:class="$values['filterCategory'] == 'Places' ? 'selected'">
+					<li class="{$template->selectedOrNothing('Places', $values['filterCategory'])}">
 						<span class="highlight">{$results['PlacesCount']}</span><a href="
-						{var $args = array('values' => array_merge($values, [filterCategory => Places]))}
+						{var $args = array('values' => array_merge($values, [filterCategory => array('Places')]))}
                         {link Search:default (expand) $args}"> Places</a>
 					</li>
-					<li n:class="$values['filterCategory'] == 'Photos' ? 'selected'">
+					<li class="{$template->selectedOrNothing('Photos', $values['filterCategory'])}">
 						<span class="highlight">{$results['PhotosCount']}</span><a href="
-						{var $args = array('values' => array_merge($values, [filterCategory => Photos]))}
+						{var $args = array('values' => array_merge($values, [filterCategory => array('Photos')]))}
                         {link Search:default (expand) $args}"> Photos</a>
 					</li>
 				</ul>
@@ -59,7 +63,7 @@
             					<h4 class="float-left"><a href="
             						{link Event:detail, $event->getId()}">
                                 	{$event->getName()}
-                                </a> <span class="not-highlight"> {$event->getTransport()}</span></h4>
+                                </a> <span class="not-highlight"> by {$event->getTransport()}</span></h4>
             					<p class="float-right margin-bot-5"><span class="highlight">{$event->getDate()|getDateAgoNumber}</span> {$event->getDate()|getDateAgoText}</p>
             					<div style="clear: both;"></div>
             				</div>
@@ -119,7 +123,7 @@
 						<div class="part width-100 float-left margin-bot-40">
             				<div class="part width-100 margin-bot-20 border-bottom float-left">
             					<h4 class="float-left"><a href="
-            					{var $args = array('values' => [search => $place->getName()])}
+            					{var $args = array('values' => [search => $place->getName(), filterCategory => array('Events', 'Tracks')])}
                                 {link Search:default (expand) $args}
                                 ">{$place->getName()}</a></h4>
             					<p class="float-right margin-bot-5"><span class="highlight">

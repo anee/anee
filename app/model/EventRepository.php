@@ -87,7 +87,7 @@ class EventRepository extends Nette\Object {
 
     public function findByFilters($values)
     {
-        if($values['filterCategory'] == 'Events' || $values['filterCategory'] == '') {
+        if(FilterUtils::arrayContainsOrEmpty('Events', $values['filterCategory']) == true) {
             $qb = $this->events->createQueryBuilder();
             $qb
                 ->select('e')
