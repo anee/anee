@@ -172,7 +172,7 @@
                                         "><img src="{$photo->getFilePath()|thumb:'860x'}"></a>
                 					    <div class="part photo-description margin-auto padding-top-5">
 										{if $photo->event != NULL}
-                						    {if $photo->event->placeTo != NULL}
+                						    {if $photo->event->placeTo != NULL && $photo->event->placeTo != $photo->event->place}
                 						        <p class="float-left">from <span class="highlight"><a href="
                 						        	{var $args = array('values' => [search => $photo->event->place->name, filterCategory => array('Events', 'Tracks', 'Photos')])}
                                                 	{link Search:default (expand) $args}
@@ -190,7 +190,7 @@
                 						        ,
                 							{/if}
                                         {elseif $photo->track != NULL}
-											{if $photo->track->placeTo != NULL}
+											{if $photo->track->placeTo != NULL && $photo->track->placeTo != $photo->track->place}
                  						        <p class="float-left">from <span class="highlight"><a href="
 													{var $args = array('values' => [search => $photo->track->place->name, filterCategory => array('Events', 'Tracks', 'Photos')])}
                                                 	{link Search:default (expand) $args}
