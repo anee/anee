@@ -59,7 +59,7 @@ function toggleSearchBar(id) {
         document.getElementById('right-menu').style.paddingTop = "105px";
         document.getElementById('content').style.paddingTop = "100px";
     } else {
-        document.getElementById('top-menu-search').style.opacity = "0.7";
+        document.getElementById('top-menu-search').style.opacity = "0.8";
         document.getElementById('right-menu').style.paddingTop = "140px";
         document.getElementById('content').style.paddingTop = "140px";
     }
@@ -88,7 +88,7 @@ function toggleRightMenu(id) {
         document.getElementById('right-menu-ref').style.opacity = "";
         document.getElementById('content').style.paddingRight = "50px";
     } else {
-        document.getElementById('right-menu-ref').style.opacity = "0.7";
+        document.getElementById('right-menu-ref').style.opacity = "0.8";
         document.getElementById('content').style.paddingRight = "500px";
     }
 }
@@ -100,8 +100,8 @@ function toggleRightMenuCenter(id) {
         document.getElementById('wrapper').style.backgroundColor = "";
         document.getElementById('wrapper').style.opacity = "";
     } else {
-        document.getElementById('right-menu-ref').style.opacity = "0.7";
-        document.getElementById('wrapper').style.opacity = "0.7";
+        document.getElementById('right-menu-ref').style.opacity = "0.8";
+        document.getElementById('wrapper').style.opacity = "0.8";
         document.getElementById('wrapper').style.backgroundColor = "black";
     }
 }
