@@ -1,6 +1,6 @@
 {block content}
 
-	<div id="searchpage">
+	<div id="search-page">
 		<div id="search-title" class="width-100 float-left margin-bot-70">
 			<div class="part float-left width-100 border-bottom float-left">
 				<p class="float-left padding-top-5"><span class="highlight">
@@ -34,7 +34,7 @@
                 	<span class="highlight"><a href="">{$values['filterTime']}</a></span>
                	{/if}
                	</p>
-				<ul class="search-detail-info float-right">
+				<ul class="detail-info float-right">
 					<li class="{$template->selectedOrNothing('Events', $values['filterCategory'])}">
 						<span class="highlight">{$results['EventsCount']}</span><a href="
 						{var $args = array('values' => array_merge($values, [filterCategory => array('Events')]))}

@@ -3,16 +3,12 @@
 	<div id="homepage">
 	{if $event != NULL}
 		<div class="event float-left width-100 margin-bot-70">
-			{if $event->getPhoto() != NULL}
-			<div class="part float-left padding-right-2-p width-40">
-				<li>
-					<a href=""><img class="width-100" src="{$event->getPhoto()->filePath|thumb:'685x'}"></a>
-				</li>
-			</div>
-			<div class="event-description float-left width-60">
-			{else}
-			<div class="event-description float-left width-100">
-			{/if}
+				<div class="hp-event-image part float-left padding-right-2-p width-40">
+					<li>
+						<a href=""><img class="width-100" src="{$event->getPhoto()->filePath|thumb:'685x'}"></a>
+					</li>
+				</div>
+				<div class="event-description float-left">
 				<div class="event-date"><p>{$event->date->format('l d, F Y')}</p></div>
 				<h1><a href="
 				    {link Event:detail, $event->getId()}
@@ -54,18 +50,7 @@
 			<div class="part width-100 float-left">
 				<ul>
 					{foreach $photos as $photo}
-						{if $iterator->getCounter() == 1}
-							<div class="part float-left width-25"><li><a href=""><img class="width-100 padding-right-15" src="{$photo->getFilePath()|thumb:'451x'}"/></a></li></div>
-						{/if}
-						{if $iterator->getCounter() == 2}
-                        	<div class="part float-left width-25"><li><a href=""><img class="width-100 padding-left-5 padding-right-10" src="{$photo->getFilePath()|thumb:'451x'}"/></a></li></div>
-                        {/if}
-						{if $iterator->getCounter() == 3}
-                        	<div class="part float-left width-25"><li><a href=""><img class="width-100 padding-left-10 padding-right-5" src="{$photo->getFilePath()|thumb:'451x'}"/></a></li></div>
-						{/if}
-						{if $iterator->getCounter() == 4}
-                        	<div class="part float-left width-25"><li><a href=""><img class="width-100 padding-left-15" src="{$photo->getFilePath()|thumb:'451x'}"/></a></li></div>
-                        {/if}
+							<div class="photo part float-left"><li><a href=""><img class="width-100" src="{$photo->getFilePath()|thumb:'451x'}"/></a></li></div>
 					{/foreach}
 				</ul>
 			</div>
@@ -73,15 +58,13 @@
 		{/if}
 
 		<div class="tracks-summary width-100 float-left">
-
-		{foreach $tracks as $track}
-        	{if $iterator->getCounter() == 1}
-        				<div class="part width-50 float-left padding-right-20">
+			{foreach $tracks as $track}
+        				<div class="hp-track part float-left">
             				<div class="part width-100 margin-bot-20 border-bottom float-left">
             					<h2 class="float-left"><a href="
                                 	{link Track:detail, $track->getId()}
             					">{$track->getName()} </a><span class="not-highlight"> by {$track->getTransport()}</span></h2>
-            					<p class="float-right margin-bot-5"><span class="highlight">{$track->getDate()|getDateAgoNumber}</span> {$track->getDate()|getDateAgoText}</p>
+            					<p class="float-right margin-bot-0"><span class="highlight">{$track->getDate()|getDateAgoNumber}</span> {$track->getDate()|getDateAgoText}</p>
             					<div style="clear: both;"></div>
             				</div>
             				<div class="part width-100 float-left">
@@ -101,35 +84,7 @@
                                 </div>
             				</div>
             			</div>
-        	{/if}
-        	{if $iterator->getCounter() == 2}
-        				<div class="part width-50 float-left padding-left-20">
-            				<div class="part width-100 margin-bot-20 border-bottom float-left">
-            					<h2 class="float-left"><a href="
-            						{link Track:detail, $track->getId()}
-            					">{$track->getName()} </a> <span class="not-highlight"> by {$track->getTransport()}</span></h2>
-            					<p class="float-right margin-bot-0"><span class="highlight">{$track->getDate()|getDateAgoNumber}</span> {$track->getDate()|getDateAgoText}</p>
-            					<div style="clear: both;"></div>
-            				</div>
-            				<div class="part width-100 float-left">
-            					<div class="bar overall-bg float-left">
-            						{$track->getDistance()} km
-            					</div>
-            					<div class="info overall float-left">
-            						<p>{$track->getTimeInSeconds()|getSpanTimeFromSecondsNumber}</p>
-                                    <p>{$track->getTimeInSeconds()|getSpanTimeFromSecondsText}</p>
-            					</div>
-            					<div class="bar partial-bg float-right">
-            						{$track->getAvgSpeed()} km/h
-            					</div>
-            					<div class="info partial float-right text-align-right">
-                                	<p>{$track->getMaxSpeed()}</p>
-                                    <p>MAX KM/H</p>
-                                </div>
-            				</div>
-            			</div>
-           	{/if}
-		{/foreach}
+			{/foreach}
 		</div>
 	</div>
 
