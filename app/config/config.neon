@@ -32,7 +32,6 @@ services:
     photoFacade: App\Model\photoFacade(@photoRepository, %wwwDir%)
     photoRepository: App\Model\photoRepository(@doctrine.dao(App\Model\Photo))
     - App\Modules\FrontModule\Forms\SearchForm
-    - App\Modules\FrontModule\Forms\CommentForm
     - App\RouterFactory
     router: @App\RouterFactory::createRouter
 
