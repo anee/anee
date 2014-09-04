@@ -135,7 +135,7 @@ footer {
         width: 40%;
     }
     #homepage .event .event-description {
-        width: 60%;
+
     }
     /* SUMMARY PHOTOS */
     .photo {
@@ -281,6 +281,9 @@ h1 a:hover, h2 a:hover, h4 a:hover {
 .not-highlight {
     font-weight: normal;
     font-family: 'ProximaNova-Light';
+}
+.width-60 {
+    width: 60%;
 }
 .width-100 {
     width: 100%;
