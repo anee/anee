@@ -24,7 +24,7 @@ class Event extends \Kdyby\Doctrine\Entities\IdentifiedEntity
     protected $description;
 
     /**
-     * @ORM\Column(type="string", nullable=false)
+     * @ORM\ManyToOne(targetEntity="App\Model\Transport", inversedBy="events")
      */
     protected $transport;
 

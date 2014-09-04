@@ -12,7 +12,7 @@
 				<div class="event-date"><p>{$event->date->format('l d, F Y')}</p></div>
 				<h1><a href="
 				    {link Event:detail, $event->getId()}
-				">{$event->getName()}</a><span class="not-highlight"> by {$event->getTransport()}</span></h1>
+				">{$event->getName()}</a><span class="not-highlight"> by {$event->transport->name}</span></h1>
 				<div class="event-text float-left margin-bot-70"><p>
 						{$event->getDescription()}
 				</p></div>
@@ -63,7 +63,7 @@
             				<div class="part width-100 margin-bot-20 border-bottom float-left">
             					<h2 class="float-left"><a href="
                                 	{link Track:detail, $track->getId()}
-            					">{$track->getName()} </a><span class="not-highlight"> by {$track->getTransport()}</span></h2>
+            					">{$track->getName()} </a><span class="not-highlight"> by {$track->transport->name}</span></h2>
             					<p class="float-right margin-bot-0"><span class="highlight">{$track->getDate()|getDateAgoNumber}</span> {$track->getDate()|getDateAgoText}</p>
             					<div style="clear: both;"></div>
             				</div>

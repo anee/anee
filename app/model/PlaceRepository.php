@@ -22,9 +22,9 @@ class PlaceRepository extends Nette\Object {
         $this->places = $dao;
     }
 
-    public function save($work)
+    public function save($place)
     {
-        $this->places->save($work);
+        $this->places->save($place);
     }
 
     public function remove($id)

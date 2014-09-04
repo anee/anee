@@ -23,10 +23,9 @@ class SearchForm extends Nette\Object
 
     }
 
-    public function create($presenter)
+    public function create($presenter, $transports)
     {
         $this->presenter = $presenter;
-
         $form = new Form;
         $form->setRenderer(new BootstrapRenderer);
         $form->addText('search')->setAttribute('placeholder', 'Search...');
@@ -37,11 +36,16 @@ class SearchForm extends Nette\Object
             'Places' => 'Places',
             'Photos' => 'Photos',
         );
-        $transport = array(
+        $transport_base = array(
             '' => 'Any transport',
             'Cycling' => 'Cycling',
             'Running' => 'Running',
         );
+        $transport_db = array();
+        foreach($transports as $transport) {
+            $transportTest[$transport->name] = $transport->name;
+        }
+        $transport = array_merge($transport_base, $transport_db);
         $time = array(
             '' => 'Any time',
 			'Past hour' => 'Past hour',

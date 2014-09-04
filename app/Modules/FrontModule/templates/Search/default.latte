@@ -67,7 +67,7 @@
             					<h4 class="float-left"><a href="
             						{link Event:detail, $event->getId()}">
                                 	{$event->getName()}
-                                </a> <span class="not-highlight"> by {$event->getTransport()}</span></h4>
+                                </a> <span class="not-highlight"> by {$event->transport->name}</span></h4>
             					<p class="float-right margin-bot-5"><span class="highlight">{$event->getDate()|getDateAgoNumber}</span> {$event->getDate()|getDateAgoText}</p>
             					<div style="clear: both;"></div>
             				</div>
@@ -96,7 +96,7 @@
             					<h4 class="float-left"><a href="
                                 	{link Track:detail, $track->getId()}">
                                 	{$track->getName()}
-                                 </a> <span class="not-highlight"> {$track->getTransport()}</span></h4>
+                                 </a> <span class="not-highlight"> {$track->transport->name}</span></h4>
             					<p class="float-right margin-bot-5"><span class="highlight">{$track->getDate()|getDateAgoNumber}</span> {$track->getDate()|getDateAgoText}</p>
             					<div style="clear: both;"></div>
             				</div>

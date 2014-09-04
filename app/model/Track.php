@@ -19,7 +19,7 @@ class Track extends \Kdyby\Doctrine\Entities\IdentifiedEntity
 {
 
     /**
-     * @ORM\Column(type="string", nullable=false)
+     * @ORM\ManyToOne(targetEntity="App\Model\Transport", inversedBy="track")
      */
     protected $transport;
 

@@ -27,6 +27,9 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
     /** @var \App\Model\PlaceRepository @inject*/
     public $placeRepository;
 
+    /** @var \App\Model\TransportRepository @inject*/
+    public $transportRepository;
+
     /** @var \Kappa\ThumbnailsHelper\ThumbnailsHelper @inject*/
     public $thumbnailsHelper;
 
@@ -36,6 +39,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 
         // RIGHT MENU
         $template->dataCounts = array(
+            'Transports' => $this->transportRepository->findAll(),
             'Events' => $this->eventRepository->findAllCount(),
             'Tracks' => $this->trackRepository->findAllCount(),
             'Places' => $this->placeRepository->findAllCount(),
@@ -52,6 +56,6 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 
     protected function createComponentSearchForm()
     {
-        return $this->searchFormFactory->create($this);
+        return $this->searchFormFactory->create($this, $this->transportRepository->findAll());
     }
 }

@@ -26,6 +26,8 @@
 	<!--Styles-->
 	<link rel="stylesheet" media="all" href="{$basePath}/css/bootstrap.min.css">
 	<link rel="stylesheet" media="all" href="{$basePath}/css/app-min.css">
+	<link rel="stylesheet" media="all" href="{$basePath}/css/bootstrap-multiselect.css">
+
 
 	{block head}{/block}
 </head>
@@ -46,14 +48,14 @@
 		</ul>
 	</div>*}
 	<div id="right-menu-ref" class="float-right">
-		<a onclick="rightMenuVisibility('right-menu');"></a>
+		<a id ="right-menu-ref-a" onclick="rightMenuVisibility('right-menu');"></a>
 	</div>
-	<div id="top-menu-social" class="float-right">
+	{*<div id="top-menu-social" class="float-right">
 		<ul class="nav navbar-nav social">
 			<li><a href="https://twitter.com/ldrahnik" title="Twitter" class="twitter"></a></li>
 			<li><a href="https://www.facebook.com/lukas.drahnik" title="Facebook" class="facebook"></a></li>
 		</ul>
-	</div>
+	</div>*}
 	<div id="top-menu-title">
 		Anee
 	</div>
@@ -61,6 +63,20 @@
 
 <!-- Search bar -->
 <div id="search-bar" style="display:none;">
+	{*{form searchForm}
+		{input test}
+	{/form}*}
+
+	{*!-- Build your select: -->
+    <select class="multiselect" multiple="multiple">
+    <option value="cheese">Cheese</option>
+    <option value="tomatoes">Tomatoes</option>
+    <option value="mozarella">Mozzarella</option>
+    <option value="mushrooms">Mushrooms</option>
+    <option value="pepperoni">Pepperoni</option>
+    <option value="onions">Onions</option>
+    </select>*}
+
 	{form searchForm}
 		{input search}
 		<div id="search-bar-filters" class="float-right">
@@ -78,11 +94,11 @@
 
 <!-- Fixed right menu -->
 <div id="right-menu" style="padding-top: 105px; display:none;">
-	<div class="part margin-bot-15 padding-bot-5 border-bottom">
+	<div class="part margin-bot-15 padding-bot-10 padding-left-20 border-bottom">
 		<h3 class="float-left"><a href="{plink :Front:Homepage:default}">Home</a></h3>
 		<div style="clear: both;"></div>
 	</div>
-	<div class="part width-100 margin-bot-40 float-left">
+	<div class="part width-100 margin-bot-40 margin-left-20 float-left">
     	 <ul class="float-left">
             <li class="selected float-left">
         		<span class="highlight">{$dataCounts['Events']}</span><a href="
@@ -106,6 +122,19 @@
             </li>
          </ul>
 	</div>
+	<div class="part width-100 margin-bot-40 margin-left-20 float-left">
+        	 <ul class="float-left">
+        	 {foreach $dataCounts['Transports'] as $transport}
+        	 			{if $transport->getCount() > 0}
+        	                 <li class="selected float-left">
+                         		<span class="highlight">{$transport->getCount()}</span><a href="
+                                 {var $args = array('values' => [filterTransport => array($transport->name)])}
+                                 {link Search:default (expand) $args}"> {ucfirst($transport->name)}</a>
+                         	</li>
+                         {/if}
+            	{/foreach}
+             </ul>
+    	</div>
 	<div class="part summary width-100 float-left">
 		<div class="bar overall-bg float-left">{$dataCounts['Distance']} km</div>
 		<div class="bar partial-bg float-right">{$dataCounts['Tracks'] + $dataCounts['Events']} total</div>
@@ -162,7 +191,14 @@
 	<script src="{$basePath}/js/Chart.min.js"></script>
 	<script src="{$basePath}/js/app.js"></script>
 	<script src="{$basePath}/js/netteForms.js"></script>
+	<script src="{$basePath}/js/bootstrap-multiselect.js"></script>
 {/block}
 
+	<!-- Initialize the plugin: -->
+	<script type="text/javascript">
+		$(document).ready(function() {
+    		$('.multiselect').multiselect();
+		});
+	</script>
 	</body>
 </html>

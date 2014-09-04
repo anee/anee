@@ -121,7 +121,8 @@ class TrackRepository extends Nette\Object {
         }
         if($values['filterTransport'] != '') {
             $qb
-                ->andWhere('e.transport >= :transport')
+                ->join('e.transport', 'c')
+                ->andWhere('c.name >= :transport')
                 ->setParameter('transport', $values['filterTransport']);
         }
         $qb
@@ -155,7 +156,8 @@ class TrackRepository extends Nette\Object {
         }
         if($values['filterTransport'] != '') {
             $qb
-                ->andWhere('e.transport >= :transport')
+                ->join('e.transport', 'c')
+                ->andWhere('c.name >= :transport')
                 ->setParameter('transport', $values['filterTransport']);
         }
         return $qb->getQuery()->getSingleScalarResult();
