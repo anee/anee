@@ -18,12 +18,9 @@ class PlaceFacade extends Nette\Object
     /** @var \App\Model\PlaceRepository */
     public $placeRepository;
 
-    private $www;
-
-    public function __construct(PlaceRepository $placeRepository, $www)
+    public function __construct(PlaceRepository $placeRepository)
     {
         $this->placeRepository = $placeRepository;
-        $this->www = $www;
     }
 
     public function createPlace($values)
