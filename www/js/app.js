@@ -19,6 +19,8 @@ function resize() {
     document.getElementById("right-menu").style.display = 'none';
     document.getElementById('right-menu-ref').style.opacity = "";
     document.getElementById('content').style.paddingRight = "50px";
+    document.getElementById('right-menu-ref').style.width = "140px";
+    document.getElementById('right-menu-ref-a').style.width = "140px";
 
     // RIGHT MENU CENTER
     document.getElementById("right-menu-center").style.display = 'none';
@@ -56,7 +58,7 @@ function toggleSearchBar(id) {
     var e = document.getElementById(id);
     if(e.style.display == 'none') {
         document.getElementById('top-menu-search').style.opacity = "";
-        document.getElementById('right-menu').style.paddingTop = "105px";
+        document.getElementById('right-menu').style.paddingTop = "95px";
         document.getElementById('content').style.paddingTop = "100px";
     } else {
         document.getElementById('top-menu-search').style.opacity = "0.8";
@@ -87,9 +89,13 @@ function toggleRightMenu(id) {
     if(e.style.display == 'none') {
         document.getElementById('right-menu-ref').style.opacity = "";
         document.getElementById('content').style.paddingRight = "50px";
+        document.getElementById('right-menu-ref').style.width = "140px";
+        document.getElementById('right-menu-ref-a').style.width = "140px";
     } else {
         document.getElementById('right-menu-ref').style.opacity = "0.8";
         document.getElementById('content').style.paddingRight = "500px";
+        document.getElementById('right-menu-ref').style.width = "430px";
+        document.getElementById('right-menu-ref-a').style.width = "430px";
     }
 }
 
