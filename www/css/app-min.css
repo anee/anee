@@ -267,9 +267,6 @@ h1 a:hover, h2 a:hover, h4 a:hover {
 .padding-bot-5 {
     padding-bottom: 5px;
 }
-.padding-bot-10 {
-    padding-bottom: 10px;
-}
 .padding-left-20 {
     padding-left: 20px;
 }
@@ -513,7 +510,7 @@ h1 a:hover, h2 a:hover, h4 a:hover {
     padding-right: 50px;
     cursor: pointer;
     width: 140px; height: 55px;
-    background: url(../images/right-menu_test.png) 20px 20px no-repeat #f4f4f4;
+    background: url(../images/right-menu.png) 20px 20px no-repeat #f4f4f4;
     border-bottom: 1px solid #d5d9d8;
     border-left: 1px solid #d5d9d8;
 }
