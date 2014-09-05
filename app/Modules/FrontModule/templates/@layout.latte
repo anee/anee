@@ -94,7 +94,7 @@
 
 <!-- Fixed right menu -->
 <div id="right-menu" style="padding-top: 105px; display:none;">
-	<div class="part margin-bot-15 padding-bot-10 padding-left-20 border-bottom">
+	<div class="part margin-bot-15 padding-bot-5 padding-left-20 border-bottom">
 		<h3 class="float-left"><a href="{plink :Front:Homepage:default}">Home</a></h3>
 		<div style="clear: both;"></div>
 	</div>
@@ -120,21 +120,17 @@
                 {var $args = array('values' => [filterCategory => array('Photos')])}
                 {link Search:default (expand) $args}"> Photos</a>
             </li>
+             {foreach $dataCounts['Transports'] as $transport}
+                  {if $transport->getCount() > 0}
+                    	<li class="selected float-left">
+                              <span class="highlight">{$transport->getCount()}</span><a href="
+                                   {var $args = array('values' => [filterTransport => array($transport->name)])}
+                                   {link Search:default (expand) $args}"> {ucfirst($transport->name)}</a>
+                        </li>
+                  {/if}
+             {/foreach}
          </ul>
 	</div>
-	<div class="part width-100 margin-bot-40 margin-left-20 float-left">
-        	 <ul class="float-left">
-        	 {foreach $dataCounts['Transports'] as $transport}
-        	 			{if $transport->getCount() > 0}
-        	                 <li class="selected float-left">
-                         		<span class="highlight">{$transport->getCount()}</span><a href="
-                                 {var $args = array('values' => [filterTransport => array($transport->name)])}
-                                 {link Search:default (expand) $args}"> {ucfirst($transport->name)}</a>
-                         	</li>
-                         {/if}
-            	{/foreach}
-             </ul>
-    	</div>
 	<div class="part summary width-100 float-left">
 		<div class="bar overall-bg float-left">{$dataCounts['Distance']} km</div>
 		<div class="bar partial-bg float-right">{$dataCounts['Tracks'] + $dataCounts['Events']} total</div>
@@ -176,7 +172,7 @@
     		<div class="bar overall-bg float-left">{$dataCounts['Distance']} km</div>
     		<div class="bar partial-bg float-right">{$dataCounts['Tracks'] + $dataCounts['Events']} total</div>
     	</div>
-</div>
+	</div>
 </div>
 
 
