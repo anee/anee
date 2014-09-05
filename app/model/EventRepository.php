@@ -108,7 +108,7 @@ class EventRepository extends Nette\Object {
                     ->andWhere('e.date >= :date')
                     ->setParameter('date', FilterUtils::timeSubFilterTime($values['filterTime']));
             }
-            if($values['filterTransport'] != '') {
+            if(empty($values['filterTransport']) != true) {
                 $qb
                     ->join('e.transport', 'c')
                     ->andWhere('c.name >= :transport')
@@ -144,7 +144,7 @@ class EventRepository extends Nette\Object {
                 ->andWhere('e.date >= :date')
                 ->setParameter('date', FilterUtils::timeSubFilterTime($values['filterTime']));
         }
-        if($values['filterTransport'] != '') {
+        if(empty($values['filterTransport']) != true) {
             $qb
                 ->join('e.transport', 'c')
                 ->andWhere('c.name >= :transport')

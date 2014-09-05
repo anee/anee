@@ -33,7 +33,7 @@ class filterUtils {
         $values = array(
             'search' => '',
             'filterCategory' => array(),
-            'filterTransport' => '',
+            'filterTransport' => array(),
             'filterTime' => '',
             'filterEntity' => '',
             'filterEntityId' => ''

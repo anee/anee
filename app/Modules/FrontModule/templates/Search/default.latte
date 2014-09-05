@@ -24,11 +24,23 @@
 					{link $results['EntityUrl'], $results['EntityObject']->getId()}
                                             ">{$results['EntityObject']->getName()}</a></span>
 				{/if}
-                {if $values['filterTransport'] != ""}
-                	by <span class="highlight"><a href="">{$values['filterTransport']}</a></span>
-                {/if}
+				{var $first = 0}
+                {foreach $values['filterTransport'] as $u => $transport}
+                	{if $first == 0 && $transport != ""}
+                		by <span class="highlight"><a href="
+                			{var $args = array('values' => [filterTransport => array($transport)])}
+                        	{link Search:default (expand) $args}
+                		">{ucfirst($transport)}</a></span>
+                		{var $first = 1}
+                	{elseif $transport != ""}
+                		, <span class="highlight"><a href="
+                		    {var $args = array('values' => [filterTransport => array($transport)])}
+                            {link Search:default (expand) $args}
+                                                ">{ucfirst($transport)}</a></span>
+                	{/if}
+                {/foreach}
                 {if $values['filterTime'] != ""}
-                	{if $values['filterTransport'] != "" || empty($values['filterCategory']) != true || $values['search'] != "" || $values['filterEntity'] != ""}
+                	{if empty($values['filterCategory']) != true || empty($values['filterTransport']) != true || $values['search'] != "" || $values['filterEntity'] != ""}
                                 ,
                     {/if}
                 	<span class="highlight"><a href="">{$values['filterTime']}</a></span>
@@ -96,7 +108,7 @@
             					<h4 class="float-left"><a href="
                                 	{link Track:detail, $track->getId()}">
                                 	{$track->getName()}
-                                 </a> <span class="not-highlight"> {$track->transport->name}</span></h4>
+                                 </a> <span class="not-highlight">by {$track->transport->name}</span></h4>
             					<p class="float-right margin-bot-5"><span class="highlight">{$track->getDate()|getDateAgoNumber}</span> {$track->getDate()|getDateAgoText}</p>
             					<div style="clear: both;"></div>
             				</div>
