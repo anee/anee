@@ -119,11 +119,11 @@ class TrackRepository extends Nette\Object {
                 ->andWhere('e.date >= :date')
                 ->setParameter('date', FilterUtils::timeSubFilterTime($values['filterTime']));
         }
-            if(empty($values['filterTransport']) != true) {
+        if(empty($values['filterTransport']) != true) {
             $qb
                 ->join('e.transport', 'c')
-                ->andWhere('c.name >= :transport')
-                ->setParameter('transport', $values['filterTransport']);
+                ->andWhere('c.name IN (:transports)')
+                ->setParameter('transports', $values['filterTransport']);
         }
         $qb
             ->orderBy('e.date', 'DESC');
@@ -157,8 +157,8 @@ class TrackRepository extends Nette\Object {
         if(empty($values['filterTransport']) != true) {
             $qb
                 ->join('e.transport', 'c')
-                ->andWhere('c.name >= :transport')
-                ->setParameter('transport', $values['filterTransport']);
+                ->andWhere('c.name IN (:transports)')
+                ->setParameter('transports', $values['filterTransport']);
         }
         return $qb->getQuery()->getSingleScalarResult();
     }

@@ -111,8 +111,8 @@ class EventRepository extends Nette\Object {
             if(empty($values['filterTransport']) != true) {
                 $qb
                     ->join('e.transport', 'c')
-                    ->andWhere('c.name >= :transport')
-                    ->setParameter('transport', $values['filterTransport']);
+                    ->andWhere('c.name IN (:transports)')
+                    ->setParameter('transports', $values['filterTransport']);
             }
             $qb
                 ->orderBy('e.date', 'DESC');
@@ -147,10 +147,9 @@ class EventRepository extends Nette\Object {
         if(empty($values['filterTransport']) != true) {
             $qb
                 ->join('e.transport', 'c')
-                ->andWhere('c.name >= :transport')
-                ->setParameter('transport', $values['filterTransport']);
+                ->andWhere('c.name IN (:transports)')
+                ->setParameter('transports', $values['filterTransport']);
         }
-
         return $qb->getQuery()->getSingleScalarResult();
     }
 }
