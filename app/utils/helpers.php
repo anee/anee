@@ -20,20 +20,7 @@ class helpers {
         });
         $template->addFilter('getSpanTimeFromSecondsNumber', function($seconds)
         {
-            $value = null;
-
-            if ($seconds < 60)
-                $value = round($seconds, 2);
-            else if($seconds < 60*60)
-                $value = round($seconds/60, 2);
-            else if($seconds < 60*60*24)
-                $value = round($seconds/(60 * 60), 2);
-            else if($seconds < 60*60*24*30)
-                $value = round($seconds/(60 * 60 * 24), 2);
-            else
-                $value = round($seconds/(60 * 60 * 24 * 30), 2);
-
-            return $value;
+            return gmdate("H:i:s", $seconds);
         });
         $template->addFilter('getSpanTimeFromSecondsText', function($seconds)
         {
