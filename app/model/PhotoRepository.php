@@ -167,40 +167,73 @@ class PhotoRepository extends Nette\Object {
 
     public function findByFiltersCount($values)
     {
-        $qb = $this->photos->createQueryBuilder();
-        $qb
-            ->select('COUNT(e.id)')
-            ->from('App\Model\Photo', 'e');
+        if($values['filterEntity'] != '' && $values['filterEntityId'] != '') {
+            $qb = $this->photos->createQueryBuilder();
+            $qb
+                ->select('COUNT(e.id)')
+                ->from('App\Model\Photo', 'e');
+            if($values['filterEntity'] == 'Event') {
+                $qb
+                    ->leftJoin('e.event', 'o')
+                    ->where('o IS NOT NULL')
+                    ->where($qb->expr()->like('o.id', ':filterEntityId'))
+                    ->setParameter('filterEntityId', $values['filterEntityId']);
+            } elseif($values['filterEntity'] == 'Track') {
+                $qb
+                    ->leftJoin('e.track', 'o')
+                    ->where('o IS NOT NULL')
+                    ->where($qb->expr()->like('o.id', ':filterEntityId'))
+                    ->setParameter('filterEntityId', $values['filterEntityId']);
+            } elseif($values['filterEntity'] == 'Place') {
+                $qb
+                    ->leftJoin('e.place', 'o')
+                    ->where('o IS NOT NULL')
+                    ->where($qb->expr()->like('o.id', ':filterEntityId'))
+                    ->setParameter('filterEntityId', $values['filterEntityId']);
+            }
+            if($values['filterTime'] != '') {
+                $qb
+                    ->andWhere('e.date >= :date')
+                    ->setParameter('date', FilterUtils::timeSubFilterTime($values['filterTime']));
+            }
+            return $qb->getQuery()->getSingleScalarResult();
 
-        if($values['search'] != '') {
+        } else {
+            $qb = $this->photos->createQueryBuilder();
             $qb
-                //track
-                ->leftJoin('e.track', 'b')
-                ->where('b IS NOT NULL')
-                ->leftJoin('b.place', 'g')
-                ->leftJoin('b.placeTo','h')
-                ->where('h IS NOT NULL')
-                //event
-                ->leftJoin('e.event', 'o')
-                ->where('o IS NOT NULL')
-                ->leftJoin('o.place', 'p')
-                ->leftJoin('o.placeTo','q')
-                ->where('q IS NOT NULL')
-                //place
-                ->leftJoin('e.place', 'a')
-                ->where('a IS NOT NULL')
-                ->where($qb->expr()->like('g.name', ':search'))
-                ->orWhere($qb->expr()->like('h.name', ':search'))
-                ->orWhere($qb->expr()->like('q.name', ':search'))
-                ->orWhere($qb->expr()->like('p.name', ':search'))
-                ->orWhere($qb->expr()->like('a.name', ':search'))
-                ->setParameter('search', '%' . $values['search'] . '%');
+                ->select('COUNT(e.id)')
+                ->from('App\Model\Photo', 'e');
+
+            if($values['search'] != '') {
+                $qb
+                    //track
+                    ->leftJoin('e.track', 'b')
+                    ->where('b IS NOT NULL')
+                    ->leftJoin('b.place', 'g')
+                    ->leftJoin('b.placeTo','h')
+                    ->where('h IS NOT NULL')
+                    //event
+                    ->leftJoin('e.event', 'o')
+                    ->where('o IS NOT NULL')
+                    ->leftJoin('o.place', 'p')
+                    ->leftJoin('o.placeTo','q')
+                    ->where('q IS NOT NULL')
+                    //place
+                    ->leftJoin('e.place', 'a')
+                    ->where('a IS NOT NULL')
+                    ->where($qb->expr()->like('g.name', ':search'))
+                    ->orWhere($qb->expr()->like('h.name', ':search'))
+                    ->orWhere($qb->expr()->like('q.name', ':search'))
+                    ->orWhere($qb->expr()->like('p.name', ':search'))
+                    ->orWhere($qb->expr()->like('a.name', ':search'))
+                    ->setParameter('search', '%' . $values['search'] . '%');
+            }
+            if($values['filterTime'] != '') {
+                $qb
+                    ->andWhere('e.date >= :date')
+                    ->setParameter('date', FilterUtils::timeSubFilterTime($values['filterTime']));
+            }
+            return $qb->getQuery()->getSingleScalarResult();
         }
-        if($values['filterTime'] != '') {
-            $qb
-                ->andWhere('e.date >= :date')
-                ->setParameter('date', FilterUtils::timeSubFilterTime($values['filterTime']));
-        }
-        return $qb->getQuery()->getSingleScalarResult();
     }
 }
