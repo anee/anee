@@ -166,6 +166,15 @@
                 {var $args = array('values' => [filterCategory => array('Photos')])}
                 {link Search:default (expand) $args}"> Photos</a>
             </li>
+             {foreach $dataCounts['Transports'] as $transport}
+                              {if $transport->getCount() > 0}
+                                	<li class="selected float-left">
+                                          <span class="highlight">{$transport->getCount()}</span><a href="
+                                               {var $args = array('values' => [filterTransport => array($transport->name)])}
+                                               {link Search:default (expand) $args}"> {ucfirst($transport->name)}</a>
+                                    </li>
+                              {/if}
+                         {/foreach}
             </ul>
     	</div>
     	<div class="part summary width-100 float-left">
