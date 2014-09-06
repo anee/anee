@@ -6,7 +6,10 @@
 				{if $event->photo != NULL}
 					<div class="hp-event-image part float-left padding-right-2-p">
 						<li>
-							<a href=""><img class="width-100" src="{$event->getPhoto()->filePath|thumb:'685x'}"></a>
+							<a href="
+								{var $args = array('values' => [filterCategory => array('Photos')])}
+                    			{link Search:default (expand) $args}#{$event->photo->getFileName()}
+                            "><img class="width-100" src="{$event->getPhoto()->filePath|thumb:'685x'}"></a>
 						</li>
 					</div>
 					<div class="event-description width-60 float-left">
@@ -45,7 +48,7 @@
 		<div class="photos-summary width-100 float-left margin-bot-70">
 			<div class="part margin-bot-20 border-bottom">
 				<h2 class="float-left"><a href="
-					{var $args = array('values' => [filterCategory => Photos])}
+					{var $args = array('values' => [filterCategory => array('Photos')])}
                     {link Search:default (expand) $args}
 				">Photos</a></h2>
 				<p class="float-right margin-bot-5"><span class="highlight">{$photos[0]->getDate()|getDateAgoNumber}</span> {$photos[0]->getDate()|getDateAgoText}</p>
@@ -54,7 +57,10 @@
 			<div class="part width-100 float-left">
 				<ul>
 					{foreach $photos as $photo}
-							<div class="photo part float-left"><li><a href=""><img class="width-100" src="{$photo->getFilePath()|thumb:'451x'}"/></a></li></div>
+							<div class="photo part float-left"><li><a href="
+								{var $args = array('values' => [filterCategory => array('Photos')])}
+                                {link Search:default (expand) $args}#{$photo->getFileName()}
+                            "><img class="width-100" src="{$photo->getFilePath()|thumb:'451x'}"/></a></li></div>
 					{/foreach}
 				</ul>
 			</div>

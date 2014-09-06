@@ -58,7 +58,10 @@
                                             				<ul>
                                                           		{foreach $event->eventPhotos as $photo}
                                                             		{breakIf $iterator->counter > 4}
-                                                                    <div class="photo part float-left"><li><a href=""><img class="width-100" src="{$photo->getFilePath()|thumb:'451x'}"/></a></li></div>
+                                                                    <div class="photo part float-left"><li><a href="
+                                                                    	{var $args = array('values' => array('filterCategory' => array('Photos'), 'filterEntity' => 'Event', 'filterEntityId' => $event->getId()))}
+                                                                        {link Search:default (expand) $args}#{$photo->getFileName()}
+                                                                    "><img class="width-100" src="{$photo->getFilePath()|thumb:'451x'}"/></a></li></div>
                                                                 {/foreach}
                                             				</ul>
                                             			</div>
