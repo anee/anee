@@ -23,7 +23,7 @@
 					during <span class="highlight"><a href="
 					{link $results['EntityUrl'], $results['EntityObject']->getId()}
                                             ">{$results['EntityObject']->getName()}</a></span>
-				{elseif $values['filterEntity'] == "Place" && ($template->arrayContains('Tracks', $values['filterCategory']) || $template->arrayContains('Events', $values['filterCategory']) || $template->arrayContains('Photos', $values['filterCategory']))}
+				{elseif $values['filterEntity'] == "Place" && $template->arrayContainsOneOrMore(array('Tracks', 'Events', 'Photos'), $values['filterCategory'])}
 					near <span class="highlight"><a href="
                     	{var $args = array('values' => array('filterCategory' => array('Photos', 'Tracks', 'Events'), 'filterEntity' => 'Place', 'filterEntityId' => $results['EntityObject']->getId()))}
                         {link Search:default (expand) $args}

@@ -116,14 +116,17 @@ class helpers {
             }
             return '';
         });
-        $template->addFilter('arrayContains', function($value, $array)
+        $template->addFilter('arrayContainsOneOrMore', function($valueArray, $array)
         {
             if(empty($array) == true) {
                 return false;
             } else {
                 foreach($array as $i => $v) {
-                    if($v == $value) {
-                        return true;
+                    foreach($valueArray as $value) {
+                        if($v == $value) {
+                            return true;
+                        }
+
                     }
                 }
                 return false;
