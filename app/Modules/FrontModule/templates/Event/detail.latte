@@ -20,7 +20,7 @@
 						{$event->getDistance()} km
 					</div>
 					<div class="bar partial-bg float-right">
-						{$event->getTimeInSeconds()|getSpanTimeFromSecondsNumber} {$event->getTimeInSeconds()|getSpanTimeFromSecondsText|strtolower}
+						{$event->getTimeInSeconds()|getSpanTimeFromSecondsNumberNoSpan} {$event->getTimeInSeconds()|getSpanTimeFromSecondsText|strtolower}
 					</div>
 					<div class="info partial float-right text-align-right">
 						<p>{$event->getAvgSpeed()}</p>

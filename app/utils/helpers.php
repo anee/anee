@@ -18,6 +18,23 @@ class helpers {
         {
             return strtolower($text);
         });
+        $template->addFilter('getSpanTimeFromSecondsNumberNoSpan', function($seconds)
+        {
+            $value = null;
+
+            if ($seconds < 60)
+                $value = round($seconds, 2);
+            else if($seconds < 60*60)
+                $value = round($seconds/60, 2);
+            else if($seconds < 60*60*24)
+                $value = round($seconds/(60 * 60), 2);
+            else if($seconds < 60*60*24*30)
+                $value = round($seconds/(60 * 60 * 24), 2);
+            else
+                $value = round($seconds/(60 * 60 * 24 * 30), 2);
+
+            return $value;
+        });
         $template->addFilter('getSpanTimeFromSecondsNumber', function($secParam)
         {
             $hours = floor($secParam / 3600);
@@ -121,13 +138,11 @@ class helpers {
             if(empty($array) == true) {
                 return false;
             } else {
-                foreach($array as $i => $v) {
-                    foreach($valueArray as $value) {
-                        if($v == $value) {
-                            return true;
+                foreach($array as $i => $v)
+                        foreach($valueArray as $value) {
+                            if($v == $value) {
+                                return true;
                         }
-
-                    }
                 }
                 return false;
             }
