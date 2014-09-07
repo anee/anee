@@ -31,12 +31,14 @@ class SearchPresenter extends BasePresenter
         if($this->values['filterEntity'] == 'Event') {
             $entityObject = $this->eventRepository->findById($this->values['filterEntityId']);
             $entityUrl = 'Event:detail';
-        } else if ($this->values['filterEntity'] == 'Track') {
+        } elseif ($this->values['filterEntity'] == 'Track') {
             $entityObject = $this->trackRepository->findById($this->values['filterEntityId']);
             $entityUrl = 'Track:detail';
+        } elseif ($this->values['filterEntity'] == 'Place') {
+            $entityObject = $this->placeRepository->findById($this->values['filterEntityId']);
         }
 
-        $this->template->results = array(
+         $this->template->results = array(
             'EntityObject' => $entityObject,
             'EntityUrl' => $entityUrl,
             'Count' => count($events) + count($tracks) + count($places) + count($photos),

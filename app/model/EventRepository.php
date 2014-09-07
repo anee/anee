@@ -87,7 +87,29 @@ class EventRepository extends Nette\Object {
 
     public function findByFilters($values)
     {
-        if(FilterUtils::arrayContainsOrEmpty('Events', $values['filterCategory']) == true) {
+        if(FilterUtils::arrayContainsOrEmpty('Events', $values['filterCategory']) == true && $values['filterEntity'] != '' && $values['filterEntityId'] != '') {
+            $qb = $this->events->createQueryBuilder();
+            $qb
+                ->select('e')
+                ->from('App\Model\Event', 'e');
+
+            if($values['filterEntity'] == 'Place') {
+                $qb
+                    ->leftJoin('e.place', 'o')
+                    ->where('o IS NOT NULL')
+                    ->where('o.id = :id')
+                    ->setParameter('id', $values['filterEntityId']);
+            }
+            if($values['filterTime'] != '') {
+                $qb
+                    ->andWhere('e.date >= :date')
+                    ->setParameter('date', FilterUtils::timeSubFilterTime($values['filterTime']));
+            }
+            $qb
+                ->orderBy('e.date', 'DESC');
+            return $qb->getQuery()->getResult();
+
+        } elseif(FilterUtils::arrayContainsOrEmpty('Events', $values['filterCategory']) == true) {
             $qb = $this->events->createQueryBuilder();
             $qb
                 ->select('e')
@@ -124,32 +146,53 @@ class EventRepository extends Nette\Object {
     }
 
     public function findByFiltersCount($values) {
-        $qb = $this->events->createQueryBuilder();
-        $qb
-            ->select('COUNT(e.id)')
-            ->from('App\Model\Event', 'e');
+        if($values['filterEntity'] != '' && $values['filterEntityId'] != '') {
+            $qb = $this->events->createQueryBuilder();
+            $qb
+                ->select('COUNT(e.id)')
+                ->from('App\Model\Event', 'e');
+            if($values['filterEntity'] == 'Place') {
+                $qb
+                    ->leftJoin('e.place', 'o')
+                    ->where('o IS NOT NULL')
+                    ->where('o.id = :id')
+                    ->setParameter('id', $values['filterEntityId']);
+            }
+            if($values['filterTime'] != '') {
+                $qb
+                    ->andWhere('e.date >= :date')
+                    ->setParameter('date', FilterUtils::timeSubFilterTime($values['filterTime']));
+            }
+            return $qb->getQuery()->getSingleScalarResult();
 
-        if($values['search'] != '') {
+        } else {
+            $qb = $this->events->createQueryBuilder();
             $qb
-                ->join('e.place', 'a')
-                ->leftJoin('e.placeTo', 'b')
-                ->where('b IS NOT NULL')
-                ->where($qb->expr()->like('a.name', ':search'))
-                ->orWhere($qb->expr()->like('b.name', ':search'))
-                ->orWhere($qb->expr()->like('e.description', ':search'))
-                ->setParameter('search', '%' . $values['search'] . '%');
+                ->select('COUNT(e.id)')
+                ->from('App\Model\Event', 'e');
+
+            if($values['search'] != '') {
+                $qb
+                    ->join('e.place', 'a')
+                    ->leftJoin('e.placeTo', 'b')
+                    ->where('b IS NOT NULL')
+                    ->where($qb->expr()->like('a.name', ':search'))
+                    ->orWhere($qb->expr()->like('b.name', ':search'))
+                    ->orWhere($qb->expr()->like('e.description', ':search'))
+                    ->setParameter('search', '%' . $values['search'] . '%');
+            }
+            if($values['filterTime'] != '') {
+                $qb
+                    ->andWhere('e.date >= :date')
+                    ->setParameter('date', FilterUtils::timeSubFilterTime($values['filterTime']));
+            }
+            if(empty($values['filterTransport']) != true) {
+                $qb
+                    ->join('e.transport', 'c')
+                    ->andWhere('c.name IN (:transports)')
+                    ->setParameter('transports', $values['filterTransport']);
+            }
+            return $qb->getQuery()->getSingleScalarResult();
         }
-        if($values['filterTime'] != '') {
-            $qb
-                ->andWhere('e.date >= :date')
-                ->setParameter('date', FilterUtils::timeSubFilterTime($values['filterTime']));
-        }
-        if(empty($values['filterTransport']) != true) {
-            $qb
-                ->join('e.transport', 'c')
-                ->andWhere('c.name IN (:transports)')
-                ->setParameter('transports', $values['filterTransport']);
-        }
-        return $qb->getQuery()->getSingleScalarResult();
     }
 }

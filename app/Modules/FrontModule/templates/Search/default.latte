@@ -19,10 +19,15 @@
 						, <span class="highlight"><a href="">{$category}</a></span>
 					{/if}
 				{/foreach}
-				{if $values['filterEntity'] != "" && $template->arrayContainsOrEmpty('Photos', $values['filterCategory'])}
+				{if ($values['filterEntity'] == "Track" || $values['filterEntity'] == "Event") && $template->arrayContains('Photos', $values['filterCategory'])}
 					during <span class="highlight"><a href="
 					{link $results['EntityUrl'], $results['EntityObject']->getId()}
                                             ">{$results['EntityObject']->getName()}</a></span>
+				{elseif $values['filterEntity'] == "Place" && ($template->arrayContains('Tracks', $values['filterCategory']) || $template->arrayContains('Events', $values['filterCategory']) || $template->arrayContains('Photos', $values['filterCategory']))}
+					near <span class="highlight"><a href="
+                    	{var $args = array('values' => array('filterCategory' => array('Photos', 'Tracks', 'Events'), 'filterEntity' => 'Place', 'filterEntityId' => $results['EntityObject']->getId()))}
+                        {link Search:default (expand) $args}
+                    ">{$results['EntityObject']->name}</a></span>
 				{/if}
 				{var $first = 0}
                 {foreach $values['filterTransport'] as $u => $transport}
@@ -139,7 +144,7 @@
 						<div class="part width-100 float-left margin-bot-40">
             				<div class="part width-100 margin-bot-20 border-bottom float-left">
             					<h4 class="float-left"><a href="
-            					{var $args = array('values' => [search => $place->getName(), filterCategory => array('Events', 'Tracks', 'Photos')])}
+            					{var $args = array('values' => array('filterCategory' => array('Photos', 'Tracks', 'Events'), 'filterEntity' => 'Place', 'filterEntityId' => $place->getId()))}
                                 {link Search:default (expand) $args}
                                 ">{$place->getName()}</a></h4>
                                 {if $place->getLastUpdate() != NULL}

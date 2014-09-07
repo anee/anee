@@ -99,7 +99,29 @@ class TrackRepository extends Nette\Object {
 
     public function findByFilters($values)
     {
-        if(FilterUtils::arrayContainsOrEmpty('Tracks', $values['filterCategory']) == true) {
+        if(FilterUtils::arrayContainsOrEmpty('Tracks', $values['filterCategory']) == true && $values['filterEntity'] != '' && $values['filterEntityId'] != '') {
+            $qb = $this->tracks->createQueryBuilder();
+            $qb
+                ->select('e')
+                ->from('App\Model\Track', 'e');
+
+            if($values['filterEntity'] == 'Place') {
+                $qb
+                    ->leftJoin('e.place', 'o')
+                    ->where('o IS NOT NULL')
+                    ->where('o.id = :id')
+                    ->setParameter('id', $values['filterEntityId']);
+            }
+            if($values['filterTime'] != '') {
+                $qb
+                    ->andWhere('e.date >= :date')
+                    ->setParameter('date', FilterUtils::timeSubFilterTime($values['filterTime']));
+            }
+            $qb
+                ->orderBy('e.date', 'DESC');
+            return $qb->getQuery()->getResult();
+
+        } elseif(FilterUtils::arrayContainsOrEmpty('Tracks', $values['filterCategory']) == true) {
         $qb = $this->tracks->createQueryBuilder();
         $qb
             ->select('e')
@@ -136,30 +158,51 @@ class TrackRepository extends Nette\Object {
 
     public function findByFiltersCount($values)
     {
-        $qb = $this->tracks->createQueryBuilder();
-        $qb
-            ->select('COUNT(e.id)')
-            ->from('App\Model\Track', 'e');
-        if($values['search'] != '') {
+        if($values['filterEntity'] != '' && $values['filterEntityId'] != '') {
+            $qb = $this->tracks->createQueryBuilder();
             $qb
-                ->join('e.place', 'a')
-                ->leftJoin('e.placeTo', 'b')
-                ->where('b IS NOT NULL')
-                ->where($qb->expr()->like('a.name', ':search'))
-                ->where($qb->expr()->like('b.name', ':search'))
-                ->setParameter('search', '%' . $values['search'] . '%');
-        }
-        if($values['filterTime'] != '') {
+                ->select('COUNT(e.id)')
+                ->from('App\Model\Track', 'e');
+            if($values['filterEntity'] == 'Place') {
+                $qb
+                    ->leftJoin('e.place', 'o')
+                    ->where('o IS NOT NULL')
+                    ->where('o.id = :id')
+                    ->setParameter('id', $values['filterEntityId']);
+            }
+            if($values['filterTime'] != '') {
+                $qb
+                    ->andWhere('e.date >= :date')
+                    ->setParameter('date', FilterUtils::timeSubFilterTime($values['filterTime']));
+            }
+            return $qb->getQuery()->getSingleScalarResult();
+
+        } else {
+            $qb = $this->tracks->createQueryBuilder();
             $qb
-                ->andWhere('e.date >= :date')
-                ->setParameter('date', FilterUtils::timeSubFilterTime($values['filterTime']));
+                ->select('COUNT(e.id)')
+                ->from('App\Model\Track', 'e');
+            if($values['search'] != '') {
+                $qb
+                    ->join('e.place', 'a')
+                    ->leftJoin('e.placeTo', 'b')
+                    ->where('b IS NOT NULL')
+                    ->where($qb->expr()->like('a.name', ':search'))
+                    ->where($qb->expr()->like('b.name', ':search'))
+                    ->setParameter('search', '%' . $values['search'] . '%');
+            }
+            if($values['filterTime'] != '') {
+                $qb
+                    ->andWhere('e.date >= :date')
+                    ->setParameter('date', FilterUtils::timeSubFilterTime($values['filterTime']));
+            }
+            if(empty($values['filterTransport']) != true) {
+                $qb
+                    ->join('e.transport', 'c')
+                    ->andWhere('c.name IN (:transports)')
+                    ->setParameter('transports', $values['filterTransport']);
+            }
+            return $qb->getQuery()->getSingleScalarResult();
         }
-        if(empty($values['filterTransport']) != true) {
-            $qb
-                ->join('e.transport', 'c')
-                ->andWhere('c.name IN (:transports)')
-                ->setParameter('transports', $values['filterTransport']);
-        }
-        return $qb->getQuery()->getSingleScalarResult();
     }
 }
