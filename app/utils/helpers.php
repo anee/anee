@@ -18,9 +18,13 @@ class helpers {
         {
             return strtolower($text);
         });
-        $template->addFilter('getSpanTimeFromSecondsNumber', function($seconds)
+        $template->addFilter('getSpanTimeFromSecondsNumber', function($secParam)
         {
-            return gmdate("H:i:s", $seconds);
+            $hours = floor($secParam / 3600);
+            $minutes = floor(($secParam / 60) % 60);
+            $seconds = $secParam % 60;
+
+            return "$hours:$minutes:$seconds";
         });
         $template->addFilter('getSpanTimeFromSecondsText', function($seconds)
         {
