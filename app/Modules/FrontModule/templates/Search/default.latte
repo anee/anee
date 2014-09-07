@@ -19,7 +19,7 @@
 						, <span class="highlight"><a href="">{$category}</a></span>
 					{/if}
 				{/foreach}
-				{if ($values['filterEntity'] == "Track" || $values['filterEntity'] == "Event") && $template->arrayContains('Photos', $values['filterCategory'])}
+				{if ($values['filterEntity'] == "Track" || $values['filterEntity'] == "Event") && $template->arrayContainsOneOrMore(array('Photos', 'Places'), $values['filterCategory'])}
 					during <span class="highlight"><a href="
 					{link $results['EntityUrl'], $results['EntityObject']->getId()}
                                             ">{$results['EntityObject']->getName()}</a></span>

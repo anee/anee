@@ -130,31 +130,52 @@ class PlaceRepository extends Nette\Object {
 
     public function findByFiltersCount($values)
     {
-        $qb = $this->places->createQueryBuilder();
-        $qb
-            ->select('COUNT(e.id)')
-            ->from('App\Model\Place', 'e');
-
-        if($values['search'] != '') {
+        if ($values['filterEntity'] != '' && $values['filterEntityId'] != '') {
+            $qb = $this->places->createQueryBuilder();
             $qb
-                ->where($qb->expr()->like('e.name', ':name'))
-                ->setParameter('name', '%' . $values['search'] . '%');
-        }
-        if(empty($values['filterTransport']) != true) {
+                ->select('COUNT(e.id)')
+                ->from('App\Model\Place', 'e');
+            if($values['filterEntity'] == 'Event') {
+                $qb
+                    ->leftJoin('e.events', 'o')
+                    ->where('o IS NOT NULL')
+                    ->where('o.id = :id')
+                    ->setParameter('id', $values['filterEntityId']);
+            } elseif($values['filterEntity'] == 'Track') {
+                $qb
+                    ->leftJoin('e.tracks', 'o')
+                    ->where('o IS NOT NULL')
+                    ->where('o.id = :id')
+                    ->setParameter('id', $values['filterEntityId']);
+            }
+            return $qb->getQuery()->getSingleScalarResult();
+        } else {
+            $qb = $this->places->createQueryBuilder();
             $qb
-                //track
-                ->leftJoin('e.tracks', 'b')
-                ->where('b IS NOT NULL')
-                ->leftJoin('b.transport', 'g')
-                //event
-                ->leftJoin('e.events', 'o')
-                ->where('o IS NOT NULL')
-                ->leftJoin('o.transport', 'p')
+                ->select('COUNT(e.id)')
+                ->from('App\Model\Place', 'e');
 
-                ->where('g.name IN (:transports)')
-                ->orWhere('p.name IN (:transports)')
-                ->setParameter('transports', $values['filterTransport']);
+            if($values['search'] != '') {
+                $qb
+                    ->where($qb->expr()->like('e.name', ':name'))
+                    ->setParameter('name', '%' . $values['search'] . '%');
+            }
+            if(empty($values['filterTransport']) != true) {
+                $qb
+                    //track
+                    ->leftJoin('e.tracks', 'b')
+                    ->where('b IS NOT NULL')
+                    ->leftJoin('b.transport', 'g')
+                    //event
+                    ->leftJoin('e.events', 'o')
+                    ->where('o IS NOT NULL')
+                    ->leftJoin('o.transport', 'p')
+
+                    ->where('g.name IN (:transports)')
+                    ->orWhere('p.name IN (:transports)')
+                    ->setParameter('transports', $values['filterTransport']);
+            }
+            return $qb->getQuery()->getSingleScalarResult();
         }
-        return $qb->getQuery()->getSingleScalarResult();
     }
 }
