@@ -79,11 +79,11 @@
 
 	{form searchForm}
 		{input search}
-		<div id="search-bar-filters" class="float-right">
+		{*<div id="search-bar-filters" class="float-right">
 			{$form->render($form['filterTime'])}
 			{$form->render($form['filterTransport'])}
 			{$form->render($form['filterCategory'])}
-		</div>
+		</div>*}
 	{/form}
 </div>
 
@@ -124,7 +124,7 @@
                   {if $transport->getCount() > 0}
                     	<li class="selected float-left">
                               <span class="highlight">{$transport->getCount()}</span><a href="
-                                   {var $args = array('values' => [filterTransport => array($transport->name)])}
+                                   {var $args = array('values' => [filterTransport => array($transport->name), filterCategory => array(Events, Tracks)])}
                                    {link Search:default (expand) $args}"> {ucfirst($transport->name)}</a>
                         </li>
                   {/if}
@@ -170,7 +170,7 @@
                               {if $transport->getCount() > 0}
                                 	<li class="selected float-left">
                                           <span class="highlight">{$transport->getCount()}</span><a href="
-                                               {var $args = array('values' => [filterTransport => array($transport->name)])}
+                                               {var $args = array('values' => [filterTransport => array($transport->name), filterCategory => array(Events, Tracks)])}
                                                {link Search:default (expand) $args}"> {ucfirst($transport->name)}</a>
                                     </li>
                               {/if}

@@ -107,7 +107,21 @@ class PlaceRepository extends Nette\Object {
             }
             $qb
                 ->orderBy('e.name', 'ASC');
+            if(empty($values['filterTransport']) != true) {
+                $qb
+                    //track
+                    ->leftJoin('e.tracks', 'b')
+                    ->where('b IS NOT NULL')
+                    ->leftJoin('b.transport', 'g')
+                    //event
+                    ->leftJoin('e.events', 'o')
+                    ->where('o IS NOT NULL')
+                    ->leftJoin('o.transport', 'p')
 
+                    ->where('g.name IN (:transports)')
+                    ->orWhere('p.name IN (:transports)')
+                    ->setParameter('transports', $values['filterTransport']);
+            }
             return $qb->getQuery()->getResult();
         } else {
             return array();
@@ -125,6 +139,21 @@ class PlaceRepository extends Nette\Object {
             $qb
                 ->where($qb->expr()->like('e.name', ':name'))
                 ->setParameter('name', '%' . $values['search'] . '%');
+        }
+        if(empty($values['filterTransport']) != true) {
+            $qb
+                //track
+                ->leftJoin('e.tracks', 'b')
+                ->where('b IS NOT NULL')
+                ->leftJoin('b.transport', 'g')
+                //event
+                ->leftJoin('e.events', 'o')
+                ->where('o IS NOT NULL')
+                ->leftJoin('o.transport', 'p')
+
+                ->where('g.name IN (:transports)')
+                ->orWhere('p.name IN (:transports)')
+                ->setParameter('transports', $values['filterTransport']);
         }
         return $qb->getQuery()->getSingleScalarResult();
     }

@@ -157,6 +157,21 @@ class PhotoRepository extends Nette\Object {
                     ->andWhere('e.date >= :date')
                     ->setParameter('date', FilterUtils::timeSubFilterTime($values['filterTime']));
             }
+            if(empty($values['filterTransport']) != true) {
+                $qb
+                    //track
+                    ->leftJoin('e.track', 'b')
+                    ->where('b IS NOT NULL')
+                    ->leftJoin('b.transport', 'g')
+                    //event
+                    ->leftJoin('e.event', 'o')
+                    ->where('o IS NOT NULL')
+                    ->leftJoin('o.transport', 'p')
+
+                    ->where('g.name IN (:transports)')
+                    ->orWhere('p.name IN (:transports)')
+                    ->setParameter('transports', $values['filterTransport']);
+            }
             $qb
                 ->orderBy('e.date', 'DESC');
             return $qb->getQuery()->getResult();
@@ -232,6 +247,21 @@ class PhotoRepository extends Nette\Object {
                 $qb
                     ->andWhere('e.date >= :date')
                     ->setParameter('date', FilterUtils::timeSubFilterTime($values['filterTime']));
+            }
+            if(empty($values['filterTransport']) != true) {
+                $qb
+                    //track
+                    ->leftJoin('e.track', 'y')
+                    ->where('y IS NOT NULL')
+                    ->leftJoin('y.transport', 'g')
+                    //event
+                    ->leftJoin('e.event', 'x')
+                    ->where('x IS NOT NULL')
+                    ->leftJoin('x.transport', 't')
+
+                    ->where('g.name IN (:transports)')
+                    ->orWhere('t.name IN (:transports)')
+                    ->setParameter('transports', $values['filterTransport']);
             }
             return $qb->getQuery()->getSingleScalarResult();
         }
