@@ -67,7 +67,34 @@ class PlaceRepository extends Nette\Object {
 
     public function findByFilters($values)
     {
-        if(FilterUtils::arrayContainsOrEmpty('Places', $values['filterCategory']) == true) {
+        if(FilterUtils::arrayContainsOrEmpty('Places', $values['filterCategory']) == true && $values['filterEntity'] != '' && $values['filterEntityId'] != '') {
+            $qb = $this->places->createQueryBuilder();
+            $qb
+                ->select('e')
+                ->from('App\Model\Place', 'e');
+            if($values['filterEntity'] == 'Event') {
+                $qb
+                    ->leftJoin('e.events', 'o')
+                    ->where('o IS NOT NULL')
+                    ->where('o.id = :id')
+                    ->setParameter('id', $values['filterEntityId']);
+            } elseif($values['filterEntity'] == 'Track') {
+                $qb
+                    ->leftJoin('e.tracks', 'o')
+                    ->where('o IS NOT NULL')
+                    ->where('o.id = :id')
+                    ->setParameter('id', $values['filterEntityId']);
+            }
+            if($values['search'] != '') {
+                $qb
+                    ->where($qb->expr()->like('e.name', ':name'))
+                    ->setParameter('name', '%' . $values['search'] . '%');
+            }
+            $qb
+                ->orderBy('e.name', 'DESC');
+
+            return $qb->getQuery()->getResult();
+        } elseif(FilterUtils::arrayContainsOrEmpty('Places', $values['filterCategory']) == true) {
             $qb = $this->places->createQueryBuilder();
             $qb
                 ->select('e')
@@ -79,7 +106,7 @@ class PlaceRepository extends Nette\Object {
                     ->setParameter('name', '%' . $values['search'] . '%');
             }
             $qb
-                ->orderBy('e.name', 'DESC');
+                ->orderBy('e.name', 'ASC');
 
             return $qb->getQuery()->getResult();
         } else {

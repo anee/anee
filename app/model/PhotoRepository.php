@@ -99,20 +99,20 @@ class PhotoRepository extends Nette\Object {
                 $qb
                     ->leftJoin('e.event', 'o')
                     ->where('o IS NOT NULL')
-                    ->where($qb->expr()->like('o.id', ':filterEntityId'))
-                    ->setParameter('filterEntityId', $values['filterEntityId']);
+                    ->where('o.id = :id')
+                    ->setParameter('id', $values['filterEntityId']);
             } elseif($values['filterEntity'] == 'Track') {
                 $qb
                     ->leftJoin('e.track', 'o')
                     ->where('o IS NOT NULL')
-                    ->where($qb->expr()->like('o.id', ':filterEntityId'))
-                    ->setParameter('filterEntityId', $values['filterEntityId']);
+                    ->where('o.id = :id')
+                    ->setParameter('id', $values['filterEntityId']);
             } elseif($values['filterEntity'] == 'Place') {
                 $qb
                     ->leftJoin('e.place', 'o')
                     ->where('o IS NOT NULL')
-                    ->where($qb->expr()->like('o.id', ':filterEntityId'))
-                    ->setParameter('filterEntityId', $values['filterEntityId']);
+                    ->where('o.id = :id')
+                    ->setParameter('id', $values['filterEntityId']);
             }
             if($values['filterTime'] != '') {
                 $qb
@@ -176,20 +176,20 @@ class PhotoRepository extends Nette\Object {
                 $qb
                     ->leftJoin('e.event', 'o')
                     ->where('o IS NOT NULL')
-                    ->where($qb->expr()->like('o.id', ':filterEntityId'))
-                    ->setParameter('filterEntityId', $values['filterEntityId']);
+                    ->where('o.id = :id')
+                    ->setParameter('id', $values['filterEntityId']);
             } elseif($values['filterEntity'] == 'Track') {
                 $qb
                     ->leftJoin('e.track', 'o')
                     ->where('o IS NOT NULL')
-                    ->where($qb->expr()->like('o.id', ':filterEntityId'))
-                    ->setParameter('filterEntityId', $values['filterEntityId']);
+                    ->where('o.id = :id')
+                    ->setParameter('id', $values['filterEntityId']);
             } elseif($values['filterEntity'] == 'Place') {
                 $qb
                     ->leftJoin('e.place', 'o')
                     ->where('o IS NOT NULL')
-                    ->where($qb->expr()->like('o.id', ':filterEntityId'))
-                    ->setParameter('filterEntityId', $values['filterEntityId']);
+                    ->where('o.id = :id')
+                    ->setParameter('id', $values['filterEntityId']);
             }
             if($values['filterTime'] != '') {
                 $qb
