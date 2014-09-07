@@ -23,9 +23,9 @@
 					during <span class="highlight"><a href="
 					{link $results['EntityUrl'], $results['EntityObject']->getId()}
                                             ">{$results['EntityObject']->getName()}</a></span>
-				{elseif $values['filterEntity'] == "Place" && $template->arrayContainsOneOrMore(array('Tracks', 'Events', 'Photos'), $values['filterCategory'])}
+				{elseif $values['filterEntity'] == "Place" && $template->arrayContainsOneOrMore(array('Tracks', 'Events', 'Photos', 'Places'), $values['filterCategory'])}
 					near <span class="highlight"><a href="
-                    	{var $args = array('values' => array('filterCategory' => array('Photos', 'Tracks', 'Events'), 'filterEntity' => 'Place', 'filterEntityId' => $results['EntityObject']->getId()))}
+                    	{var $args = array('values' => array('filterCategory' => array('Photos', 'Tracks', 'Events', 'Places'), 'filterEntity' => 'Place', 'filterEntityId' => $results['EntityObject']->getId()))}
                         {link Search:default (expand) $args}
                     ">{$results['EntityObject']->name}</a></span>
 				{/if}
@@ -144,7 +144,7 @@
 						<div class="part width-100 float-left margin-bot-40">
             				<div class="part width-100 margin-bot-20 border-bottom float-left">
             					<h4 class="float-left"><a href="
-            					{var $args = array('values' => array('filterCategory' => array('Photos', 'Tracks', 'Events'), 'filterEntity' => 'Place', 'filterEntityId' => $place->getId()))}
+            					{var $args = array('values' => array('filterCategory' => array('Photos', 'Tracks', 'Events', 'Places'), 'filterEntity' => 'Place', 'filterEntityId' => $place->getId()))}
                                 {link Search:default (expand) $args}
                                 ">{$place->getName()}</a></h4>
                                 {if $place->getLastUpdate() != NULL}
@@ -194,15 +194,15 @@
 										{if $photo->event != NULL}
                 						    {if $photo->event->placeTo != NULL && $photo->event->placeTo != $photo->event->place}
                 						        <p class="float-left">from <span class="highlight"><a href="
-                						        	{var $args = array('values' => [search => $photo->event->place->name, filterCategory => array('Events', 'Tracks', 'Photos')])}
+                						        	{var $args = array('values' => [search => $photo->event->place->name, filterCategory => array('Events', 'Tracks', 'Photos', 'Places')])}
                                                 	{link Search:default (expand) $args}
                                                  ">{$photo->event->place->name}</a></span> to <span class="highlight"><a href="
-                                                	{var $args = array('values' => [search => $photo->event->placeTo->name, filterCategory => array('Events', 'Tracks', 'Photos')])}
+                                                	{var $args = array('values' => [search => $photo->event->placeTo->name, filterCategory => array('Events', 'Tracks', 'Photos', 'Places')])}
                                                 	{link Search:default (expand) $args}
                                                  ">{$photo->event->placeTo->name}</a></span>
                 						    {else}
                                                 <p class="float-left">near <span class="highlight"><a href="
-													{var $args = array('values' => [search => $photo->event->place->name, filterCategory => array('Events', 'Tracks', 'Photos')])}
+													{var $args = array('values' => [search => $photo->event->place->name, filterCategory => array('Events', 'Tracks', 'Photos', 'Places')])}
                                                 	{link Search:default (expand) $args}
                                                 ">{$photo->event->place->name}</a></span>
                                             {/if}
@@ -212,15 +212,15 @@
                                         {elseif $photo->track != NULL}
 											{if $photo->track->placeTo != NULL && $photo->track->placeTo != $photo->track->place}
                  						        <p class="float-left">from <span class="highlight"><a href="
-													{var $args = array('values' => [search => $photo->track->place->name, filterCategory => array('Events', 'Tracks', 'Photos')])}
+													{var $args = array('values' => [search => $photo->track->place->name, filterCategory => array('Events', 'Tracks', 'Photos', 'Places')])}
                                                 	{link Search:default (expand) $args}
                  						        ">{$photo->track->place->name}</a></span> to <span class="highlight"><a href="
-                 						        	{var $args = array('values' => [search => $photo->track->placeTo->name, filterCategory => array('Events', 'Tracks', 'Photos')])}
+                 						        	{var $args = array('values' => [search => $photo->track->placeTo->name, filterCategory => array('Events', 'Tracks', 'Photos', 'Places')])}
                                                     {link Search:default (expand) $args}
                  						        ">{$photo->track->placeTo->name}</a></span>
                  						    {else}
                                                  <p class="float-left">near <span class="highlight"><a href="
-													{var $args = array('values' => [search => $photo->track->place->name, filterCategory => array('Events', 'Tracks', 'Photos')])}
+													{var $args = array('values' => [search => $photo->track->place->name, filterCategory => array('Events', 'Tracks', 'Photos', 'Places')])}
                                                 	{link Search:default (expand) $args}
                                                  ">{$photo->track->place->name}</a></span>
                                             {/if}
@@ -231,7 +231,7 @@
                                         {/if}
                 						    {if $photo->place != NULL && ($photo->track != NULL || $photo->event != NULL)}
                 						        <a class="highlight" href="
-                						        {var $args = array('values' => [search => $photo->place->name, filterCategory => array('Events', 'Tracks', 'Photos')])}
+                						        {var $args = array('values' => [search => $photo->place->name, filterCategory => array('Events', 'Tracks', 'Photos', 'Places')])}
                                                 {link Search:default (expand) $args}
                                                  ">{$photo->place->name}</a></p>
                 						    {elseif $photo->place != NULL}

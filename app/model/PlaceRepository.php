@@ -84,6 +84,10 @@ class PlaceRepository extends Nette\Object {
                     ->where('o IS NOT NULL')
                     ->where('o.id = :id')
                     ->setParameter('id', $values['filterEntityId']);
+            } elseif($values['filterEntity'] == 'Place') {
+                $qb
+                    ->where('e.id = :id')
+                    ->setParameter('id', $values['filterEntityId']);
             }
             if($values['search'] != '') {
                 $qb
@@ -146,6 +150,10 @@ class PlaceRepository extends Nette\Object {
                     ->leftJoin('e.tracks', 'o')
                     ->where('o IS NOT NULL')
                     ->where('o.id = :id')
+                    ->setParameter('id', $values['filterEntityId']);
+            } elseif($values['filterEntity'] == 'Place') {
+                $qb
+                    ->where('e.id = :id')
                     ->setParameter('id', $values['filterEntityId']);
             }
             return $qb->getQuery()->getSingleScalarResult();
