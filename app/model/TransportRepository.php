@@ -11,7 +11,6 @@ namespace App\Model;
 
 use Nette;
 use Kdyby\Doctrine\EntityDao;
-use App\Utils\FilterUtils;
 
 class TransportRepository extends Nette\Object {
 

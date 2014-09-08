@@ -1,0 +1,2 @@
+services:
+    - App\Modules\FrontModule\Forms\SearchFormFactory(@doctrine.dao(App\Model\Transport))

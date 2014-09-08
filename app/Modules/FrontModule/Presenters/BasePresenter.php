@@ -3,7 +3,7 @@
 namespace App\Modules\FrontModule\Presenters;
 
 use Nette;
-use App\Modules\FrontModule\Forms;
+use App\Modules\FrontModule\Forms\TInjectSearchFormFactory;
 use App\Utils;
 
 
@@ -12,8 +12,8 @@ use App\Utils;
  */
 abstract class BasePresenter extends Nette\Application\UI\Presenter
 {
-    /** @var Forms\SearchForm @inject */
-    public $searchFormFactory;
+
+    use TInjectSearchFormFactory;
 
     /** @var \App\Model\PhotoRepository @inject*/
     public $photoRepository;
@@ -54,8 +54,11 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
         return $template;
     }
 
-    protected function createComponentSearchForm()
+    /**
+     * @return \App\Modules\FrontModule\Forms\SearchFormFactory
+     */
+    protected function createComponentSearchFormFactory()
     {
-        return $this->searchFormFactory->create($this, $this->transportRepository->findAll());
+        return $this->searchFormFactory->create($this);
     }
 }

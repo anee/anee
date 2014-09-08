@@ -11,24 +11,25 @@ namespace App\Modules\FrontModule\Forms;
 
 use Nette;
 use Nette\Application\UI\Form;
-use Instante\Bootstrap3Renderer\BootstrapRenderer;
+use Kdyby\Doctrine\EntityDao;
 
 
-class SearchForm extends Nette\Object
+class SearchFormFactory extends Nette\Object
 {
-    public $presenter;
 
-    public function __construct()
+    private $presenter;
+    private $transport;
+
+    public function __construct(EntityDao $dao)
     {
-
+        $this->transport = $dao;
     }
 
-    public function create($presenter, $transports)
+    public function create($parent)
     {
-        $this->presenter = $presenter;
+        $this->presenter = $parent;
 
         $form = new Form;
-        $form->setRenderer(new BootstrapRenderer);
         $form->addText('search')->setAttribute('placeholder', 'Search...');
         $category = array(
             '' => 'Any category',
@@ -41,7 +42,7 @@ class SearchForm extends Nette\Object
             '' => 'Any transport',
         );
         $transport_doctrine = array();
-        foreach($transports as $transport) {
+        foreach($this->transport->findAll() as $transport) {
             $transport_doctrine[$transport->name] = $transport->name;
         }
         $transport = array_merge($transport_base, $transport_doctrine);

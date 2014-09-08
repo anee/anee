@@ -1,14 +1,5 @@
-#
-# SECURITY WARNING: it is CRITICAL that this file & directory are NOT accessible directly via a web browser!
-#
-# If you don't protect this directory from direct web access, anybody will be able to see your passwords.
-# http://nette.org/security-warning
-#
-parameters:
-
 php:
 	date.timezone: Europe/Prague
-
 
 nette:
 	application:
@@ -19,28 +10,8 @@ nette:
 	session:
 		expiration: 14 days
 
-
-services:
-    trackFacade: App\Model\trackFacade(@trackRepository, %wwwDir%)
-    trackRepository: App\Model\trackRepository(@doctrine.dao(App\Model\Track))
-    eventFacade: App\Model\eventFacade(@eventRepository, %wwwDir%)
-    eventRepository: App\Model\eventRepository(@doctrine.dao(App\Model\Event))
-    placeFacade: App\Model\placeFacade(@placeRepository)
-    placeRepository: App\Model\placeRepository(@doctrine.dao(App\Model\Place))
-    transportFacade: App\Model\transportFacade(@transportRepository)
-    transportRepository: App\Model\transportRepository(@doctrine.dao(App\Model\Transport))
-    photoFacade: App\Model\photoFacade(@photoRepository, %wwwDir%)
-    photoRepository: App\Model\photoRepository(@doctrine.dao(App\Model\Photo))
-    - App\Modules\FrontModule\Forms\SearchForm
-    - App\RouterFactory
-    router: @App\RouterFactory::createRouter
-
-extensions:
-    console: Kdyby\Console\DI\ConsoleExtension
-    events: Kdyby\Events\DI\EventsExtension
-    annotations: Kdyby\Annotations\DI\AnnotationsExtension
-    doctrine: Kdyby\Doctrine\DI\OrmExtension
-    thumb: Kappa\ThumbnailsHelper\DI\ThumbnailsHelperExtension
-
-thumb:
-    thumbDir: %wwwDir%/images/thumbs
+includes:
+        - ../extensions/config.extensions.neon
+        - ../Modules/FrontModule/Forms/config.forms.neon
+        - ../model/config.model.neon
+        - ../router/config.router.neon

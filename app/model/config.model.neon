@@ -1,0 +1,11 @@
+services:
+    trackFacade: App\Model\trackFacade(@trackRepository, %wwwDir%)
+    trackRepository: App\Model\trackRepository(@doctrine.dao(App\Model\Track))
+    eventFacade: App\Model\eventFacade(@eventRepository, %wwwDir%)
+    eventRepository: App\Model\eventRepository(@doctrine.dao(App\Model\Event))
+    placeFacade: App\Model\placeFacade(@placeRepository)
+    placeRepository: App\Model\placeRepository(@doctrine.dao(App\Model\Place))
+    transportFacade: App\Model\transportFacade(@transportRepository)
+    transportRepository: App\Model\transportRepository(@doctrine.dao(App\Model\Transport))
+    photoFacade: App\Model\photoFacade(@photoRepository, %wwwDir%)
+    photoRepository: App\Model\photoRepository(@doctrine.dao(App\Model\Photo))
