@@ -17,11 +17,13 @@ class PlaceRepository extends Nette\Object {
 
     private $places;
     private $tracks;
+    private $events;
 
-    public function __construct(EntityDao $places, EntityDao $tracks)
+    public function __construct(EntityDao $places, EntityDao $tracks, EntityDao $events)
     {
         $this->places = $places;
         $this->tracks = $tracks;
+        $this->events = $events;
     }
 
     public function save($place)
@@ -75,17 +77,49 @@ class PlaceRepository extends Nette\Object {
                 ->select('e')
                 ->from('App\Model\Place', 'e');
             if($values['filterEntity'] == 'Event') {
-                $qb
-                    ->leftJoin('e.events', 'o')
-                    ->where('o IS NOT NULL')
-                    ->where('o.id = :id')
+                $subqb = $this->events->createQueryBuilder();
+                $subqb
+                    ->select('e')
+                    ->from('App\Model\Event', 'e')
+                    ->where('e.id = :id')
                     ->setParameter('id', $values['filterEntityId']);
+                $event = $subqb->getQuery()->getOneOrNullResult();
+
+                $places = array();
+                foreach ($event->eventPhotos as $photo) {
+                    if($photo->place != NULL && FilterUtils::arrayContains($photo->place, $places) != true) {
+                        $places[] = $photo->place;
+                    }
+                }
+                if(FilterUtils::arrayContains($event->place, $places) != true) {
+                    $places[] = $event->place;
+                }
+                if($event->placeTo != NULL && FilterUtils::arrayContains($event->placeTo, $places) != true) {
+                    $places[] = $event->placeTo;
+                }
+                return $places;
             } elseif($values['filterEntity'] == 'Track') {
-                $qb
-                    ->leftJoin('e.tracks', 'o')
-                    ->where('o IS NOT NULL')
-                    ->where('o.id = :id')
+                $subqb = $this->tracks->createQueryBuilder();
+                $subqb
+                    ->select('e')
+                    ->from('App\Model\Track', 'e')
+                    ->where('e.id = :id')
                     ->setParameter('id', $values['filterEntityId']);
+                $event = $subqb->getQuery()->getOneOrNullResult();
+
+                $places = array();
+                foreach ($event->photos as $photo) {
+                    if($photo->place != NULL && FilterUtils::arrayContains($photo->place, $places) != true) {
+                        $places[] = $photo->place;
+                    }
+                }
+                if(FilterUtils::arrayContains($event->place, $places) != true) {
+                    $places[] = $event->place;
+                }
+                if($event->placeTo != NULL && FilterUtils::arrayContains($event->placeTo, $places) != true) {
+                    $places[] = $event->placeTo;
+                }
+                return $places;
             } elseif($values['filterEntity'] == 'Place') {
                 $subqb = $this->tracks->createQueryBuilder();
                 $subqb
@@ -155,17 +189,49 @@ class PlaceRepository extends Nette\Object {
                 ->select('COUNT(e.id)')
                 ->from('App\Model\Place', 'e');
             if($values['filterEntity'] == 'Event') {
-                $qb
-                    ->leftJoin('e.events', 'o')
-                    ->where('o IS NOT NULL')
-                    ->where('o.id = :id')
+                $subqb = $this->events->createQueryBuilder();
+                $subqb
+                    ->select('e')
+                    ->from('App\Model\Event', 'e')
+                    ->where('e.id = :id')
                     ->setParameter('id', $values['filterEntityId']);
+                $event = $subqb->getQuery()->getOneOrNullResult();
+
+                $places = array();
+                foreach ($event->eventPhotos as $photo) {
+                    if($photo->place != NULL && FilterUtils::arrayContains($photo->place, $places) != true) {
+                        $places[] = $photo->place;
+                    }
+                }
+                if(FilterUtils::arrayContains($event->place, $places) != true) {
+                    $places[] = $event->place;
+                }
+                if($event->placeTo != NULL && FilterUtils::arrayContains($event->placeTo, $places) != true) {
+                    $places[] = $event->placeTo;
+                }
+                return count($places);
             } elseif($values['filterEntity'] == 'Track') {
-                $qb
-                    ->leftJoin('e.tracks', 'o')
-                    ->where('o IS NOT NULL')
-                    ->where('o.id = :id')
+                $subqb = $this->events->createQueryBuilder();
+                $subqb
+                    ->select('e')
+                    ->from('App\Model\Track', 'e')
+                    ->where('e.id = :id')
                     ->setParameter('id', $values['filterEntityId']);
+                $event = $subqb->getQuery()->getOneOrNullResult();
+
+                $places = array();
+                foreach ($event->photos as $photo) {
+                    if($photo->place != NULL && FilterUtils::arrayContains($photo->place, $places) != true) {
+                        $places[] = $photo->place;
+                    }
+                }
+                if(FilterUtils::arrayContains($event->place, $places) != true) {
+                    $places[] = $event->place;
+                }
+                if($event->placeTo != NULL && FilterUtils::arrayContains($event->placeTo, $places) != true) {
+                    $places[] = $event->placeTo;
+                }
+                return count($places);
             } elseif($values['filterEntity'] == 'Place') {
                 $subqb = $this->tracks->createQueryBuilder();
                 $subqb

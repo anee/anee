@@ -4,7 +4,7 @@ services:
     eventFacade: App\Model\eventFacade(@eventRepository, %wwwDir%)
     eventRepository: App\Model\eventRepository(@doctrine.dao(App\Model\Event))
     placeFacade: App\Model\placeFacade(@placeRepository)
-    placeRepository: App\Model\placeRepository(@doctrine.dao(App\Model\Place), @doctrine.dao(App\Model\Track))
+    placeRepository: App\Model\placeRepository(@doctrine.dao(App\Model\Place), @doctrine.dao(App\Model\Track), @doctrine.dao(App\Model\Event))
     transportFacade: App\Model\transportFacade(@transportRepository)
     transportRepository: App\Model\transportRepository(@doctrine.dao(App\Model\Transport))
     photoFacade: App\Model\photoFacade(@photoRepository, %wwwDir%)
