@@ -16,10 +16,12 @@ use App\Utils\FilterUtils;
 class PlaceRepository extends Nette\Object {
 
     private $places;
+    private $tracks;
 
-    public function __construct(EntityDao $dao)
+    public function __construct(EntityDao $places, EntityDao $tracks)
     {
-        $this->places = $dao;
+        $this->places = $places;
+        $this->tracks = $tracks;
     }
 
     public function save($place)
@@ -85,9 +87,22 @@ class PlaceRepository extends Nette\Object {
                     ->where('o.id = :id')
                     ->setParameter('id', $values['filterEntityId']);
             } elseif($values['filterEntity'] == 'Place') {
-                $qb
-                    ->where('e.id = :id')
-                    ->setParameter('id', $values['filterEntityId']);
+                $subqb = $this->tracks->createQueryBuilder();
+                $subqb
+                    ->select('e')
+                    ->from('App\Model\Track', 'e')
+                    ->leftJoin('e.place', 'a')
+                    ->leftJoin('e.placeTo', 'b')
+                    ->where('a.id = :id')
+                    ->setParameter('id', $values['filterEntityId'])
+                    ->orderBy('b.name', 'ASC');
+                $places = array();
+                foreach($subqb->getQuery()->getResult() as $track) {
+                    if(FilterUtils::arrayContains($track->placeTo, $places) != true) {
+                        $places[] = $track->placeTo;
+                    }
+                }
+                return $places;
             }
             if($values['search'] != '') {
                 $qb
@@ -152,9 +167,20 @@ class PlaceRepository extends Nette\Object {
                     ->where('o.id = :id')
                     ->setParameter('id', $values['filterEntityId']);
             } elseif($values['filterEntity'] == 'Place') {
-                $qb
-                    ->where('e.id = :id')
+                $subqb = $this->tracks->createQueryBuilder();
+                $subqb
+                    ->select('e')
+                    ->from('App\Model\Track', 'e')
+                    ->leftJoin('e.place', 'a')
+                    ->where('a.id = :id')
                     ->setParameter('id', $values['filterEntityId']);
+                $places = array();
+                foreach($subqb->getQuery()->getResult() as $track) {
+                    if(FilterUtils::arrayContains($track->placeTo, $places) != true) {
+                        $places[] = $track->placeTo;
+                    }
+                }
+                return count($places);
             }
             return $qb->getQuery()->getSingleScalarResult();
         } else {
