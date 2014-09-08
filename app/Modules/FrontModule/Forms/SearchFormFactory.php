@@ -32,20 +32,15 @@ class SearchFormFactory extends Nette\Object
         $form = new Form;
         $form->addText('search')->setAttribute('placeholder', 'Search...');
         $category = array(
-            '' => 'Any category',
             'Events' => 'Events',
             'Tracks' => 'Tracks',
             'Places' => 'Places',
             'Photos' => 'Photos',
         );
-        $transport_base = array(
-            '' => 'Any transport',
-        );
-        $transport_doctrine = array();
+        $transports = array();
         foreach($this->transport->findAll() as $transport) {
-            $transport_doctrine[$transport->name] = $transport->name;
+            $transports[$transport->name] = ucfirst($transport->name);
         }
-        $transport = array_merge($transport_base, $transport_doctrine);
         $time = array(
             '' => 'Any time',
 			'Past hour' => 'Past hour',
@@ -55,7 +50,7 @@ class SearchFormFactory extends Nette\Object
         /* 'Custom range...' => 'Custom range...',*/
         );
         $form->addMultiSelect('filterCategory', NULL, $category);
-        $form->addMultiSelect('filterTransport', NULL, $transport);
+        $form->addMultiSelect('filterTransport', NULL, $transports);
         $form->addSelect('filterTime', NULL, $time);
         $form->addSubmit('send', '');
         $form->onSuccess[] = $this->succes;

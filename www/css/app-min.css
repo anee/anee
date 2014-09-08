@@ -45,7 +45,6 @@ footer {
     margin: 0;
 }
 
-
 @media screen and (min-width:321px) and (max-width:900px) {
     /* DISABLE ALL TRACKS AND EVENTS INFO */
     .info {
@@ -379,7 +378,7 @@ h1 a:hover, h2 a:hover, h4 a:hover {
 #search-bar {
     z-index: 1030;
     position: fixed;
-    padding: 0 37px 0 0;
+    padding: 0 50px 0 0;
     top: 55px;
     width: 100%; height: 40px;
     background-color: white;
@@ -387,49 +386,42 @@ h1 a:hover, h2 a:hover, h4 a:hover {
     font-family: "Verdana";
     border-bottom: 1px solid #cbcdce;
 }
-/*#search-bar input[type="text"] {
+#search-bar input[type="text"] {
     padding-top: 4px;
     padding-left: 50px;
     width: 240px; height: 39px;
     color: #37bfbd;
     border: none;
 }
+.btn-default {
+    color: #e1e3e4;
+    background-color: #fff;
+    border: none;
+}
 #search-bar-filters {
     padding-top: 4px;
-    color: #e1e3e4;
 }
-#search-bar-filters .col-sm-2 {
-    display: none;
-}
-#search-bar-filters .col-sm-10 {
-    padding: 0;
-}
-#search-bar-filters .form-group {
-    float: right;
-    margin-bottom: 0;
-    padding-left: 20px;
-}
-#search-bar-filters .form-control {
-    cursor: pointer;
-    font-size: 16px;
-    width: auto;
-    border: none;
-    box-shadow: none;
-    color: #d5d9d8;
-}
-#search-bar-filters .form-control:last-child {
-    padding-right: 0;
-    margin-right: 12px;
-}
-#search-bar-filters .form-control:hover, #search-bar-filters .form-control:active,
-#search-bar-filters .form-control:visited, #search-bar-filters .form-control:focus {
-    border: none;
-    box-shadow: none;
-}
-#search-bar-filters .form-control option {
-    color: #f4f4f4;
+.dropdown-menu {
     background-color: #6e797a;
-}*/
+}
+.dropdown-menu>li>a {
+    color: #f4f4f4;
+}
+.btn {
+    border-radius: 0;
+}
+.btn-group.open .dropdown-toggle {
+    -webkit-box-shadow: none;
+}
+.btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open>.dropdown-toggle.btn-default {
+    color: #6e797a;
+    background-color: white;
+    -webkit-box-shadow: none;
+}
+.dropdown-menu>.active>a, .dropdown-menu>.active>a:hover, .dropdown-menu>.active>a:focus {
+    color: #6e797a;
+    background-color: white;
+}
 
 /* TOP MENU TITLE
 ----------------------------------------------------------*/

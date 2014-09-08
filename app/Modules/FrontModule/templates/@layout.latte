@@ -63,32 +63,13 @@
 
 <!-- Search bar -->
 <div id="search-bar" style="display:none;">
-	{*{form searchForm}
-		{input test}
-	{/form}*}
-
-	{*!-- Build your select: -->
-    <select class="multiselect" multiple="multiple">
-    <option value="cheese">Cheese</option>
-    <option value="tomatoes">Tomatoes</option>
-    <option value="mozarella">Mozzarella</option>
-    <option value="mushrooms">Mushrooms</option>
-    <option value="pepperoni">Pepperoni</option>
-    <option value="onions">Onions</option>
-    </select>*}
-
 	{form searchFormFactory}
 		{input search}
 		<div id="search-bar-filters" class="float-right">
-			{input filterTime}
-			{input filterTransport}
-			{input filterCategory}
+			{input filterCategory class => multiselect}
+			{input filterTransport class => multiselect}
+			{input filterTime class => multiselect}
 		</div>
-		{*<div id="search-bar-filters" class="float-right">
-			{$form->render($form['filterTime'])}
-			{$form->render($form['filterTransport'])}
-			{$form->render($form['filterCategory'])}
-		</div>*}
 	{/form}
 </div>
 
@@ -207,8 +188,10 @@
 	<!-- Initialize the plugin: -->
 	<script type="text/javascript">
 		$(document).ready(function() {
-    		$('.multiselect').multiselect();
-		});
+            $('.multiselect').multiselect({
+                nonSelectedText: 'Any category'
+            });
+        });
 	</script>
 	</body>
 </html>
