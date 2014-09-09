@@ -58,6 +58,16 @@ class Track extends \Kdyby\Doctrine\Entities\IdentifiedEntity
      */
     protected $photos;
 
+    /**
+     * @ORM\Column(type="text", nullable=false)
+     */
+    protected $fileName;
+
+    /**
+     * @ORM\Column(type="text", nullable=false)
+     */
+    protected $filePath;
+
 
     public function __construct($transport, $distance, $timeInSeconds, $maxSpeed, $date, $place)
     {

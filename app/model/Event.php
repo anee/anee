@@ -63,6 +63,16 @@ class Event extends \Kdyby\Doctrine\Entities\IdentifiedEntity
      */
     protected $photo;
 
+    /**
+     * @ORM\Column(type="text", nullable=false)
+     */
+    protected $fileName;
+
+    /**
+     * @ORM\Column(type="text", nullable=false)
+     */
+    protected $filePath;
+
     public function __construct($distance, $timeInSeconds, $date)
     {
         $this->distance = $distance;
