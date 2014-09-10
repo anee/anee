@@ -10,8 +10,11 @@ nette:
 	session:
 		expiration: 14 days
 
+services:
+    - App\RouterFactory
+    router: @App\RouterFactory::createRouter
+
 includes:
         - ../extensions/config.extensions.neon
         - ../Modules/FrontModule/Forms/config.forms.neon
         - ../model/config.model.neon
-        - ../router/config.router.neon
