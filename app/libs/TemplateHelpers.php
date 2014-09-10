@@ -26,12 +26,10 @@ class TemplateHelpers {
      *
      * @return callback
      */
-    public static function loader($helper)
-    {
-        if (method_exists(__CLASS__, $helper)) {
-            return callback(__CLASS__, $helper);
-        }
-    }
+	public static function loader($helper) {
+		if (method_exists(__CLASS__, $helper))
+			return call_user_func_array('App\TemplateHelpers::'.$helper, array_slice(func_get_args(), 1));
+	}
 
     public static function strtolower($text)
     {

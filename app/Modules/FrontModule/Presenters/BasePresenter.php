@@ -4,7 +4,7 @@ namespace App\Modules\FrontModule\Presenters;
 
 use Nette;
 use App\Modules\FrontModule\Forms\TInjectSearchFormFactory;
-use App\Utils;
+
 
 
 /**
@@ -48,7 +48,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
         );
 
         // HELPERS
-        $template->registerHelperLoader('App\TemplateHelpers::loader');
+		$template->addFilter(NULL, 'App\TemplateHelpers::loader');
         $template->addFilter('thumb', array($this->thumbnailsHelper, 'process'));
 
         return $template;
