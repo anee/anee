@@ -1,17 +1,14 @@
 <?php
-/**
- * Created by JetBrains PhpStorm.
- * User: Lukas
- * Date: 1.3.14
- * Time: 18:43
- * To change this template use File | Settings | File Templates.
- */
 
 namespace App\Model;
 
 use Nette;
 
 
+
+/**
+ * Author Lukáš Drahník <L.Drahnik@gmail.com>
+ */
 class TransportFacade extends Nette\Object
 {
     /** @var \App\Model\TransportRepository */

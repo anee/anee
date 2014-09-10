@@ -1,16 +1,10 @@
 <?php
-/**
- * Created by JetBrains PhpStorm.
- * User: Lukas
- * Date: 1.3.14
- * Time: 18:02
- * To change this template use File | Settings | File Templates.
- */
 
 namespace App\Model;
 
 use Doctrine\ORM\Mapping as ORM;
-use Nette\Utils\DateTime;
+
+
 
 /**
  * @ORM\Entity

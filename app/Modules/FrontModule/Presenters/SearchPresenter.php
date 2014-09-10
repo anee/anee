@@ -5,8 +5,10 @@ namespace App\Modules\FrontModule\Presenters;
 use App\Modules\FrontModule\Forms;
 use App\Utils\FilterUtils;
 
+
+
 /**
- * Homepage presenter.
+ * Author Lukáš Drahník <L.Drahnik@gmail.com>
  */
 class SearchPresenter extends BasePresenter
 {

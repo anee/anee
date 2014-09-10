@@ -15,6 +15,9 @@ use App\FilterUtils;
 
 
 
+/**
+ * Author Lukáš Drahník <L.Drahnik@gmail.com>
+ */
 class PlaceRepository extends Nette\Object {
 
     private $places;

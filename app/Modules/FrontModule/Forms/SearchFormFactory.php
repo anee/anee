@@ -14,6 +14,10 @@ use Nette\Application\UI\Form;
 use Kdyby\Doctrine\EntityDao;
 
 
+
+/**
+ * Author Lukáš Drahník <L.Drahnik@gmail.com>
+ */
 class SearchFormFactory extends Nette\Object
 {
 

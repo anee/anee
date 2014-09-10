@@ -9,6 +9,10 @@
 namespace App\Modules\FrontModule\Forms;
 
 
+
+/**
+ * Author Lukáš Drahník <L.Drahnik@gmail.com>
+ */
 trait TInjectSearchFormFactory
 {
 

@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Phantom
- * Date: 13.8.14
- * Time: 18:24
- */
 
 namespace App;
 
@@ -12,6 +6,9 @@ use Nette;
 
 
 
+/**
+ * Author Lukáš Drahník <L.Drahnik@gmail.com>
+ */
 class TemplateHelpers {
 
     /**
@@ -127,7 +124,7 @@ class TemplateHelpers {
         return $value;
     }
 
-    public staic function getDateAgoText($date)
+    public static function getDateAgoText($date)
     {
         $value = null;
         $seconds = round((date('U') - $date->format('U')));

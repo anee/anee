@@ -5,7 +5,7 @@ namespace App\Modules\FrontModule\Presenters;
 
 
 /**
- * Homepage presenter.
+ * Author Lukáš Drahník <L.Drahnik@gmail.com>
  */
 class HomepagePresenter extends BasePresenter
 {
