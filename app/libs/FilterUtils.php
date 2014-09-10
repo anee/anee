@@ -68,4 +68,17 @@ class FilterUtils {
         }
         return false;
     }
+
+	public static function arrayContainsOnly($value, $array)
+	{
+		if(count($array) != 1) {
+			return false;
+		}
+		foreach($array as $i => $v) {
+			if($v == $value) {
+				return true;
+			}
+		}
+		return false;
+	}
 } 
