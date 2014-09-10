@@ -12,7 +12,7 @@ use App\FilterUtils;
  */
 class SearchPresenter extends BasePresenter
 {
-    public $values;
+    private $values;
 
     public function actionDefault()
     {
