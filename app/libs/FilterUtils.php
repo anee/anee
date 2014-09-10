@@ -1,15 +1,14 @@
 <?php
+
+
+namespace App;
+
+
+
 /**
- * Created by PhpStorm.
- * User: Phantom
- * Date: 13.8.14
- * Time: 18:24
+ * Author Lukáš Drahník <L.Drahnik@gmail.com>
  */
-
-namespace App\Utils;
-
-
-class filterUtils {
+class FilterUtils {
 
 
     public static function timeSubFilterTime($filterTime)
