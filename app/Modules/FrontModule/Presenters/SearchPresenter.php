@@ -28,6 +28,11 @@ class SearchPresenter extends BasePresenter
         $places = $this->placeRepository->findByFilters($this->values);
         $photos = $this->photoRepository->findByFilters($this->values);
 
+		$eventsCount = $this->eventRepository->findByFiltersCount($this->values);
+        $tracksCount = $this->trackRepository->findByFiltersCount($this->values);
+        $placesCount = $this->placeRepository->findByFiltersCount($this->values);
+        $photosCount = $this->photoRepository->findByFiltersCount($this->values);
+
         $entityObject = null;
         $entityUrl = "";
         if($this->values['filterEntity'] == 'Event') {
@@ -40,7 +45,7 @@ class SearchPresenter extends BasePresenter
             $entityObject = $this->placeRepository->findById($this->values['filterEntityId']);
         }
 
-         $this->template->results = array(
+        $this->template->results = array(
             'EntityObject' => $entityObject,
             'EntityUrl' => $entityUrl,
             'Count' => count($events) + count($tracks) + count($places) + count($photos),
@@ -48,10 +53,10 @@ class SearchPresenter extends BasePresenter
             'Tracks' => $tracks,
             'Places' => $places,
             'Photos' => $photos,
-            'EventsCount' => $this->eventRepository->findByFiltersCount($this->values),
-            'TracksCount' => $this->trackRepository->findByFiltersCount($this->values),
-            'PlacesCount' => $this->placeRepository->findByFiltersCount($this->values),
-            'PhotosCount' => $this->photoRepository->findByFiltersCount($this->values)
+            'EventsCount' => $eventsCount,
+            'TracksCount' => $tracksCount,
+            'PlacesCount' => $placesCount,
+            'PhotosCount' => $photosCount
         );
 	}
 }
