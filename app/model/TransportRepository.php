@@ -12,6 +12,8 @@ namespace App\Model;
 use Nette;
 use Kdyby\Doctrine\EntityDao;
 
+
+
 class TransportRepository extends Nette\Object {
 
     private $transport;

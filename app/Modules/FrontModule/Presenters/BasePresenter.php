@@ -48,7 +48,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
         );
 
         // HELPERS
-        Utils\helpers::loader($template);
+        $template->registerHelperLoader('App\TemplateHelpers::loader');
         $template->addFilter('thumb', array($this->thumbnailsHelper, 'process'));
 
         return $template;

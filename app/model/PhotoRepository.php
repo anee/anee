@@ -11,7 +11,8 @@ namespace App\Model;
 
 use Nette;
 use Kdyby\Doctrine\EntityDao;
-use App\Utils\FilterUtils;
+use App\FilterUtils;
+
 
 
 class PhotoRepository extends Nette\Object {

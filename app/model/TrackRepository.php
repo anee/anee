@@ -11,7 +11,8 @@ namespace App\Model;
 
 use Nette;
 use Kdyby\Doctrine\EntityDao;
-use App\Utils\FilterUtils;
+use App\FilterUtils;
+
 
 
 class TrackRepository extends Nette\Object {
