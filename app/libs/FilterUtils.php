@@ -27,24 +27,6 @@ class FilterUtils {
         }
     }
 
-    public static function checkArray($filterArray)
-    {
-        $values = array(
-            'search' => '',
-            'filterCategory' => array(),
-            'filterTransport' => array(),
-            'filterTime' => '',
-            'filterEntity' => '',
-            'filterEntityId' => ''
-        );
-
-        if($filterArray == NULL) {
-            return $values;
-        } else {
-            return array_merge($values, $filterArray);
-        }
-    }
-
     public static function arrayContainsOrEmpty($value, $array)
     {
         if(empty($array) == true) {
