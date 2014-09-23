@@ -41,6 +41,10 @@ class SearchFactory extends Nette\Object
 		$this->results = Utils::clearResultsArray();
     }
 
+	/**
+	 * Main method which return results.
+	 * @return array
+	 */
 	public function getNewResults() {
 		$events = $this->eventRepository->findByFilters($this->values);
 		$tracks = $this->trackRepository->findByFilters($this->values);
@@ -80,16 +84,29 @@ class SearchFactory extends Nette\Object
 		return $this->results;
 	}
 
+	/**
+	 * Sets the searching input values.
+	 * @param array
+	 * @return array
+	 */
 	public function setValues($values)
 	{
 		$this->values = Utils::checkValuesArray($values);
 	}
 
+	/**
+	 * Returns the searching output.
+	 * @return array
+	 */
 	public function getResults()
 	{
 		return $this->results;
 	}
 
+	/**
+	 * Returns the searching input.
+	 * @return array
+	 */
 	public function getValues()
 	{
 		return $this->values;
