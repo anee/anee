@@ -6,7 +6,7 @@
  * Time: 17:01
  */
 
-namespace App\Modules\FrontModule\Forms;
+namespace App\Modules\FrontModule\Components;
 
 
 
@@ -17,12 +17,12 @@ trait TInjectSearchFormFactory
 {
 
     /**
-     * @var \App\Modules\FrontModule\Forms\SearchFormFactory
+     * @var \App\Modules\FrontModule\Components\SearchFormFactory
      */
     protected $searchFormFactory;
 
 
-    public function injectSearchFormFactory(\App\Modules\FrontModule\Forms\SearchFormFactory $searchFormFactory)
+    public function injectSearchFormFactory(SearchFormFactory $searchFormFactory)
     {
         $this->searchFormFactory = $searchFormFactory;
     }

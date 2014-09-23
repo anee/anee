@@ -3,7 +3,7 @@
 namespace App\Modules\FrontModule\Presenters;
 
 use Nette;
-use App\Modules\FrontModule\Forms\TInjectSearchFormFactory;
+use App\Modules\FrontModule\Components\TInjectSearchFormFactory;
 
 
 
@@ -55,7 +55,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
     }
 
     /**
-     * @return \App\Modules\FrontModule\Forms\SearchFormFactory
+     * @return \App\Modules\FrontModule\Components\SearchFormFactory
      */
     protected function createComponentSearchFormFactory()
     {

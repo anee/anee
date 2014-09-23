@@ -7,7 +7,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-namespace App\Modules\FrontModule\Forms;
+namespace App\Modules\FrontModule\Components;
 
 use Nette;
 use Nette\Application\UI\Form;
