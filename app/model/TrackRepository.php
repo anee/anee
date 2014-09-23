@@ -49,7 +49,7 @@ class TrackRepository extends Nette\Object {
             ->from('App\Model\Track', 'e')
             ->orderBy('e.date', 'DESC');
 
-        return $qb->getQuery()->setMaxResults(1)->getSingleResult();
+        return $qb->getQuery()->setMaxResults(1)->getOneOrNullResult();
     }
 
     public function findAllCount()
