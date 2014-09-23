@@ -15,6 +15,7 @@ class EventPresenter extends BasePresenter
     /** @var \App\Model\EventRepository @inject*/
     public $eventRepository;
 
+	/** @var  \App\Model\Event */
     public $event;
 
     public function renderDetail($id)
