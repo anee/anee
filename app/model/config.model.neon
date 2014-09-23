@@ -9,3 +9,5 @@ services:
     transportRepository: App\Model\transportRepository(@doctrine.dao(App\Model\Transport))
     photoFacade: App\Model\photoFacade(@photoRepository, %wwwDir%)
     photoRepository: App\Model\photoRepository(@doctrine.dao(App\Model\Photo))
+
+    searchFactory: App\Searching\SearchFactory(@eventRepository, @trackRepository, @photoRepository, @placeRepository)
