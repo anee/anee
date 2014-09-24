@@ -4,7 +4,7 @@
 		<div id="search-title" class="width-100 float-left margin-bot-70">
 			<div class="part float-left width-100 border-bottom float-left">
 				<p class="float-left padding-top-5"><span class="highlight">
-					{$results['Count']}
+					{$results['count']}
 				</span> Results
 				{if $values['search'] != ""}
 					for
@@ -21,13 +21,13 @@
 				{/foreach}
 				{if ($values['filterEntity'] == "Track" || $values['filterEntity'] == "Event") && $template->arrayContainsOneOrMore(array('Photos', 'Places'), $values['filterCategory'])}
 					during <span class="highlight"><a href="
-					{link $results['EntityUrl'], $results['EntityObject']->getId()}
-                                            ">{$results['EntityObject']->getName()}</a></span>
+					{link $results['entityUrl'], $results['entityObject']->getId()}
+                                            ">{$results['entityObject']->getName()}</a></span>
 				{elseif $values['filterEntity'] == "Place" && $template->arrayContainsOneOrMore(array('Tracks', 'Events', 'Photos', 'Places'), $values['filterCategory'])}
 					near <span class="highlight"><a href="
-                    	{var $args = array('values' => array('filterCategory' => array('Photos', 'Tracks', 'Events', 'Places'), 'filterEntity' => 'Place', 'filterEntityId' => $results['EntityObject']->getId()))}
+                    	{var $args = array('values' => array('filterCategory' => array('Photos', 'Tracks', 'Events', 'Places'), 'filterEntity' => 'Place', 'filterEntityId' => $results['entityObject']->getId()))}
                         {link Search:default (expand) $args}
-                    ">{$results['EntityObject']->name}</a></span>
+                    ">{$results['entityObject']->name}</a></span>
 				{/if}
 				{var $first = 0}
                 {foreach $values['filterTransport'] as $u => $transport}
@@ -76,9 +76,9 @@
 				<div style="clear: both;"></div>
 			</div>
 		</div>
-			{if count($results['Events']) > 0}
+			{if count($results['events']) > 0}
 				<div id="search-results" class="width-100 float-left margin-bot-70">
-					{foreach $results['Events'] as $event}
+					{foreach $results['events'] as $event}
 						<div class="part width-100 float-left margin-bot-40">
             				<div class="part width-100 margin-bot-20 border-bottom float-left">
             					<h4 class="float-left"><a href="
@@ -105,9 +105,9 @@
 				</div>
 			{/if}
 
-			{if count($results['Tracks']) > 0}
+			{if count($results['tracks']) > 0}
 				<div id="search-results" class="width-100 float-left margin-bot-70">
-					{foreach $results['Tracks'] as $track}
+					{foreach $results['tracks'] as $track}
 						<div class="part width-100 float-left margin-bot-40">
             				<div class="part width-100 margin-bot-20 border-bottom float-left">
             					<h4 class="float-left"><a href="
@@ -138,9 +138,9 @@
 				</div>
 			{/if}
 
-			{if count($results['Places']) > 0}
+			{if count($results['places']) > 0}
 				<div id="search-results" class="width-100 float-left margin-bot-70">
-					{foreach $results['Places'] as $place}
+					{foreach $results['places'] as $place}
 						<div class="part width-100 float-left margin-bot-40">
             				<div class="part width-100 margin-bot-20 border-bottom float-left">
             					<h4 class="float-left"><a href="
@@ -180,10 +180,10 @@
 				</div>
 			{/if}
 
-			{if count($results['Photos']) > 0}
+			{if count($results['photos']) > 0}
 				<div class="photos-summary-vertical text-align-center">
                 	<ul>
-					{foreach $results['Photos'] as $photo}
+					{foreach $results['photos'] as $photo}
                 			 <div class="padding-top-100"" id="{$photo->getFileName()}">
                 				    <li>
                 				        <a href="

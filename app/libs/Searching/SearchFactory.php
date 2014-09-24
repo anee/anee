@@ -69,17 +69,17 @@ class SearchFactory extends Nette\Object
 		}
 
 		$this->results = array(
-			'EntityObject' => $entityObject,
-			'EntityUrl' => $entityUrl,
-			'Count' => count($events) + count($tracks) + count($places) + count($photos),
-			'Events' => $events,
-			'Tracks' => $tracks,
-			'Places' => $places,
-			'Photos' => $photos,
-			'EventsCount' => $eventsCount,
-			'TracksCount' => $tracksCount,
-			'PlacesCount' => $placesCount,
-			'PhotosCount' => $photosCount
+			'entityObject' => $entityObject,
+			'entityUrl' => $entityUrl,
+			'count' => count($events) + count($tracks) + count($places) + count($photos),
+			'events' => $events,
+			'tracks' => $tracks,
+			'places' => $places,
+			'photos' => $photos,
+			'eventsCount' => $eventsCount,
+			'tracksCount' => $tracksCount,
+			'placesCount' => $placesCount,
+			'photosCount' => $photosCount
 		);
 		return $this->results;
 	}

@@ -32,17 +32,17 @@ class Utils {
 	public static function clearResultsArray()
 	{
 		return array(
-			'EntityObject' => NULL,
-			'EntityUrl' => '',
-			'Count' => 0,
-			'Events' => array(),
-			'Tracks' => array(),
-			'Places' => array(),
-			'Photos' => array(),
-			'EventsCount' => 0,
-			'TracksCount' => 0,
-			'PlacesCount' => 0,
-			'PhotosCount' => 0
+			'entityObject' => NULL,
+			'entityUrl' => '',
+			'count' => 0,
+			'events' => array(),
+			'tracks' => array(),
+			'places' => array(),
+			'photos' => array(),
+			'eventsCount' => 0,
+			'tracksCount' => 0,
+			'placesCount' => 0,
+			'photosCount' => 0
 		);
 	}
 
