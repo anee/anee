@@ -53,22 +53,22 @@
                	</p>
 				<ul class="detail-info float-right">
 					<li class="{$template->selectedOrNothing('Events', $values['filterCategory'])}">
-						<span class="highlight">{$results['EventsCount']}</span><a href="
+						<span class="highlight">{$results['eventsCount']}</span><a href="
 						{var $args = array('values' => array_merge($values, [filterCategory => array('Events')]))}
                         {link Search:default (expand) $args}"> Events</a>
 					</li>
 					<li class="{$template->selectedOrNothing('Tracks', $values['filterCategory'])}">
-						<span class="highlight">{$results['TracksCount']}</span><a href="
+						<span class="highlight">{$results['tracksCount']}</span><a href="
 						{var $args = array('values' => array_merge($values, [filterCategory => array('Tracks')]))}
                         {link Search:default (expand) $args}"> Tracks</a>
 					</li>
 					<li class="{$template->selectedOrNothing('Places', $values['filterCategory'])}">
-						<span class="highlight">{$results['PlacesCount']}</span><a href="
+						<span class="highlight">{$results['placesCount']}</span><a href="
 						{var $args = array('values' => array_merge($values, [filterCategory => array('Places')]))}
                         {link Search:default (expand) $args}"> Places</a>
 					</li>
 					<li class="{$template->selectedOrNothing('Photos', $values['filterCategory'])}">
-						<span class="highlight">{$results['PhotosCount']}</span><a href="
+						<span class="highlight">{$results['photosCount']}</span><a href="
 						{var $args = array('values' => array_merge($values, [filterCategory => array('Photos')]))}
                         {link Search:default (expand) $args}"> Photos</a>
 					</li>

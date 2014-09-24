@@ -12,17 +12,29 @@ use Nette;
  */
 class SearchFactory extends Nette\Object
 {
-	/** @var \App\Model\EventRepository */
-    private $eventRepository;
+	/** @var \App\Model\EventBaseLogic */
+    private $eventBaseLogic;
 
-	/** @var \App\Model\TrackRepository */
-	private $trackRepository;
+	/** @var \App\Model\EventSearchLogic */
+	private $eventSearchLogic;
 
-	/** @var \App\Model\PhotoRepository */
-	private $photoRepository;
+	/** @var \App\Model\EventBaseLogic */
+	private $trackBaseLogic;
 
-	/** @var \App\Model\PlaceRepository */
-	private $placeRepository;
+	/** @var \App\Model\TrackSearchLogic */
+	private $trackSearchLogic;
+
+	/** @var \App\Model\EventBaseLogic */
+	private $photoBaseLogic;
+
+	/** @var \App\Model\PhotoSearchLogic */
+	private $photoSearchLogic;
+
+	/** @var \App\Model\EventBaseLogic */
+	private $placeBaseLogic;
+
+	/** @var \App\Model\PlaceSearchLogic */
+	private $placeSearchLogic;
 
 	/** @var array */
 	private $values = array();
@@ -30,12 +42,17 @@ class SearchFactory extends Nette\Object
 	/** @var array */
 	private $results = array();
 
-    public function __construct(Model\EventRepository $eventRepository, Model\TrackRepository $trackRepository, Model\PhotoRepository $photoRepository, Model\PlaceRepository $placeRepository)
+    public function __construct(Model\EventBaseLogic $eventBaseLogic, Model\EventSearchLogic $eventSearchLogic, Model\TrackBaseLogic $trackBaseLogic, Model\TrackSearchLogic $trackSearchLogic,
+								Model\PhotoBaseLogic $photoBaseLogic, Model\PhotoSearchLogic $photoSearchLogic, Model\PlaceBaseLogic $placeBaseLogic, Model\PlaceSearchLogic $placeSearchLogic)
     {
-		$this->eventRepository = $eventRepository;
-		$this->trackRepository  = $trackRepository;
-		$this->photoRepository  = $photoRepository;
-		$this->placeRepository  = $placeRepository;
+		$this->eventBaseLogic = $eventBaseLogic;
+		$this->eventSearchLogic = $eventSearchLogic;
+		$this->trackBaseLogic = $trackBaseLogic;
+		$this->trackSearchLogic = $trackSearchLogic;
+		$this->photoBaseLogic = $photoBaseLogic;
+		$this->photoSearchLogic = $photoSearchLogic;
+		$this->placeBaseLogic = $placeBaseLogic;
+		$this->placeSearchLogic = $placeSearchLogic;
 
 		$this->values = Utils::clearValuesArray();
 		$this->results = Utils::clearResultsArray();
@@ -46,26 +63,26 @@ class SearchFactory extends Nette\Object
 	 * @return array
 	 */
 	public function getNewResults() {
-		$events = $this->eventRepository->findByFilters($this->values);
-		$tracks = $this->trackRepository->findByFilters($this->values);
-		$places = $this->placeRepository->findByFilters($this->values);
-		$photos = $this->photoRepository->findByFilters($this->values);
+		$events = $this->eventSearchLogic->findByFilters($this->values);
+		$tracks = $this->trackSearchLogic->findByFilters($this->values);
+		$places = $this->placeSearchLogic->findByFilters($this->values);
+		$photos = $this->photoSearchLogic->findByFilters($this->values);
 
-		$eventsCount = $this->eventRepository->findByFiltersCount($this->values);
-		$tracksCount = $this->trackRepository->findByFiltersCount($this->values);
-		$placesCount = $this->placeRepository->findByFiltersCount($this->values);
-		$photosCount = $this->photoRepository->findByFiltersCount($this->values);
+		$eventsCount = $this->eventSearchLogic->findByFiltersCount($this->values);
+		$tracksCount = $this->trackSearchLogic->findByFiltersCount($this->values);
+		$placesCount = $this->placeSearchLogic->findByFiltersCount($this->values);
+		$photosCount = $this->photoSearchLogic->findByFiltersCount($this->values);
 
 		$entityObject = null;
 		$entityUrl = "";
 		if ($this->values['filterEntity'] == 'Event') {
-			$entityObject = $this->eventRepository->findById($this->values['filterEntityId']);
+			$entityObject = $this->eventBaseLogic->findById($this->values['filterEntityId']);
 			$entityUrl = 'Event:detail';
 		} elseif ($this->values['filterEntity'] == 'Track') {
-			$entityObject = $this->trackRepository->findById($this->values['filterEntityId']);
+			$entityObject = $this->trackBaseLogic->findById($this->values['filterEntityId']);
 			$entityUrl = 'Track:detail';
 		} elseif ($this->values['filterEntity'] == 'Place') {
-			$entityObject = $this->placeRepository->findById($this->values['filterEntityId']);
+			$entityObject = $this->placeBaseLogic->findById($this->values['filterEntityId']);
 		}
 
 		$this->results = array(

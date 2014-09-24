@@ -15,20 +15,20 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 
     use TInjectSearchFormFactory;
 
-    /** @var \App\Model\PhotoRepository @inject*/
-    public $photoRepository;
+    /** @var \App\Model\PhotoBaseLogic @inject*/
+    public $photoBaseLogic;
 
-    /** @var \App\Model\TrackRepository @inject*/
-    public $trackRepository;
+    /** @var \App\Model\TrackBaseLogic @inject*/
+    public $trackBaseLogic;
 
-    /** @var \App\Model\EventRepository @inject*/
-    public $eventRepository;
+    /** @var \App\Model\EventBaseLogic @inject*/
+    public $eventBaseLogic;
 
-    /** @var \App\Model\PlaceRepository @inject*/
-    public $placeRepository;
+    /** @var \App\Model\PlaceBaseLogic @inject*/
+    public $placeBaseLogic;
 
-    /** @var \App\Model\TransportRepository @inject*/
-    public $transportRepository;
+    /** @var \App\Model\TransportBaseLogic @inject*/
+    public $transportBaseLogic;
 
     /** @var \Kappa\ThumbnailsHelper\ThumbnailsHelper @inject*/
     public $thumbnailsHelper;
@@ -39,12 +39,12 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 
         // RIGHT MENU
         $template->dataCounts = array(
-            'Transports' => $this->transportRepository->findAll(),
-            'Events' => $this->eventRepository->findAllCount(),
-            'Tracks' => $this->trackRepository->findAllCount(),
-            'Places' => $this->placeRepository->findAllCount(),
-            'Photos' => $this->photoRepository->findAllCount(),
-            'Distance' => round($this->trackRepository->distanceSum() + $this->eventRepository->distanceSum(), 2)
+            'transports' => $this->transportBaseLogic->findAll(),
+            'events' => $this->eventBaseLogic->findAllCount(),
+            'tracks' => $this->trackBaseLogic->findAllCount(),
+            'places' => $this->placeBaseLogic->findAllCount(),
+            'photos' => $this->photoBaseLogic->findAllCount(),
+            'distance' => round($this->trackBaseLogic->distanceSum() + $this->eventBaseLogic->distanceSum(), 2)
         );
 
         // HELPERS

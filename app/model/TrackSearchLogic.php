@@ -4,14 +4,14 @@ namespace App\Model;
 
 use Nette;
 use Kdyby\Doctrine\EntityDao;
-use App\FilterUtils;
+use App\Utils\Arrays;
 
 
 
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
  */
-class TrackRepository extends Nette\Object {
+class TrackSearchLogic extends Nette\Object {
 
     private $tracks;
 
@@ -20,83 +20,9 @@ class TrackRepository extends Nette\Object {
         $this->tracks = $dao;
     }
 
-    public function save($track)
-    {
-        $this->tracks->save($track);
-    }
-
-    public function remove($id)
-    {
-        $this->tracks->delete($this->findById($id));
-    }
-
-    public function findAll()
-    {
-        $qb = $this->tracks->createQueryBuilder();
-        $qb
-            ->select('e')
-            ->from('App\Model\Track', 'e')
-            ->orderBy('e.date', 'DESC');
-
-        return $qb->getQuery()->getResult();
-    }
-
-    public function findLast()
-    {
-        $qb = $this->tracks->createQueryBuilder();
-        $qb
-            ->select('e')
-            ->from('App\Model\Track', 'e')
-            ->orderBy('e.date', 'DESC');
-
-        return $qb->getQuery()->setMaxResults(1)->getOneOrNullResult();
-    }
-
-    public function findAllCount()
-    {
-        $qb = $this->tracks->createQueryBuilder();
-        $qb
-            ->select('COUNT(e.id)')
-            ->from('App\Model\Track', 'e');
-
-        return $qb->getQuery()->getSingleScalarResult();
-    }
-
-    public function findLastByCount($count)
-    {
-        $qb = $this->tracks->createQueryBuilder();
-        $qb
-            ->select('e')
-            ->from('App\Model\Track', 'e')
-            ->orderBy('e.date', 'DESC');
-
-        return $qb->getQuery()->setMaxResults($count)->getResult();
-    }
-
-    public function findById($id)
-    {
-        $qb = $this->tracks->createQueryBuilder();
-        $qb
-            ->select('e')
-            ->from('App\Model\Track', 'e')
-            ->where('e.id = :id')
-            ->setParameter('id', $id);
-
-        return $qb->getQuery()->getOneOrNullResult();
-    }
-
-    public function distanceSum()
-    {
-        $distance = 0;
-        foreach ($this->findAll() as $track) {
-            $distance += $track->getDistance();
-        }
-        return $distance;
-    }
-
     public function findByFilters($values)
     {
-        if(FilterUtils::arrayContainsOrEmpty('Tracks', $values['filterCategory']) == true && $values['filterEntity'] != '' && $values['filterEntityId'] != '') {
+        if(Arrays::arrayContainsOrEmpty('Tracks', $values['filterCategory']) == true && $values['filterEntity'] != '' && $values['filterEntityId'] != '') {
             $qb = $this->tracks->createQueryBuilder();
             $qb
                 ->select('e')
@@ -112,13 +38,13 @@ class TrackRepository extends Nette\Object {
             if($values['filterTime'] != '') {
                 $qb
                     ->andWhere('e.date >= :date')
-                    ->setParameter('date', FilterUtils::timeSubFilterTime($values['filterTime']));
+                    ->setParameter('date', Arrays::timeSubFilterTime($values['filterTime']));
             }
             $qb
                 ->orderBy('e.date', 'DESC');
             return $qb->getQuery()->getResult();
 
-        } elseif(FilterUtils::arrayContainsOrEmpty('Tracks', $values['filterCategory']) == true) {
+        } elseif(Arrays::arrayContainsOrEmpty('Tracks', $values['filterCategory']) == true) {
         $qb = $this->tracks->createQueryBuilder();
         $qb
             ->select('e')
@@ -136,7 +62,7 @@ class TrackRepository extends Nette\Object {
         if($values['filterTime'] != '') {
             $qb
                 ->andWhere('e.date >= :date')
-                ->setParameter('date', FilterUtils::timeSubFilterTime($values['filterTime']));
+                ->setParameter('date', Arrays::timeSubFilterTime($values['filterTime']));
         }
         if(empty($values['filterTransport']) != true) {
             $qb
@@ -170,7 +96,7 @@ class TrackRepository extends Nette\Object {
             if($values['filterTime'] != '') {
                 $qb
                     ->andWhere('e.date >= :date')
-                    ->setParameter('date', FilterUtils::timeSubFilterTime($values['filterTime']));
+                    ->setParameter('date', Arrays::timeSubFilterTime($values['filterTime']));
             }
             return $qb->getQuery()->getSingleScalarResult();
 
@@ -191,7 +117,7 @@ class TrackRepository extends Nette\Object {
             if($values['filterTime'] != '') {
                 $qb
                     ->andWhere('e.date >= :date')
-                    ->setParameter('date', FilterUtils::timeSubFilterTime($values['filterTime']));
+                    ->setParameter('date', Arrays::timeSubFilterTime($values['filterTime']));
             }
             if(empty($values['filterTransport']) != true) {
                 $qb

@@ -12,15 +12,12 @@ use Nette;
 class EventPresenter extends BasePresenter
 {
 
-    /** @var \App\Model\EventRepository @inject*/
-    public $eventRepository;
-
 	/** @var  \App\Model\Event */
     public $event;
 
     public function renderDetail($id)
     {
-        $this->event = $this->eventRepository->findById($id);
+        $this->event = $this->eventBaseLogic->findById($id);
 
         if ($this->event == null) {
             throw new Nette\Application\BadRequestException;

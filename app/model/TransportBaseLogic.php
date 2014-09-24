@@ -10,7 +10,7 @@ use Kdyby\Doctrine\EntityDao;
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
  */
-class TransportRepository extends Nette\Object {
+class TransportBaseLogic extends Nette\Object {
 
     private $transport;
 

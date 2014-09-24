@@ -11,14 +11,13 @@ namespace App\Model;
 
 use Nette;
 use Kdyby\Doctrine\EntityDao;
-use App\FilterUtils;
-
+use App\Utils\Arrays;
 
 
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
  */
-class PlaceRepository extends Nette\Object {
+class PlaceSearchLogic extends Nette\Object {
 
     private $places;
     private $tracks;
@@ -31,52 +30,9 @@ class PlaceRepository extends Nette\Object {
         $this->events = $events;
     }
 
-    public function save($place)
-    {
-        $this->places->save($place);
-    }
-
-    public function remove($id)
-    {
-        $this->places->delete($this->findById($id));
-    }
-
-    public function findAll()
-    {
-        $qb = $this->places->createQueryBuilder();
-        $qb
-            ->select('e')
-            ->from('App\Model\Place', 'e')
-            ->orderBy('e.name', 'ASC');
-
-        return $qb->getQuery()->getResult();
-    }
-
-    public function findAllCount()
-    {
-        $qb = $this->places->createQueryBuilder();
-        $qb
-            ->select('COUNT(e.id)')
-            ->from('App\Model\Place', 'e');
-
-        return $qb->getQuery()->getSingleScalarResult();
-    }
-
-    public function findById($id)
-    {
-        $qb = $this->places->createQueryBuilder();
-        $qb
-            ->select('e')
-            ->from('App\Model\Place', 'e')
-            ->where('e.id = :id')
-            ->setParameter('id', $id);
-
-        return $qb->getQuery()->getOneOrNullResult();
-    }
-
     public function findByFilters($values)
     {
-        if(FilterUtils::arrayContainsOrEmpty('Places', $values['filterCategory']) == true && $values['filterEntity'] != '' && $values['filterEntityId'] != '') {
+        if(Arrays::arrayContainsOrEmpty('Places', $values['filterCategory']) == true && $values['filterEntity'] != '' && $values['filterEntityId'] != '') {
             $qb = $this->places->createQueryBuilder();
             $qb
                 ->select('e')
@@ -92,14 +48,14 @@ class PlaceRepository extends Nette\Object {
 
                 $places = array();
                 foreach ($event->eventPhotos as $photo) {
-                    if($photo->place != NULL && FilterUtils::arrayContains($photo->place, $places) != true) {
+                    if($photo->place != NULL && Arrays::arrayContains($photo->place, $places) != true) {
                         $places[] = $photo->place;
                     }
                 }
-                if(FilterUtils::arrayContains($event->place, $places) != true) {
+                if(Arrays::arrayContains($event->place, $places) != true) {
                     $places[] = $event->place;
                 }
-                if($event->placeTo != NULL && FilterUtils::arrayContains($event->placeTo, $places) != true) {
+                if($event->placeTo != NULL && Arrays::arrayContains($event->placeTo, $places) != true) {
                     $places[] = $event->placeTo;
                 }
                 return $places;
@@ -114,14 +70,14 @@ class PlaceRepository extends Nette\Object {
 
                 $places = array();
                 foreach ($event->photos as $photo) {
-                    if($photo->place != NULL && FilterUtils::arrayContains($photo->place, $places) != true) {
+                    if($photo->place != NULL && Arrays::arrayContains($photo->place, $places) != true) {
                         $places[] = $photo->place;
                     }
                 }
-                if(FilterUtils::arrayContains($event->place, $places) != true) {
+                if(Arrays::arrayContains($event->place, $places) != true) {
                     $places[] = $event->place;
                 }
-                if($event->placeTo != NULL && FilterUtils::arrayContains($event->placeTo, $places) != true) {
+                if($event->placeTo != NULL && Arrays::arrayContains($event->placeTo, $places) != true) {
                     $places[] = $event->placeTo;
                 }
                 return $places;
@@ -137,7 +93,7 @@ class PlaceRepository extends Nette\Object {
                     ->orderBy('b.name', 'ASC');
                 $places = array();
                 foreach($subqb->getQuery()->getResult() as $track) {
-                    if(FilterUtils::arrayContains($track->placeTo, $places) != true) {
+                    if(Arrays::arrayContains($track->placeTo, $places) != true) {
                         $places[] = $track->placeTo;
                     }
                 }
@@ -152,7 +108,7 @@ class PlaceRepository extends Nette\Object {
                 ->orderBy('e.name', 'DESC');
 
             return $qb->getQuery()->getResult();
-        } elseif(FilterUtils::arrayContainsOrEmpty('Places', $values['filterCategory']) == true) {
+        } elseif(Arrays::arrayContainsOrEmpty('Places', $values['filterCategory']) == true) {
             $qb = $this->places->createQueryBuilder();
             $qb
                 ->select('e')
@@ -204,14 +160,14 @@ class PlaceRepository extends Nette\Object {
 
                 $places = array();
                 foreach ($event->eventPhotos as $photo) {
-                    if($photo->place != NULL && FilterUtils::arrayContains($photo->place, $places) != true) {
+                    if($photo->place != NULL && Arrays::arrayContains($photo->place, $places) != true) {
                         $places[] = $photo->place;
                     }
                 }
-                if(FilterUtils::arrayContains($event->place, $places) != true) {
+                if(Arrays::arrayContains($event->place, $places) != true) {
                     $places[] = $event->place;
                 }
-                if($event->placeTo != NULL && FilterUtils::arrayContains($event->placeTo, $places) != true) {
+                if($event->placeTo != NULL && Arrays::arrayContains($event->placeTo, $places) != true) {
                     $places[] = $event->placeTo;
                 }
                 return count($places);
@@ -226,14 +182,14 @@ class PlaceRepository extends Nette\Object {
 
                 $places = array();
                 foreach ($event->photos as $photo) {
-                    if($photo->place != NULL && FilterUtils::arrayContains($photo->place, $places) != true) {
+                    if($photo->place != NULL && Arrays::arrayContains($photo->place, $places) != true) {
                         $places[] = $photo->place;
                     }
                 }
-                if(FilterUtils::arrayContains($event->place, $places) != true) {
+                if(Arrays::arrayContains($event->place, $places) != true) {
                     $places[] = $event->place;
                 }
-                if($event->placeTo != NULL && FilterUtils::arrayContains($event->placeTo, $places) != true) {
+                if($event->placeTo != NULL && Arrays::arrayContains($event->placeTo, $places) != true) {
                     $places[] = $event->placeTo;
                 }
                 return count($places);
@@ -247,7 +203,7 @@ class PlaceRepository extends Nette\Object {
                     ->setParameter('id', $values['filterEntityId']);
                 $places = array();
                 foreach($subqb->getQuery()->getResult() as $track) {
-                    if(FilterUtils::arrayContains($track->placeTo, $places) != true) {
+                    if(Arrays::arrayContains($track->placeTo, $places) != true) {
                         $places[] = $track->placeTo;
                     }
                 }

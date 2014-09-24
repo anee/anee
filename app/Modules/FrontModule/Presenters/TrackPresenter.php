@@ -11,8 +11,6 @@ use Nette;
  */
 class TrackPresenter extends BasePresenter
 {
-    /** @var \App\Model\TrackRepository @inject*/
-    public $trackRepository;
 
     public $track;
 

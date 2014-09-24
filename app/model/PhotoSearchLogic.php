@@ -4,14 +4,14 @@ namespace App\Model;
 
 use Nette;
 use Kdyby\Doctrine\EntityDao;
-use App\FilterUtils;
+use App\Utils\Arrays;
 
 
 
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
  */
-class PhotoRepository extends Nette\Object {
+class PhotoSearchLogic extends  Nette\Object {
 
     private $photos;
 
@@ -20,74 +20,9 @@ class PhotoRepository extends Nette\Object {
         $this->photos = $dao;
     }
 
-    public function save($photo)
-    {
-        $this->photos->save($photo);
-    }
-
-    public function remove($id)
-    {
-        $this->photos->delete($this->findById($id));
-    }
-
-    public function findLast()
-    {
-        $qb = $this->photos->createQueryBuilder();
-        $qb
-            ->select('e')
-            ->from('App\Model\Photo', 'e')
-            ->orderBy('e.date', 'DESC');
-
-        return $qb->getQuery()->setMaxResults(1)->getSingleResult();
-    }
-
-    public function findLastByCount($count)
-    {
-        $qb = $this->photos->createQueryBuilder();
-        $qb
-            ->select('e')
-            ->from('App\Model\Photo', 'e')
-            ->orderBy('e.date', 'DESC');
-
-        return $qb->getQuery()->setMaxResults($count)->getResult();
-    }
-
-    public function findAll()
-    {
-        $qb = $this->photos->createQueryBuilder();
-        $qb
-            ->select('e')
-            ->from('App\Model\Photo', 'e')
-            ->orderBy('e.date', 'DESC');
-
-        return $qb->getQuery()->getResult();
-    }
-
-    public function findAllCount()
-    {
-        $qb = $this->photos->createQueryBuilder();
-        $qb
-            ->select('COUNT(e.id)')
-            ->from('App\Model\Photo', 'e');
-
-        return $qb->getQuery()->getSingleScalarResult();
-    }
-
-    public function findById($id)
-    {
-        $qb = $this->photos->createQueryBuilder();
-        $qb
-            ->select('e')
-            ->from('App\Model\Photos', 'e')
-            ->where('e.id = :id')
-            ->setParameter('id', $id);
-
-        return $qb->getQuery()->getOneOrNullResult();
-    }
-
     public function findByFilters($values)
     {
-        if(FilterUtils::arrayContainsOrEmpty('Photos', $values['filterCategory']) == true && $values['filterEntity'] != '' && $values['filterEntityId'] != '') {
+        if(Arrays::arrayContainsOrEmpty('Photos', $values['filterCategory']) == true && $values['filterEntity'] != '' && $values['filterEntityId'] != '') {
             $qb = $this->photos->createQueryBuilder();
             $qb
                 ->select('e')
@@ -114,12 +49,12 @@ class PhotoRepository extends Nette\Object {
             if($values['filterTime'] != '') {
                 $qb
                     ->andWhere('e.date >= :date')
-                    ->setParameter('date', FilterUtils::timeSubFilterTime($values['filterTime']));
+                    ->setParameter('date', Arrays::timeSubFilterTime($values['filterTime']));
             }
             $qb
                 ->orderBy('e.date', 'DESC');
             return $qb->getQuery()->getResult();
-        } elseif(FilterUtils::arrayContainsOrEmpty('Photos', $values['filterCategory']) == true) {
+        } elseif(Arrays::arrayContainsOrEmpty('Photos', $values['filterCategory']) == true) {
             $qb = $this->photos->createQueryBuilder();
             $qb
                 ->select('e')
@@ -152,7 +87,7 @@ class PhotoRepository extends Nette\Object {
             if($values['filterTime'] != '') {
                 $qb
                     ->andWhere('e.date >= :date')
-                    ->setParameter('date', FilterUtils::timeSubFilterTime($values['filterTime']));
+                    ->setParameter('date', Arrays::timeSubFilterTime($values['filterTime']));
             }
             if(empty($values['filterTransport']) != true) {
                 $qb
@@ -206,7 +141,7 @@ class PhotoRepository extends Nette\Object {
             if($values['filterTime'] != '') {
                 $qb
                     ->andWhere('e.date >= :date')
-                    ->setParameter('date', FilterUtils::timeSubFilterTime($values['filterTime']));
+                    ->setParameter('date', Arrays::timeSubFilterTime($values['filterTime']));
             }
             return $qb->getQuery()->getSingleScalarResult();
 
@@ -243,7 +178,7 @@ class PhotoRepository extends Nette\Object {
             if($values['filterTime'] != '') {
                 $qb
                     ->andWhere('e.date >= :date')
-                    ->setParameter('date', FilterUtils::timeSubFilterTime($values['filterTime']));
+                    ->setParameter('date', Arrays::timeSubFilterTime($values['filterTime']));
             }
             if(empty($values['filterTransport']) != true) {
                 $qb

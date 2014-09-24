@@ -87,26 +87,26 @@
 	<div class="part width-100 margin-bot-40 margin-left-20 float-left">
     	 <ul class="float-left">
             <li class="selected float-left">
-        		<span class="highlight">{$dataCounts['Events']}</span><a href="
+        		<span class="highlight">{$dataCounts['events']}</span><a href="
                 {var $args = array('values' => [filterCategory => array('Events')])}
                 {link Search:default (expand) $args}"> Events</a>
         	</li>
         	<li class="float-left">
-        		<span class="highlight">{$dataCounts['Tracks']}</span><a href="
+        		<span class="highlight">{$dataCounts['tracks']}</span><a href="
                 {var $args = array('values' => [filterCategory => array('Tracks')])}
                 {link Search:default (expand) $args}"> Tracks</a>
         	</li>
         	<li class="float-left">
-        		<span class="highlight">{$dataCounts['Places']}</span><a href="
+        		<span class="highlight">{$dataCounts['places']}</span><a href="
                 {var $args = array('values' => [filterCategory => array('Places')])}
                 {link Search:default (expand) $args}"> Places</a>
         	</li>
         	<li class="float-left">
-        		<span class="highlight">{$dataCounts['Photos']}</span><a href="
+        		<span class="highlight">{$dataCounts['photos']}</span><a href="
                 {var $args = array('values' => [filterCategory => array('Photos')])}
                 {link Search:default (expand) $args}"> Photos</a>
             </li>
-             {foreach $dataCounts['Transports'] as $transport}
+             {foreach $dataCounts['transports'] as $transport}
                   {if $transport->getCount() > 0}
                     	<li class="selected float-left">
                               <span class="highlight">{$transport->getCount()}</span><a href="
@@ -118,8 +118,8 @@
          </ul>
 	</div>
 	<div class="part summary width-100 float-left">
-		<div class="bar overall-bg float-left">{$dataCounts['Distance']} km</div>
-		<div class="bar partial-bg float-right">{$dataCounts['Tracks'] + $dataCounts['Events']} total</div>
+		<div class="bar overall-bg float-left">{$dataCounts['distance']} km</div>
+		<div class="bar partial-bg float-right">{$dataCounts['tracks'] + $dataCounts['events']} total</div>
 	</div>
 </div>
 
@@ -133,26 +133,26 @@
     	<div class="part width-100 margin-bot-40 float-left">
     	    <ul class="float-left">
             <li class="selected float-left">
-        		<span class="highlight">{$dataCounts['Events']}</span><a href="
+        		<span class="highlight">{$dataCounts['events']}</span><a href="
                 {var $args = array('values' => [filterCategory => array('Events')])}
                 {link Search:default (expand) $args}"> Events</a>
         	</li>
         	<li class="float-left">
-        		<span class="highlight">{$dataCounts['Tracks']}</span><a href="
+        		<span class="highlight">{$dataCounts['tracks']}</span><a href="
                 {var $args = array('values' => [filterCategory => array('Tracks')])}
                 {link Search:default (expand) $args}"> Tracks</a>
         	</li>
         	<li class="float-left">
-        		<span class="highlight">{$dataCounts['Places']}</span><a href="
+        		<span class="highlight">{$dataCounts['places']}</span><a href="
                 {var $args = array('values' => [filterCategory => array('Places')])}
                 {link Search:default (expand) $args}"> Places</a>
         	</li>
         	<li class="float-left">
-        		<span class="highlight">{$dataCounts['Photos']}</span><a href="
+        		<span class="highlight">{$dataCounts['photos']}</span><a href="
                 {var $args = array('values' => [filterCategory => array('Photos')])}
                 {link Search:default (expand) $args}"> Photos</a>
             </li>
-             {foreach $dataCounts['Transports'] as $transport}
+             {foreach $dataCounts['transports'] as $transport}
                               {if $transport->getCount() > 0}
                                 	<li class="selected float-left">
                                           <span class="highlight">{$transport->getCount()}</span><a href="
@@ -164,8 +164,8 @@
             </ul>
     	</div>
     	<div class="part summary width-100 float-left">
-    		<div class="bar overall-bg float-left">{$dataCounts['Distance']} km</div>
-    		<div class="bar partial-bg float-right">{$dataCounts['Tracks'] + $dataCounts['Events']} total</div>
+    		<div class="bar overall-bg float-left">{$dataCounts['distance']} km</div>
+    		<div class="bar partial-bg float-right">{$dataCounts['tracks'] + $dataCounts['events']} total</div>
     	</div>
 	</div>
 </div>
