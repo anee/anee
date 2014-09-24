@@ -13,14 +13,7 @@ class Utils {
 
     public static function checkValuesArray($filterArray)
     {
-        $values = array(
-            'search' => '',
-            'filterCategory' => array(),
-            'filterTransport' => array(),
-            'filterTime' => '',
-            'filterEntity' => '',
-            'filterEntityId' => ''
-        );
+        $values = Utils::clearValuesArray();
 
         if($filterArray == NULL) {
             return $values;
