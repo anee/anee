@@ -11,6 +11,10 @@ namespace App\Searching;
 class Utils {
 
 
+	/**
+	 * @param $filterArray
+	 * @return array
+	 */
     public static function checkValuesArray($filterArray)
     {
         $values = Utils::clearValuesArray();
@@ -22,6 +26,9 @@ class Utils {
         }
     }
 
+	/**
+	 * @return array
+	 */
 	public static function clearResultsArray()
 	{
 		return array(
@@ -39,6 +46,9 @@ class Utils {
 		);
 	}
 
+	/**
+	 * @return array
+	 */
 	public static function clearValuesArray()
 	{
 		return array(
@@ -46,6 +56,7 @@ class Utils {
 			'filterCategory' => array(),
 			'filterTransport' => array(),
 			'filterTime' => '',
+			'filterSortBy' => '',
 			'filterEntity' => '',
 			'filterEntityId' => ''
 		);

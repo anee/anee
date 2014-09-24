@@ -11,6 +11,10 @@ namespace App\Utils;
 class Arrays {
 
 
+	/**
+	 * @param $filterTime
+	 * @return \DateTime
+	 */
     public static function timeSubFilterTime($filterTime)
     {
         $time = new \DateTime;
@@ -27,6 +31,11 @@ class Arrays {
         }
     }
 
+	/**
+	 * @param $value
+	 * @param $arr
+	 * @return bool
+	 */
     public static function arrayContainsOrEmpty($value, $arr)
     {
         if(empty($arr) == true) {
@@ -41,6 +50,11 @@ class Arrays {
         }
     }
 
+	/**
+	 * @param $value
+	 * @param $arr
+	 * @return bool
+	 */
     public static function arrayContains($value, $arr)
     {
         foreach($arr as $i => $v) {
@@ -51,6 +65,11 @@ class Arrays {
         return false;
     }
 
+	/**
+	 * @param $value
+	 * @param $arr
+	 * @return bool
+	 */
 	public static function arrayContainsOnly($value, $arr)
 	{
 		if(count($arr) != 1) {
