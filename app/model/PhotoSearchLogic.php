@@ -51,8 +51,10 @@ class PhotoSearchLogic extends  Nette\Object {
                     ->andWhere('e.date >= :date')
                     ->setParameter('date', Arrays::timeSubFilterTime($values['filterTime']));
             }
-            $qb
-                ->orderBy('e.date', 'DESC');
+			if ($values['filterSortBy'] == '') {
+				$qb
+					->orderBy('e.date', 'DESC');
+			}
             return $qb->getQuery()->getResult();
         } elseif(Arrays::arrayContainsOrEmpty('Photos', $values['filterCategory']) == true) {
             $qb = $this->photos->createQueryBuilder();
@@ -104,8 +106,10 @@ class PhotoSearchLogic extends  Nette\Object {
                     ->orWhere('p.name IN (:transports)')
                     ->setParameter('transports', $values['filterTransport']);
             }
-            $qb
-                ->orderBy('e.date', 'DESC');
+			if ($values['filterSortBy'] == '') {
+				$qb
+					->orderBy('e.date', 'DESC');
+			}
             return $qb->getQuery()->getResult();
         } else {
             return array();

@@ -40,8 +40,10 @@ class EventSearchLogic extends Nette\Object {
 					->andWhere('e.date >= :date')
 					->setParameter('date', Arrays::timeSubFilterTime($values['filterTime']));
 			}
-			$qb
-				->orderBy('e.date', 'DESC');
+			if ($values['filterSortBy'] == '') {
+				$qb
+					->orderBy('e.date', 'DESC');
+			}
 			return $qb->getQuery()->getResult();
 
 		} elseif(Arrays::arrayContainsOrEmpty('Events', $values['filterCategory']) == true) {
@@ -50,7 +52,7 @@ class EventSearchLogic extends Nette\Object {
 				->select('e')
 				->from('App\Model\Event', 'e');
 
-			if($values['search'] != '') {
+			if ($values['search'] != '') {
 				$qb
 					->join('e.place', 'a')
 					->leftJoin('e.placeTo', 'b')
@@ -60,19 +62,21 @@ class EventSearchLogic extends Nette\Object {
 					->orWhere($qb->expr()->like('e.description', ':search'))
 					->setParameter('search', '%' . $values['search'] . '%');
 			}
-			if($values['filterTime'] != '') {
+			if ($values['filterTime'] != '') {
 				$qb
 					->andWhere('e.date >= :date')
 					->setParameter('date', Arrays::timeSubFilterTime($values['filterTime']));
 			}
-			if(empty($values['filterTransport']) != true) {
+			if (empty($values['filterTransport']) != true) {
 				$qb
 					->join('e.transport', 'c')
 					->andWhere('c.name IN (:transports)')
 					->setParameter('transports', $values['filterTransport']);
 			}
-			$qb
-				->orderBy('e.date', 'DESC');
+			if ($values['filterSortBy'] == '') {
+				$qb
+					->orderBy('e.date', 'DESC');
+			}
 			return $qb->getQuery()->getResult();
 
 		} else {

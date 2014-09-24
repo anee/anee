@@ -40,8 +40,10 @@ class TrackSearchLogic extends Nette\Object {
                     ->andWhere('e.date >= :date')
                     ->setParameter('date', Arrays::timeSubFilterTime($values['filterTime']));
             }
-            $qb
-                ->orderBy('e.date', 'DESC');
+			if ($values['filterSortBy'] == '') {
+				$qb
+					->orderBy('e.date', 'DESC');
+			}
             return $qb->getQuery()->getResult();
 
         } elseif(Arrays::arrayContainsOrEmpty('Tracks', $values['filterCategory']) == true) {
@@ -65,14 +67,15 @@ class TrackSearchLogic extends Nette\Object {
                 ->setParameter('date', Arrays::timeSubFilterTime($values['filterTime']));
         }
         if(empty($values['filterTransport']) != true) {
-            $qb
-                ->join('e.transport', 'c')
-                ->andWhere('c.name IN (:transports)')
-                ->setParameter('transports', $values['filterTransport']);
-        }
-        $qb
-            ->orderBy('e.date', 'DESC');
-
+			$qb
+				->join('e.transport', 'c')
+				->andWhere('c.name IN (:transports)')
+				->setParameter('transports', $values['filterTransport']);
+		}
+		if ($values['filterSortBy'] == '') {
+			$qb
+				->orderBy('e.date', 'DESC');
+		}
         return $qb->getQuery()->getResult();
         } else {
             return array();

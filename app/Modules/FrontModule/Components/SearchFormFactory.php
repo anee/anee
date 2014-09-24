@@ -53,9 +53,13 @@ class SearchFormFactory extends Nette\Object
             'Past year' => 'Past year',
         /* 'Custom range...' => 'Custom range...',*/
         );
+		$sort = array(
+			'' => 'DateTime'
+		);
         $form->addMultiSelect('filterCategory', NULL, $category);
         $form->addMultiSelect('filterTransport', NULL, $transports);
         $form->addSelect('filterTime', NULL, $time);
+		$form->addSelect('filterSortBy', NULL, $sort);
         $form->addSubmit('send', '');
         $form->onSuccess[] = $this->succes;
         return $form;
