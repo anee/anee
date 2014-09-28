@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity
  */
-class Event extends \Kdyby\Doctrine\Entities\IdentifiedEntity
+class Event extends BaseEntity
 {
 
     /**
@@ -72,14 +72,6 @@ class Event extends \Kdyby\Doctrine\Entities\IdentifiedEntity
         $this->distance = $distance;
         $this->timeInSeconds = $timeInSeconds;
         $this->date = $date;
-    }
-
-    /**
-     * @return array
-     */
-    public function toArray()
-    {
-        return array_merge(array('id' => $this->getId()), get_object_vars($this));
     }
 
     public function getName()

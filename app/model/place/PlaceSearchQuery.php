@@ -3,25 +3,17 @@
 
 namespace App\Model;
 
-use Kdyby\Doctrine\QueryObject;
 use Kdyby\Persistence\Queryable;
 use Doctrine\ORM\QueryBuilder;
+
+
 
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
  */
-class PlaceSearchQuery extends QueryObject
+class PlaceSearchQuery extends BaseSearchQuery
 {
 
-	/**
-	 * @var array|\Closure[]
-	 */
-	private $filter = [];
-
-	/**
-	 * @var array|\Closure[]
-	 */
-	private $select = [];
 
 	/**
 	 * @param $transport
@@ -65,46 +57,10 @@ class PlaceSearchQuery extends QueryObject
 	}
 
 	/**
-	 * @param $sortBy
-	 * @param string $order
-	 * @return $this
-	 */
-	public function addSortBy($sortBy, $order = 'DESC')
-	{
-		$this->select[] = function (QueryBuilder $qb) use ($sortBy, $order) {
-			if(false) {
-
-			} else {
-				$qb
-					->addOrderBy('e.name', $order);
-			}
-		};
-		return $this;
-	}
-
-	/**
-	 * @param \Kdyby\Persistence\Queryable $repository
-	 * @return \Doctrine\ORM\Query|\Doctrine\ORM\QueryBuilder
-	 */
-	protected function doCreateQuery(Queryable $repository)
-	{
-		return $this->createBasicDql($repository);
-	}
-
-	/**
-	 * @param Queryable $repository
-	 * @return \Doctrine\ORM\Query|QueryBuilder|\Kdyby\Doctrine\QueryBuilder
-	 */
-	protected function doCreateCountQuery(Queryable $repository)
-	{
-		return $this->createBasicDql($repository)->select('COUNT(e.id)');
-	}
-
-	/**
 	 * @param Queryable $repository
 	 * @return \Kdyby\Doctrine\QueryBuilder
 	 */
-	private function createBasicDql(Queryable $repository)
+	protected function createBasicDql(Queryable $repository)
 	{
 		$qb = $repository->createQueryBuilder()
 			->select('e')->from('App\Model\Place', 'e');

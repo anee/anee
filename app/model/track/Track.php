@@ -3,12 +3,13 @@
 namespace App\Model;
 
 use Doctrine\ORM\Mapping as ORM;
-use Nette\Utils\DateTime;
+
+
 
 /**
  * @ORM\Entity
  */
-class Track extends \Kdyby\Doctrine\Entities\IdentifiedEntity
+class Track extends BaseEntity
 {
 
     /**
@@ -70,14 +71,6 @@ class Track extends \Kdyby\Doctrine\Entities\IdentifiedEntity
         $this->maxSpeed = $maxSpeed;
         $this->date = $date;
         $this->place = $place;
-    }
-
-    /**
-     * @return array
-     */
-    public function toArray()
-    {
-        return array_merge(array('id' => $this->getId()), get_object_vars($this));
     }
 
     public function getName()

@@ -8,7 +8,7 @@ use DateTime;
 /**
  * @ORM\Entity
  */
-class Photo extends \Kdyby\Doctrine\Entities\IdentifiedEntity
+class Photo extends BaseEntity
 {
 
     /**
@@ -50,13 +50,5 @@ class Photo extends \Kdyby\Doctrine\Entities\IdentifiedEntity
         $this->place = $place;
         $this->eventFrom = $eventFrom;
         $this->eventTo = $eventTo;
-    }
-
-    /**
-     * @return array
-     */
-    public function toArray()
-    {
-        return array_merge(array('id' => $this->getId()), get_object_vars($this));
     }
 }

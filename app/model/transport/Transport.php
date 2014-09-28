@@ -5,10 +5,12 @@ namespace App\Model;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
+
+
 /**
  * @ORM\Entity
  */
-class Transport extends \Kdyby\Doctrine\Entities\IdentifiedEntity
+class Transport extends BaseEntity
 {
 
     /**
@@ -32,14 +34,6 @@ class Transport extends \Kdyby\Doctrine\Entities\IdentifiedEntity
         $this->name = $name;
         $this->tracks = new ArrayCollection();
         $this->events = new ArrayCollection();
-    }
-
-    /**
-     * @return array
-     */
-    public function toArray()
-    {
-        return array_merge(array('id' => $this->getId()), get_object_vars($this));
     }
 
     public function getCount()
