@@ -51,10 +51,12 @@ class EventSearchQuery extends QueryObject
 	public function addFilterByTransport($transport)
 	{
 		$this->filter[] = function (QueryBuilder $qb) use ($transport) {
-			$qb
-				->join('e.transport', 'c')
-				->andWhere('c.name IN (:transports)')
-				->setParameter('transports', $transport);
+			if(empty($transport) != true) {
+				$qb
+					->join('e.transport', 'c')
+					->andWhere('c.name IN (:transports)')
+					->setParameter('transports', $transport);
+			}
 		};
 		return $this;
 	}
@@ -66,14 +68,16 @@ class EventSearchQuery extends QueryObject
 	public function addFilterBySearch($search)
 	{
 		$this->filter[] = function (QueryBuilder $qb) use ($search) {
-			$qb
-				->join('e.place', 'a')
-				->leftJoin('e.placeTo', 'b')
-				->where('b IS NOT NULL')
-				->where($qb->expr()->like('a.name', ':search'))
-				->orWhere($qb->expr()->like('b.name', ':search'))
-				->orWhere($qb->expr()->like('e.description', ':search'))
-				->setParameter('search', '%' . $search . '%');
+			if($search != '') {
+				$qb
+					->join('e.place', 'a')
+					->leftJoin('e.placeTo', 'b')
+					->where('b IS NOT NULL')
+					->where($qb->expr()->like('a.name', ':search'))
+					->orWhere($qb->expr()->like('b.name', ':search'))
+					->orWhere($qb->expr()->like('e.description', ':search'))
+					->setParameter('search', '%' . $search . '%');
+			}
 		};
 		return $this;
 	}

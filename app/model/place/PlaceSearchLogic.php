@@ -41,13 +41,8 @@ class PlaceSearchLogic extends Nette\Object {
 	public function createBasicQuery($values){
 
 		$query = (new PlaceSearchQuery());
-
-		if($values['search'] != '') {
-			$query->addFilterBySearch($values['search']);
-		}
-		if(empty($values['filterTransport']) != true) {
-			$query->addFilterByTransport($values['filterTransport']);
-		}
+		$query->addFilterBySearch($values['search']);
+		$query->addFilterByTransport($values['filterTransport']);
 		return $query;
 	}
 
@@ -112,14 +107,12 @@ class PlaceSearchLogic extends Nette\Object {
 	{
 		if(Arrays::arrayContainsOrEmpty('Places', $values['filterCategory']) == true && $values['filterEntity'] != '' && $values['filterEntityId'] != '') {
 			$array = $this->createEntityQuery($values);
-
 			$results['places'] = $array;
 			$results['count'] += count($array);
 
 		} elseif(Arrays::arrayContainsOrEmpty('Places', $values['filterCategory']) == true) {
 			$query = $this->createBasicQuery($values);
 			$query->addSortBy($values['filterSortBy']);
-
 			$results['places'] = $this->places->fetch($query);
 			$results['count'] += count($results['places']);
 		}

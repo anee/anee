@@ -6,6 +6,7 @@ namespace App\Model;
 use Kdyby\Doctrine\QueryObject;
 use Kdyby\Persistence\Queryable;
 use Doctrine\ORM\QueryBuilder;
+use App\Utils\Arrays;
 
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
@@ -57,19 +58,20 @@ class PhotoSearchQuery extends QueryObject
 	public function addFilterByTransport($transport)
 	{
 		$this->filter[] = function (QueryBuilder $qb) use ($transport) {
-			$qb
-				//track
-				->leftJoin('e.track', 'b')
-				->where('b IS NOT NULL')
-				->leftJoin('b.transport', 'g')
-				//event
-				->leftJoin('e.event', 'o')
-				->where('o IS NOT NULL')
-				->leftJoin('o.transport', 'p')
-
-				->where('g.name IN (:transports)')
-				->orWhere('p.name IN (:transports)')
-				->setParameter('transports', $transport);
+			if(empty($values['filterTransport']) != true) {
+				$qb
+					//track
+					->leftJoin('e.track', 'b')
+					->where('b IS NOT NULL')
+					->leftJoin('b.transport', 'g')
+					//event
+					->leftJoin('e.event', 'o')
+					->where('o IS NOT NULL')
+					->leftJoin('o.transport', 'p')
+					->where('g.name IN (:transports)')
+					->orWhere('p.name IN (:transports)')
+					->setParameter('transports', $transport);
+			}
 		};
 		return $this;
 	}
@@ -81,29 +83,30 @@ class PhotoSearchQuery extends QueryObject
 	public function addFilterBySearch($search)
 	{
 		$this->filter[] = function (QueryBuilder $qb) use ($search) {
-			$qb
-				//track
-				->leftJoin('e.track', 'b')
-				->where('b IS NOT NULL')
-				->leftJoin('b.place', 'g')
-				->leftJoin('b.placeTo','h')
-				->where('h IS NOT NULL')
-				//event
-				->leftJoin('e.event', 'o')
-				->where('o IS NOT NULL')
-				->leftJoin('o.place', 'p')
-				->leftJoin('o.placeTo','q')
-				->where('q IS NOT NULL')
-				//place
-				->leftJoin('e.place', 'a')
-				->where('a IS NOT NULL')
-
-				->where($qb->expr()->like('g.name', ':search'))
-				->orWhere($qb->expr()->like('h.name', ':search'))
-				->orWhere($qb->expr()->like('q.name', ':search'))
-				->orWhere($qb->expr()->like('p.name', ':search'))
-				->orWhere($qb->expr()->like('a.name', ':search'))
-				->setParameter('search', '%' . $search . '%');
+			if($search != '') {
+				$qb
+					//track
+					->leftJoin('e.track', 'b')
+					->where('b IS NOT NULL')
+					->leftJoin('b.place', 'g')
+					->leftJoin('b.placeTo', 'h')
+					->where('h IS NOT NULL')
+					//event
+					->leftJoin('e.event', 'o')
+					->where('o IS NOT NULL')
+					->leftJoin('o.place', 'p')
+					->leftJoin('o.placeTo', 'q')
+					->where('q IS NOT NULL')
+					//place
+					->leftJoin('e.place', 'a')
+					->where('a IS NOT NULL')
+					->where($qb->expr()->like('g.name', ':search'))
+					->orWhere($qb->expr()->like('h.name', ':search'))
+					->orWhere($qb->expr()->like('q.name', ':search'))
+					->orWhere($qb->expr()->like('p.name', ':search'))
+					->orWhere($qb->expr()->like('a.name', ':search'))
+					->setParameter('search', '%' . $search . '%');
+			}
 		};
 		return $this;
 	}

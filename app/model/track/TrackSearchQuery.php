@@ -6,6 +6,7 @@ namespace App\Model;
 use Kdyby\Doctrine\QueryObject;
 use Kdyby\Persistence\Queryable;
 use Doctrine\ORM\QueryBuilder;
+use App\Utils\Arrays;
 
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
@@ -50,10 +51,12 @@ class TrackSearchQuery extends QueryObject
 	public function addFilterByTransport($transport)
 	{
 		$this->filter[] = function (QueryBuilder $qb) use ($transport) {
-			$qb
-				->join('e.transport', 'c')
-				->andWhere('c.name IN (:transports)')
-				->setParameter('transports', $transport);
+			if(empty($values['filterTransport']) != true) {
+				$qb
+					->join('e.transport', 'c')
+					->andWhere('c.name IN (:transports)')
+					->setParameter('transports', $transport);
+			}
 		};
 		return $this;
 	}
@@ -65,13 +68,15 @@ class TrackSearchQuery extends QueryObject
 	public function addFilterBySearch($search)
 	{
 		$this->filter[] = function (QueryBuilder $qb) use ($search) {
-			$qb
-				->join('e.place', 'a')
-				->leftJoin('e.placeTo', 'b')
-				->where('b IS NOT NULL')
-				->where($qb->expr()->like('a.name', ':search'))
-				->orWhere($qb->expr()->like('b.name', ':search'))
-				->setParameter('search', '%' . $search . '%');
+			if($search != '') {
+				$qb
+					->join('e.place', 'a')
+					->leftJoin('e.placeTo', 'b')
+					->where('b IS NOT NULL')
+					->where($qb->expr()->like('a.name', ':search'))
+					->orWhere($qb->expr()->like('b.name', ':search'))
+					->setParameter('search', '%' . $search . '%');
+			}
 		};
 		return $this;
 	}

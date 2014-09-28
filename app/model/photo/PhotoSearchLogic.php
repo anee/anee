@@ -29,13 +29,8 @@ class PhotoSearchLogic extends  Nette\Object {
 	public function createBasicQuery($values){
 
 		$query = (new PhotoSearchQuery());
-
-		if($values['search'] != '') {
-			$query->addFilterBySearch($values['search']);
-		}
-		if(empty($values['filterTransport']) != true) {
-			$query->addFilterByTransport($values['filterTransport']);
-		}
+		$query->addFilterBySearch($values['search']);
+		$query->addFilterByTransport($values['filterTransport']);
 		$query->addFilterByTime($values['filterTimeStart'], $values['filterTimeEnd']);
 		return $query;
 	}
@@ -46,7 +41,6 @@ class PhotoSearchLogic extends  Nette\Object {
 	 */
 	public function createEntityQuery($values){
 		$query = (new PhotoSearchQuery());
-
 		$query->addFilterByEntity($values['filterEntity'], $values['filterEntityId']);
 		$query->addFilterByTime($values['filterTimeStart'], $values['filterTimeEnd']);
 		return $query;
@@ -62,14 +56,12 @@ class PhotoSearchLogic extends  Nette\Object {
 		if(Arrays::arrayContainsOrEmpty('Photos', $values['filterCategory']) == true && $values['filterEntity'] != '' && $values['filterEntityId'] != '') {
 			$query = $this->createEntityQuery($values);
 			$query->addSortBy($values['filterSortBy']);
-
 			$results['photos'] = $this->s->fetch($query);
 			$results['count'] += count($results['photos']);
 
 		} elseif(Arrays::arrayContainsOrEmpty('Photos', $values['filterCategory']) == true) {
 			$query = $this->createBasicQuery($values);
 			$query->addSortBy($values['filterSortBy']);
-
 			$results['photos'] = $this->photos->fetch($query);
 			$results['count'] += count($results['photos']);
 		}

@@ -28,15 +28,9 @@ class TrackSearchLogic extends Nette\Object {
 	 * @return TrackSearchQuery
 	 */
 	public function createBasicQuery($values){
-
 		$query = (new TrackSearchQuery());
-
-		if($values['search'] != '') {
-			$query->addFilterBySearch($values['search']);
-		}
-		if(empty($values['filterTransport']) != true) {
-			$query->addFilterByTransport($values['filterTransport']);
-		}
+		$query->addFilterBySearch($values['search']);
+		$query->addFilterByTransport($values['filterTransport']);
 		$query->addFilterByTime($values['filterTimeStart'], $values['filterTimeEnd']);
 		return $query;
 	}
@@ -47,7 +41,6 @@ class TrackSearchLogic extends Nette\Object {
 	 */
 	public function createEntityQuery($values){
 		$query = (new TrackSearchQuery());
-
 		$query->addFilterByEntity($values['filterEntity'], $values['filterEntityId']);
 		$query->addFilterByTime($values['filterTimeStart'], $values['filterTimeEnd']);
 		return $query;
@@ -63,14 +56,12 @@ class TrackSearchLogic extends Nette\Object {
 		if(Arrays::arrayContainsOrEmpty('Tracks', $values['filterCategory']) == true && $values['filterEntity'] != '' && $values['filterEntityId'] != '') {
 			$query = $this->createEntityQuery($values);
 			$query->addSortBy($values['filterSortBy']);
-
 			$results['tracks'] = $this->tracks->fetch($query);
 			$results['count'] += count($results['tracks']);
 
         } elseif(Arrays::arrayContainsOrEmpty('Tracks', $values['filterCategory']) == true) {
 			$query = $this->createBasicQuery($values);
 			$query->addSortBy($values['filterSortBy']);
-
 			$results['tracks'] = $this->tracks->fetch($query);
 			$results['count'] += count($results['tracks']);
         }

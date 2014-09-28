@@ -27,15 +27,9 @@ class EventSearchLogic extends Nette\Object {
 	 * @return EventSearchQuery
 	 */
 	public function createBasicQuery($values){
-
 		$query = (new EventSearchQuery());
-
-		if($values['search'] != '') {
-			$query->addFilterBySearch($values['search']);
-		}
-		if(empty($values['filterTransport']) != true) {
-			$query->addFilterByTransport($values['filterTransport']);
-		}
+		$query->addFilterBySearch($values['search']);
+		$query->addFilterByTransport($values['filterTransport']);
 		$query->addFilterByTime($values['filterTimeStart'], $values['filterTimeEnd']);
 		return $query;
 	}
@@ -44,12 +38,10 @@ class EventSearchLogic extends Nette\Object {
 	 * @param $values
 	 * @return EventSearchQuery
 	 */
-	public function createEntityQuery($values){
+	public function createEntityQuery($values) {
 		$query = (new EventSearchQuery());
-
 		$query->addFilterByEntity($values['filterEntity'], $values['filterEntityId']);
 		$query->addFilterByTime($values['filterTimeStart'], $values['filterTimeEnd']);
-
 		return $query;
 	}
 
@@ -63,14 +55,12 @@ class EventSearchLogic extends Nette\Object {
 		if(Arrays::arrayContainsOrEmpty('Events', $values['filterCategory']) == true && $values['filterEntity'] != '' && $values['filterEntityId'] != '') {
 			$query = $this->createEntityQuery($values);
 			$query->addSortBy($values['filterSortBy']);
-
 			$results['events'] = $this->events->fetch($query);
 			$results['count'] += count($results['events']);
 
 		} elseif(Arrays::arrayContainsOrEmpty('Events', $values['filterCategory']) == true) {
 			$query = $this->createBasicQuery($values);
 			$query->addSortBy($values['filterSortBy']);
-
 			$results['events'] = $this->events->fetch($query);
 			$results['count'] += count($results['events']);
 		}
