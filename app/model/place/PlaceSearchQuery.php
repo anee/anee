@@ -88,12 +88,7 @@ class PlaceSearchQuery extends QueryObject
 	 */
 	protected function doCreateQuery(Queryable $repository)
 	{
-		$qb = $this->createBasicDql($repository);
-
-		foreach ($this->select as $modifier) {
-			$modifier($qb);
-		}
-		return $qb;
+		return $this->createBasicDql($repository);
 	}
 
 	/**
