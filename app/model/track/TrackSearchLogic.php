@@ -66,14 +66,14 @@ class TrackSearchLogic extends Nette\Object {
     {
 		if(Arrays::arrayContainsOrEmpty('Tracks', $values['filterCategory']) == true && $values['filterEntity'] != '' && $values['filterEntityId'] != '') {
 			$query = $this->createEntityQuery($values);
-			$query->addSortByDate();
+			$query->addSortBy($values['filterSortBy']);
 
 			$results['tracks'] = $this->tracks->fetch($query);
 			$results['count'] += count($results['tracks']);
 
         } elseif(Arrays::arrayContainsOrEmpty('Tracks', $values['filterCategory']) == true) {
 			$query = $this->createBasicQuery($values);
-			$query->addSortByDate();
+			$query->addSortBy($values['filterSortBy']);
 
 			$results['tracks'] = $this->tracks->fetch($query);
 			$results['count'] += count($results['tracks']);

@@ -91,14 +91,19 @@ class TrackSearchQuery extends QueryObject
 	}
 
 	/**
+	 * @param $sortBy
 	 * @param string $order
 	 * @return $this
 	 */
-	public function addSortByDate($order = 'DESC')
+	public function addSortBy($sortBy, $order = 'DESC')
 	{
-		$this->select[] = function (QueryBuilder $qb) use ($order) {
-			$qb
-				->addOrderBy('e.date', $order);
+		$this->select[] = function (QueryBuilder $qb) use ($sortBy, $order) {
+			if(false) {
+
+			} else {
+				$qb
+					->addOrderBy('e.date', $order);
+			}
 		};
 		return $this;
 	}

@@ -62,14 +62,19 @@ class PlaceSearchQuery extends QueryObject
 	}
 
 	/**
+	 * @param $sortBy
 	 * @param string $order
 	 * @return $this
 	 */
-	public function addSortByName($order = 'DESC')
+	public function addSortBy($sortBy, $order = 'DESC')
 	{
-		$this->select[] = function (QueryBuilder $qb) use ($order) {
-			$qb
-				->addOrderBy('e.name', $order);
+		$this->select[] = function (QueryBuilder $qb) use ($sortBy, $order) {
+			if(false) {
+
+			} else {
+				$qb
+					->addOrderBy('e.name', $order);
+			}
 		};
 		return $this;
 	}

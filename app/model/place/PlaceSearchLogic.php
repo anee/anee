@@ -118,7 +118,7 @@ class PlaceSearchLogic extends Nette\Object {
 
 		} elseif(Arrays::arrayContainsOrEmpty('Places', $values['filterCategory']) == true) {
 			$query = $this->createBasicQuery($values);
-			$query->addSortByName();
+			$query->addSortBy($values['filterSortBy']);
 
 			$results['places'] = $this->places->fetch($query);
 			$results['count'] += count($results['places']);

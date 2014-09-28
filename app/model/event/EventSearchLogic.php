@@ -65,14 +65,14 @@ class EventSearchLogic extends Nette\Object {
 	{
 		if(Arrays::arrayContainsOrEmpty('Events', $values['filterCategory']) == true && $values['filterEntity'] != '' && $values['filterEntityId'] != '') {
 			$query = $this->createEntityQuery($values);
-			$query->addSortByDate();
+			$query->addSortBy($values['filterSortBy']);
 
 			$results['events'] = $this->events->fetch($query);
 			$results['count'] += count($results['events']);
 
 		} elseif(Arrays::arrayContainsOrEmpty('Events', $values['filterCategory']) == true) {
 			$query = $this->createBasicQuery($values);
-			$query->addSortByDate();
+			$query->addSortBy($values['filterSortBy']);
 
 			$results['events'] = $this->events->fetch($query);
 			$results['count'] += count($results['events']);
