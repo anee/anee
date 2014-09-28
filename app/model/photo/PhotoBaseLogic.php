@@ -12,6 +12,8 @@ use Kdyby\Doctrine\EntityDao;
  */
 class PhotoBaseLogic extends  Nette\Object {
 
+
+	/** @var EntityDao */
     private $photos;
 
     public function __construct(EntityDao $dao)

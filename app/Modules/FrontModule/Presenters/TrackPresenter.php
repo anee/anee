@@ -16,7 +16,7 @@ class TrackPresenter extends BasePresenter
 
 	public function renderDetail($id)
 	{
-        $this->track = $this->trackRepository->findById($id);
+        $this->track = $this->trackBaseLogic->findById($id);
 
         if ($this->track == null) {
             throw new Nette\Application\BadRequestException;

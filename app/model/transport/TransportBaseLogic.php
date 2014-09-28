@@ -12,6 +12,8 @@ use Kdyby\Doctrine\EntityDao;
  */
 class TransportBaseLogic extends Nette\Object {
 
+
+	/** @var EntityDao */
     private $transport;
 
     public function __construct(EntityDao $dao)

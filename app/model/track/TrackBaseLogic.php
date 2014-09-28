@@ -12,6 +12,8 @@ use Kdyby\Doctrine\EntityDao;
  */
 class TrackBaseLogic extends Nette\Object {
 
+
+	/** @var EntityDao */
     private $tracks;
 
     public function __construct(EntityDao $dao)

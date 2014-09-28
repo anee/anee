@@ -12,6 +12,8 @@ use Kdyby\Doctrine\EntityDao;
  */
 class EventBaseLogic extends Nette\Object {
 
+
+	/** @var EntityDao */
     private $events;
 
     public function __construct(EntityDao $dao)

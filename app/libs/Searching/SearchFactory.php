@@ -18,19 +18,19 @@ class SearchFactory extends Nette\Object
 	/** @var \App\Model\EventSearchLogic */
 	private $eventSearchLogic;
 
-	/** @var \App\Model\EventBaseLogic */
+	/** @var \App\Model\TrackBaseLogic */
 	private $trackBaseLogic;
 
 	/** @var \App\Model\TrackSearchLogic */
 	private $trackSearchLogic;
 
-	/** @var \App\Model\EventBaseLogic */
+	/** @var \App\Model\PhotoBaseLogic */
 	private $photoBaseLogic;
 
 	/** @var \App\Model\PhotoSearchLogic */
 	private $photoSearchLogic;
 
-	/** @var \App\Model\EventBaseLogic */
+	/** @var \App\Model\PlaceBaseLogic */
 	private $placeBaseLogic;
 
 	/** @var \App\Model\PlaceSearchLogic */
@@ -59,46 +59,38 @@ class SearchFactory extends Nette\Object
     }
 
 	/**
-	 * Main method which return results.
+	 * Main method which return new results.
 	 * @return array
 	 */
-	public function getNewResults() {
-		$events = $this->eventSearchLogic->findByFilters($this->values);
-		$tracks = $this->trackSearchLogic->findByFilters($this->values);
-		$places = $this->placeSearchLogic->findByFilters($this->values);
-		$photos = $this->photoSearchLogic->findByFilters($this->values);
+	public function getResults() {
 
-		$eventsCount = $this->eventSearchLogic->findByFiltersCount($this->values);
-		$tracksCount = $this->trackSearchLogic->findByFiltersCount($this->values);
-		$placesCount = $this->placeSearchLogic->findByFiltersCount($this->values);
-		$photosCount = $this->photoSearchLogic->findByFiltersCount($this->values);
+		$values = $this->values;
+		$results = $this->results;
 
-		$entityObject = null;
-		$entityUrl = "";
-		if ($this->values['filterEntity'] == 'Event') {
-			$entityObject = $this->eventBaseLogic->findById($this->values['filterEntityId']);
-			$entityUrl = 'Event:detail';
-		} elseif ($this->values['filterEntity'] == 'Track') {
-			$entityObject = $this->trackBaseLogic->findById($this->values['filterEntityId']);
-			$entityUrl = 'Track:detail';
-		} elseif ($this->values['filterEntity'] == 'Place') {
-			$entityObject = $this->placeBaseLogic->findById($this->values['filterEntityId']);
+		$results = $this->eventSearchLogic->findByFilters($values, $results);
+		$results = $this->eventSearchLogic->findByFiltersCount($values, $results);
+
+		$results = $this->trackSearchLogic->findByFilters($values, $results);
+		$results = $this->trackSearchLogic->findByFiltersCount($values, $results);
+
+		$results = $this->photoSearchLogic->findByFilters($values, $results);
+		$results = $this->photoSearchLogic->findByFiltersCount($values, $results);
+
+		$results = $this->placeSearchLogic->findByFilters($values, $results);
+		$results = $this->placeSearchLogic->findByFiltersCount($values, $results);
+
+		if ($values['filterEntity'] == 'Event') {
+			$results['entityObject'] = $this->eventBaseLogic->findById($values['filterEntityId']);
+			$results['entityUrl'] = 'Event:detail';
+		} elseif ($values['filterEntity'] == 'Track') {
+			$results['entityObject'] = $this->trackBaseLogic->findById($values['filterEntityId']);
+			$results['entityUrl'] = 'Track:detail';
+		} elseif ($values['filterEntity'] == 'Place') {
+			$results['entityObject'] = $this->placeBaseLogic->findById($values['filterEntityId']);
 		}
 
-		$this->results = array(
-			'entityObject' => $entityObject,
-			'entityUrl' => $entityUrl,
-			'count' => count($events) + count($tracks) + count($places) + count($photos),
-			'events' => $events,
-			'tracks' => $tracks,
-			'places' => $places,
-			'photos' => $photos,
-			'eventsCount' => $eventsCount,
-			'tracksCount' => $tracksCount,
-			'placesCount' => $placesCount,
-			'photosCount' => $photosCount
-		);
-		return $this->results;
+		$this->results = $results;
+		return $results;
 	}
 
 	/**
@@ -112,10 +104,10 @@ class SearchFactory extends Nette\Object
 	}
 
 	/**
-	 * Returns the searching output.
+	 * Returns the searching output without new calculate.
 	 * @return array
 	 */
-	public function getResults()
+	public function getLastResults()
 	{
 		return $this->results;
 	}

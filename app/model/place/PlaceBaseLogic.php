@@ -12,6 +12,8 @@ use Kdyby\Doctrine\EntityDao;
  */
 class PlaceBaseLogic extends Nette\Object {
 
+
+	/** @var EntityDao */
     private $places;
 
     public function __construct(EntityDao $places)

@@ -22,6 +22,6 @@ class SearchPresenter extends BasePresenter
 	public function renderDefault()
 	{
 		$this->template->values = $this->searching->getValues();
-		$this->template->results = $this->searching->getNewResults();
+		$this->template->results = $this->searching->getResults();
 	}
 }
