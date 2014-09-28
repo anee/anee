@@ -37,9 +37,7 @@ class TrackSearchLogic extends Nette\Object {
 		if(empty($values['filterTransport']) != true) {
 			$query->addFilterByTransport($values['filterTransport']);
 		}
-		if($values['filterTime'] != '') {
-			$query->addFilterByTime(Arrays::timeSubFilterTime($values['filterTime']));
-		}
+		$query->addFilterByTime($values['filterTimeStart'], $values['filterTimeEnd']);
 		return $query;
 	}
 
@@ -51,9 +49,7 @@ class TrackSearchLogic extends Nette\Object {
 		$query = (new TrackSearchQuery());
 
 		$query->addFilterByEntity($values['filterEntity'], $values['filterEntityId']);
-		if($values['filterTime'] != '')	{
-			$query->addFilterByTime(Arrays::timeSubFilterTime($values['filterTime']));
-		}
+		$query->addFilterByTime($values['filterTimeStart'], $values['filterTimeEnd']);
 		return $query;
 	}
 

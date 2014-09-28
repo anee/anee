@@ -6,6 +6,7 @@ namespace App\Model;
 use Kdyby\Doctrine\QueryObject;
 use Kdyby\Persistence\Queryable;
 use Doctrine\ORM\QueryBuilder;
+use App\Utils\Arrays;
 
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
@@ -78,15 +79,23 @@ class EventSearchQuery extends QueryObject
 	}
 
 	/**
-	 * @param $date
+	 * @param $start
+	 * @param $end
 	 * @return $this
 	 */
-	public function addFilterByTime($date)
+	public function addFilterByTime($start, $end)
 	{
-		$this->filter[] = function (QueryBuilder $qb) use ($date) {
-			$qb
-				->andWhere('e.date >= :date')
-				->setParameter('date', $date);
+		$this->filter[] = function (QueryBuilder $qb) use ($start, $end) {
+			if($start != '') {
+				$qb
+					->andWhere('e.date >= :start')
+					->setParameter('date', Arrays::timeSubFilterTime($start));
+			}
+			if($end != '') {
+				$qb
+					->andWhere('e.date <= :end')
+					->setParameter('end', Arrays::timeSubFilterTime($start));
+			}
 		};
 		return $this;
 	}

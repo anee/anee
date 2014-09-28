@@ -55,7 +55,8 @@ class Utils {
 			'search' => '',
 			'filterCategory' => array(),
 			'filterTransport' => array(),
-			'filterTime' => '',
+			'filterTimeStart' => '',
+			'filterTimeEnd' => '',
 			'filterSortBy' => '',
 			'filterEntity' => '',
 			'filterEntityId' => ''

@@ -36,9 +36,7 @@ class PhotoSearchLogic extends  Nette\Object {
 		if(empty($values['filterTransport']) != true) {
 			$query->addFilterByTransport($values['filterTransport']);
 		}
-		if($values['filterTime'] != '') {
-			$query->addFilterByTime(Arrays::timeSubFilterTime($values['filterTime']));
-		}
+		$query->addFilterByTime($values['filterTimeStart'], $values['filterTimeEnd']);
 		return $query;
 	}
 
@@ -50,9 +48,7 @@ class PhotoSearchLogic extends  Nette\Object {
 		$query = (new PhotoSearchQuery());
 
 		$query->addFilterByEntity($values['filterEntity'], $values['filterEntityId']);
-		if($values['filterTime'] != '')	{
-			$query->addFilterByTime(Arrays::timeSubFilterTime($values['filterTime']));
-		}
+		$query->addFilterByTime($values['filterTimeStart'], $values['filterTimeEnd']);
 		return $query;
 	}
 
