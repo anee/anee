@@ -3,7 +3,6 @@
 
 namespace App\Model;
 
-use Kdyby\Persistence\Queryable;
 use Doctrine\ORM\QueryBuilder;
 
 
@@ -25,17 +24,17 @@ class PhotoSearchQuery extends BaseSearchQuery
 		$this->filter[] = function (QueryBuilder $qb) use ($entityName, $entityId) {
 			if($entityName == 'Place') {
 				$qb
-					->leftJoin('e.place', 'o');
+					->leftJoin('e.place', 'eEntity');
 			} elseif($entityName == 'Track') {
 				$qb
-					->leftJoin('e.track', 'o');
+					->leftJoin('e.track', 'eEntity');
 			} elseif($entityName == 'Event') {
 				$qb
-					->leftJoin('e.event', 'o');
+					->leftJoin('e.event', 'eEntity');
 			}
 			$qb
-				->where('o IS NOT NULL')
-				->where('o.id = :id')
+				->where('eEntity IS NOT NULL')
+				->where('eEntity.id = :id')
 				->setParameter('id', $entityId);
 		};
 		return $this;
@@ -50,16 +49,16 @@ class PhotoSearchQuery extends BaseSearchQuery
 		$this->filter[] = function (QueryBuilder $qb) use ($transport) {
 			if(empty($values['filterTransport']) != true) {
 				$qb
-					//track
-					->leftJoin('e.track', 'b')
-					->where('b IS NOT NULL')
-					->leftJoin('b.transport', 'g')
-					//event
-					->leftJoin('e.event', 'o')
-					->where('o IS NOT NULL')
-					->leftJoin('o.transport', 'p')
-					->where('g.name IN (:transports)')
-					->orWhere('p.name IN (:transports)')
+					->leftJoin('e.track', 'eTrack')
+					->where('eTrack IS NOT NULL')
+					->leftJoin('eTrack.transport', 'eTrackTransport')
+
+					->leftJoin('e.event', 'eEvent')
+					->where('eEvent IS NOT NULL')
+					->leftJoin('eEvent.transport', 'eEventTransport')
+
+					->where('eTrackTransport.name IN (:transports)')
+					->orWhere('eEventTransport.name IN (:transports)')
 					->setParameter('transports', $transport);
 			}
 		};
@@ -75,26 +74,26 @@ class PhotoSearchQuery extends BaseSearchQuery
 		$this->filter[] = function (QueryBuilder $qb) use ($search) {
 			if($search != '') {
 				$qb
-					//track
-					->leftJoin('e.track', 'b')
-					->where('b IS NOT NULL')
-					->leftJoin('b.place', 'g')
-					->leftJoin('b.placeTo', 'h')
-					->where('h IS NOT NULL')
-					//event
-					->leftJoin('e.event', 'o')
-					->where('o IS NOT NULL')
-					->leftJoin('o.place', 'p')
-					->leftJoin('o.placeTo', 'q')
-					->where('q IS NOT NULL')
-					//place
-					->leftJoin('e.place', 'a')
-					->where('a IS NOT NULL')
-					->where($qb->expr()->like('g.name', ':search'))
-					->orWhere($qb->expr()->like('h.name', ':search'))
-					->orWhere($qb->expr()->like('q.name', ':search'))
-					->orWhere($qb->expr()->like('p.name', ':search'))
-					->orWhere($qb->expr()->like('a.name', ':search'))
+					->leftJoin('e.track', 'eTrack')
+					->where('eTrack IS NOT NULL')
+					->leftJoin('eTrack.place', 'eTrackPlace')
+					->leftJoin('eTrack.placeTo', 'eTrackPlaceTo')
+					->where('eTrackPlaceTo IS NOT NULL')
+
+					->leftJoin('e.event', 'eEvent')
+					->where('eEvent IS NOT NULL')
+					->leftJoin('eEvent.place', 'eEventPlace')
+					->leftJoin('eEvent.placeTo', 'eEventPlaceTo')
+					->where('eEventPlaceTo IS NOT NULL')
+
+					->leftJoin('e.place', 'ePlace')
+					->where('ePlace IS NOT NULL')
+
+					->where($qb->expr()->like('eTrackPlace.name', ':search'))
+					->orWhere($qb->expr()->like('eTrackPlaceTo.name', ':search'))
+					->orWhere($qb->expr()->like('eEventPlace.name', ':search'))
+					->orWhere($qb->expr()->like('eEventPlaceTo.name', ':search'))
+					->orWhere($qb->expr()->like('ePlace.name', ':search'))
 					->setParameter('search', '%' . $search . '%');
 			}
 		};

@@ -3,7 +3,6 @@
 
 namespace App\Model;
 
-use Kdyby\Persistence\Queryable;
 use Doctrine\ORM\QueryBuilder;
 
 
@@ -24,16 +23,16 @@ class PlaceSearchQuery extends BaseSearchQuery
 		$this->filter[] = function (QueryBuilder $qb) use ($transport) {
 			if(empty($values['filterTransport']) != true) {
 				$qb
-					//track
-					->leftJoin('e.tracks', 'b')
-					->where('b IS NOT NULL')
-					->leftJoin('b.transport', 'g')
-					//event
-					->leftJoin('e.events', 'o')
-					->where('o IS NOT NULL')
-					->leftJoin('o.transport', 'p')
-					->where('g.name IN (:transports)')
-					->orWhere('p.name IN (:transports)')
+					->leftJoin('e.tracks', 'eTracks')
+					->where('eTracks IS NOT NULL')
+					->leftJoin('eTracks.transport', 'eTracksTransport')
+
+					->leftJoin('e.events', 'eEvents')
+					->where('eEvents IS NOT NULL')
+					->leftJoin('eEvents.transport', 'eEventsTransport')
+
+					->where('eTracksTransport.name IN (:transports)')
+					->orWhere('eEventsTransport.name IN (:transports)')
 					->setParameter('transports', $transport);
 			}
 		};

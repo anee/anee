@@ -3,7 +3,6 @@
 
 namespace App\Model;
 
-use Kdyby\Persistence\Queryable;
 use Doctrine\ORM\QueryBuilder;
 
 
@@ -25,9 +24,8 @@ class TrackSearchQuery extends BaseSearchQuery
 		$this->filter[] = function (QueryBuilder $qb) use ($entityName, $entityId) {
 			if($entityName == 'Place') {
 				$qb
-					->leftJoin('e.place', 'o')
-					->where('o IS NOT NULL')
-					->where('o.id = :id')
+					->leftJoin('e.place', 'ePlace')
+					->where('ePlace.id = :id')
 					->setParameter('id', $entityId);
 			}
 		};
@@ -43,8 +41,8 @@ class TrackSearchQuery extends BaseSearchQuery
 		$this->filter[] = function (QueryBuilder $qb) use ($transport) {
 			if(empty($values['filterTransport']) != true) {
 				$qb
-					->join('e.transport', 'c')
-					->andWhere('c.name IN (:transports)')
+					->join('e.transport', 'eTransport')
+					->andWhere('eTransport.name IN (:transports)')
 					->setParameter('transports', $transport);
 			}
 		};
@@ -60,11 +58,12 @@ class TrackSearchQuery extends BaseSearchQuery
 		$this->filter[] = function (QueryBuilder $qb) use ($search) {
 			if($search != '') {
 				$qb
-					->join('e.place', 'a')
-					->leftJoin('e.placeTo', 'b')
-					->where('b IS NOT NULL')
-					->where($qb->expr()->like('a.name', ':search'))
-					->orWhere($qb->expr()->like('b.name', ':search'))
+					->join('e.place', 'ePlace')
+					->leftJoin('e.placeTo', 'ePlaceTo')
+					->where('ePlaceTo IS NOT NULL')
+
+					->where($qb->expr()->like('ePlace.name', ':search'))
+					->orWhere($qb->expr()->like('ePlaceTo.name', ':search'))
 					->setParameter('search', '%' . $search . '%');
 			}
 		};
