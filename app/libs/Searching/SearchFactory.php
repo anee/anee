@@ -88,7 +88,6 @@ class SearchFactory extends Nette\Object
 		} elseif ($values['filterEntity'] == 'Place') {
 			$results['entityObject'] = $this->placeBaseLogic->findById($values['filterEntityId']);
 		}
-
 		$this->results = $results;
 		return $results;
 	}

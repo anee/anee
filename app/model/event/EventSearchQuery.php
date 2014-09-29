@@ -60,7 +60,6 @@ class EventSearchQuery extends BaseSearchQuery
 				$qb
 					->join('e.place', 'ePlace')
 					->leftJoin('e.placeTo', 'ePlaceTo')
-					->where('ePlaceTo IS NOT NULL')
 
 					->where($qb->expr()->like('ePlace.name', ':search'))
 					->orWhere($qb->expr()->like('ePlaceTo.name', ':search'))

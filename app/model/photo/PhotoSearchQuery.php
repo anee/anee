@@ -75,19 +75,14 @@ class PhotoSearchQuery extends BaseSearchQuery
 			if($search != '') {
 				$qb
 					->leftJoin('e.track', 'eTrack')
-					->where('eTrack IS NOT NULL')
 					->leftJoin('eTrack.place', 'eTrackPlace')
 					->leftJoin('eTrack.placeTo', 'eTrackPlaceTo')
-					->where('eTrackPlaceTo IS NOT NULL')
 
 					->leftJoin('e.event', 'eEvent')
-					->where('eEvent IS NOT NULL')
 					->leftJoin('eEvent.place', 'eEventPlace')
 					->leftJoin('eEvent.placeTo', 'eEventPlaceTo')
-					->where('eEventPlaceTo IS NOT NULL')
 
 					->leftJoin('e.place', 'ePlace')
-					->where('ePlace IS NOT NULL')
 
 					->where($qb->expr()->like('eTrackPlace.name', ':search'))
 					->orWhere($qb->expr()->like('eTrackPlaceTo.name', ':search'))

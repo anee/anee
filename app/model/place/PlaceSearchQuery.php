@@ -24,11 +24,9 @@ class PlaceSearchQuery extends BaseSearchQuery
 			if(empty($values['filterTransport']) != true) {
 				$qb
 					->leftJoin('e.tracks', 'eTracks')
-					->where('eTracks IS NOT NULL')
 					->leftJoin('eTracks.transport', 'eTracksTransport')
 
 					->leftJoin('e.events', 'eEvents')
-					->where('eEvents IS NOT NULL')
 					->leftJoin('eEvents.transport', 'eEventsTransport')
 
 					->where('eTracksTransport.name IN (:transports)')
