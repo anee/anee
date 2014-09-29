@@ -57,17 +57,11 @@ class PlaceSearchQuery extends BaseSearchQuery
 	}
 
 	/**
-	 * @param Queryable $repository
+	 * @param \Kdyby\Doctrine\QueryBuilder $qb
 	 * @return \Kdyby\Doctrine\QueryBuilder
 	 */
-	protected function createBasicDql(Queryable $repository)
+	protected function addBaseSelect(\Kdyby\Doctrine\QueryBuilder $qb)
 	{
-		$qb = $repository->createQueryBuilder()
-			->select('e')->from('App\Model\Place', 'e');
-
-		foreach ($this->filter as $modifier) {
-			$modifier($qb);
-		}
-		return $qb;
+		return $qb->select('e')->from('App\Model\Place', 'e');
 	}
 }

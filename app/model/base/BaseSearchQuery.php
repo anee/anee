@@ -19,6 +19,11 @@ class BaseSearchQuery extends QueryObject
 	 */
 	protected $filter = [];
 
+	/**
+	 * @var array|\Closure[]
+	 */
+	protected $select = [];
+
 
 	/**
 	 * @param $start
@@ -49,7 +54,7 @@ class BaseSearchQuery extends QueryObject
 	 */
 	public function addSortBy($sortBy, $order = 'DESC')
 	{
-		$this->filter[] = function (QueryBuilder $qb) use ($sortBy, $order) {
+		$this->select[] = function (QueryBuilder $qb) use ($sortBy, $order) {
 			if($sortBy == 'Name') {
 				$qb
 					->addOrderBy('e.name', $order);
@@ -59,6 +64,15 @@ class BaseSearchQuery extends QueryObject
 			}
 		};
 		return $this;
+	}
+
+	/**
+	 * @param \Kdyby\Doctrine\QueryBuilder $qb
+	 * @return \Kdyby\Doctrine\QueryBuilder
+	 */
+	protected function addBaseSelect(\Kdyby\Doctrine\QueryBuilder $qb)
+	{
+		return $qb;
 	}
 
 	/**
@@ -72,7 +86,7 @@ class BaseSearchQuery extends QueryObject
 
 	/**
 	 * @param Queryable $repository
-	 * @return \Doctrine\ORM\Query|QueryBuilder|\Kdyby\Doctrine\QueryBuilder
+	 * @return \Kdyby\Doctrine\QueryBuilder
 	 */
 	protected function doCreateCountQuery(Queryable $repository)
 	{
@@ -86,7 +100,11 @@ class BaseSearchQuery extends QueryObject
 	protected function createBasicDql(Queryable $repository)
 	{
 		$qb = $repository->createQueryBuilder();
+		$qb = $this->addBaseSelect($qb);
 
+		foreach ($this->select as $modifier) {
+			$modifier($qb);
+		}
 		foreach ($this->filter as $modifier) {
 			$modifier($qb);
 		}
