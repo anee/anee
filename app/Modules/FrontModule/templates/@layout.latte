@@ -88,26 +88,26 @@
 	<div class="part width-100 margin-bot-40 margin-left-20 float-left">
     	 <ul class="float-left">
             <li class="selected float-left">
-        		<span class="highlight">{$dataCounts['events']}</span><a href="
+        		<span class="highlight">{$menuInfo['events']}</span><a href="
                 {var $args = array('values' => [filterCategory => array('Events')])}
                 {link Search:default (expand) $args}"> Events</a>
         	</li>
         	<li class="float-left">
-        		<span class="highlight">{$dataCounts['tracks']}</span><a href="
+        		<span class="highlight">{$menuInfo['tracks']}</span><a href="
                 {var $args = array('values' => [filterCategory => array('Tracks')])}
                 {link Search:default (expand) $args}"> Tracks</a>
         	</li>
         	<li class="float-left">
-        		<span class="highlight">{$dataCounts['places']}</span><a href="
+        		<span class="highlight">{$menuInfo['places']}</span><a href="
                 {var $args = array('values' => [filterCategory => array('Places')])}
                 {link Search:default (expand) $args}"> Places</a>
         	</li>
         	<li class="float-left">
-        		<span class="highlight">{$dataCounts['photos']}</span><a href="
+        		<span class="highlight">{$menuInfo['photos']}</span><a href="
                 {var $args = array('values' => [filterCategory => array('Photos')])}
                 {link Search:default (expand) $args}"> Photos</a>
             </li>
-             {foreach $dataCounts['transports'] as $transport}
+             {foreach $menuInfo['transports'] as $transport}
                   {if $transport->getCount() > 0}
                     	<li class="selected float-left">
                               <span class="highlight">{$transport->getCount()}</span><a href="
@@ -119,8 +119,8 @@
          </ul>
 	</div>
 	<div class="part summary width-100 float-left">
-		<div class="bar overall-bg float-left">{$dataCounts['distance']} km</div>
-		<div class="bar partial-bg float-right">{$dataCounts['tracks'] + $dataCounts['events']} total</div>
+		<div class="bar overall-bg float-left">{$menuInfo['distance']} km</div>
+		<div class="bar partial-bg float-right">{$menuInfo['tracks'] + $menuInfo['events']} total</div>
 	</div>
 </div>
 
@@ -134,39 +134,39 @@
     	<div class="part width-100 margin-bot-40 float-left">
     	    <ul class="float-left">
             <li class="selected float-left">
-        		<span class="highlight">{$dataCounts['events']}</span><a href="
+        		<span class="highlight">{$menuInfo['events']}</span><a href="
                 {var $args = array('values' => [filterCategory => array('Events')])}
                 {link Search:default (expand) $args}"> Events</a>
         	</li>
         	<li class="float-left">
-        		<span class="highlight">{$dataCounts['tracks']}</span><a href="
+        		<span class="highlight">{$menuInfo['tracks']}</span><a href="
                 {var $args = array('values' => [filterCategory => array('Tracks')])}
                 {link Search:default (expand) $args}"> Tracks</a>
         	</li>
         	<li class="float-left">
-        		<span class="highlight">{$dataCounts['places']}</span><a href="
+        		<span class="highlight">{$menuInfo['places']}</span><a href="
                 {var $args = array('values' => [filterCategory => array('Places')])}
                 {link Search:default (expand) $args}"> Places</a>
         	</li>
         	<li class="float-left">
-        		<span class="highlight">{$dataCounts['photos']}</span><a href="
+        		<span class="highlight">{$menuInfo['photos']}</span><a href="
                 {var $args = array('values' => [filterCategory => array('Photos')])}
                 {link Search:default (expand) $args}"> Photos</a>
             </li>
-             {foreach $dataCounts['transports'] as $transport}
-                              {if $transport->getCount() > 0}
-                                	<li class="selected float-left">
-                                          <span class="highlight">{$transport->getCount()}</span><a href="
-                                               {var $args = array('values' => [filterTransport => array($transport->name), filterCategory => array(Events, Tracks)])}
-                                               {link Search:default (expand) $args}"> {ucfirst($transport->name)}</a>
-                                    </li>
-                              {/if}
-                         {/foreach}
+            	{foreach $menuInfo['transports'] as $transport}
+                    {if $transport->getCount() > 0}
+                    	<li class="selected float-left">
+                        	<span class="highlight">{$transport->getCount()}</span><a href="
+                            	{var $args = array('values' => [filterTransport => array($transport->name), filterCategory => array(Events, Tracks)])}
+                                {link Search:default (expand) $args}"> {ucfirst($transport->name)}</a>
+                        </li>
+                	{/if}
+            	{/foreach}
             </ul>
     	</div>
     	<div class="part summary width-100 float-left">
-    		<div class="bar overall-bg float-left">{$dataCounts['distance']} km</div>
-    		<div class="bar partial-bg float-right">{$dataCounts['tracks'] + $dataCounts['events']} total</div>
+    		<div class="bar overall-bg float-left">{$menuInfo['distance']} km</div>
+    		<div class="bar partial-bg float-right">{$menuInfo['tracks'] + $menuInfo['events']} total</div>
     	</div>
 	</div>
 </div>
@@ -181,9 +181,10 @@
 	<script src="{$basePath}/js/jquery-2.1.1.min.js"></script>
 	<script src="{$basePath}/js/bootstrap.min.js"></script>
 	<script src="{$basePath}/js/Chart.min.js"></script>
-	<script src="{$basePath}/js/app.js"></script>
 	<script src="{$basePath}/js/netteForms.js"></script>
+	<script src="{$basePath}/js/nette.ajax.js"></script>
 	<script src="{$basePath}/js/bootstrap-multiselect.js"></script>
+	<script src="{$basePath}/js/app.js"></script>
 {/block}
 
 	<!-- Initialize the plugin: -->

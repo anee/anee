@@ -9,4 +9,4 @@ services:
     placeSearchLogic: App\Model\placeSearchLogic(@doctrine.dao(App\Model\Place), @doctrine.dao(App\Model\Track),@eventBaseLogic, @trackBaseLogic)
     transportBaseLogic: App\Model\transportBaseLogic(@doctrine.dao(App\Model\Transport))
 
-    searchFactory: App\Searching\SearchFactory(@eventBaseLogic, @eventSearchLogic, @trackBaseLogic, @trackSearchLogic, @photoBaseLogic, @photoSearchLogic, @placeBaseLogic, @placeSearchLogic)
+    searchFactory: App\Searching\SearchFactory(@eventBaseLogic, @eventSearchLogic, @trackBaseLogic, @trackSearchLogic, @photoBaseLogic, @photoSearchLogic, @placeBaseLogic, @placeSearchLogic, @transportBaseLogic)

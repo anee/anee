@@ -10,6 +10,15 @@ namespace App\Modules\FrontModule\Presenters;
 class HomepagePresenter extends BasePresenter
 {
 
+	/** @var \App\Model\EventBaseLogic @inject*/
+	public $eventBaseLogic;
+
+	/** @var \App\Model\TrackBaseLogic @inject*/
+	public $trackBaseLogic;
+
+	/** @var \App\Model\PhotoBaseLogic @inject*/
+	public $photoBaseLogic;
+
 	public function renderDefault()
 	{
         $this->template->event = $this->eventBaseLogic->findLast();

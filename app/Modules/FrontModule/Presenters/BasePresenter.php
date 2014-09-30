@@ -15,37 +15,16 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 
     use TInjectSearchFormFactory;
 
-    /** @var \App\Model\PhotoBaseLogic @inject*/
-    public $photoBaseLogic;
-
-    /** @var \App\Model\TrackBaseLogic @inject*/
-    public $trackBaseLogic;
-
-    /** @var \App\Model\EventBaseLogic @inject*/
-    public $eventBaseLogic;
-
-    /** @var \App\Model\PlaceBaseLogic @inject*/
-    public $placeBaseLogic;
-
-    /** @var \App\Model\TransportBaseLogic @inject*/
-    public $transportBaseLogic;
-
     /** @var \Kappa\ThumbnailsHelper\ThumbnailsHelper @inject*/
     public $thumbnailsHelper;
+
+	/** @var \App\Searching\SearchFactory @inject */
+	public $searchFactory;
 
     protected function createTemplate($class = NULL)
     {
         $template = parent::createTemplate($class);
-
-        // RIGHT MENU
-        $template->dataCounts = array(
-            'transports' => $this->transportBaseLogic->findAll(),
-            'events' => $this->eventBaseLogic->findAllCount(),
-            'tracks' => $this->trackBaseLogic->findAllCount(),
-            'places' => $this->placeBaseLogic->findAllCount(),
-            'photos' => $this->photoBaseLogic->findAllCount(),
-            'distance' => round($this->trackBaseLogic->distanceSum() + $this->eventBaseLogic->distanceSum(), 2)
-        );
+		$template->menuInfo = $this->searchFactory->getMenuInfo();
 
         // HELPERS
 		$template->addFilter(NULL, 'App\TemplateHelpers::loader');

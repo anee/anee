@@ -12,6 +12,9 @@ use Nette;
 class EventPresenter extends BasePresenter
 {
 
+	/** @var \App\Model\EventBaseLogic @inject*/
+	public $eventBaseLogic;
+
 	/** @var  \App\Model\Event */
     public $event;
 
