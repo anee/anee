@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "5fdd9e220992e391f965b01d99592505",
+    "hash": "e6653aa20ebac3b9a5666f71625fa98a",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -556,6 +556,57 @@
                 "orm"
             ],
             "time": "2014-07-11 03:05:53"
+        },
+        {
+            "name": "janmarek/webloader",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/janmarek/WebLoader.git",
+                "reference": "0b30a7b42f7e4290fcafd98dfb3e478fda1ad38a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/janmarek/WebLoader/zipball/0b30a7b42f7e4290fcafd98dfb3e478fda1ad38a",
+                "reference": "0b30a7b42f7e4290fcafd98dfb3e478fda1ad38a",
+                "shasum": ""
+            },
+            "require": {
+                "nette/nette": "~2.0@rc"
+            },
+            "require-dev": {
+                "mockery/mockery": "0.7.*",
+                "phpunit/phpunit": "3.7.*"
+            },
+            "suggest": {
+                "leafo/lessphp": "Lessphp is a composer for LESS written in PHP."
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "WebLoader": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jan Marek",
+                    "email": "mail@janmarek.net"
+                }
+            ],
+            "description": "Tool for loading or deploying CSS and JS files into web pages",
+            "homepage": "http://addons.nette.org/cs/webloader",
+            "keywords": [
+                "assets",
+                "css",
+                "javascript",
+                "nette",
+                "webloader"
+            ],
+            "time": "2014-09-10 18:15:02"
         },
         {
             "name": "kappa/filesystem",
@@ -2368,19 +2419,16 @@
             "time": "2014-06-11 15:50:33"
         }
     ],
-    "aliases": [
-
-    ],
+    "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
         "kdyby/doctrine": 20,
-        "kappa/thumbnails-helper": 20
+        "kappa/thumbnails-helper": 20,
+        "janmarek/webloader": 20
     },
     "prefer-stable": false,
     "platform": {
         "php": ">= 5.5.11"
     },
-    "platform-dev": [
-
-    ]
+    "platform-dev": []
 }

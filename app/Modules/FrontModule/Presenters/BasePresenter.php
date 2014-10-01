@@ -4,7 +4,8 @@ namespace App\Modules\FrontModule\Presenters;
 
 use Nette;
 use App\Modules\FrontModule\Components\TInjectSearchFormFactory;
-
+use WebLoader\Nette\CssLoader;
+use WebLoader\Nette\JavaScriptLoader;
 
 
 /**
@@ -40,4 +41,28 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
     {
         return $this->searchFormFactory->create($this);
     }
+
+	/**
+	 * @return CssLoader
+	 */
+	protected function createComponentCssScreen()
+	{
+		/** @var \WebLoader\Compiler $compiler */
+		$compiler = $this->context->getService('webloader.cssDefaultCompiler');
+		$loader = new CssLoader($compiler, $this->template->basePath . '/webtemp');
+
+		return $loader;
+	}
+
+
+	/**
+	 * @return JavaScriptLoader
+	 */
+	protected function createComponentJs()
+	{
+		/** @var \WebLoader\Compiler $compiler */
+		$compiler = $this->context->getService('webloader.jsDefaultCompiler');
+
+		return new JavaScriptLoader($compiler, $this->template->basePath . '/webtemp');
+	}
 }

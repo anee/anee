@@ -18,7 +18,8 @@
 		"php": ">= 5.5.11",
 		"nette/nette": "~2.2.0",
 		"kdyby/doctrine": "@dev",
-		"kappa/thumbnails-helper": "@dev"
+		"kappa/thumbnails-helper": "@dev",
+		"janmarek/webloader": "@dev"
 	},
 	"require-dev": {
 		"nette/tester": "~1.0"

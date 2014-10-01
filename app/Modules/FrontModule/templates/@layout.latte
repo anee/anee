@@ -24,10 +24,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 	<!--Styles-->
-	<link rel="stylesheet" media="all" href="{$basePath}/css/bootstrap.min.css">
-	<link rel="stylesheet" media="all" href="{$basePath}/css/app-min.css">
-	<link rel="stylesheet" media="all" href="{$basePath}/css/bootstrap-multiselect.css">
-
+	{control cssScreen}
 
 	{block head}{/block}
 </head>
@@ -178,13 +175,7 @@
 </footer>
 
 {block scripts}
-	<script src="{$basePath}/js/jquery-2.1.1.min.js"></script>
-	<script src="{$basePath}/js/bootstrap.min.js"></script>
-	<script src="{$basePath}/js/Chart.min.js"></script>
-	<script src="{$basePath}/js/netteForms.js"></script>
-	<script src="{$basePath}/js/nette.ajax.js"></script>
-	<script src="{$basePath}/js/bootstrap-multiselect.js"></script>
-	<script src="{$basePath}/js/app.js"></script>
+	{control js}
 {/block}
 
 	<!-- Initialize the plugin: -->
