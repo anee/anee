@@ -36,6 +36,9 @@ class SearchFactory extends Nette\Object
 	/** @var \App\Model\PlaceSearchLogic */
 	private $placeSearchLogic;
 
+	/** @var \App\Model\TransportBaseLogic */
+	private $transportBaseLogic;
+
 	/** @var array */
 	private $values = array();
 
@@ -43,7 +46,8 @@ class SearchFactory extends Nette\Object
 	private $results = array();
 
     public function __construct(Model\EventBaseLogic $eventBaseLogic, Model\EventSearchLogic $eventSearchLogic, Model\TrackBaseLogic $trackBaseLogic, Model\TrackSearchLogic $trackSearchLogic,
-								Model\PhotoBaseLogic $photoBaseLogic, Model\PhotoSearchLogic $photoSearchLogic, Model\PlaceBaseLogic $placeBaseLogic, Model\PlaceSearchLogic $placeSearchLogic)
+								Model\PhotoBaseLogic $photoBaseLogic, Model\PhotoSearchLogic $photoSearchLogic, Model\PlaceBaseLogic $placeBaseLogic, Model\PlaceSearchLogic $placeSearchLogic,
+								Model\TransportBaseLogic $transportBaseLogic)
     {
 		$this->eventBaseLogic = $eventBaseLogic;
 		$this->eventSearchLogic = $eventSearchLogic;
@@ -53,17 +57,14 @@ class SearchFactory extends Nette\Object
 		$this->photoSearchLogic = $photoSearchLogic;
 		$this->placeBaseLogic = $placeBaseLogic;
 		$this->placeSearchLogic = $placeSearchLogic;
+		$this->transportBaseLogic = $transportBaseLogic;
 
 		$this->values = Utils::clearValuesArray();
 		$this->results = Utils::clearResultsArray();
     }
 
-	/**
-	 * Main method which return new results.
-	 * @return array
-	 */
-	public function getResults() {
-
+	public function getResults()
+	{
 		$values = $this->values;
 		$results = $this->results;
 
@@ -88,6 +89,7 @@ class SearchFactory extends Nette\Object
 		} elseif ($values['filterEntity'] == 'Place') {
 			$results['entityObject'] = $this->placeBaseLogic->findById($values['filterEntityId']);
 		}
+
 		$this->results = $results;
 		return $results;
 	}
@@ -118,5 +120,20 @@ class SearchFactory extends Nette\Object
 	public function getValues()
 	{
 		return $this->values;
+	}
+
+	/**
+	 * @return array
+	 */
+	public function getMenuInfo()
+	{
+		return array(
+			'transports' => $this->transportBaseLogic->findAll(),
+			'events' => $this->eventBaseLogic->findAllCount(),
+			'tracks' => $this->trackBaseLogic->findAllCount(),
+			'places' => $this->placeBaseLogic->findAllCount(),
+			'photos' => $this->photoBaseLogic->findAllCount(),
+			'distance' => round($this->trackBaseLogic->distanceSum() + $this->eventBaseLogic->distanceSum(), 2)
+		);
 	}
 }

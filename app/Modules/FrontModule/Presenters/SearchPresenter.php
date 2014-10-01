@@ -11,17 +11,18 @@ use App\Searching;
  */
 class SearchPresenter extends BasePresenter
 {
-	/** @var \App\Searching\SearchFactory @inject*/
-	public $searching;
+	/** @var \App\Searching\SearchFactory @inject */
+	public $searchFactory;
 
-    public function actionDefault()
-    {
-		$this->searching->setValues($this->getParameter('values'));
-    }
+
+	public function actionDefault()
+	{
+		$this->searchFactory->setValues($this->getParameter('values'));
+	}
 
 	public function renderDefault()
 	{
-		$this->template->values = $this->searching->getValues();
-		$this->template->results = $this->searching->getResults();
+		$this->template->results = $this->searchFactory->getResults();
+		$this->template->values = $this->searchFactory->getValues();
 	}
 }

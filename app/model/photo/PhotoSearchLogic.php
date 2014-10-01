@@ -56,9 +56,8 @@ class PhotoSearchLogic extends  Nette\Object {
 		if(Arrays::arrayContainsOrEmpty('Photos', $values['filterCategory']) == true && $values['filterEntity'] != '' && $values['filterEntityId'] != '') {
 			$query = $this->createEntityQuery($values);
 			$query->addSortBy($values['filterSortBy']);
-			$results['photos'] = $this->s->fetch($query);
+			$results['photos'] = $this->photos->fetch($query);
 			$results['count'] += count($results['photos']);
-
 		} elseif(Arrays::arrayContainsOrEmpty('Photos', $values['filterCategory']) == true) {
 			$query = $this->createBasicQuery($values);
 			$query->addSortBy($values['filterSortBy']);
