@@ -22,6 +22,8 @@ class SearchFormFactory extends Nette\Object
 {
 
     private $presenter;
+
+	/** @var EntityDao  */
     private $transport;
 
     public function __construct(EntityDao $dao)
