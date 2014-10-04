@@ -29,26 +29,6 @@ class Utils {
 	/**
 	 * @return array
 	 */
-	public static function clearResultsArray()
-	{
-		return array(
-			'entityObject' => NULL,
-			'entityUrl' => '',
-			'count' => 0,
-			'events' => array(),
-			'tracks' => array(),
-			'places' => array(),
-			'photos' => array(),
-			'eventsCount' => 0,
-			'tracksCount' => 0,
-			'placesCount' => 0,
-			'photosCount' => 0
-		);
-	}
-
-	/**
-	 * @return array
-	 */
 	public static function clearValuesArray()
 	{
 		return array(

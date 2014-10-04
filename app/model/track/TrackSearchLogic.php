@@ -2,6 +2,7 @@
 
 namespace App\Model;
 
+use App\Searching\SearchResults;
 use Nette;
 use Kdyby\Doctrine\EntityDao;
 use App\Utils\Arrays;
@@ -48,39 +49,37 @@ class TrackSearchLogic extends Nette\Object {
 
 	/**
 	 * @param $values
-	 * @param $results
-	 * @return $results
+	 * @param SearchResults $results
+	 * @return SearchResults
 	 */
-    public function findByFilters($values, $results)
+    public function findByFilters($values, SearchResults $results)
     {
 		if(Arrays::arrayContainsOrEmpty('Tracks', $values['filterCategory']) == true && $values['filterEntity'] != '' && $values['filterEntityId'] != '') {
 			$query = $this->createEntityQuery($values);
 			$query->addSortBy($values['filterSortBy']);
-			$results['tracks'] = $this->tracks->fetch($query);
-			$results['count'] += count($results['tracks']);
+			$results->setTracks($this->tracks->fetch($query));
 
         } elseif(Arrays::arrayContainsOrEmpty('Tracks', $values['filterCategory']) == true) {
 			$query = $this->createBasicQuery($values);
 			$query->addSortBy($values['filterSortBy']);
-			$results['tracks'] = $this->tracks->fetch($query);
-			$results['count'] += count($results['tracks']);
+			$results->setTracks($this->tracks->fetch($query));
         }
 		return $results;
     }
 
 	/**
 	 * @param $values
-	 * @param $results
-	 * @return $results
+	 * @param SearchResults $results
+	 * @return SearchResults
 	 */
-    public function findByFiltersCount($values, $results)
+    public function findByFiltersCount($values, SearchResults $results)
     {
         if($values['filterEntity'] != '' && $values['filterEntityId'] != '') {
 			$query = $this->createEntityQuery($values);
-			$results['tracksCount'] = $query->count($this->tracks);
+			$results->setTrackCount($query->count($this->tracks));
         } else {
 			$query = $this->createBasicQuery($values);
-			$results['tracksCount'] = $query->count($this->tracks);
+			$results->setTrackCount($query->count($this->tracks));
         }
 		return $results;
     }

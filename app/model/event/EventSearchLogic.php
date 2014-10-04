@@ -2,6 +2,7 @@
 
 namespace App\Model;
 
+use App\Searching\SearchResults;
 use Nette;
 use Kdyby\Doctrine\EntityDao;
 use App\Utils\Arrays;
@@ -47,39 +48,36 @@ class EventSearchLogic extends Nette\Object {
 
 	/**
 	 * @param $values
-	 * @param $results
-	 * @return $results
+	 * @param SearchResults $results
+	 * @return SearchResults
 	 */
-	public function findByFilters($values, $results)
+	public function findByFilters($values, SearchResults $results)
 	{
 		if(Arrays::arrayContainsOrEmpty('Events', $values['filterCategory']) == true && $values['filterEntity'] != '' && $values['filterEntityId'] != '') {
 			$query = $this->createEntityQuery($values);
 			$query->addSortBy($values['filterSortBy']);
-			$results['events'] = $this->events->fetch($query);
-			$results['count'] += count($results['events']);
-
+			$results->setEvents($this->events->fetch($query));
 		} elseif(Arrays::arrayContainsOrEmpty('Events', $values['filterCategory']) == true) {
 			$query = $this->createBasicQuery($values);
 			$query->addSortBy($values['filterSortBy']);
-			$results['events'] = $this->events->fetch($query);
-			$results['count'] += count($results['events']);
+			$results->setEvents($this->events->fetch($query));
 		}
 		return $results;
 	}
 
 	/**
 	 * @param $values
-	 * @param $results
-	 * @return $results
+	 * @param SearchResults $results
+	 * @return SearchResults
 	 */
 	public function findByFiltersCount($values, $results)
 	{
 		if($values['filterEntity'] != '' && $values['filterEntityId'] != '') {
 			$query = $this->createEntityQuery($values);
-			$results['eventsCount'] = $query->count($this->events);
+			$results->setEventsCount($query->count($this->events));
 		} else {
 			$query = $this->createBasicQuery($values);
-			$results['eventsCount'] = $query->count($this->events);
+			$results->setEventsCount($query->count($this->events));
 		}
 		return $results;
 	}

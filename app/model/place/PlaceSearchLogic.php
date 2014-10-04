@@ -6,6 +6,7 @@ use Nette;
 use Kdyby\Doctrine\EntityDao;
 use App\Utils\Arrays;
 use App\Model;
+use App\Searching\SearchResults;
 
 
 /**
@@ -100,20 +101,18 @@ class PlaceSearchLogic extends Nette\Object {
 
 	/**
 	 * @param $values
-	 * @param $results
-	 * @return $results
+	 * @param SearchResults $results
+	 * @return SearchResults
 	 */
-	public function findByFilters($values, $results)
+	public function findByFilters($values, SearchResults $results)
 	{
 		if(Arrays::arrayContainsOrEmpty('Places', $values['filterCategory']) == true && $values['filterEntity'] != '' && $values['filterEntityId'] != '') {
 			$array = $this->createEntityQuery($values);
-			$results['places'] = $array;
-			$results['count'] += count($array);
+			$results->setPlaces($array);
 		} elseif(Arrays::arrayContainsOrEmpty('Places', $values['filterCategory']) == true) {
 			$query = $this->createBasicQuery($values);
 			$query->addSortBy('Name', $values['filterSortBy']);
-			$results['places'] = $this->places->fetch($query);
-			$results['count'] += count($results['places']);
+			$results->setPlaces($this->places->fetch($query));
 		}
 		return $results;
 	}
@@ -127,10 +126,10 @@ class PlaceSearchLogic extends Nette\Object {
 	{
 		if($values['filterEntity'] != '' && $values['filterEntityId'] != '') {
 			$array = $this->createEntityQuery($values);
-			$results['placesCount'] = count($array);
+			$results->setPlacesCount(count($array));
 		} else {
 			$query = $this->createBasicQuery($values);
-			$results['placesCount'] = $query->count($this->places);
+			$results->setPlacesCount($query->count($this->places));
 		}
 		return $results;
 	}

@@ -2,6 +2,7 @@
 
 namespace App\Model;
 
+use App\Searching\SearchResults;
 use Nette;
 use Kdyby\Doctrine\EntityDao;
 use App\Utils\Arrays;
@@ -48,38 +49,36 @@ class PhotoSearchLogic extends  Nette\Object {
 
 	/**
 	 * @param $values
-	 * @param $results
-	 * @return $results
+	 * @param SearchResults $results
+	 * @return SearchResults
 	 */
-	public function findByFilters($values, $results)
+	public function findByFilters($values, SearchResults $results)
 	{
 		if(Arrays::arrayContainsOrEmpty('Photos', $values['filterCategory']) == true && $values['filterEntity'] != '' && $values['filterEntityId'] != '') {
 			$query = $this->createEntityQuery($values);
 			$query->addSortBy($values['filterSortBy']);
-			$results['photos'] = $this->photos->fetch($query);
-			$results['count'] += count($results['photos']);
+			$results->setPhotos($this->photos->fetch($query));
 		} elseif(Arrays::arrayContainsOrEmpty('Photos', $values['filterCategory']) == true) {
 			$query = $this->createBasicQuery($values);
 			$query->addSortBy($values['filterSortBy']);
-			$results['photos'] = $this->photos->fetch($query);
-			$results['count'] += count($results['photos']);
+			$results->setPhotos($this->photos->fetch($query));
 		}
 		return $results;
 	}
 
 	/**
 	 * @param $values
-	 * @param $results
-	 * @return $results
+	 * @param SearchResults $results
+	 * @return SearchResults
 	 */
-	public function findByFiltersCount($values, $results)
+	public function findByFiltersCount($values, SearchResults $results)
 	{
 		if($values['filterEntity'] != '' && $values['filterEntityId'] != '') {
 			$query = $this->createEntityQuery($values);
-			$results['photosCount'] = $query->count($this->photos);
+			$results->setPhotosCount($query->count($this->photos));
 		} else {
 			$query = $this->createBasicQuery($values);
-			$results['photosCount'] = $query->count($this->photos);
+			$results->setPhotosCount($query->count($this->photos));
 		}
 		return $results;
 	}

@@ -42,8 +42,8 @@ class SearchFactory extends Nette\Object
 	/** @var array */
 	private $values = array();
 
-	/** @var array */
-	private $results = array();
+	/** @var \App\Searching\SearchResults */
+	private $results;
 
     public function __construct(Model\EventBaseLogic $eventBaseLogic, Model\EventSearchLogic $eventSearchLogic, Model\TrackBaseLogic $trackBaseLogic, Model\TrackSearchLogic $trackSearchLogic,
 								Model\PhotoBaseLogic $photoBaseLogic, Model\PhotoSearchLogic $photoSearchLogic, Model\PlaceBaseLogic $placeBaseLogic, Model\PlaceSearchLogic $placeSearchLogic,
@@ -60,7 +60,7 @@ class SearchFactory extends Nette\Object
 		$this->transportBaseLogic = $transportBaseLogic;
 
 		$this->values = Utils::clearValuesArray();
-		$this->results = Utils::clearResultsArray();
+		$this->results = new SearchResults();
     }
 
 	public function getResults()
@@ -70,24 +70,21 @@ class SearchFactory extends Nette\Object
 
 		$results = $this->eventSearchLogic->findByFilters($values, $results);
 		$results = $this->eventSearchLogic->findByFiltersCount($values, $results);
-
 		$results = $this->trackSearchLogic->findByFilters($values, $results);
 		$results = $this->trackSearchLogic->findByFiltersCount($values, $results);
-
 		$results = $this->photoSearchLogic->findByFilters($values, $results);
 		$results = $this->photoSearchLogic->findByFiltersCount($values, $results);
-
 		$results = $this->placeSearchLogic->findByFilters($values, $results);
 		$results = $this->placeSearchLogic->findByFiltersCount($values, $results);
 
 		if ($values['filterEntity'] == 'Event') {
-			$results['entityObject'] = $this->eventBaseLogic->findById($values['filterEntityId']);
-			$results['entityUrl'] = 'Event:detail';
+			$results->setEntityObject($this->eventBaseLogic->findById($values['filterEntityId']));
+			$results->setEntityUrl('Event:detail');
 		} elseif ($values['filterEntity'] == 'Track') {
-			$results['entityObject'] = $this->trackBaseLogic->findById($values['filterEntityId']);
-			$results['entityUrl'] = 'Track:detail';
+			$results->setEntityObject($this->trackBaseLogic->findById($values['filterEntityId']));
+			$results->setEntityUrl('Track:detail');
 		} elseif ($values['filterEntity'] == 'Place') {
-			$results['entityObject'] = $this->placeBaseLogic->findById($values['filterEntityId']);
+			$results->setEntityObject($this->placeBaseLogic->findById($values['filterEntityId']));
 		}
 
 		$this->results = $results;
