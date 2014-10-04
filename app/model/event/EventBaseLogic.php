@@ -2,38 +2,22 @@
 
 namespace App\Model;
 
-use Nette;
-use Kdyby\Doctrine\EntityDao;
-
 
 
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
  */
-class EventBaseLogic extends Nette\Object {
+class EventBaseLogic extends BaseLogic {
 
 
-	/** @var EntityDao */
-    private $events;
+	public function remove($id)
+	{
+		$this->dao->delete($this->findOneById($id));
+	}
 
-    public function __construct(EntityDao $dao)
+	public function findAll()
     {
-        $this->events = $dao;
-    }
-
-    public function save($event)
-    {
-        $this->events->save($event);
-    }
-
-    public function remove($id)
-    {
-        $this->events->delete($this->findById($id));
-    }
-
-    public function findAll()
-    {
-        $qb = $this->events->createQueryBuilder();
+        $qb = $this->dao->createQueryBuilder();
         $qb
             ->select('e')
             ->from('App\Model\Event', 'e')
@@ -44,7 +28,7 @@ class EventBaseLogic extends Nette\Object {
 
     public function findAllCount()
     {
-        $qb = $this->events->createQueryBuilder();
+        $qb = $this->dao->createQueryBuilder();
         $qb
             ->select('COUNT(e.id)')
             ->from('App\Model\Event', 'e');
@@ -54,7 +38,7 @@ class EventBaseLogic extends Nette\Object {
 
     public function findLast()
     {
-        $qb = $this->events->createQueryBuilder();
+        $qb = $this->dao->createQueryBuilder();
         $qb
             ->select('e')
             ->from('App\Model\Event', 'e')
@@ -63,9 +47,9 @@ class EventBaseLogic extends Nette\Object {
         return $qb->getQuery()->setMaxResults(1)->getOneOrNullResult();
     }
 
-    public function findById($id)
+    protected function findOneById($id)
     {
-        $qb = $this->events->createQueryBuilder();
+        $qb = $this->dao->createQueryBuilder();
         $qb
             ->select('e')
             ->from('App\Model\Event', 'e')

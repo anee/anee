@@ -2,38 +2,23 @@
 
 namespace App\Model;
 
-use Nette;
-use Kdyby\Doctrine\EntityDao;
 
 
 
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
  */
-class TrackBaseLogic extends Nette\Object {
+class TrackBaseLogic extends BaseLogic {
 
-
-	/** @var EntityDao */
-    private $tracks;
-
-    public function __construct(EntityDao $dao)
-    {
-        $this->tracks = $dao;
-    }
-
-    public function save($track)
-    {
-        $this->tracks->save($track);
-    }
 
     public function remove($id)
     {
-        $this->tracks->delete($this->findById($id));
+        $this->dao->delete($this->findOneById($id));
     }
 
     public function findAll()
     {
-        $qb = $this->tracks->createQueryBuilder();
+        $qb = $this->dao->createQueryBuilder();
         $qb
             ->select('e')
             ->from('App\Model\Track', 'e')
@@ -44,7 +29,7 @@ class TrackBaseLogic extends Nette\Object {
 
     public function findLast()
     {
-        $qb = $this->tracks->createQueryBuilder();
+        $qb = $this->dao->createQueryBuilder();
         $qb
             ->select('e')
             ->from('App\Model\Track', 'e')
@@ -55,7 +40,7 @@ class TrackBaseLogic extends Nette\Object {
 
     public function findAllCount()
     {
-        $qb = $this->tracks->createQueryBuilder();
+        $qb = $this->dao->createQueryBuilder();
         $qb
             ->select('COUNT(e.id)')
             ->from('App\Model\Track', 'e');
@@ -65,7 +50,7 @@ class TrackBaseLogic extends Nette\Object {
 
     public function findLastByCount($count)
     {
-        $qb = $this->tracks->createQueryBuilder();
+        $qb = $this->dao->createQueryBuilder();
         $qb
             ->select('e')
             ->from('App\Model\Track', 'e')
@@ -74,9 +59,9 @@ class TrackBaseLogic extends Nette\Object {
         return $qb->getQuery()->setMaxResults($count)->getResult();
     }
 
-    public function findById($id)
+    public function findOneById($id)
     {
-        $qb = $this->tracks->createQueryBuilder();
+        $qb = $this->dao->createQueryBuilder();
         $qb
             ->select('e')
             ->from('App\Model\Track', 'e')

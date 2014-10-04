@@ -2,38 +2,22 @@
 
 namespace App\Model;
 
-use Nette;
-use Kdyby\Doctrine\EntityDao;
-
 
 
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
  */
-class PhotoBaseLogic extends  Nette\Object {
+class PhotoBaseLogic extends BaseLogic {
 
-
-	/** @var EntityDao */
-    private $photos;
-
-    public function __construct(EntityDao $dao)
-    {
-        $this->photos = $dao;
-    }
-
-    public function save($photo)
-    {
-        $this->photos->save($photo);
-    }
-
+	
     public function remove($id)
     {
-        $this->photos->delete($this->findById($id));
+        $this->dao->delete($this->findOneById($id));
     }
 
     public function findLast()
     {
-        $qb = $this->photos->createQueryBuilder();
+        $qb = $this->dao->createQueryBuilder();
         $qb
             ->select('e')
             ->from('App\Model\Photo', 'e')
@@ -44,7 +28,7 @@ class PhotoBaseLogic extends  Nette\Object {
 
     public function findLastByCount($count)
     {
-        $qb = $this->photos->createQueryBuilder();
+        $qb = $this->dao->createQueryBuilder();
         $qb
             ->select('e')
             ->from('App\Model\Photo', 'e')
@@ -55,7 +39,7 @@ class PhotoBaseLogic extends  Nette\Object {
 
     public function findAll()
     {
-        $qb = $this->photos->createQueryBuilder();
+        $qb = $this->dao->createQueryBuilder();
         $qb
             ->select('e')
             ->from('App\Model\Photo', 'e')
@@ -66,7 +50,7 @@ class PhotoBaseLogic extends  Nette\Object {
 
     public function findAllCount()
     {
-        $qb = $this->photos->createQueryBuilder();
+        $qb = $this->dao->createQueryBuilder();
         $qb
             ->select('COUNT(e.id)')
             ->from('App\Model\Photo', 'e');
@@ -74,12 +58,12 @@ class PhotoBaseLogic extends  Nette\Object {
         return $qb->getQuery()->getSingleScalarResult();
     }
 
-    public function findById($id)
+    public function findOneById($id)
     {
-        $qb = $this->photos->createQueryBuilder();
+        $qb = $this->dao->createQueryBuilder();
         $qb
             ->select('e')
-            ->from('App\Model\Photos', 'e')
+            ->from('App\Model\dao', 'e')
             ->where('e.id = :id')
             ->setParameter('id', $id);
 

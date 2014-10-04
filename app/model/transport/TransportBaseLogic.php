@@ -2,38 +2,24 @@
 
 namespace App\Model;
 
-use Nette;
-use Kdyby\Doctrine\EntityDao;
 
 
 
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
  */
-class TransportBaseLogic extends Nette\Object {
+class TransportBaseLogic extends BaseLogic {
 
-
-	/** @var EntityDao */
-    private $transport;
-
-    public function __construct(EntityDao $dao)
-    {
-        $this->transport = $dao;
-    }
-
-    public function save($transport)
-    {
-        $this->transport->save($transport);
-    }
+	
 
     public function remove($id)
     {
-        $this->transport->delete($this->findById($id));
+        $this->dao->delete($this->findById($id));
     }
 
     public function findAll()
     {
-        $qb = $this->transport->createQueryBuilder();
+        $qb = $this->dao->createQueryBuilder();
         $qb
             ->select('e')
             ->from('App\Model\Transport', 'e')
@@ -44,7 +30,7 @@ class TransportBaseLogic extends Nette\Object {
 
     public function findById($id)
     {
-        $qb = $this->transport->createQueryBuilder();
+        $qb = $this->dao->createQueryBuilder();
         $qb
             ->select('e')
             ->from('App\Model\Transport', 'e')

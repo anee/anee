@@ -2,38 +2,22 @@
 
 namespace App\Model;
 
-use Nette;
-use Kdyby\Doctrine\EntityDao;
-
 
 
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
  */
-class PlaceBaseLogic extends Nette\Object {
+class PlaceBaseLogic extends BaseLogic {
 
-
-	/** @var EntityDao */
-    private $places;
-
-    public function __construct(EntityDao $places)
-    {
-        $this->places = $places;
-    }
-
-    public function save($place)
-    {
-        $this->places->save($place);
-    }
-
+	
     public function remove($id)
     {
-        $this->places->delete($this->findById($id));
+        $this->dao->delete($this->findOneById($id));
     }
 
     public function findAll()
     {
-        $qb = $this->places->createQueryBuilder();
+        $qb = $this->dao->createQueryBuilder();
         $qb
             ->select('e')
             ->from('App\Model\Place', 'e')
@@ -44,7 +28,7 @@ class PlaceBaseLogic extends Nette\Object {
 
     public function findAllCount()
     {
-        $qb = $this->places->createQueryBuilder();
+        $qb = $this->dao->createQueryBuilder();
         $qb
             ->select('COUNT(e.id)')
             ->from('App\Model\Place', 'e');
@@ -52,9 +36,9 @@ class PlaceBaseLogic extends Nette\Object {
         return $qb->getQuery()->getSingleScalarResult();
     }
 
-    public function findById($id)
+    public function findOneById($id)
     {
-        $qb = $this->places->createQueryBuilder();
+        $qb = $this->dao->createQueryBuilder();
         $qb
             ->select('e')
             ->from('App\Model\Place', 'e')
