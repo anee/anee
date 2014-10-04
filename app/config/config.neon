@@ -11,10 +11,12 @@ nette:
 		expiration: 14 days
 
 services:
-    - App\RouterFactory
-    router: @App\RouterFactory::createRouter
+	- App\RouterFactory
+	router: @App\RouterFactory::createRouter
+	authenticator: App\Model\Authenticator
+	searchFactory: App\Searching\SearchFactory(@eventBaseLogic, @eventSearchLogic, @trackBaseLogic, @trackSearchLogic, @photoBaseLogic, @photoSearchLogic, @placeBaseLogic, @placeSearchLogic, @transportBaseLogic)
 
 includes:
-        - ../model/config.model.neon
-        - ../extensions/config.extensions.neon
-        - ../Modules/FrontModule/Components/config.components.neon
+		- ../model/config.model.neon
+		- ../extensions/config.extensions.neon
+		- ../Modules/FrontModule/Components/config.components.neon
