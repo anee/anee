@@ -1,0 +1,2 @@
+services:
+    - App\Modules\SecurityModule\Components\SignInFormFactory

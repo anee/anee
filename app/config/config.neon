@@ -20,3 +20,4 @@ includes:
 		- ../model/config.model.neon
 		- ../extensions/config.extensions.neon
 		- ../Modules/FrontModule/Components/config.components.neon
+		- ../Modules/SecurityModule/Components/config.components.neon

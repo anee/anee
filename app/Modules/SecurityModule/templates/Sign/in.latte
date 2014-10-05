@@ -1,24 +1,10 @@
 {block content}
 
-	<div class="container">
-		<div class="container padding-bottom">
-			<div id="login-container">
-				<h1>Sign in</h1>
-
-				<form n:name=signInForm>
-					<div id="login-form">
-						<div id="errors" style="display:hide;" n:if="$form->ownErrors">
-							<p n:foreach="$form->ownErrors as $error" style="color: white;"><b>{$error}</b></p>
-						</div>
-                        <input n:name=username>
-						<input n:name=email>
-						<input n:name=password>
-						<input n:name=remember>
-						<input n:name=send>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
+	{form signInFormFactory}
+    	{input userNameOrEmail}
+    	{input password}
+    	{input remember}
+    	{input send}
+    {/form}
 
 {/block}

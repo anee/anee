@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Modules\LoginModule\Presenters;
+namespace App\Modules\SecurityModule\Presenters;
 
-use App\Modules\SecurityModule\Presenters\BasePresenter;
+use App\Modules\SecurityModule\Components\TInjectSignInFormFactory;
 use Nette;
-use Nette\Application\UI\Form;
 use App\Model;
 use Nette\Security\AuthenticationException;
 
@@ -13,6 +12,7 @@ use Nette\Security\AuthenticationException;
 class SignPresenter extends BasePresenter
 {
 
+	use TInjectSignInFormFactory;
 
     public function formatLayoutTemplateFiles()
     {
@@ -22,23 +22,15 @@ class SignPresenter extends BasePresenter
         return $files;
     }
 
-
-    protected function createComponentSignInForm()
+	/**
+	 * @return \App\Modules\SecurityModule\Components\SignInFormFactory
+	 */
+	protected function createComponentSignInFormFactory()
 	{
-		$form = new Form;
-
-		$form->addText('username')->setRequired('Please enter your username.');
-        $form->addText('email')->setRequired('Please enter your email.')
-            ->addRule(Form::EMAIL, 'Please insert correct email address.');
-		$form->addPassword('password')
-			->setRequired('Please enter your password.');
-		$form->addCheckbox('remember', 'Keep me signed in');
-		$form->addSubmit('send', 'Sign in');
+		$form = $this->signInFormFactory->create();
 		$form->onSuccess[] = $this->signInFormSucceeded;
-
 		return $form;
 	}
-
 
 	public function signInFormSucceeded($form)
 	{
@@ -50,7 +42,7 @@ class SignPresenter extends BasePresenter
 			$this->getUser()->setExpiration('20 minutes', TRUE);
 		}
 		try {
-			$this->getUser()->login($values->username, $values->email, $values->password);
+			$this->getUser()->login($values->userNameOrEmail, $values->password);
 			$this->redirect(':Front:Homepage:default');
 
 		} catch (AuthenticationException $e) {
@@ -58,10 +50,9 @@ class SignPresenter extends BasePresenter
 		}
 	}
 
-
 	public function actionOut()
 	{
 		$this->getUser()->logout();
-		$this->redirect(':Front:Sign:in');
+		$this->redirect(':Security:Sign:in');
 	}
 }
