@@ -9,9 +9,9 @@
 
 namespace App\Modules\FrontModule\Components;
 
+use App\Model\TransportBaseLogic;
 use Nette;
 use Nette\Application\UI\Form;
-use Kdyby\Doctrine\EntityDao;
 
 
 
@@ -23,12 +23,12 @@ class SearchFormFactory extends Nette\Object
 
     private $presenter;
 
-	/** @var EntityDao  */
-    private $transport;
+	/** @var TransportBaseLogic */
+    private $transportBaseLogic;
 
-    public function __construct(EntityDao $dao)
+    public function __construct(TransportBaseLogic $transportBaseLogic)
     {
-        $this->transport = $dao;
+        $this->transportBaseLogic = $transportBaseLogic;
     }
 
     public function create($parent)
@@ -44,7 +44,7 @@ class SearchFormFactory extends Nette\Object
             'Photos' => 'Photos',
         );
         $transports = array();
-        foreach($this->transport->findAll() as $transport) {
+        foreach($this->transportBaseLogic->findAll() as $transport) {
             $transports[$transport->name] = ucfirst($transport->name);
         }
         $time = array(

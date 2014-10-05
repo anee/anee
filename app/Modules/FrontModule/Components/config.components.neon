@@ -1,2 +1,2 @@
 services:
-    - App\Modules\FrontModule\Components\SearchFormFactory(@doctrine.dao(App\Model\Transport))
+    - App\Modules\FrontModule\Components\SearchFormFactory(@transportBaseLogic)
