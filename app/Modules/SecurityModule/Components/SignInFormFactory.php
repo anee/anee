@@ -23,7 +23,7 @@ class SignInFormFactory extends Nette\Object
     public function create()
     {
 		$form = new Form;
-		$form->addText('userNameOrEmail')->setRequired('Please enter your username or email.');
+		$form->addText('usernameOrEmail')->setRequired('Please enter your username or email.');
 		$form->addPassword('password')
 			->setRequired('Please enter your password.');
 		$form->addCheckbox('remember', 'Keep me signed in');
