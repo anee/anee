@@ -12,6 +12,13 @@
 	<meta name="author" http-equiv="content-type" content="Lukáš Drahník" />
 	<meta name="copyright" http-equiv="content-type" content="Lukáš Drahník" />
 
+	<!--Open Graph - sharing values-->
+	<meta property="og:title" content="Anee">
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="http://anee.drahnik-lukas.com/">
+	<meta property="og:image" content="http://anee.drahnik-lukas.com/images/og-image.png">
+	<meta property="og:description" content="">
+
 	<meta name="robots" content="{$robots}" n:ifset="$robots">
 	<link rel="shortcut icon" href="{$basePath}/favicon.ico">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -170,6 +177,7 @@
 {block scripts}
 	{control js}
 {/block}
+
 	<!-- Initialize the plugin: -->
 	<script type="text/javascript">
 		$(document).ready(function() {
