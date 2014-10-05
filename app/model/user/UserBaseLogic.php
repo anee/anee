@@ -27,14 +27,15 @@ class UserBaseLogic extends BaseLogic {
 		return $qb->getQuery()->getOneOrNullResult();
 	}
 
-	public function findOneByEmail($email)
+	public function findOneSignIn($input)
 	{
 		$qb = $this->dao->createQueryBuilder();
 		$qb
 			->select('e')
 			->from('App\Model\User', 'e')
-			->where('e.email = :email')
-			->setParameter('email', $email);
+			->where('e.username = :input')
+			->orWhere('e.email = :input')
+			->setParameter('input', $input);
 
 		return $qb->getQuery()->getOneOrNullResult();
 	}

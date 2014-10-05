@@ -31,12 +31,9 @@ class Authenticator extends Object implements NS\IAuthenticator
 
     public function authenticate(array $credentials)
     {
-        list($username, $email, $password) = $credentials;
+        list($userNameOrEmail, $password) = $credentials;
 
-		// CREATE NEW USER
-		/*$this->userBaseLogic->save(new User($username, $email, $password));*/
-
-        $user = $this->userBaseLogic->findOneByEmail($email);
+        $user = $this->userBaseLogic->findOneSignIn($userNameOrEmail);
 
         if (!$user || !Passwords::verify($password, $user->getPassword()))
             throw new NS\AuthenticationException("Wrong user or password.");
