@@ -37,5 +37,4 @@ class User extends BaseEntity {
 		$this->email = $email;
 		$this->password = Passwords::hash($password);
 	}
-
-} 
+}
