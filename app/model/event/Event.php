@@ -57,15 +57,6 @@ class Event extends BaseEntity
      */
     protected $photo;
 
-    /**
-     * @ORM\Column(type="text", nullable=false)
-     */
-    protected $fileName;
-
-    /**
-     * @ORM\Column(type="text", nullable=false)
-     */
-    protected $filePath;
 
     public function __construct($distance, $timeInSeconds, $date)
     {
@@ -76,7 +67,9 @@ class Event extends BaseEntity
 
     public function getName()
     {
-        if ($this->placeTo == NULL || $this->place->getName() == $this->placeTo->getName())
+		if($this->place == NULL) {
+			return 'Unknown event';
+		} elseif($this->placeTo == NULL || $this->place->getName() == $this->placeTo->getName())
             return 'Near '.$this->place->getName();
         else
             return 'From '.$this->place->getName() .' to ' . $this->placeTo->getName();

@@ -52,16 +52,6 @@ class Track extends BaseEntity
      */
     protected $photos;
 
-    /**
-     * @ORM\Column(type="text", nullable=false)
-     */
-    protected $fileName;
-
-    /**
-     * @ORM\Column(type="text", nullable=false)
-     */
-    protected $filePath;
-
 
     public function __construct($transport, $distance, $timeInSeconds, $maxSpeed, $date, $place)
     {
@@ -75,7 +65,9 @@ class Track extends BaseEntity
 
     public function getName()
     {
-        if ($this->placeTo == NULL || $this->place->getName() == $this->placeTo->getName())
+		if($this->place == NULL) {
+			return 'Unknown track';
+		} elseif($this->placeTo == NULL || $this->place->getName() == $this->placeTo->getName())
             return 'Near '.$this->place->getName();
         else
             return 'From '.$this->place->getName() .' to ' . $this->placeTo->getName();
