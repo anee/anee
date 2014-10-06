@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\FrontModule\Presenters;
+namespace App\Modules\BackendModule\Presenters;
 
 use Nette;
 
@@ -20,7 +20,7 @@ class TrackPresenter extends BasePresenter
 
 	public function renderDetail($id)
 	{
-        $this->track = $this->trackBaseLogic->findById($id);
+        $this->track = $this->trackBaseLogic->findOneById($id);
 
         if ($this->track == null) {
             throw new Nette\Application\BadRequestException;

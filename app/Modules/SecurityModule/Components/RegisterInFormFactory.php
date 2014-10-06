@@ -54,9 +54,9 @@ class RegisterInFormFactory extends Nette\Object
 
 		if($userByEmail == NULL && $userByUsername == NULL) {
 			$this->userBaseLogic->save(new User($values->username, $values->email, $values->password));
-			$this->presenter->redirect(':Front:Homepage:default');
+			$this->presenter->redirect(':Frontend:Homepage:default');
 		} else {
-			$form->addError('User already exist.');
+			$form->addError('Username or user with this email already exist.');
 		}
 	}
 }

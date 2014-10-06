@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Modules\FrontModule\Presenters;
+namespace App\Modules\BackendModule\Presenters;
 
-use App\Modules\FrontModule\Components;
+use App\Modules\BackendModule\Components;
 use App\Searching;
 
 

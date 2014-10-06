@@ -14,14 +14,6 @@ class SignPresenter extends BasePresenter
 
 	use TInjectSignInFormFactory;
 
-    public function formatLayoutTemplateFiles()
-    {
-        $files = parent::formatLayoutTemplateFiles();
-        $files[] = __DIR__ . '/../templates/@layoutSign.latte';
-
-        return $files;
-    }
-
 	/**
 	 * @return \App\Modules\SecurityModule\Components\SignInFormFactory
 	 */
@@ -43,7 +35,7 @@ class SignPresenter extends BasePresenter
 		}
 		try {
 			$this->getUser()->login($values->usernameOrEmail, $values->password);
-			$this->redirect(':Front:Homepage:default');
+			$this->redirect(':Backend:Homepage:default', array('username' => $this->getUser()->getIdentity()->data['username']));
 
 		} catch (AuthenticationException $e) {
  			$form->addError($e->getMessage());
@@ -53,6 +45,6 @@ class SignPresenter extends BasePresenter
 	public function actionOut()
 	{
 		$this->getUser()->logout();
-		$this->redirect(':Security:Sign:in');
+		$this->redirect(':Frontend:Homepage:default');
 	}
 }

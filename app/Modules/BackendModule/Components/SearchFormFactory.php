@@ -7,7 +7,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-namespace App\Modules\FrontModule\Components;
+namespace App\Modules\BackendModule\Components;
 
 use App\Model\TransportBaseLogic;
 use Nette;

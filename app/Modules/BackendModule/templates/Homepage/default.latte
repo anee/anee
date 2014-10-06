@@ -1,0 +1,11 @@
+{block content}
+
+    {if $user->isLoggedIn()}
+        Backend - homepage - logged in,
+        <a href="{plink :Security:Sign:Out}">Sign out</a>
+    {else}
+       Backend - homepage - dont logged in
+    {/if}
+
+
+{/block}

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\FrontModule\Presenters;
+namespace App\Modules\BackendModule\Presenters;
 
 use Nette;
 
@@ -20,7 +20,7 @@ class EventPresenter extends BasePresenter
 
     public function renderDetail($id)
     {
-        $this->event = $this->eventBaseLogic->findById($id);
+        $this->event = $this->eventBaseLogic->findOneById($id);
 
         if ($this->event == null) {
             throw new Nette\Application\BadRequestException;

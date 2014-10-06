@@ -3,7 +3,7 @@
 namespace App\Modules\BaseModule\Presenters;
 
 use Nette;
-use App\Modules\FrontModule\Components\TInjectSearchFormFactory;
+use App\Modules\FrontendModule\Components\TInjectSearchFormFactory;
 use WebLoader\Nette\CssLoader;
 use WebLoader\Nette\JavaScriptLoader;
 
@@ -14,11 +14,6 @@ use WebLoader\Nette\JavaScriptLoader;
 abstract class BasePresenter extends Nette\Application\UI\Presenter
 {
 
-    use TInjectSearchFormFactory;
-
-	/** @var \App\Searching\SearchFactory @inject */
-	public $searchFactory;
-
 	public function formatLayoutTemplateFiles()
 	{
 		$files = parent::formatLayoutTemplateFiles();
@@ -26,25 +21,6 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 
 		return $files;
 	}
-
-    protected function createTemplate($class = NULL)
-    {
-        $template = parent::createTemplate($class);
-		$template->menuInfo = $this->searchFactory->getMenuInfo();
-
-        // HELPERS
-		$template->addFilter(NULL, 'App\TemplateHelpers::loader');
-
-        return $template;
-    }
-
-    /**
-     * @return \App\Modules\FrontModule\Components\SearchFormFactory
-     */
-    protected function createComponentSearchFormFactory()
-    {
-        return $this->searchFormFactory->create($this);
-    }
 
 	/**
 	 * @return CssLoader
@@ -57,7 +33,6 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 
 		return $loader;
 	}
-
 
 	/**
 	 * @return JavaScriptLoader

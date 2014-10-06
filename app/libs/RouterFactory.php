@@ -21,13 +21,20 @@ class RouterFactory
 	{
 		$router = new RouteList();
 
-        // DEFAULT
-        $router[] = new Route('<module>/<presenter>/<action>/<id>', array(
-            'module' => 'Front',
-            'presenter' => 'Homepage',
-            'action' => 'default',
-            'id' => NULL,
-        ));
+		$backend = new RouteList('Backend');
+		$backend[] = new Route('user/<username>/<presenter>/<action>/<id>', array(
+			'username' => NULL,
+			'presenter' => 'Homepage',
+			'action' => 'default',
+			'id' => NULL,
+		));
+		$router[] = $backend;
+
+		$router[] = new Route('<module>/<presenter>/<action>', array(
+			'module' => 'Frontend',
+			'presenter' => 'Homepage',
+			'action' => 'default',
+		));
 
 		return $router;
 	}

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\SecurityModule\Presenters;
+namespace App\Modules\FrontendModule\Presenters;
 
 use Nette;
 
@@ -10,5 +10,6 @@ use Nette;
  */
 abstract class BasePresenter extends \App\Modules\BaseModule\Presenters\BasePresenter
 {
+
 
 }
