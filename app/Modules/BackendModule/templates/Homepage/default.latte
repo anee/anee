@@ -1,11 +1,12 @@
 {block content}
 
-    {if $user->isLoggedIn()}
-        Backend - homepage - logged in,
-        <a href="{plink :Security:Sign:Out}">Sign out</a>
-    {else}
-       Backend - homepage - dont logged in
-    {/if}
+     Backend - homepage - logged in,
+
+     {foreach $tracks as $track}
+         <a href="{plink :Backend:Track:Detail, 'id' => $track->getId(), 'username' => $user->getIdentity()->data['username']}">{$track->getName()}</a>
+     {/foreach}
+
+     <a href="{plink :Security:Sign:Out}">Sign out</a>
 
 
 {/block}
