@@ -11,6 +11,11 @@ use DateTime;
 class Photo extends BaseEntity
 {
 
+	/**
+	 * @ORM\ManyToOne(targetEntity="App\Model\User", inversedBy="photos")
+	 */
+	protected $user;
+
     /**
      * @ORM\Column(type="text", nullable=false)
      */

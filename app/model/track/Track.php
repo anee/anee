@@ -12,6 +12,11 @@ use Doctrine\ORM\Mapping as ORM;
 class Track extends BaseEntity
 {
 
+	/**
+	 * @ORM\ManyToOne(targetEntity="App\Model\User", inversedBy="tracks")
+	 */
+	protected $user;
+
     /**
      * @ORM\ManyToOne(targetEntity="App\Model\Transport", inversedBy="track")
      */

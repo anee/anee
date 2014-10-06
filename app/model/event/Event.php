@@ -12,6 +12,11 @@ use Doctrine\ORM\Mapping as ORM;
 class Event extends BaseEntity
 {
 
+	/**
+	 * @ORM\ManyToOne(targetEntity="App\Model\User", inversedBy="events")
+	 */
+	protected $user;
+
     /**
      * @ORM\Column(type="text", nullable=false)
      */

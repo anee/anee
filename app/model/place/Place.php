@@ -12,6 +12,11 @@ use Doctrine\Common\Collections\ArrayCollection;
 class Place extends BaseEntity
 {
 
+	/**
+	 * @ORM\ManyToOne(targetEntity="App\Model\User", inversedBy="places")
+	 */
+	protected $user;
+
     /**
      * @ORM\Column(type="string", nullable=false)
      */

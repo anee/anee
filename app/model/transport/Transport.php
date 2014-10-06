@@ -13,6 +13,11 @@ use Doctrine\Common\Collections\ArrayCollection;
 class Transport extends BaseEntity
 {
 
+	/**
+	 * @ORM\ManyToOne(targetEntity="App\Model\User", inversedBy="transports")
+	 */
+	protected $user;
+
     /**
      * @ORM\Column(type="string", nullable=false)
      */
