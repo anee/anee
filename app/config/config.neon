@@ -19,5 +19,6 @@ services:
 includes:
 		- ../model/config.model.neon
 		- ../extensions/config.extensions.neon
-		- ../Modules/FrontModule/Components/config.components.neon
+		- ../Modules/FrontendModule/Components/config.components.neon
+		- ../Modules/BackendModule/Components/config.components.neon
 		- ../Modules/SecurityModule/Components/config.components.neon
