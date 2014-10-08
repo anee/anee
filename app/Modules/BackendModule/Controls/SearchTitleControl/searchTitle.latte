@@ -1,0 +1,71 @@
+
+
+                  {$results->getCount()}
+            		Results ({count($results->getEvents())} Events, {count($results->getTracks())} Tracks, {count($results->getPhotos())} Photos, {count($results->getPlaces())} Places)
+            				{if $values['search'] != ""}
+            					for
+            					<span class="highlight"><a href="">{$values['search']}</a></span>
+            				{/if}
+            				{var $first = 0}
+            				{foreach $values['filterCategory'] as $u => $category}
+            					{if $first == 0 && $category != ""}
+            						in <span class="highlight"><a href="">{$category}</a></span>
+            						{var $first = 1}
+            					{elseif $category != ""}
+            						, <span class="highlight"><a href="">{$category}</a></span>
+            					{/if}
+            				{/foreach}
+            				{if ($values['filterEntity'] == "Track" || $values['filterEntity'] == "Event") && $template->arrayContainsOneOrMore(array('Photos', 'Places'), $values['filterCategory'])}
+            					during <span class="highlight"><a href="
+            					{link $results->getEntityUrl(), $results->getEntityObjectl()->getId()}
+                                                        ">{$results->getEntityObjectl()->getName()}</a></span>
+            				{elseif $values['filterEntity'] == "Place" && $template->arrayContainsOneOrMore(array('Tracks', 'Events', 'Photos', 'Places'), $values['filterCategory'])}
+            					near <span class="highlight"><a href="
+                                	{var $args = array('values' => array('filterCategory' => array('Photos', 'Tracks', 'Events', 'Places'), 'filterEntity' => 'Place', 'filterEntityId' => $results->getEntityObjectl()->getId()))}
+                                    {link Search:default (expand) $args}
+                                ">{$results->getEntityObjectl()->name}</a></span>
+            				{/if}
+            				{var $first = 0}
+                            {foreach $values['filterTransport'] as $u => $transport}
+                            	{if $first == 0 && $transport != ""}
+                            		by <span class="highlight"><a href="
+                            			{var $args = array('values' => [filterTransport => array($transport)])}
+                                    	{link Search:default (expand) $args}
+                            		">{ucfirst($transport)}</a></span>
+                            		{var $first = 1}
+                            	{elseif $transport != ""}
+                            		, <span class="highlight"><a href="
+                            		    {var $args = array('values' => [filterTransport => array($transport)])}
+                                        {link Search:default (expand) $args}
+                                                            ">{ucfirst($transport)}</a></span>
+                            	{/if}
+                            {/foreach}
+                            {if $values['filterTime'] != ""}
+                            	{if empty($values['filterCategory']) != true || empty($values['filterTransport']) != true || $values['search'] != "" || $values['filterEntity'] != ""}
+                                            ,
+                                {/if}
+                            	<span class="highlight"><a href="">{$values['filterTime']}</a></span>
+                           	{/if}
+
+				<ul class="detail-info float-right">
+					<li class="{$template->selectedOrNothing('Events', $values['filterCategory'])}">
+						<span class="highlight">{$results->getEventsCount()}</span><a href="
+						{var $args = array('values' => array_merge($values, [filterCategory => array('Events')]))}
+                        {plink Search:default (expand) $args}"> Events</a>
+					</li>
+					<li class="{$template->selectedOrNothing('Tracks', $values['filterCategory'])}">
+						<span class="highlight">{$results->getTracksCount()}</span><a href="
+						{var $args = array('values' => array_merge($values, [filterCategory => array('Tracks')]))}
+                        {plink Search:default (expand) $args}"> Tracks</a>
+					</li>
+					<li class="{$template->selectedOrNothing('Places', $values['filterCategory'])}">
+						<span class="highlight">{$results->getPlacesCount()}</span><a href="
+						{var $args = array('values' => array_merge($values, [filterCategory => array('Places')]))}
+                        {plink Search:default (expand) $args}"> Places</a>
+					</li>
+					<li class="{$template->selectedOrNothing('Photos', $values['filterCategory'])}">
+						<span class="highlight">{$results->getPhotosCount()}</span><a href="
+						{var $args = array('values' => array_merge($values, [filterCategory => array('Photos')]))}
+                        {plink Search:default (expand) $args}"> Photos</a>
+					</li>
+				</ul>
