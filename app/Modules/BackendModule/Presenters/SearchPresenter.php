@@ -2,9 +2,8 @@
 
 namespace App\Modules\BackendModule\Presenters;
 
-use App\Modules\BackendModule\Components;
+
 use App\Modules\BackendModule\Controls\SearchTitleControl;
-use App\Searching;
 
 
 /**
@@ -21,7 +20,7 @@ class SearchPresenter extends BasePresenter
 		$this->searchFactory->setValues($this->getParameter('values'));
 	}
 
-	public function createComponentSearchTitleControl()
+	public function createComponentSearchTitle()
 	{
 		return new SearchTitleControl($this->searchFactory->getValues(), $this->searchFactory->getResults());
 	}
