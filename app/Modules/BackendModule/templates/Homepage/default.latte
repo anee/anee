@@ -1,12 +1,10 @@
 {block content}
 
-     Backend - homepage - logged in,
+     Logged in as {$user->getIdentity()->data['username']} - <a href="{plink :Security:Sign:Out}">Sign out</a>,
 
-     {foreach $tracks as $track}
+    Tracks:
+     ({foreach $tracks as $track}
          <a href="{plink :Backend:Track:Detail, 'id' => $track->getId(), 'username' => $user->getIdentity()->data['username']}">{$track->getName()}</a>
-     {/foreach}
-
-     <a href="{plink :Security:Sign:Out}">Sign out</a>
-
+     {/foreach})
 
 {/block}
