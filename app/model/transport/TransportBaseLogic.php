@@ -37,7 +37,7 @@ class TransportBaseLogic extends BaseLogic {
             ->where('e.id = :id')
             ->setParameter('id', $id);
 
-        return $this->addFilterByUser($qb, $userId)->getQuery()->getOneOrNullResult();
+        return $qb->getQuery()->getOneOrNullResult();
     }
 
 	public function findByIdAndUserId($id, $userId)
