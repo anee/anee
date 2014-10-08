@@ -17,6 +17,6 @@ class RegisterPresenter extends BasePresenter
 	 */
 	protected function createComponentRegisterInFormFactory()
 	{
-		return $this->registerInFormFactory->create($this);
+		return $this->registerInFormFactory->create();
 	}
 }

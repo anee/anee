@@ -13,23 +13,19 @@ use App\Model\User;
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
  */
-class RegisterInFormFactory extends Nette\Object
+class RegisterInFormFactory extends Nette\Application\UI\Control
 {
 
 	/** @var EntityDao  */
 	private $userBaseLogic;
-
-	private $presenter;
 
 	public function __construct(UserBaseLogic $userBaseLogic)
 	{
 		$this->userBaseLogic = $userBaseLogic;
 	}
 
-	public function create($presenter)
+	public function create()
 	{
-		$this->presenter = $presenter;
-
 		$form = new Form;
 		$form->addText('username')->setRequired('Please enter your username.');
 		$form->addPassword('password')
@@ -54,7 +50,7 @@ class RegisterInFormFactory extends Nette\Object
 
 		if($userByEmail == NULL && $userByUsername == NULL) {
 			$this->userBaseLogic->save(new User($values->username, $values->email, $values->password));
-			$this->presenter->redirect(':Frontend:Homepage:default');
+			$this->getPresenter()->redirect(':Frontend:Homepage:default');
 		} else {
 			$form->addError('Username or user with this email already exist.');
 		}
