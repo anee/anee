@@ -10,22 +10,15 @@ use Nette\Security as NS;
 class HomepagePresenter extends BasePresenter
 {
 
+	/** @var \App\Model\TrackBaseLogic @inject*/
+	public $trackBaseLogic;
 
 	public function renderDefault($username)
 	{
-		if ($username != NULL) {
-			if ($this->user->isLoggedIn()) {
-				if ($username != $this->getUser()->getIdentity()->data['username']) {
-					$this->redirect(':Backend:Homepage:default', array('username' => $this->getUser()->getIdentity()->data['username']));
-				}
-			} else {
-				$this->redirect(':Security:Sign:in');
-			}
+		if($username == $this->getUser()->getIdentity()->data['username']) {
+			$this->template->tracks = $this->trackBaseLogic->findAllByUserId($this->getUser()->getIdentity()->data['id']);
 		} else {
-			if ($this->user->isLoggedIn()) {
-				$this->redirect(':Backend:Homepage:default', array('username' => $this->getUser()->getIdentity()->data['username']));
-			}
-			$this->redirect(':Security:Sign:in');
+			$this->redirect(':Backend:Homepage:default', array('username' => $this->getUser()->getIdentity()->data['username']));
 		}
 	}
 }

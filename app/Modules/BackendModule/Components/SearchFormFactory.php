@@ -23,6 +23,8 @@ class SearchFormFactory extends Nette\Object
 
     private $presenter;
 
+	private $userId;
+
 	/** @var TransportBaseLogic */
     private $transportBaseLogic;
 
@@ -31,9 +33,10 @@ class SearchFormFactory extends Nette\Object
         $this->transportBaseLogic = $transportBaseLogic;
     }
 
-    public function create($parent)
+    public function create($parent, $userId)
     {
         $this->presenter = $parent;
+		$this->userId = $userId;
 
         $form = new Form;
         $form->addText('search')->setAttribute('placeholder', 'Search...');
@@ -44,7 +47,7 @@ class SearchFormFactory extends Nette\Object
             'Photos' => 'Photos',
         );
         $transports = array();
-        foreach($this->transportBaseLogic->findAll() as $transport) {
+        foreach($this->transportBaseLogic->findAll($userId) as $transport) {
             $transports[$transport->name] = ucfirst($transport->name);
         }
         $time = array(
@@ -69,7 +72,7 @@ class SearchFormFactory extends Nette\Object
 
     public function succes($form)
     {
-		$form->values['userId'] = $this->getUser()->getIdentity()->data['id'];
+		$form->values['userId'] = $this->userId;
         $this->presenter->redirect('Search:default', array('values' => $form->values));
     }
 }

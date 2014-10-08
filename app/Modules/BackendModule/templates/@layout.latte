@@ -28,6 +28,14 @@
     <!-- Begin page content -->
     {include content}
 
+	{form searchFormFactory}
+		{input search}
+		{input filterCategory}
+		{input filterTransport}
+		{input filterTime}
+		{input filterSortBy}
+	{/form}
+
     {block scripts}
 	    {control js}
     {/block}

@@ -3,6 +3,7 @@
 namespace App\Modules\BackendModule\Presenters;
 
 use Nette;
+use App\Modules\BackendModule\Components\TInjectSearchFormFactory;
 
 
 /**
@@ -14,6 +15,18 @@ abstract class BasePresenter extends \App\Modules\BaseModule\Presenters\BasePres
 	/** @var \Kappa\ThumbnailsHelper\ThumbnailsHelper @inject*/
 	public $thumbnailsHelper;
 
+	use TInjectSearchFormFactory;
+
+	/** @var \App\Searching\SearchFactory @inject */
+	public $searchFactory;
+
+	/**
+	 * @return \App\Modules\BackendModule\Components\SearchFormFactory
+	 */
+	protected function createComponentSearchFormFactory()
+	{
+		return $this->searchFormFactory->create($this, $this->getUser()->getIdentity()->data['id']);
+	}
 
 	protected function createTemplate($class = NULL)
 	{
