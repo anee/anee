@@ -1,0 +1,2 @@
+services:
+	- App\Modules\BackendModule\Forms\SearchFormFactory(@transportBaseLogic)

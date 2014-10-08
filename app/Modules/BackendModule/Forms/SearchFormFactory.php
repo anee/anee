@@ -7,7 +7,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-namespace App\Modules\BackendModule\Components;
+namespace App\Modules\BackendModule\Forms;
 
 use App\Model\TransportBaseLogic;
 use Nette;
@@ -23,7 +23,7 @@ class SearchFormFactory extends Nette\Object
 
     private $presenter;
 
-	private $userId;
+	private $user;
 
 	/** @var TransportBaseLogic */
     private $transportBaseLogic;
@@ -33,10 +33,10 @@ class SearchFormFactory extends Nette\Object
         $this->transportBaseLogic = $transportBaseLogic;
     }
 
-    public function create($parent, $userId)
+    public function create($parent, $user)
     {
         $this->presenter = $parent;
-		$this->userId = $userId;
+		$this->user = $user;
 
         $form = new Form;
         $form->addText('search')->setAttribute('placeholder', 'Search...');
@@ -47,7 +47,7 @@ class SearchFormFactory extends Nette\Object
             'Photos' => 'Photos',
         );
         $transports = array();
-        foreach($this->transportBaseLogic->findAll($userId) as $transport) {
+        foreach($this->transportBaseLogic->findAll($this->user->getIdentity()->data['id']) as $transport) {
             $transports[$transport->name] = ucfirst($transport->name);
         }
         $time = array(
@@ -72,7 +72,8 @@ class SearchFormFactory extends Nette\Object
 
     public function succes($form)
     {
-		$form->values['userId'] = $this->userId;
-        $this->presenter->redirect('Search:default', array('values' => $form->values));
+		$values = $form->values;
+		$values['userId'] = $this->user->getIdentity()->data['id'];
+        $this->presenter->redirect(':Backend:Search:default', array('values' => $values, 'username' => $this->user->getIdentity()->data['username']));
     }
 }

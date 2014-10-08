@@ -3,7 +3,7 @@
 namespace App\Modules\BackendModule\Presenters;
 
 use Nette;
-use App\Modules\BackendModule\Components\TInjectSearchFormFactory;
+use App\Modules\BackendModule\Forms\TInjectSearchFormFactory;
 
 
 /**
@@ -21,11 +21,11 @@ abstract class BasePresenter extends \App\Modules\BaseModule\Presenters\BasePres
 	public $searchFactory;
 
 	/**
-	 * @return \App\Modules\BackendModule\Components\SearchFormFactory
+	 * @return \App\Modules\BackendModule\Forms\SearchFormFactory
 	 */
 	protected function createComponentSearchFormFactory()
 	{
-		return $this->searchFormFactory->create($this, $this->getUser()->getIdentity()->data['id']);
+		return $this->searchFormFactory->create($this, $this->getUser());
 	}
 
 	protected function createTemplate($class = NULL)

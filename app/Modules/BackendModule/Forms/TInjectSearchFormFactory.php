@@ -6,7 +6,7 @@
  * Time: 17:01
  */
 
-namespace App\Modules\BackendModule\Components;
+namespace App\Modules\BackendModule\Forms;
 
 
 
@@ -17,7 +17,7 @@ trait TInjectSearchFormFactory
 {
 
     /**
-     * @var \App\Modules\BackendModule\Components\SearchFormFactory
+     * @var \App\Modules\BackendModule\Forms\SearchFormFactory
      */
     protected $searchFormFactory;
 
