@@ -26,7 +26,7 @@ class BaseLogic extends Object
 		$this->dao->save($entity);
 	}
 
-	public function filterByUser(QueryBuilder $qb, $userId)
+	public function addFilterByUser(QueryBuilder $qb, $userId)
 	{
 		return $qb
 			->join('e.user', 'eUser')

@@ -66,6 +66,14 @@ class BaseSearchQuery extends QueryObject
 		return $this;
 	}
 
+	public function addFilterByUser(QueryBuilder $qb, $userId)
+	{
+		return $qb
+			->join('e.user', 'eUser')
+			->andWhere('eUser.id = :userId')
+			->setParameter('userId', $userId);
+	}
+
 	/**
 	 * @param \Kdyby\Doctrine\QueryBuilder $qb
 	 * @return \Kdyby\Doctrine\QueryBuilder

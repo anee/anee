@@ -25,7 +25,7 @@ class TransportBaseLogic extends BaseLogic {
             ->from('App\Model\Transport', 'e')
             ->orderBy('e.name', 'ASC');
 
-        return $this->filterByUser($qb, $userId)->getQuery()->getResult();
+        return $this->addFilterByUser($qb, $userId)->getQuery()->getResult();
     }
 
     public function findById($id)
@@ -37,7 +37,7 @@ class TransportBaseLogic extends BaseLogic {
             ->where('e.id = :id')
             ->setParameter('id', $id);
 
-        return $this->filterByUser($qb, $userId)->getQuery()->getOneOrNullResult();
+        return $this->addFilterByUser($qb, $userId)->getQuery()->getOneOrNullResult();
     }
 
 	public function findByIdAndUserId($id, $userId)
@@ -49,6 +49,6 @@ class TransportBaseLogic extends BaseLogic {
 			->where('e.id = :id')
 			->setParameter('id', $id);
 
-		return $this->filterByUser($qb, $userId)->getQuery()->getOneOrNullResult();
+		return $this->addFilterByUser($qb, $userId)->getQuery()->getOneOrNullResult();
 	}
 }

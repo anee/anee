@@ -24,7 +24,7 @@ class TrackBaseLogic extends BaseLogic {
             ->from('App\Model\Track', 'e')
             ->orderBy('e.date', 'DESC');
 
-        return $this->filterByUser($qb, $userId)->getQuery()->getResult();
+        return $this->addFilterByUser($qb, $userId)->getQuery()->getResult();
     }
 
     public function findLast($userId)
@@ -35,7 +35,7 @@ class TrackBaseLogic extends BaseLogic {
             ->from('App\Model\Track', 'e')
             ->orderBy('e.date', 'DESC');
 
-        return $this->filterByUser($qb, $userId)->getQuery()->setMaxResults(1)->getOneOrNullResult();
+        return $this->addFilterByUser($qb, $userId)->getQuery()->setMaxResults(1)->getOneOrNullResult();
     }
 
     public function findAllCount($userId)
@@ -45,7 +45,7 @@ class TrackBaseLogic extends BaseLogic {
             ->select('COUNT(e.id)')
             ->from('App\Model\Track', 'e');
 
-        return $this->filterByUser($qb, $userId)->getQuery()->getSingleScalarResult();
+        return $this->addFilterByUser($qb, $userId)->getQuery()->getSingleScalarResult();
     }
 
     public function findLastByCount($count, $userId)
@@ -56,7 +56,7 @@ class TrackBaseLogic extends BaseLogic {
             ->from('App\Model\Track', 'e')
             ->orderBy('e.date', 'DESC');
 
-        return $this->filterByUser($qb, $userId)->getQuery()->setMaxResults($count)->getResult();
+        return $this->addFilterByUser($qb, $userId)->getQuery()->setMaxResults($count)->getResult();
     }
 
     public function findOneById($id)
@@ -78,7 +78,7 @@ class TrackBaseLogic extends BaseLogic {
 			->select('e')
 			->from('App\Model\Track', 'e');
 
-		return $this->filterByUser($qb, $userId)->getQuery()->getResult();
+		return $this->addFilterByUser($qb, $userId)->getQuery()->getResult();
 	}
 
 	public function findOneByIdAndUserId($id, $userId)
@@ -90,7 +90,7 @@ class TrackBaseLogic extends BaseLogic {
 			->andWhere('e.id = :id')
 			->setParameter('id', $id);
 
-		return $this->filterByUser($qb, $userId)->getQuery()->getOneOrNullResult();
+		return $this->addFilterByUser($qb, $userId)->getQuery()->getOneOrNullResult();
 	}
 
     public function distanceSum($userId)

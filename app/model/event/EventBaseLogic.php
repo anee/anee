@@ -23,7 +23,7 @@ class EventBaseLogic extends BaseLogic {
             ->from('App\Model\Event', 'e')
             ->orderBy('e.date', 'DESC');
 
-        return $this->filterByUser($qb, $userId)->getQuery()->getResult();
+        return $this->addFilterByUser($qb, $userId)->getQuery()->getResult();
     }
 
     public function findAllCount($userId)
@@ -33,7 +33,7 @@ class EventBaseLogic extends BaseLogic {
             ->select('COUNT(e.id)')
             ->from('App\Model\Event', 'e');
 
-        return $this->filterByUser($qb, $userId)->getQuery()->getSingleScalarResult();
+        return $this->addFilterByUser($qb, $userId)->getQuery()->getSingleScalarResult();
     }
 
     public function findLast($userId)
@@ -44,7 +44,7 @@ class EventBaseLogic extends BaseLogic {
             ->from('App\Model\Event', 'e')
             ->orderBy('e.date', 'DESC');
 
-        return $this->filterByUser($qb, $userId)->getQuery()->setMaxResults(1)->getOneOrNullResult();
+        return $this->addFilterByUser($qb, $userId)->getQuery()->setMaxResults(1)->getOneOrNullResult();
     }
 
 	public function findOneById($id)
@@ -67,7 +67,7 @@ class EventBaseLogic extends BaseLogic {
 			->where('e.id = :id')
 			->setParameter('id', $id);
 
-		return $this->filterByUser($qb, $userId)->getQuery()->getOneOrNullResult();
+		return $this->addFilterByUser($qb, $userId)->getQuery()->getOneOrNullResult();
 	}
 
     public function distanceSum($userId)

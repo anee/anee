@@ -23,7 +23,7 @@ class PhotoBaseLogic extends BaseLogic {
             ->from('App\Model\Photo', 'e')
             ->orderBy('e.date', 'DESC');
 
-        return $this->filterByUser($qb, $userId)->getQuery()->setMaxResults(1)->getSingleResult();
+        return $this->addFilterByUser($qb, $userId)->getQuery()->setMaxResults(1)->getSingleResult();
     }
 
     public function findLastByCount($count, $userId)
@@ -34,7 +34,7 @@ class PhotoBaseLogic extends BaseLogic {
             ->from('App\Model\Photo', 'e')
             ->orderBy('e.date', 'DESC');
 
-        return $this->filterByUser($qb, $userId)->getQuery()->setMaxResults($count)->getResult();
+        return $this->addFilterByUser($qb, $userId)->getQuery()->setMaxResults($count)->getResult();
     }
 
     public function findAll($userId)
@@ -45,7 +45,7 @@ class PhotoBaseLogic extends BaseLogic {
             ->from('App\Model\Photo', 'e')
             ->orderBy('e.date', 'DESC');
 
-        return $this->filterByUser($qb, $userId)->getQuery()->getResult();
+        return $this->addFilterByUser($qb, $userId)->getQuery()->getResult();
     }
 
     public function findAllCount($userId)
@@ -55,7 +55,7 @@ class PhotoBaseLogic extends BaseLogic {
             ->select('COUNT(e.id)')
             ->from('App\Model\Photo', 'e');
 
-        return $this->filterByUser($qb, $userId)->getQuery()->getSingleScalarResult();
+        return $this->addFilterByUser($qb, $userId)->getQuery()->getSingleScalarResult();
     }
 
 	public function findOneById($id)
@@ -79,6 +79,6 @@ class PhotoBaseLogic extends BaseLogic {
             ->where('e.id = :id')
             ->setParameter('id', $id);
 
-        return $this->filterByUser($qb, $userId)->getQuery()->getOneOrNullResult();
+        return $this->addFilterByUser($qb, $userId)->getQuery()->getOneOrNullResult();
     }
 }

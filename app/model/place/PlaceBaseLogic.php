@@ -23,7 +23,7 @@ class PlaceBaseLogic extends BaseLogic {
             ->from('App\Model\Place', 'e')
             ->orderBy('e.name', 'ASC');
 
-        return $this->filterByUser($qb, $userId)->getQuery()->getResult();
+        return $this->addFilterByUser($qb, $userId)->getQuery()->getResult();
     }
 
     public function findAllCount($userId)
@@ -33,7 +33,7 @@ class PlaceBaseLogic extends BaseLogic {
             ->select('COUNT(e.id)')
             ->from('App\Model\Place', 'e');
 
-        return $this->filterByUser($qb, $userId)->getQuery()->getSingleScalarResult();
+        return $this->addFilterByUser($qb, $userId)->getQuery()->getSingleScalarResult();
     }
 
     public function findOneById($id)
@@ -57,6 +57,6 @@ class PlaceBaseLogic extends BaseLogic {
 			->where('e.id = :id')
 			->setParameter('id', $id);
 
-		return $this->filterByUser($qb, $userId)->getQuery()->getOneOrNullResult();
+		return $this->addFilterByUser($qb, $userId)->getQuery()->getOneOrNullResult();
 	}
 }
