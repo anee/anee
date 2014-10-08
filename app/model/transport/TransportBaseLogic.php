@@ -17,7 +17,7 @@ class TransportBaseLogic extends BaseLogic {
         $this->dao->delete($this->findById($id));
     }
 
-    public function findAll()
+    public function findAll($userId)
     {
         $qb = $this->dao->createQueryBuilder();
         $qb
@@ -25,7 +25,7 @@ class TransportBaseLogic extends BaseLogic {
             ->from('App\Model\Transport', 'e')
             ->orderBy('e.name', 'ASC');
 
-        return $qb->getQuery()->getResult();
+        return $this->filterByUser($qb, $userId)->getQuery()->getResult();
     }
 
     public function findById($id)
@@ -37,6 +37,18 @@ class TransportBaseLogic extends BaseLogic {
             ->where('e.id = :id')
             ->setParameter('id', $id);
 
-        return $qb->getQuery()->getOneOrNullResult();
+        return $this->filterByUser($qb, $userId)->getQuery()->getOneOrNullResult();
     }
+
+	public function findByIdAndUserId($id, $userId)
+	{
+		$qb = $this->dao->createQueryBuilder();
+		$qb
+			->select('e')
+			->from('App\Model\Transport', 'e')
+			->where('e.id = :id')
+			->setParameter('id', $id);
+
+		return $this->filterByUser($qb, $userId)->getQuery()->getOneOrNullResult();
+	}
 }

@@ -16,7 +16,7 @@ class TrackBaseLogic extends BaseLogic {
         $this->dao->delete($this->findOneById($id));
     }
 
-    public function findAll()
+    public function findAll($userId)
     {
         $qb = $this->dao->createQueryBuilder();
         $qb
@@ -24,10 +24,10 @@ class TrackBaseLogic extends BaseLogic {
             ->from('App\Model\Track', 'e')
             ->orderBy('e.date', 'DESC');
 
-        return $qb->getQuery()->getResult();
+        return $this->filterByUser($qb, $userId)->getQuery()->getResult();
     }
 
-    public function findLast()
+    public function findLast($userId)
     {
         $qb = $this->dao->createQueryBuilder();
         $qb
@@ -35,20 +35,20 @@ class TrackBaseLogic extends BaseLogic {
             ->from('App\Model\Track', 'e')
             ->orderBy('e.date', 'DESC');
 
-        return $qb->getQuery()->setMaxResults(1)->getOneOrNullResult();
+        return $this->filterByUser($qb, $userId)->getQuery()->setMaxResults(1)->getOneOrNullResult();
     }
 
-    public function findAllCount()
+    public function findAllCount($userId)
     {
         $qb = $this->dao->createQueryBuilder();
         $qb
             ->select('COUNT(e.id)')
             ->from('App\Model\Track', 'e');
 
-        return $qb->getQuery()->getSingleScalarResult();
+        return $this->filterByUser($qb, $userId)->getQuery()->getSingleScalarResult();
     }
 
-    public function findLastByCount($count)
+    public function findLastByCount($count, $userId)
     {
         $qb = $this->dao->createQueryBuilder();
         $qb
@@ -56,7 +56,7 @@ class TrackBaseLogic extends BaseLogic {
             ->from('App\Model\Track', 'e')
             ->orderBy('e.date', 'DESC');
 
-        return $qb->getQuery()->setMaxResults($count)->getResult();
+        return $this->filterByUser($qb, $userId)->getQuery()->setMaxResults($count)->getResult();
     }
 
     public function findOneById($id)
@@ -71,10 +71,32 @@ class TrackBaseLogic extends BaseLogic {
         return $qb->getQuery()->getOneOrNullResult();
     }
 
-    public function distanceSum()
+	public function findAllByUserId($userId)
+	{
+		$qb = $this->dao->createQueryBuilder();
+		$qb
+			->select('e')
+			->from('App\Model\Track', 'e');
+
+		return $this->filterByUser($qb, $userId)->getQuery()->getResult();
+	}
+
+	public function findOneByIdAndUserId($id, $userId)
+	{
+		$qb = $this->dao->createQueryBuilder();
+		$qb
+			->select('e')
+			->from('App\Model\Track', 'e')
+			->andWhere('e.id = :id')
+			->setParameter('id', $id);
+
+		return $this->filterByUser($qb, $userId)->getQuery()->getOneOrNullResult();
+	}
+
+    public function distanceSum($userId)
     {
         $distance = 0;
-        foreach ($this->findAll() as $track) {
+        foreach ($this->findAll($userId) as $track) {
             $distance += $track->getDistance();
         }
         return $distance;
