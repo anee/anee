@@ -20,7 +20,7 @@ class TrackPresenter extends BasePresenter
 
 	public function renderDetail($id)
 	{
-        $this->track = $this->trackBaseLogic->findOneById($id);
+        $this->track = $this->trackBaseLogic->findOneByIdAndUserId($id, $this->getUser()->getIdentity()->data['id']);
 
         if ($this->track == null) {
             throw new Nette\Application\BadRequestException;
