@@ -29,7 +29,6 @@ class SearchTitleControl extends Control {
 
 		// HELPERS
 		$template->addFilter(NULL, 'App\TemplateHelpers::loader');
-
 		$template->setFile(__DIR__ . '/searchTitle.latte');
 
 		$template->results = $this->results;
