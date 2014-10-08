@@ -20,7 +20,7 @@ class EventPresenter extends BasePresenter
 
     public function renderDetail($id)
     {
-        $this->event = $this->eventBaseLogic->findOneById($id);
+		$this->event = $this->eventsBaseLogic->findOneByIdAndUserId($id, $this->getUser()->getIdentity()->data['id']);
 
         if ($this->event == null) {
             throw new Nette\Application\BadRequestException;

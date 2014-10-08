@@ -69,6 +69,7 @@ class SearchFormFactory extends Nette\Object
 
     public function succes($form)
     {
+		$form->values['userId'] = $this->getUser()->getIdentity()->data['id'];
         $this->presenter->redirect('Search:default', array('values' => $form->values));
     }
 }

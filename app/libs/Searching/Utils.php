@@ -33,6 +33,7 @@ class Utils {
 	{
 		return array(
 			'search' => '',
+			'userId' => '',
 			'filterCategory' => array(),
 			'filterTransport' => array(),
 			'filterTimeStart' => '',

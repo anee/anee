@@ -44,6 +44,7 @@ class PlaceSearchLogic extends Nette\Object {
 		$query = (new PlaceSearchQuery());
 		$query->addFilterBySearch($values['search']);
 		$query->addFilterByTransport($values['filterTransport']);
+		$query->addFilterByUser($values['userId']);
 		return $query;
 	}
 
@@ -55,6 +56,7 @@ class PlaceSearchLogic extends Nette\Object {
 		if($values['filterEntity'] == 'Place') {
 			$query = (new TrackSearchQuery());
 			$query->addFilterByEntity($values['filterEntity'], $values['filterEntityId']);
+			$query->addFilterByUser($values['userId']);
 			$tracks = $this->tracks->fetch($query);
 
 			$places = array();
@@ -65,7 +67,7 @@ class PlaceSearchLogic extends Nette\Object {
 			}
 			return $places;
 		} elseif($values['filterEntity'] == 'Track') {
-			$track = $this->trackBaseLogic->findById($values['filterEntityId']);
+			$track = $this->trackBaseLogic->findOneByIdAndUserId($values['filterEntityId'], $values['userId']);
 
             $places = array();
             foreach ($track->photos as $photo) {
@@ -81,7 +83,7 @@ class PlaceSearchLogic extends Nette\Object {
             }
 			return $places;
 		} elseif($values['filterEntity'] == 'Event') {
-			$event = $this->eventBaseLogic->findById($values['filterEntityId']);
+			$event = $this->eventBaseLogic->findOneByIdAndUserId($values['filterEntityId'], $values['userId']);
 
             $places = array();
             foreach ($event->photos as $photo) {

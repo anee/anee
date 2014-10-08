@@ -33,6 +33,7 @@ class TrackSearchLogic extends Nette\Object {
 		$query->addFilterBySearch($values['search']);
 		$query->addFilterByTransport($values['filterTransport']);
 		$query->addFilterByTime($values['filterTimeStart'], $values['filterTimeEnd']);
+		$query->addFilterByUser($values['userId']);
 		return $query;
 	}
 
@@ -44,6 +45,7 @@ class TrackSearchLogic extends Nette\Object {
 		$query = (new TrackSearchQuery());
 		$query->addFilterByEntity($values['filterEntity'], $values['filterEntityId']);
 		$query->addFilterByTime($values['filterTimeStart'], $values['filterTimeEnd']);
+		$query->addFilterByUser($values['userId']);
 		return $query;
 	}
 

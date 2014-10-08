@@ -66,12 +66,19 @@ class BaseSearchQuery extends QueryObject
 		return $this;
 	}
 
-	public function addFilterByUser(QueryBuilder $qb, $userId)
+	/**
+	 * @param $userId
+	 * @return $this
+	 */
+	public function addFilterByUser($userId)
 	{
-		return $qb
-			->join('e.user', 'eUser')
-			->andWhere('eUser.id = :userId')
-			->setParameter('userId', $userId);
+		$this->filter[] = function (QueryBuilder $qb) use ($userId) {
+			$qb
+				->join('e.user', 'eUser')
+				->andWhere('eUser.id = :userId')
+				->setParameter('userId', $userId);
+		};
+		return $this;
 	}
 
 	/**

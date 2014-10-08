@@ -32,6 +32,7 @@ class EventSearchLogic extends Nette\Object {
 		$query->addFilterBySearch($values['search']);
 		$query->addFilterByTransport($values['filterTransport']);
 		$query->addFilterByTime($values['filterTimeStart'], $values['filterTimeEnd']);
+		$query->addFilterByUser($values['userId']);
 		return $query;
 	}
 
@@ -43,6 +44,7 @@ class EventSearchLogic extends Nette\Object {
 		$query = (new EventSearchQuery());
 		$query->addFilterByEntity($values['filterEntity'], $values['filterEntityId']);
 		$query->addFilterByTime($values['filterTimeStart'], $values['filterTimeEnd']);
+		$query->addFilterByUser($values['userId']);
 		return $query;
 	}
 
