@@ -21,8 +21,39 @@ class RouterFactory
 	{
 		$router = new RouteList();
 
+
+		// FRONTEND MODULE
+		$router[] = new Route('<action>', array(
+			'module' => 'Frontend',
+			'presenter' => 'Homepage',
+		));
+
+		// SECURITY MODULE
+		$router[] = new Route('<presenter>/<action>', array(
+			'module' => 'Security',
+		));
+
+		// BACKEND MODULE
 		$backend = new RouteList('Backend');
-		$backend[] = new Route('user/<username>/<presenter>/<action>/<id>', array(
+		$backend[] = new Route('<presenter>/<action>/<id>', array(
+			'presenter' => 'Homepage',
+			'action' => 'default',
+			'id' => NULL,
+		));
+		$router[] = $backend;
+
+
+		/*$backend = new RouteList('Backend');
+		$backend[] = new Route('<username>/<presenter>/<action>/<id>', array(
+			'username' => NULL,
+			'presenter' => 'Homepage',
+			'action' => 'default',
+			'id' => NULL,
+		));
+		$router[] = $backend;*/
+
+		/*$backend = new RouteList('Backend');
+		$backend[] = new Route('<username>/<presenter>/<action>/<id>', array(
 			'username' => NULL,
 			'presenter' => 'Homepage',
 			'action' => 'default',
@@ -34,7 +65,7 @@ class RouterFactory
 			'module' => 'Frontend',
 			'presenter' => 'Homepage',
 			'action' => 'default',
-		));
+		));*/
 
 		return $router;
 	}
