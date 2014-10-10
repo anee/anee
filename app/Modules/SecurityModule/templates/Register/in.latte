@@ -1,17 +1,5 @@
 {block content}
 
- 	{form registerInFormFactory}
-
-        <ul class="errors" n:if="$form->hasErrors()">
-            <li n:foreach="$form->errors as $error">{$error}</li>
-        </ul>
-
-    	{input username}
-    	{input email}
-    	{input password}
-    	{input passwordRe}
-    	{input send}
-    {/form}
-
+ 	{control registerIn}
 
 {/block}

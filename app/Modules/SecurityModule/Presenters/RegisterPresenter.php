@@ -2,21 +2,17 @@
 
 namespace App\Modules\SecurityModule\Presenters;
 
-use App\Modules\SecurityModule\Components\TInjectRegisterInFormFactory;
 use Nette;
-use App\Model;
 
 
 class RegisterPresenter extends BasePresenter
 {
 
-	use TInjectRegisterInFormFactory;
+	/** @var \App\Modules\SecurityModule\Controls\IRegisterIn @inject */
+	public $IRegisterIn;
 
-	/**
-	 * @return \App\Modules\SecurityModule\Components\RegisterInFormFactory
-	 */
-	protected function createComponentRegisterInFormFactory()
+	public function createComponentRegisterIn()
 	{
-		return $this->registerInFormFactory->create();
+		return $this->IRegisterIn->create();
 	}
 }

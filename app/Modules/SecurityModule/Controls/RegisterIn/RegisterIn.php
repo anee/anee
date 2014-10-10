@@ -1,30 +1,35 @@
 <?php
 
 
-namespace App\Modules\SecurityModule\Components;
+namespace App\Modules\SecurityModule\Controls;
 
 use App\Model\UserBaseLogic;
 use Nette;
-use Nette\Application\UI\Form;
-use Kdyby\Doctrine\EntityDao;;
+use Nette\Application\UI\Form;;
 use App\Model\User;
 
 
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
  */
-class RegisterInFormFactory extends Nette\Application\UI\Control
+class RegisterIn extends Nette\Application\UI\Control
 {
 
-	/** @var EntityDao  */
-	private $userBaseLogic;
+	/** @var \App\Model\UserBaseLogic @inject */
+	public $userBaseLogic;
 
 	public function __construct(UserBaseLogic $userBaseLogic)
 	{
 		$this->userBaseLogic = $userBaseLogic;
 	}
 
-	public function create()
+	public function render()
+	{
+		$this->template->setFile(__DIR__ . '/RegisterIn.latte');
+		$this->template->render();
+	}
+
+	protected function createComponentRegisterInForm()
 	{
 		$form = new Form;
 		$form->addText('username')->setRequired('Please enter your username.');

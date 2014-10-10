@@ -1,15 +1,5 @@
 {block content}
 
-	{form signInFormFactory}
-
-	    <ul class="errors" n:if="$form->hasErrors()">
-            <li n:foreach="$form->errors as $error">{$error}</li>
-        </ul>
-
-    	{input usernameOrEmail}
-    	{input password}
-    	{input remember}
-    	{input send}
-    {/form}
+	{control signIn}
 
 {/block}
