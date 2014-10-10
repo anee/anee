@@ -1,44 +1,40 @@
 <?php
-/**
- * Created by JetBrains PhpStorm.
- * User: Lukas
- * Date: 9.7.14
- * Time: 19:31
- * To change this template use File | Settings | File Templates.
- */
 
-namespace App\Modules\BackendModule\Forms;
+namespace App\Modules\BackendModule\Controls;
 
 use App\Model\TransportBaseLogic;
 use Nette;
 use Nette\Application\UI\Form;
-
+use Nette\Application\UI\Control;
 
 
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
  */
-class SearchFormFactory extends Nette\Object
+class SearchFor extends Control
 {
 
-    private $presenter;
+	///** @var \App\Model\User */
+	//private $user;
 
-	private $user;
-
-	/** @var TransportBaseLogic */
-    private $transportBaseLogic;
+	/** @var \App\Model\TransportBaseLogic @inject */
+    public $transportBaseLogic;
 
     public function __construct(TransportBaseLogic $transportBaseLogic)
     {
         $this->transportBaseLogic = $transportBaseLogic;
+		//$this->user = $user;
     }
 
-    public function create($parent, $user)
-    {
-        $this->presenter = $parent;
-		$this->user = $user;
+	public function render()
+	{
+		$this->template->setFile(__DIR__ . '/SearchFor.latte');
+		$this->template->render();
+	}
 
-        $form = new Form;
+    protected function createComponentSearchForForm()
+    {
+		$form = new Form;
         $form->addText('search')->setAttribute('placeholder', 'Search...');
         $category = array(
             'Events' => 'Events',
@@ -47,9 +43,9 @@ class SearchFormFactory extends Nette\Object
             'Photos' => 'Photos',
         );
         $transports = array();
-        foreach($this->transportBaseLogic->findAll($this->user->getIdentity()->data['id']) as $transport) {
-            $transports[$transport->name] = ucfirst($transport->name);
-        }
+        //foreach($this->transportBaseLogic->findAll($this->user->getIdentity()->data['id']) as $transport) {
+        //    $transports[$transport->name] = ucfirst($transport->name);
+        //}
         $time = array(
             '' => 'Any time',
 			'Past hour' => 'Past hour',

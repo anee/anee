@@ -55,7 +55,7 @@ class RegisterIn extends Nette\Application\UI\Control
 
 		if($userByEmail == NULL && $userByUsername == NULL) {
 			$this->userBaseLogic->save(new User($values->username, $values->email, $values->password));
-			$this->getPresenter()->redirect(':Frontend:Homepage:default');
+			$this->getPresenter()->redirect(':Backend:Homepage:default');
 		} else {
 			$form->addError('Username or user with this email already exist.');
 		}

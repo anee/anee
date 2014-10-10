@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by JetBrains PhpStorm.
- * User: Lukas
- * Date: 9.7.14
- * Time: 19:31
- * To change this template use File | Settings | File Templates.
- */
 
 namespace App\Modules\SecurityModule\Controls;
 

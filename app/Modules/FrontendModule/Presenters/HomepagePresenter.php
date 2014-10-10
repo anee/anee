@@ -10,8 +10,15 @@ use Nette\Security as NS;
 class HomepagePresenter extends BasePresenter
 {
 
+	public function formatLayoutTemplateFiles()
+	{
+		$files = parent::formatLayoutTemplateFiles();
+		$files[] = __DIR__ . '/../templates/@layout.latte';
 
-	public function renderDefault()
+		return $files;
+	}
+
+	public function renderAbout()
 	{
 
 	}

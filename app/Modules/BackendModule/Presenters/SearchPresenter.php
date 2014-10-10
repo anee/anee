@@ -3,8 +3,6 @@
 namespace App\Modules\BackendModule\Presenters;
 
 
-use App\Modules\BackendModule\Controls\SearchTitleControl;
-
 
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
@@ -14,14 +12,16 @@ class SearchPresenter extends BasePresenter
 	/** @var \App\Searching\SearchFactory @inject */
 	public $searchFactory;
 
+	/** @var  \App\Modules\BackendModule\Controls\ISearchTitle @inject */
+	public $ISearchTitle;
 
 	public function actionDefault()
 	{
 		$this->searchFactory->setValues($this->getParameter('values'));
 	}
 
-	public function createComponentSearchTitle()
+	protected function createComponentSearchTitle()
 	{
-		return new SearchTitleControl($this->searchFactory->getValues(), $this->searchFactory->getResults());
+		return $this->ISearchTitle->create($this->searchFactory->getValues(), $this->searchFactory->getResults());
 	}
 }

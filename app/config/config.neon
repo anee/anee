@@ -19,8 +19,7 @@ services:
 includes:
 		- ../model/config.model.neon
 		- ../Modules/BackendModule/Controls/config.controls.neon
-		- ../Modules/BackendModule/Forms/config.forms.neon
-		- ../Modules/SecurityModule/Forms/config.forms.neon
+		- ../Modules/SecurityModule/Controls/config.controls.neon
 
 extensions:
 	console: Kdyby\Console\DI\ConsoleExtension

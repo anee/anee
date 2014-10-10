@@ -15,17 +15,12 @@ abstract class BasePresenter extends \App\Modules\BaseModule\Presenters\BasePres
 	/** @var \Kappa\ThumbnailsHelper\ThumbnailsHelper @inject*/
 	public $thumbnailsHelper;
 
-	use TInjectSearchFormFactory;
+	/** @var \App\Modules\BackendModule\Controls\ISearchFor @inject */
+	public $ISearchFor;
 
-	/** @var \App\Searching\SearchFactory @inject */
-	public $searchFactory;
-
-	/**
-	 * @return \App\Modules\BackendModule\Forms\SearchFormFactory
-	 */
-	protected function createComponentSearchFormFactory()
+	protected function createComponentSearchFor()
 	{
-		return $this->searchFormFactory->create($this, $this->getUser());
+		return $this->ISearchFor->create();
 	}
 
 	protected function createTemplate($class = NULL)
@@ -42,17 +37,22 @@ abstract class BasePresenter extends \App\Modules\BaseModule\Presenters\BasePres
 	public function formatLayoutTemplateFiles()
 	{
 		$files = parent::formatLayoutTemplateFiles();
-		$files[] = __DIR__ . '/../templates/@layout.latte';
+
+		if($this->user->isLoggedIn()) {
+			$files[] = __DIR__ . '/../templates/@layout.latte';
+		} else {
+			$files[] = __DIR__ . '/../templates/@layoutT.latte';
+		}
 
 		return $files;
 	}
 
-	public function checkRequirements($element)
+	/*public function checkRequirements($element)
 	{
 		parent::checkRequirements($element);
 
 		if (!$this->user->isLoggedIn()) {
-			$this->redirect(':Security:Sign:in');
+			$this->redirect(':Backend:Homepage:default');
 		}
-	}
+	}*/
 }

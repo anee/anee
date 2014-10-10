@@ -9,7 +9,7 @@ use Nette;
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
  */
-class TrackPresenter extends BasePresenter
+class TracksPresenter extends BasePresenter
 {
 
 	/** @var \App\Model\TrackBaseLogic @inject*/

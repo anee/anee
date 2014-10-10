@@ -13,12 +13,10 @@ class HomepagePresenter extends BasePresenter
 	/** @var \App\Model\TrackBaseLogic @inject*/
 	public $trackBaseLogic;
 
-	public function renderDefault($username)
+	public function renderDefault()
 	{
-		if($username == $this->getUser()->getIdentity()->data['username']) {
+		if($this->user->isLoggedIn()) {
 			$this->template->tracks = $this->trackBaseLogic->findAllByUserId($this->getUser()->getIdentity()->data['id']);
-		} else {
-			$this->redirect(':Backend:Homepage:default', array('username' => $this->getUser()->getIdentity()->data['username']));
 		}
 	}
 }

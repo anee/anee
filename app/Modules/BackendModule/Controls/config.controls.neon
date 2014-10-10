@@ -1,5 +1,10 @@
 services:
-	-
-		class: App\Modules\BackendModule\Controls\SearchTitleControl(%values%, %results%)
-		implement: App\Modules\BackendModule\Controls\ISearchTitleControlFactory
+
+	SearchTitle:
+		class: App\Modules\BackendModule\Controls\SearchTitle(%values%, %results%)
+		implement: App\Modules\BackendModule\Controls\ISearchTitle
 		parameters: [Array values, App\Searching\SearchResults results]
+
+	SearchFor:
+		class: App\Modules\BackendModule\Controls\SearchFor
+		implement: App\Modules\BackendModule\Controls\ISearchFor

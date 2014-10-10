@@ -11,7 +11,7 @@ use Nette\Application\UI\Control;
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
  */
-class SearchTitleControl extends Control {
+class SearchTitle extends Control {
 
 
 	private $values;

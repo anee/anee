@@ -9,7 +9,7 @@ use Nette;
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
  */
-class EventPresenter extends BasePresenter
+class EventsPresenter extends BasePresenter
 {
 
 	/** @var \App\Model\EventBaseLogic @inject*/

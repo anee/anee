@@ -1,10 +1,16 @@
 {block content}
-
+    {if $user->isLoggedIn()}
      Logged in as {$user->getIdentity()->data['username']} - <a href="{plink :Security:Sign:Out}">Sign out</a>,
 
+    <br>
+    <br>
     Tracks:
      ({foreach $tracks as $track}
-         <a href="{plink :Backend:Track:Detail, 'id' => $track->getId(), 'username' => $user->getIdentity()->data['username']}">{$track->getName()}</a>
+         <a href="{plink :Backend:Tracks:Detail, 'id' => $track->getId()}">{$track->getName()}</a>
      {/foreach})
 
+    {else}
+        <a href="{plink :Security:Sign:in}">Sign in</a>
+        <a href="{plink :Security:Register:in}">Register in</a>
+    {/if}
 {/block}

@@ -14,14 +14,6 @@ use WebLoader\Nette\JavaScriptLoader;
 abstract class BasePresenter extends Nette\Application\UI\Presenter
 {
 
-	public function formatLayoutTemplateFiles()
-	{
-		$files = parent::formatLayoutTemplateFiles();
-		$files[] = __DIR__ . '/../templates/@layout.latte';
-
-		return $files;
-	}
-
 	/**
 	 * @return CssLoader
 	 */
