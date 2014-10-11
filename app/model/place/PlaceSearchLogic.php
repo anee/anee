@@ -58,7 +58,9 @@ class PlaceSearchLogic extends Nette\Object {
 			$places = array();
 			foreach($tracks as $track) {
 				 if(Arrays::arrayContains($track->placeTo, $places) != true) {
-                 	$places[] = $track->placeTo;
+					 if($track->distance < 50) {
+						 $places[] = $track->placeTo;
+					 }
                  }
 			}
 			return $places;
