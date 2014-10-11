@@ -28,9 +28,6 @@ class PhotoSearchQuery extends BaseSearchQuery
 			} elseif($entityName == 'Track') {
 				$qb
 					->leftJoin('e.track', 'eEntity');
-			} elseif($entityName == 'Event') {
-				$qb
-					->leftJoin('e.event', 'eEntity');
 			}
 			$qb
 				->where('eEntity IS NOT NULL')
@@ -53,12 +50,7 @@ class PhotoSearchQuery extends BaseSearchQuery
 					->where('eTrack IS NOT NULL')
 					->leftJoin('eTrack.transport', 'eTrackTransport')
 
-					->leftJoin('e.event', 'eEvent')
-					->where('eEvent IS NOT NULL')
-					->leftJoin('eEvent.transport', 'eEventTransport')
-
 					->where('eTrackTransport.name IN (:transports)')
-					->orWhere('eEventTransport.name IN (:transports)')
 					->setParameter('transports', $transport);
 			}
 		};
@@ -77,17 +69,10 @@ class PhotoSearchQuery extends BaseSearchQuery
 					->leftJoin('e.track', 'eTrack')
 					->leftJoin('eTrack.place', 'eTrackPlace')
 					->leftJoin('eTrack.placeTo', 'eTrackPlaceTo')
-
-					->leftJoin('e.event', 'eEvent')
-					->leftJoin('eEvent.place', 'eEventPlace')
-					->leftJoin('eEvent.placeTo', 'eEventPlaceTo')
-
 					->leftJoin('e.place', 'ePlace')
 
 					->where($qb->expr()->like('eTrackPlace.name', ':search'))
 					->orWhere($qb->expr()->like('eTrackPlaceTo.name', ':search'))
-					->orWhere($qb->expr()->like('eEventPlace.name', ':search'))
-					->orWhere($qb->expr()->like('eEventPlaceTo.name', ':search'))
 					->orWhere($qb->expr()->like('ePlace.name', ':search'))
 					->setParameter('search', '%' . $search . '%');
 			}
