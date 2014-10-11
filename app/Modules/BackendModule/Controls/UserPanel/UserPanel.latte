@@ -1,7 +1,8 @@
 
 <div style="position: absolute; right: 0; top: 0;">
 
-     <a href="{plink :Backend:Profile:default, 'username' => $user->username}">Home</a>
+    <a href="{plink :Backend:Homepage:default}">Private Home</a> <br>
+     <a href="{plink :Backend:Profile:default, 'username' => $user->username}">Public Home</a>
      <br> <br>
      Logged in as {$user->username} - <a href="{plink :Security:Sign:Out}">Sign out</a>
 
