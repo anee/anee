@@ -39,11 +39,10 @@ abstract class BasePresenter extends \App\Modules\BaseModule\Presenters\BasePres
 		$files = parent::formatLayoutTemplateFiles();
 
 		if($this->user->isLoggedIn()) {
-			$files[] = __DIR__ . '/../templates/@layout.latte';
-		} else {
-			$files[] = __DIR__ . '/../templates/@layoutT.latte';
+			dump($this->getUser());
+			die();
+			$files[] = __DIR__ . '/../templates/@layoutBackend.latte';
 		}
-
 		return $files;
 	}
 
