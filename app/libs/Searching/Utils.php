@@ -34,6 +34,7 @@ class Utils {
 		return array(
 			'search' => '',
 			'userId' => '',
+			'username' => '',
 			'filterCategory' => array(),
 			'filterTransport' => array(),
 			'filterTimeStart' => '',
