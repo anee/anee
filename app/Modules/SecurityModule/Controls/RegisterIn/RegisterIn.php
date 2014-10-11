@@ -51,7 +51,6 @@ class RegisterIn extends Nette\Application\UI\Control
 	{
 		$values = $form->getValues();
 
-
 		if($this->userBaseLogic->findOneSignIn($values->username) == NULL && $this->userBaseLogic->findOneSignIn($values->email) == NULL) {
 
 			$this->userBaseLogic->save(new User($values->username, $values->public, $values->email, $values->password));
