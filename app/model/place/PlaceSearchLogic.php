@@ -24,14 +24,10 @@ class PlaceSearchLogic extends Nette\Object {
 	/** @var \App\Model\TrackBaseLogic */
 	private $trackBaseLogic;
 
-	/** @var \App\Model\EventBaseLogic */
-	private $eventBaseLogic;
-
-    public function __construct(EntityDao $places, EntityDao $tracks, EventBaseLogic $eventBaseLogic, TrackBaseLogic $trackBaseLogic)
+    public function __construct(EntityDao $places, EntityDao $tracks, TrackBaseLogic $trackBaseLogic)
     {
         $this->places = $places;
         $this->tracks = $tracks;
-        $this->eventBaseLogic = $eventBaseLogic;
 		$this->trackBaseLogic = $trackBaseLogic;
     }
 
@@ -80,22 +76,6 @@ class PlaceSearchLogic extends Nette\Object {
             }
             if($track->placeTo != NULL && Arrays::arrayContains($track->placeTo, $places) != true) {
                 $places[] = $track->placeTo;
-            }
-			return $places;
-		} elseif($values['filterEntity'] == 'Event') {
-			$event = $this->eventBaseLogic->findOneByIdAndUserId($values['filterEntityId'], $values['userId']);
-
-            $places = array();
-            foreach ($event->photos as $photo) {
-                if($photo->place != NULL && Arrays::arrayContains($photo->place, $places) != true) {
-                    $places[] = $photo->place;
-                }
-            }
-            if(Arrays::arrayContains($event->place, $places) != true) {
-                $places[] = $event->place;
-            }
-            if($event->placeTo != NULL && Arrays::arrayContains($event->placeTo, $places) != true) {
-                $places[] = $event->placeTo;
             }
 			return $places;
 		}

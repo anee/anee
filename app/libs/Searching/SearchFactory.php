@@ -12,11 +12,6 @@ use Nette;
  */
 class SearchFactory extends Nette\Object
 {
-	/** @var \App\Model\EventBaseLogic */
-    private $eventBaseLogic;
-
-	/** @var \App\Model\EventSearchLogic */
-	private $eventSearchLogic;
 
 	/** @var \App\Model\TrackBaseLogic */
 	private $trackBaseLogic;
@@ -45,12 +40,9 @@ class SearchFactory extends Nette\Object
 	/** @var \App\Searching\SearchResults */
 	private $results;
 
-    public function __construct(Model\EventBaseLogic $eventBaseLogic, Model\EventSearchLogic $eventSearchLogic, Model\TrackBaseLogic $trackBaseLogic, Model\TrackSearchLogic $trackSearchLogic,
-								Model\PhotoBaseLogic $photoBaseLogic, Model\PhotoSearchLogic $photoSearchLogic, Model\PlaceBaseLogic $placeBaseLogic, Model\PlaceSearchLogic $placeSearchLogic,
-								Model\TransportBaseLogic $transportBaseLogic)
+    public function __construct(Model\TrackBaseLogic $trackBaseLogic, Model\TrackSearchLogic $trackSearchLogic,	Model\PhotoBaseLogic $photoBaseLogic, Model\PhotoSearchLogic $photoSearchLogic, Model\PlaceBaseLogic $placeBaseLogic,
+								Model\PlaceSearchLogic $placeSearchLogic, Model\TransportBaseLogic $transportBaseLogic)
     {
-		$this->eventBaseLogic = $eventBaseLogic;
-		$this->eventSearchLogic = $eventSearchLogic;
 		$this->trackBaseLogic = $trackBaseLogic;
 		$this->trackSearchLogic = $trackSearchLogic;
 		$this->photoBaseLogic = $photoBaseLogic;
@@ -68,8 +60,6 @@ class SearchFactory extends Nette\Object
 		$values = $this->values;
 		$results = $this->results;
 
-		$results = $this->eventSearchLogic->findByFilters($values, $results);
-		$results = $this->eventSearchLogic->findByFiltersCount($values, $results);
 		$results = $this->trackSearchLogic->findByFilters($values, $results);
 		$results = $this->trackSearchLogic->findByFiltersCount($values, $results);
 		$results = $this->photoSearchLogic->findByFilters($values, $results);
@@ -77,10 +67,7 @@ class SearchFactory extends Nette\Object
 		$results = $this->placeSearchLogic->findByFilters($values, $results);
 		$results = $this->placeSearchLogic->findByFiltersCount($values, $results);
 
-		if ($values['filterEntity'] == 'Event') {
-			$results->setEntityObject($this->eventBaseLogic->findById($values['filterEntityId']));
-			$results->setEntityUrl('Event:detail');
-		} elseif ($values['filterEntity'] == 'Track') {
+		if ($values['filterEntity'] == 'Track') {
 			$results->setEntityObject($this->trackBaseLogic->findById($values['filterEntityId']));
 			$results->setEntityUrl('Track:detail');
 		} elseif ($values['filterEntity'] == 'Place') {
@@ -126,7 +113,6 @@ class SearchFactory extends Nette\Object
 	{
 		return array(
 			'transports' => $this->transportBaseLogic->findAll(),
-			'events' => $this->eventBaseLogic->findAllCount(),
 			'tracks' => $this->trackBaseLogic->findAllCount(),
 			'places' => $this->placeBaseLogic->findAllCount(),
 			'photos' => $this->photoBaseLogic->findAllCount(),

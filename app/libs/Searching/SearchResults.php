@@ -15,12 +15,10 @@ class SearchResults {
 	private $entityObject;
 	private $entityUrl;
 
-	private $events;
 	private $tracks;
 	private $places;
 	private $photos;
 
-	private $eventsCount;
 	private $tracksCount;
 	private $photosCount;
 	private $placesCount;
@@ -29,11 +27,9 @@ class SearchResults {
 
 	public function __construct()
 	{
-		$this->events = array();
 		$this->tracks = array();
 		$this->photos = array();
 		$this->places = array();
-		$this->eventsCount = 0;
 		$this->tracksCount = 0;
 		$this->placesCount = 0;
 		$this->photosCount = 0;
@@ -45,27 +41,6 @@ class SearchResults {
 	public function getCount()
 	{
 		return $this->count;
-	}
-
-	public function setEvents($resultSet)
-	{
-		$this->events = $resultSet;
-		$this->count += count($resultSet);
-	}
-
-	public function getEvents()
-	{
-		return $this->events;
-	}
-
-	public function setEventsCount($count)
-	{
-		$this->eventsCount = $count;
-	}
-
-	public function getEventsCount()
-	{
-		return $this->eventsCount;
 	}
 
 	public function setTracks($resultSet)
@@ -86,7 +61,7 @@ class SearchResults {
 
 	public function getTracksCount()
 	{
-		return $this->eventsCount;
+		return $this->tracksCount;
 	}
 
 	public function setPhotos($resultSet)

@@ -28,11 +28,6 @@ class Place extends BaseEntity
     protected $tracks;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Model\Event", mappedBy="place")
-     */
-    protected $events;
-
-    /**
      * @ORM\OneToMany(targetEntity="App\Model\Photo", mappedBy="place")
      */
     protected $photos;
@@ -72,15 +67,9 @@ class Place extends BaseEntity
 
     public function getLastUpdate()
     {
-        if(count($this->events) > 0 || count($this->tracks) || count($this->photos)) {
+        if(count($this->tracks) || count($this->photos)) {
             $dateTime = new DateTime();
             $count = 0;
-            foreach($this->events as $event){
-                if($count == 0 || $event->getDate() > $dateTime) {
-                    $dateTime = $event->getDate();
-                    $count++;
-                }
-            }
             foreach($this->tracks as $track){
                 if($count == 0 || $track->getDate() > $dateTime) {
                     $dateTime = $track->getDate();

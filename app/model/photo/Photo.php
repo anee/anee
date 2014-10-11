@@ -37,23 +37,16 @@ class Photo extends BaseEntity
     protected $place;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Model\Event", inversedBy="photos")
-     */
-    protected $event;
-
-    /**
      * @ORM\ManyToOne(targetEntity="App\Model\Track", inversedBy="photos")
      */
     protected $track;
 
 
-    public function __construct($name, $path, $place, $eventFrom, $eventTo)
+    public function __construct($name, $path, $place)
     {
         $this->name = $name;
         $this->path = $path;
         $this->date = new DateTime;
         $this->place = $place;
-        $this->eventFrom = $eventFrom;
-        $this->eventTo = $eventTo;
     }
 }

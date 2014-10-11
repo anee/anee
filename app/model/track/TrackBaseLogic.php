@@ -93,7 +93,20 @@ class TrackBaseLogic extends BaseLogic {
 		return $this->addFilterByUser($qb, $userId)->getQuery()->getOneOrNullResult();
 	}
 
-    public function distanceSum($userId)
+	public function findOneByIdAndUsername($id, $username)
+	{
+		$qb = $this->dao->createQueryBuilder();
+		$qb
+			->select('e')
+			->from('App\Model\Track', 'e')
+			->andWhere('e.id = :id')
+			->setParameter('id', $id);
+
+		return $this->addFilterByUserName($qb, $username)->getQuery()->getOneOrNullResult();
+	}
+
+
+	public function distanceSum($userId)
     {
         $distance = 0;
         foreach ($this->findAll($userId) as $track) {
