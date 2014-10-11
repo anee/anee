@@ -4,6 +4,7 @@
 namespace App\Modules\SecurityModule\Controls;
 
 use App\Model\UserBaseLogic;
+use Kdyby\Doctrine\DuplicateEntryException;
 use Nette;
 use Nette\Application\UI\Form;;
 use App\Model\User;
@@ -49,14 +50,12 @@ class RegisterIn extends Nette\Application\UI\Control
 
 	public function succes($form)
 	{
-		$values = $form->getValues();
-
-		if($this->userBaseLogic->findOneSignIn($values->username) == NULL && $this->userBaseLogic->findOneSignIn($values->email) == NULL) {
-
+		try {
+			$values = $form->getValues();
 			$this->userBaseLogic->save(new User($values->username, $values->public, $values->email, $values->password));
 			$this->getPresenter()->redirect(':Backend:Homepage:default');
-		} else {
-			$form->addError('Username or user with this email already exist.');
+		} catch(DuplicateEntryException $e) {
+			$form->addError('User with this username or email already exist.');
 		}
 	}
 }
