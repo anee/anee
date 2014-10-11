@@ -22,43 +22,32 @@ class RouterFactory
 	{
 		$router = new RouteList();
 
-		//PROFILE
+		// PROFIL
 		$router[] = new Route('<username>', array(
 			'module' => 'Backend',
 			'presenter' => 'Profile',
 			'action' => 'default',
 		));
 
-		//SEARCH
-		$router[] = new Route('<username>/<presenter>/<action>', array(
-			'module' => 'Backend',
-			'presenter' => 'Search',
-		));
-
 		// SECURITY MODULE
-		$security = new RouteList('Security');
-		$security[] = new Route('<presenter>/<action>');
-		$router[] = $security;
+		$router[] = new Route('<presenter>/<action>', array(
+			'module' => 'Security',
+		));
 
-		// BACKEND MODULE
+		// SEARCH
 		$router[] = new Route('<username>/<presenter>/<action>', array(
 			'module' => 'Backend',
 			'presenter' => 'Search',
 		));
-		$backend = new RouteList('Backend');
-		$backend[] = new Route('<username>/<presenter>/<id>', array(
+
+		// BACKEND HOMEPAGE ( / )
+		$router[] = new Route('<username>/<presenter>/<id>', array(
+			'module' => 'Backend',
 			'presenter' => 'Homepage',
-			'id' => NULL,
 			'username' => NULL,
 			'action' => 'default',
-		));
-		$backend[] = new Route('<username>/<presenter>/<action>/<id>', array(
-			'presenter' => 'Homepage',
-			'action' => 'default',
 			'id' => NULL,
-			'username' => NULL,
 		));
-		$router[] = $backend;
 
 		return $router;
 	}
