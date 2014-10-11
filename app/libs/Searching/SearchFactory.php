@@ -118,18 +118,4 @@ class SearchFactory extends Nette\Object
 		$this->values['username'] = $username;
 		$this->values['userId']= $this->userBaseLogic->findOneByUsername($username)->id;
 	}
-
-	/*/**
-	 * @return array
-	 */
-	/*public function getMenuInfo()
-	{
-		return array(
-			'transports' => $this->transportBaseLogic->findAll(),
-			'tracks' => $this->trackBaseLogic->findAllCount(),
-			'places' => $this->placeBaseLogic->findAllCount(),
-			'photos' => $this->photoBaseLogic->findAllCount(),
-			'distance' => round($this->trackBaseLogic->distanceSum() + $this->eventBaseLogic->distanceSum(), 2)
-		);
-	}*/
 }
