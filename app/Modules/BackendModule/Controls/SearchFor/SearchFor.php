@@ -2,10 +2,11 @@
 
 namespace App\Modules\BackendModule\Controls;
 
-use App\Model\TransportBaseLogic;
+use App\Model\UserBaseLogic;
 use Nette;
 use Nette\Application\UI\Form;
 use Nette\Application\UI\Control;
+use App\Model\User;
 
 
 /**
@@ -14,16 +15,15 @@ use Nette\Application\UI\Control;
 class SearchFor extends Control
 {
 
-	///** @var \App\Model\User */
-	//private $user;
 
-	/** @var \App\Model\TransportBaseLogic @inject */
-    public $transportBaseLogic;
+	private $username;
 
-    public function __construct(TransportBaseLogic $transportBaseLogic)
+	/** @var \App\Model\UserBaseLogic @inject */
+    public $userBaseLogic;
+
+    public function __construct(UserBaseLogic $userBaseLogic)
     {
-        $this->transportBaseLogic = $transportBaseLogic;
-		//$this->user = $user;
+        $this->userBaseLogic = $userBaseLogic;
     }
 
 	public function render()
@@ -34,6 +34,18 @@ class SearchFor extends Control
 
     protected function createComponentSearchForForm()
     {
+		$username = $this->getPresenter()->getParameter('username');
+		if($username != NULL) {
+			$this->username = $username;
+		} elseif ($this->getPresenter()->getUser()->isLoggedIn()) {
+			$this->username = $this->getPresenter()->getUser()->getIdentity()->data['username'];
+		}
+
+		$transports = array();
+		foreach($this->userBaseLogic->findOneByUsername($this->username)->transports as $transport) {
+			$transports[$transport->name] = ucfirst($transport->name);
+		}
+
 		$form = new Form;
         $form->addText('search')->setAttribute('placeholder', 'Search...');
         $category = array(
@@ -42,10 +54,6 @@ class SearchFor extends Control
             'Places' => 'Places',
             'Photos' => 'Photos',
         );
-        $transports = array();
-        //foreach($this->transportBaseLogic->findAll($this->user->getIdentity()->data['id']) as $transport) {
-        //    $transports[$transport->name] = ucfirst($transport->name);
-        //}
         $time = array(
             '' => 'Any time',
 			'Past hour' => 'Past hour',
@@ -68,9 +76,6 @@ class SearchFor extends Control
 
     public function succes($form)
     {
-		$values = $form->values;
-		$values['userId'] = $this->getPresenter()->user->getIdentity()->data['id'];
-		$values['username'] = $this->getPresenter()->user->getIdentity()->data['username'];
-        $this->presenter->redirect(':Backend:Search:default', array('values' => $values, 'username' => $values['username']));
+        $this->presenter->redirect(':Backend:Search:default', array('values' => $form->values, 'username' => $this->username));
     }
 }

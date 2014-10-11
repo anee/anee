@@ -34,6 +34,9 @@ class SearchFactory extends Nette\Object
 	/** @var \App\Model\TransportBaseLogic */
 	private $transportBaseLogic;
 
+	/** @var \App\Model\UserBaseLogic */
+	private $userBaseLogic;
+
 	/** @var array */
 	private $values = array();
 
@@ -41,7 +44,7 @@ class SearchFactory extends Nette\Object
 	private $results;
 
     public function __construct(Model\TrackBaseLogic $trackBaseLogic, Model\TrackSearchLogic $trackSearchLogic,	Model\PhotoBaseLogic $photoBaseLogic, Model\PhotoSearchLogic $photoSearchLogic, Model\PlaceBaseLogic $placeBaseLogic,
-								Model\PlaceSearchLogic $placeSearchLogic, Model\TransportBaseLogic $transportBaseLogic)
+								Model\PlaceSearchLogic $placeSearchLogic, Model\TransportBaseLogic $transportBaseLogic, Model\UserBaseLogic $userBaseLogic)
     {
 		$this->trackBaseLogic = $trackBaseLogic;
 		$this->trackSearchLogic = $trackSearchLogic;
@@ -50,6 +53,7 @@ class SearchFactory extends Nette\Object
 		$this->placeBaseLogic = $placeBaseLogic;
 		$this->placeSearchLogic = $placeSearchLogic;
 		$this->transportBaseLogic = $transportBaseLogic;
+		$this->userBaseLogic = $userBaseLogic;
 
 		$this->values = Utils::clearValuesArray();
 		$this->results = new SearchResults();
@@ -107,9 +111,18 @@ class SearchFactory extends Nette\Object
 	}
 
 	/**
+	 * @param $username
+	 */
+	public function setUser($username)
+	{
+		$this->values['username'] = $username;
+		$this->values['userId']= $this->userBaseLogic->findOneByUsername($username)->id;
+	}
+
+	/*/**
 	 * @return array
 	 */
-	public function getMenuInfo()
+	/*public function getMenuInfo()
 	{
 		return array(
 			'transports' => $this->transportBaseLogic->findAll(),
@@ -118,5 +131,5 @@ class SearchFactory extends Nette\Object
 			'photos' => $this->photoBaseLogic->findAllCount(),
 			'distance' => round($this->trackBaseLogic->distanceSum() + $this->eventBaseLogic->distanceSum(), 2)
 		);
-	}
+	}*/
 }

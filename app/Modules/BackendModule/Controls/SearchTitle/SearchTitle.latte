@@ -2,7 +2,7 @@
 
                   {$results->getCount()}
             		Results ({count($results->getTracks())} Tracks, {count($results->getPhotos())} Photos, {count($results->getPlaces())} Places)
-            				{if $values['search'] != ""}
+            				{*{if $values['search'] != ""}
             					for
             					<span class="highlight"><a href="">{$values['search']}</a></span>
             				{/if}
@@ -68,4 +68,4 @@
 						{var $args = array('values' => array_merge($values, [filterCategory => array('Photos')]))}
                         {plink Search:default (expand) $args}"> Photos</a>
 					</li>
-				</ul>
+				</ul>*}

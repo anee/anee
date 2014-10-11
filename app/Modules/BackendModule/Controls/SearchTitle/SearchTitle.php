@@ -28,12 +28,12 @@ class SearchTitle extends Control {
 	public function render()
 	{
 		//$template = $this->template;
-		$this->$template->setFile(__DIR__ . '/searchTitle.latte');
+		$this->template->setFile(__DIR__ . '/searchTitle.latte');
 		$this->template->addFilter(NULL, 'App\TemplateHelpers::loader');
 
-		$this->$template->results = $this->results;
-		$this->$template->values = $this->values;
+		$this->template->results = $this->results;
+		$this->template->values = $this->values;
 
-		$this->$template->render();
+		$this->template->render();
 	}
 } 

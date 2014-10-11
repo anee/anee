@@ -15,9 +15,10 @@ class SearchPresenter extends BasePresenter
 	/** @var  \App\Modules\BackendModule\Controls\ISearchTitle @inject */
 	public $ISearchTitle;
 
-	public function actionDefault()
+	public function actionDefault($username)
 	{
 		$this->searchFactory->setValues($this->getParameter('values'));
+		$this->searchFactory->setUser($username);
 	}
 
 	protected function createComponentSearchTitle()
