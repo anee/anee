@@ -11,6 +11,14 @@ class SignPresenter extends BasePresenter
 	/** @var \App\Modules\SecurityModule\Controls\ISignIn @inject */
 	public $ISignIn;
 
+	
+	public function actionIn()
+	{
+		if ($this->user->isLoggedIn()) {
+			$this->redirect(':Backend:Homepage:default');
+		}
+	}
+
 	public function createComponentSignIn()
 	{
 		return $this->ISignIn->create();
