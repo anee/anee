@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Utils\Arrays;
 use Nette;
 use	Nette\Application\Routers\RouteList;
 use	Nette\Application\Routers\Route;
@@ -21,11 +22,17 @@ class RouterFactory
 	{
 		$router = new RouteList();
 
-		//FRONTEND
+		//PROFILE
 		$router[] = new Route('<username>', array(
-			'module' => 'backend',
+			'module' => 'Backend',
 			'presenter' => 'Profile',
 			'action' => 'default',
+		));
+
+		//SEARCH
+		$router[] = new Route('<username>/<presenter>/<action>', array(
+			'module' => 'Backend',
+			'presenter' => 'Search',
 		));
 
 		// SECURITY MODULE
@@ -34,6 +41,10 @@ class RouterFactory
 		$router[] = $security;
 
 		// BACKEND MODULE
+		$router[] = new Route('<username>/<presenter>/<action>', array(
+			'module' => 'Backend',
+			'presenter' => 'Search',
+		));
 		$backend = new RouteList('Backend');
 		$backend[] = new Route('<username>/<presenter>/<id>', array(
 			'presenter' => 'Homepage',
