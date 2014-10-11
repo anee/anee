@@ -14,7 +14,7 @@ services:
 	- App\RouterFactory
 	router: @App\RouterFactory::createRouter
 	authenticator: App\Model\Authenticator
-	searchFactory: App\Searching\SearchFactory(@eventBaseLogic, @eventSearchLogic, @trackBaseLogic, @trackSearchLogic, @photoBaseLogic, @photoSearchLogic, @placeBaseLogic, @placeSearchLogic, @transportBaseLogic)
+	searchFactory: App\Searching\SearchFactory
 
 includes:
 		- ../model/config.model.neon
