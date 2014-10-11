@@ -18,9 +18,17 @@ abstract class BasePresenter extends \App\Modules\BaseModule\Presenters\BasePres
 	/** @var \App\Modules\BackendModule\Controls\ISearchFor @inject */
 	public $ISearchFor;
 
+	/** @var \App\Modules\BackendModule\Controls\IUserPanel @inject */
+	public $IUserPanel;
+
 	protected function createComponentSearchFor()
 	{
 		return $this->ISearchFor->create();
+	}
+
+	protected function createComponentUserPanel()
+	{
+		return $this->IUserPanel->create();
 	}
 
 	protected function createTemplate($class = NULL)
@@ -34,24 +42,12 @@ abstract class BasePresenter extends \App\Modules\BaseModule\Presenters\BasePres
 		return $template;
 	}
 
-	public function formatLayoutTemplateFiles()
+	protected function beforeRender()
 	{
-		$files = parent::formatLayoutTemplateFiles();
+		parent::beforeRender();
 
 		if($this->user->isLoggedIn()) {
-			dump($this->getUser());
-			die();
-			$files[] = __DIR__ . '/../templates/@layoutBackend.latte';
+			$this->setLayout('layoutBackend');
 		}
-		return $files;
 	}
-
-	/*public function checkRequirements($element)
-	{
-		parent::checkRequirements($element);
-
-		if (!$this->user->isLoggedIn()) {
-			$this->redirect(':Backend:Homepage:default');
-		}
-	}*/
 }

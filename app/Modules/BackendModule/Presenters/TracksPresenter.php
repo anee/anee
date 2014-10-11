@@ -12,15 +12,25 @@ use Nette;
 class TracksPresenter extends BasePresenter
 {
 
+	/** @var \App\Model\UserBaseLogic @inject */
+	public $userBaseLogic;
+
 	/** @var \App\Model\TrackBaseLogic @inject*/
 	public $trackBaseLogic;
 
 	/** @var \App\Model\Track */
     public $track;
 
-	public function renderDetail($id)
+	public function actionDefault($username, $id)
 	{
-        $this->track = $this->trackBaseLogic->findOneByIdAndUserId($id, $this->getUser()->getIdentity()->data['id']);
+		if($this->userBaseLogic->findOneByUsername($username) == NULL || ($this->userBaseLogic->findOneByUsername($username)->public == FALSE && !$this->getUser()->isLoggedIn())) {
+			$this->getPresenter()->redirect(':Backend:Homepage:default');
+		}
+	}
+
+	public function renderDefault($username, $id)
+	{
+        $this->track = $this->trackBaseLogic->findOneByIdAndUserName($id, $username);
 
         if ($this->track == null) {
             throw new Nette\Application\BadRequestException;

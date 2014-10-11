@@ -13,8 +13,10 @@ use Nette\Application\UI\Control;
  */
 class SearchTitle extends Control {
 
-
+	/** @var array */
 	private $values;
+
+	/** @var SearchResults */
 	private $results;
 
 	public function __construct(Array $values, SearchResults $results)
@@ -25,15 +27,13 @@ class SearchTitle extends Control {
 
 	public function render()
 	{
-		$template = $this->template;
+		//$template = $this->template;
+		$this->$template->setFile(__DIR__ . '/searchTitle.latte');
+		$this->template->addFilter(NULL, 'App\TemplateHelpers::loader');
 
-		// HELPERS
-		$template->addFilter(NULL, 'App\TemplateHelpers::loader');
-		$template->setFile(__DIR__ . '/searchTitle.latte');
+		$this->$template->results = $this->results;
+		$this->$template->values = $this->values;
 
-		$template->results = $this->results;
-		$template->values = $this->values;
-
-		$template->render();
+		$this->$template->render();
 	}
 } 

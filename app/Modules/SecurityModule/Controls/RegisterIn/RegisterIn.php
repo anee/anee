@@ -41,6 +41,7 @@ class RegisterIn extends Nette\Application\UI\Control
 			->addConditionOn($form['password'], Form::VALID)
 			->addRule(Form::FILLED, 'Reenter your password')
 			->addRule(Form::EQUAL, 'Passwords do not match', $form['password']);
+		$form->addCheckbox('public', 'Public profile');
 		$form->addSubmit('send', 'Register');
 		$form->onSuccess[] = $this->succes;
 		return $form;
@@ -50,11 +51,10 @@ class RegisterIn extends Nette\Application\UI\Control
 	{
 		$values = $form->getValues();
 
-		$userByUsername = $this->userBaseLogic->findOneSignIn($values->username);
-		$userByEmail = 	$this->userBaseLogic->findOneSignIn($values->email);
 
-		if($userByEmail == NULL && $userByUsername == NULL) {
-			$this->userBaseLogic->save(new User($values->username, $values->email, $values->password));
+		if($this->userBaseLogic->findOneSignIn($values->username) == NULL && $this->userBaseLogic->findOneSignIn($values->email) == NULL) {
+
+			$this->userBaseLogic->save(new User($values->username, $values->public, $values->email, $values->password));
 			$this->getPresenter()->redirect(':Backend:Homepage:default');
 		} else {
 			$form->addError('Username or user with this email already exist.');

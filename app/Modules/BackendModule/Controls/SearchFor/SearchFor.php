@@ -69,7 +69,8 @@ class SearchFor extends Control
     public function succes($form)
     {
 		$values = $form->values;
-		$values['userId'] = $this->user->getIdentity()->data['id'];
-        $this->presenter->redirect(':Backend:Search:default', array('values' => $values, 'username' => $this->user->getIdentity()->data['username']));
+		$values['userId'] = $this->getPresenter()->user->getIdentity()->data['id'];
+		$values['username'] = $this->getPresenter()->user->getIdentity()->data['username'];
+        $this->presenter->redirect(':Backend:Search:default', array('values' => $values, 'username' => $values['username']));
     }
 }

@@ -1,0 +1,15 @@
+
+<div style="position: absolute; right: 0; top: 0;">
+
+     <a href="{plink :Backend:Profile:default, 'username' => $user->username}">Home</a>
+     <br> <br>
+     Logged in as {$user->username} - <a href="{plink :Security:Sign:Out}">Sign out</a>
+
+    <br>
+    <br>
+
+    Tracks:
+     ({foreach $user->tracks as $track}
+         <a href="{plink :Backend:Tracks:Default, 'id' => $track->getId(), 'username' => $user->username}">{$track->getName()}</a>
+     {/foreach})
+ </div>

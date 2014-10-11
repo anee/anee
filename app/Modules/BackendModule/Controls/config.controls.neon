@@ -8,3 +8,12 @@ services:
 	SearchFor:
 		class: App\Modules\BackendModule\Controls\SearchFor
 		implement: App\Modules\BackendModule\Controls\ISearchFor
+
+	UserPanel:
+		class: App\Modules\BackendModule\Controls\UserPanel
+		implement: App\Modules\BackendModule\Controls\IUserPanel
+
+	Profil:
+		class: App\Modules\BackendModule\Controls\Profile(@userBaseLogic, %username%)
+		implement: App\Modules\BackendModule\Controls\IProfile
+		parameters: [App\Model\UserBaseLogic userBaseLogic, username]
