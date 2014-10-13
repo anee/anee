@@ -14,6 +14,6 @@ services:
 		implement: App\Modules\BackendModule\Controls\IUserPanel
 
 	Profil:
-		class: App\Modules\BackendModule\Controls\Profile(@userBaseLogic, %username%)
+		class: App\Modules\BackendModule\Controls\Profile(..., %username%)
 		implement: App\Modules\BackendModule\Controls\IProfile
-		parameters: [App\Model\UserBaseLogic userBaseLogic, username]
+		parameters: [username]

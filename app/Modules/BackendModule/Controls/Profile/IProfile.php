@@ -12,7 +12,8 @@ interface IProfile
 {
 
 	/**
-	 * @return /UserPanel
+	 * @param $username
+	 * @return Profile
 	 */
-	function create(UserBaseLogic $userBaseLogic, $username);
+	function create($username);
 }

@@ -30,6 +30,6 @@ class ProfilePresenter extends BasePresenter {
 
 	protected function createComponentProfile()
 	{
-		return $this->IProfile->create($this->userBaseLogic, $this->username);
+		return $this->IProfile->create($this->username);
 	}
 } 
