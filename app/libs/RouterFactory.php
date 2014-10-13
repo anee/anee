@@ -38,6 +38,7 @@ class RouterFactory
 		$router[] = new Route('<username>/<presenter>/<action>', array(
 			'module' => 'Backend',
 			'presenter' => 'Search',
+			'id' => NULL,
 		));
 
 		// BACKEND HOMEPAGE ( / )
