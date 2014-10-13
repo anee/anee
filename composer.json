@@ -16,7 +16,7 @@
 	],
 	"require": {
 		"php": ">= 5.5.11",
-		"nette/nette": "~2.2.2",
+		"nette/nette": "~2.2.3",
 		"kdyby/doctrine": "@dev",
 		"kappa/thumbnails-helper": "@dev",
 		"janmarek/webloader": "@dev"
