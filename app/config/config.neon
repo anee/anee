@@ -38,14 +38,11 @@ webloader:
 				files:
 					- %wwwDir%/css/bootstrap.min.css
 					- %wwwDir%/css/bootstrap-theme.min.css
-					- %wwwDir%/css/bootstrap-multiselect.css
-					- %wwwDir%/css/app-min.css
+					- %wwwDir%/css/app.css
 		js:
 			default:
 				files:
 					- %wwwDir%/js/jquery-2.1.1.min.js
 					- %wwwDir%/js/bootstrap.min.js
-					- %wwwDir%/js/bootstrap-multiselect.js
-					- %wwwDir%/js/chart.min.js
 					- %wwwDir%/js/netteForms.js
 					- %wwwDir%/js/app.js
