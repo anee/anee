@@ -57,6 +57,11 @@ class Track extends BaseEntity
      */
     protected $photos;
 
+	/**
+	 * @ORM\Column(type="boolean", nullable=TRUE)
+	 */
+	protected $pinned;
+
 
     public function __construct($transport, $distance, $timeInSeconds, $maxSpeed, $date, $place)
     {
