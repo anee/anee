@@ -1,7 +1,7 @@
 /*
  RESIZE
  */
-$(function(){
+/*$(function(){
     window.onresize = resize;
     //window.onload = load;
 });
@@ -36,7 +36,7 @@ function resize() {
 /*
  GLOBAL FUNCTION
  */
-function toggleVisibility(id) {
+/*function toggleVisibility(id) {
     var e = document.getElementById(id);
     if(e.style.display == 'none') {
         $('#' + id).slideToggle('');
@@ -44,17 +44,17 @@ function toggleVisibility(id) {
     } else {
         e.style.display = 'none';
     }
-}
+}*/
 
 /*
 SEARCH MENU
  */
-function searchBarVisibility(id) {
+/*function searchBarVisibility(id) {
     toggleVisibility(id);
     toggleSearchBar(id);
-}
+}*/
 
-function toggleSearchBar(id) {
+/*function toggleSearchBar(id) {
     var e = document.getElementById(id);
     if(e.style.display == 'none') {
         document.getElementById('top-menu-search').style.opacity = "";
@@ -65,12 +65,12 @@ function toggleSearchBar(id) {
         document.getElementById('right-menu').style.paddingTop = "140px";
         document.getElementById('content').style.paddingTop = "140px";
     }
-}
+}*/
 
 /*
 RIGHT MENU / RIGHT MENU CENTER
  */
-function rightMenuVisibility(id) {
+/*function rightMenuVisibility(id) {
     var w = window.innerWidth;
     if (w > 1900) {
         toggleVisibility(id);
