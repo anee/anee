@@ -46,8 +46,8 @@ abstract class BasePresenter extends \App\Modules\BaseModule\Presenters\BasePres
 	{
 		parent::beforeRender();
 
-		if($this->user->isLoggedIn()) {
-			$this->setLayout('layoutBackend');
+		if(!$this->user->isLoggedIn()) {
+			$this->setLayout('\..\..\FrontendModule\templates\@layout');
 		}
 	}
 }
