@@ -11,7 +11,7 @@ nette:
 		expiration: 14 days
 
 services:
-	- App\RouterFactory
+	routerFactory: App\RouterFactory
 	router: @App\RouterFactory::createRouter
 	authenticator: App\Model\Authenticator
 	searchFactory: App\Searching\SearchFactory
