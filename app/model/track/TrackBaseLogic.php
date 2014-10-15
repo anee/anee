@@ -59,6 +59,18 @@ class TrackBaseLogic extends BaseLogic {
         return $this->addFilterByUser($qb, $userId)->getQuery()->setMaxResults($count)->getResult();
     }
 
+	public function findLasPinnedByCount($count, $userId)
+	{
+		$qb = $this->dao->createQueryBuilder();
+		$qb
+			->select('e')
+			->from('App\Model\Track', 'e')
+			->where('e.pinned = TRUE')
+			->orderBy('e.date', 'DESC');
+
+		return $this->addFilterByUser($qb, $userId)->getQuery()->setMaxResults($count)->getResult();
+	}
+
     public function findOneById($id)
     {
         $qb = $this->dao->createQueryBuilder();

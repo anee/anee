@@ -77,17 +77,6 @@ class User extends BaseEntity {
 		$this->password = Passwords::hash($password);
 	}
 
-	public function getPinnedTracks()
-	{
-		$tracks = Array();
-		foreach($this->tracks as $track) {
-			if($track->pinned) {
-				$tracks[] = $track;
-			}
-		}
-		return $tracks;
-	}
-
 	public function getTotalDistance()
 	{
 		$distance = 0;
