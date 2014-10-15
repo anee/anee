@@ -67,8 +67,10 @@ class User extends BaseEntity {
 	 * @param $email
 	 * @param $password
 	 */
-	public function __construct($username, $public, $email, $password)
+	public function __construct($username, $forename, $surname, $public, $email, $password)
 	{
+		$this->forename = $forename;
+		$this->surname = $surname;
 		$this->username = $username;
 		$this->email = $email;
 		$this->public = $public;

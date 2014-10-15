@@ -33,14 +33,20 @@ class RegisterIn extends Nette\Application\UI\Control
 	protected function createComponentRegisterInForm()
 	{
 		$form = new Form;
-		$form->addText('username')->setRequired('Please enter your username.');
-		$form->addText('forename')->setRequired('Please enter your forename.');
-		$form->addText('surname')->setRequired('Please enter your surname.');
+		$form->addText('username')->setRequired('Please enter your username.')
+			->setAttribute('placeholder', 'Username');
+		$form->addText('forename')->setRequired('Please enter your forename.')
+			->setAttribute('placeholder', 'Forename');
+		$form->addText('surname')->setRequired('Please enter your surname.')
+			->setAttribute('placeholder', 'Surname');
 		$form->addPassword('password')
-			->setRequired('Please enter your password.');
+			->setRequired('Please enter your password.')
+			->setAttribute('placeholder', 'Password');
 		$form->addText('email')->setRequired('Please enter your email')
-				->addCondition(Form::EMAIL, 'Please insert correct email address');
+			->setAttribute('placeholder', 'E-mail')
+			->addCondition(Form::EMAIL, 'Please insert correct email address');
 		$form->addPassword('passwordRe', "Reenter your password: *")
+			->setAttribute('placeholder', 'Password re')
 			->addConditionOn($form['password'], Form::VALID)
 			->addRule(Form::FILLED, 'Reenter your password')
 			->addRule(Form::EQUAL, 'Passwords do not match', $form['password']);
@@ -54,7 +60,7 @@ class RegisterIn extends Nette\Application\UI\Control
 	{
 		try {
 			$values = $form->getValues();
-			$this->userBaseLogic->save(new User($values->username, $values->public, $values->email, $values->password));
+			$this->userBaseLogic->save(new User($values->username, $values->forename, $values->surname, $values->public, $values->email, $values->password));
 			$this->getPresenter()->redirect(':Backend:Homepage:default');
 		} catch(DuplicateEntryException $e) {
 			$form->addError('User with this username or email already exist.');
