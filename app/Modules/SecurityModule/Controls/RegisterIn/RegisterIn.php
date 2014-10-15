@@ -34,6 +34,8 @@ class RegisterIn extends Nette\Application\UI\Control
 	{
 		$form = new Form;
 		$form->addText('username')->setRequired('Please enter your username.');
+		$form->addText('forename')->setRequired('Please enter your forename.');
+		$form->addText('surname')->setRequired('Please enter your surname.');
 		$form->addPassword('password')
 			->setRequired('Please enter your password.');
 		$form->addText('email')->setRequired('Please enter your email')

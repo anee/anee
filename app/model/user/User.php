@@ -17,6 +17,16 @@ class User extends BaseEntity {
 	protected $username;
 
 	/**
+	 * @ORM\Column(type="string", nullable=FALSE)
+	 */
+	protected $forename;
+
+	/**
+	 * @ORM\Column(type="string", nullable=FALSE)
+	 */
+	protected $surname;
+
+	/**
 	 * @ORM\Column(type="boolean")
 	 */
 	protected $public;
@@ -63,5 +73,30 @@ class User extends BaseEntity {
 		$this->email = $email;
 		$this->public = $public;
 		$this->password = Passwords::hash($password);
+	}
+
+	public function getPinnedTracks()
+	{
+		$tracks = Array();
+		foreach($this->tracks as $track) {
+			if($track->pinned) {
+				$tracks[] = $track;
+			}
+		}
+		return $tracks;
+	}
+
+	public function getTotalDistance()
+	{
+		$distance = 0;
+		foreach($this->tracks as $track) {
+			$distance += $track->distance;
+		}
+		return $distance;
+	}
+
+	public function getName()
+	{
+		return $this->forename.' '.$this->surname;
 	}
 }
