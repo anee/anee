@@ -1,0 +1,27 @@
+parameters:
+  vendorDir: %appDir%/../vendor
+
+services:
+	cssMin: App\WebLoader\CssMinFilter
+	jsMin: App\WebLoader\JsMinFilter
+
+extensions:
+	webloader: WebLoader\Nette\Extension
+
+webloader:
+		css:
+			default:
+				files:
+					# /Controls
+					- {files: ["*.css"], from: %appDir%/Modules/} # Nette\Utils\Finder support
+					- app.css
+				filters:
+					- @cssMin
+		js:
+			default:
+				files:
+					- %vendorDir%/nette/forms/src/assets/netteForms.js
+					- %wwwDir%/js/jquery-2.1.1.min.js
+					- app.js
+				filters:
+					- @jsMin

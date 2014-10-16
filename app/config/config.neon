@@ -1,45 +1,8 @@
-php:
-	date.timezone: Europe/Prague
-
-nette:
-	application:
-		errorPresenter: 'Error:Error'
-		mapping:
-			*: App\Modules\*Module\Presenters\*Presenter
-
-	session:
-		expiration: 14 days
-
-services:
-	routerFactory: App\RouterFactory
-	router: @App\RouterFactory::createRouter
-	authenticator: App\Model\Authenticator
-	searchFactory: App\Searching\SearchFactory
-
 includes:
 		- ../model/config.model.neon
+		- ../config/config.nette.neon
 		- ../Modules/BackendModule/Controls/config.controls.neon
 		- ../Modules/SecurityModule/Controls/config.controls.neon
-
-extensions:
-	console: Kdyby\Console\DI\ConsoleExtension
-	events: Kdyby\Events\DI\EventsExtension
-	annotations: Kdyby\Annotations\DI\AnnotationsExtension
-	doctrine: Kdyby\Doctrine\DI\OrmExtension
-	thumb: Kappa\ThumbnailsHelper\DI\ThumbnailsHelperExtension
-	webloader: WebLoader\Nette\Extension
-
-thumb:
-	thumbDir: %wwwDir%/images/thumbs
-
-webloader:
-		css:
-			default:
-				files:
-					- %wwwDir%/css/app.css
-		js:
-			default:
-				files:
-					- %wwwDir%/js/jquery-2.1.1.min.js
-					- %wwwDir%/js/netteForms.js
-					- %wwwDir%/js/app.js
+		- ../config/extension.webloader.neon
+		- ../config/extension.thumb.neon
+		- ../config/extension.kdyby.neon

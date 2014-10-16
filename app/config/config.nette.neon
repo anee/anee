@@ -1,0 +1,17 @@
+php:
+	date.timezone: Europe/Prague
+
+nette:
+	application:
+		errorPresenter: 'Error:Error'
+		mapping:
+			*: App\Modules\*Module\Presenters\*Presenter
+
+	session:
+		expiration: 14 days
+
+services:
+	routerFactory: App\RouterFactory
+	router: @App\RouterFactory::createRouter
+	authenticator: App\Model\Authenticator
+	searchFactory: App\Searching\SearchFactory
