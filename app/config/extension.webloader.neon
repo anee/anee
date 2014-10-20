@@ -17,14 +17,15 @@ webloader:
 			default:
 				files:
 					# /Controls
-					- {files: ["*.css"], from: %appDir%/Modules/} # Nette\Utils\Finder support
+					- {files: ["*.css", "*.less"], from: %appDir%/Modules/} # Nette\Utils\Finder support
 
-
-					- bootstrap.min.css
 					- app.css
 				filters:
 					- @cssMin
 					- @wlCssFilter
+
+				fileFilters:
+					- @lessFilter
 
 		# application JS
 		js:
@@ -36,7 +37,7 @@ webloader:
 					- %vendorDir%/nette/forms/src/assets/netteForms.js
 					- jquery-2.1.1.min.js
 					- nette.ajax.js
-					- bootstrap.modal.js
+					- less.min.js
 					- app.js
 				filters:
 					- @jsMin
