@@ -43,7 +43,7 @@
                 <h3>FOLLOWING USERS</h3>
                 {foreach $user->followingUsers as $user}
                     <div class="user-line">
-                        <p class="name float-left"><a href="">{$user->getName()}</a></p>
+                        <p class="name float-left"><a href="{plink :Backend:Profile:default, 'username' => $user->username}">{$user->getName()}</a></p>
                         <p class="date float-right"></p>
                         <div style="clear: both;"></div>
                     </div>
