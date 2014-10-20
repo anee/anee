@@ -114,3 +114,31 @@
 .user .user-summary .right-box {
     width: 165px;
 }
+.user .user-activity {
+    margin: 0 50px 0 50px;
+    padding-bottom: 30px;
+}
+.user .user-activity h3 {
+    color: #e0e9f0;
+}
+.user .user-activity .name {
+    color: #e0e9f0;
+    margin: 10px 0 10px 0;
+    font-size: 16px;
+    font-weight: normal;
+    font-family: "Verdana";
+}
+.user .user-activity .date {
+    color: #e0e9f0;
+    margin: 10px 0 10px 0;
+    font-size: 16px;
+    font-weight: normal;
+    font-family: "Verdana";
+}
+.user .user-activity .user-line p a {
+    color: #e0e9f0;
+    text-decoration: none;
+}
+.user .user-activity .user-line p a:hover {
+    font-weight: bold;
+}

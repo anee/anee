@@ -62,6 +62,11 @@ class User extends BaseEntity {
 	protected $photos;
 
 	/**
+	 * @ORM\ManyToMany(targetEntity="App\Model\User", inversedBy="user", cascade={"persist"})
+	 */
+	protected $followingUsers;
+
+	/**
 	 * @param $username
 	 * @param $public
 	 * @param $email

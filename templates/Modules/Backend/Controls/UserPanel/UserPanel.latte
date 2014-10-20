@@ -32,9 +32,23 @@
                     </a>
                 </li>
                 <li class="add">
-                    <a class="add" onclick="userPanelAdd();"></a>
+                    {*<a class="add" onclick="userPanelAdd();"></a>*}
+                    {*<a class="add" href="#user-panel-add"></a>*}
+                    <a n:href="userPanelAdd:Add!" class="ajaxdialog"></a>
                 </li>
             </ul>
+        </div>
+        <div class="user-activity">
+            {if count($user->followingUsers) > 0}
+                <h3>FOLLOWING USERS</h3>
+                {foreach $user->followingUsers as $user}
+                    <div class="user-line">
+                        <p class="name float-left"><a href="">{$user->getName()}</a></p>
+                        <p class="date float-right"></p>
+                        <div style="clear: both;"></div>
+                    </div>
+                {/foreach}
+            {/if}
         </div>
         <div class="user-summary">
             <div class="left-box float-left">
