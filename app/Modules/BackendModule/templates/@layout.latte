@@ -25,10 +25,20 @@
 <body>
     <script> document.documentElement.className+=' js' </script>
 
-    {control searchFor}
+    <!-- Top-top-menu -->
+    {control topTopMenu}
+
+    <!-- Top-menu -->
+    {control topMenu}
+
+    <!-- User-panel-->
     {control userPanel}
 
-    {include content}
+
+    <!-- Content -->
+    <div id="content" style="padding: 107px 0 0 0;">
+        {include content}
+    </div>
 
     {block scripts}
 	    {control js}

@@ -4,16 +4,14 @@
 namespace App\Modules\BackendModule\Controls;
 
 
-
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
  */
-interface IProfile
+interface ITopMenu
 {
 
 	/**
-	 * @param $username
-	 * @return Profile
+	 * @return TopMenu
 	 */
-	function create($username);
+	function create();
 }

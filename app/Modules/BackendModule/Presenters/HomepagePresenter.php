@@ -10,9 +10,16 @@ use Nette\Security as NS;
 class HomepagePresenter extends BasePresenter
 {
 
+	/*/** @var  \App\Modules\BackendModule\Controls\IProfileContainer @inject */
+	/*public $IProfileContainer;*/
 
-	public function renderDefault()
+	/*/** @var  \App\Modules\BackendModule\Controls\IProfile @inject */
+	/*public $IProfile;*/
+
+	/*protected function createComponentProfileContainer()
 	{
-
-	}
+		$profileContainer = $this->IProfileContainer->create($this->getUser()->getIdentity()->data['username']);
+		$profileContainer->addComponent($this->IProfile, 'a');
+		return $profileContainer;
+	}*/
 }

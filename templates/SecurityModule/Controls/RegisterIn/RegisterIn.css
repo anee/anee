@@ -1,0 +1,49 @@
+.register-box {
+    padding-top: 200px;
+    margin: 0 auto;
+    width: 500px;
+}
+.register {
+    padding-top: 50px;
+}
+.register-box input {
+    padding-left: 20px;
+    width: 480px; height: 55px;
+    background-color: white;
+    border: none;
+    color: #b6bcbf;
+    font-size: 16px;
+    font-weight: normal;
+    font-family: "Verdana";
+}
+.register-box input[type="submit"] {
+    width: 500px;
+    cursor: pointer;
+    color: white;
+    background-color: #3c948b;
+    margin-top: 30px;
+}
+.register-box input[type="checkbox"] {
+    color: white;
+    width: 15px; height: 15px;
+    padding: 0;
+    vertical-align: bottom;
+    position: relative;
+    top: -1px;
+    margin: 0;
+    margin-right: 5px;
+}
+.register-box label {
+    color: #55676e;
+    font-size: 14px;
+    font-family: "Verdana";
+    display: block;
+    padding-left: 15px;
+    text-indent: -15px;
+}
+.normal {
+    margin-bottom: 40px;
+}
+.beforeCheckbox {
+    margin-bottom: 30px;
+}

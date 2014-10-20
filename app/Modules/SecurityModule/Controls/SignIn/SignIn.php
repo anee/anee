@@ -13,25 +13,27 @@ use Nette\Security\AuthenticationException;
 class SignIn extends Nette\Application\UI\Control
 {
 
-	public function render()
+	public function render($file)
 	{
-		$this->template->setFile(__DIR__ . '/SignIn.latte');
+		$this->template->setFile($file);
 		$this->template->render();
 	}
 
     protected function createComponentSignInForm()
     {
 		$form = new Form;
-		$form->addText('usernameOrEmail')->setRequired('Please enter your username or email.');
+		$form->addText('usernameOrEmail')->setRequired('Please enter your username or email.')
+			->setAttribute('placeholder', 'E-mail or username');
 		$form->addPassword('password')
-			->setRequired('Please enter your password.');
-		$form->addCheckbox('remember', 'Keep me signed in');
+			->setRequired('Please enter your password.')
+			->setAttribute('placeholder', 'Password');
+		$form->addCheckbox('remember', 'Remember me');
 		$form->addSubmit('send', 'Sign in');
-		$form->onSuccess[] = $this->succes;
+		$form->onSuccess[] = $this->success;
 		return $form;
     }
 
-	public function succes($form)
+	public function success($form)
 	{
 		$values = $form->getValues();
 

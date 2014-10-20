@@ -20,6 +20,7 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 	{
 		/** @var \WebLoader\Compiler $compiler */
 		$compiler = $this->context->getService('webloader.cssDefaultCompiler');
+		$compiler->addFileFilter(new \WebLoader\Filter\LessFilter());
 		$control = new CssLoader($compiler, '/webtemp');
 
 		return $control;

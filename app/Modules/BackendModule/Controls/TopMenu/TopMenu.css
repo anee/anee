@@ -1,0 +1,104 @@
+.top-menu {
+    top: 36px;
+    width: 100%; height: 70px;
+    z-index: 1;
+    position: fixed;
+    border-bottom: 1px solid #adbfcd;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+.top-menu #search {
+    width: 130px; height: 70px;
+    border-right: 1px solid #adbfcd;
+}
+.top-menu #search a {
+    display: block;
+    width: 130px; height: 70px;
+    background: url('../../../../../www/images/top_menu_search.png') no-repeat 53px 23px;
+}
+.top-menu #search a:hover {
+    height: 67px;
+    cursor: pointer;
+    background-color: white;
+    border-bottom: solid 3px #adbfcd;
+}
+.top-menu #search-bar {
+    color: #adbfcd;
+    z-index: 1;
+    position: fixed;
+    top: 106px;
+    width: 100%; height: 40px;
+    background-color: white;
+    border-bottom: #eaeff2;
+}
+.top-menu #search-bar-filters {
+    padding-left: 20px;
+    z-index: 1;
+    top: 147px;
+    position: fixed;
+    width: 100%;
+    color: #55676e;
+    background-color: white;
+}
+
+.top-menu #search-bar .search {
+    float: left;
+    color: #55676e;
+    border: none;
+    width: 200px; height: 38px;
+    font-size: 16px;
+    font-weight: normal;
+    font-family: "Verdana";
+    padding-left: 8px;
+}
+
+.top-menu #search-bar .filters-ref {
+    text-align: left;
+    padding-left: 20px;
+    padding-top: 11px;
+    width: 64px; height: 40px;
+    color: #adbfcd;
+    font-size: 16px;
+    font-weight: normal;
+    font-family: "Verdana";
+}
+.top-menu #search-bar .filters-ref a {
+    color: #adbfcd;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.top-menu #search-bar-filters .filters {
+    font-size: 16px;
+    font-weight: normal;
+    font-family: "ProximaNova-Light";
+}
+.filter-col {
+    width: 120px;
+    margin-bottom: 40px;
+}
+.bloc {
+    display: inline-block;
+    vertical-align: top;
+    overflow: hidden;
+    border: none;
+}
+.bloc select {
+    width: 120px;
+    color: #7a8c93;
+    font-size: 18px;
+    font-family: "ProximaNova-Light";
+    padding: 10px 10px 10px 5px;
+    margin:-5px -20px -5px -5px;
+}
+.top-menu #user-panel-ref {
+    right: 0;
+    top: 36px;
+    position: fixed;
+    width: 80px; height: 70px;
+}
+.top-menu #user-panel-ref a {
+    cursor: pointer;
+    display: block;
+    width: 80px; height: 70px;
+    background: url('../../../../../www/images/user_menu_icon.png') #293c4b no-repeat 31px 26px;
+}

@@ -6,13 +6,12 @@ use App\Model\UserBaseLogic;
 use Nette;
 use Nette\Application\UI\Form;
 use Nette\Application\UI\Control;
-use App\Model\User;
 
 
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
  */
-class SearchFor extends Control
+class TopMenu extends Control
 {
 
 
@@ -28,7 +27,7 @@ class SearchFor extends Control
 
 	public function render()
 	{
-		$this->template->setFile(__DIR__ . '/SearchFor.latte');
+		$this->template->setFile(__DIR__ . '/TopMenu.latte');
 		$this->template->render();
 	}
 
@@ -70,11 +69,11 @@ class SearchFor extends Control
         $form->addSelect('filterTime', NULL, $time);
 		$form->addSelect('filterSortBy', NULL, $sort);
         $form->addSubmit('send', '');
-        $form->onSuccess[] = $this->succes;
+        $form->onSuccess[] = $this->success;
         return $form;
     }
 
-    public function succes($form)
+    public function success($form)
     {
         $this->presenter->redirect(':Backend:Search:default', array('values' => $form->values, 'username' => $this->username));
     }

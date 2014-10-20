@@ -4,14 +4,16 @@
 namespace App\Modules\BackendModule\Controls;
 
 
+
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
  */
-interface ISearchFor
+interface IProfileContainer
 {
 
 	/**
-	 * @return SearchFor
+	 * @param $username
+	 * @return Profile
 	 */
-	function create();
+	function create($username);
 }

@@ -10,5 +10,9 @@ use Nette;
  */
 abstract class BasePresenter extends \App\Modules\BaseModule\Presenters\BasePresenter
 {
-
+	protected function beforeRender()
+	{
+		parent::beforeRender();
+		$this->setLayout('\..\..\FrontendModule\templates\@layout');
+	}
 }

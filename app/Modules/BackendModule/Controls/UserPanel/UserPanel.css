@@ -1,0 +1,116 @@
+.user {
+    z-index: 2;
+    position: fixed;
+    top: 36px;
+    right: 0;
+    width: 400px;
+    height: 100%;
+    background-color: #293c4b;
+}
+.user .user-title {
+    width: 500px; height: 70px;
+    /*border-bottom: 1px solid #4a5d6c;*/
+}
+.user .user-ref {
+    cursor: pointer;
+    width: 80px; height: 70px;
+}
+.user .user-ref a {
+    display: block;
+    width: 80px; height: 70px;
+    background: url('../../../../../www/images/user_menu_icon.png') #293c4b no-repeat 31px 26px;
+}
+
+.user .user-menu {
+    border-bottom: 1px solid #4a5d6c;
+    margin: 10px 35px 0 35px;
+}
+.user .user-menu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+.user .user-menu ul .add a {
+    margin-top: 15px;
+    border-top: 1px solid #4a5d6c;
+    background: url('../../../../../www/images/add.png') center no-repeat;
+}
+.user .user-menu ul .add a:hover {
+    background: url('../../../../../www/images/add_hover.png') white center no-repeat;
+}
+.user .user-menu ul li {
+    color: white;
+    height: 45px;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: "Verdana";
+}
+.user .user-menu ul li a {
+    display: block;
+    padding: 14px 15px 0 15px;
+    height: 30px;
+    color: white;
+    text-decoration: none;
+}
+.user .user-menu ul li a:hover {
+    color: #293c4b;
+    background-color: white;
+}
+.user .user-menu ul .icon {
+    padding-left: 70px;
+    background: url('../../../../../www/images/profile_menu_icons.png') no-repeat;
+}
+.user .user-menu ul .tracks {
+    background-position: -48px 10px;
+}
+.user .user-menu ul .tracks:hover {
+    background-position: 0 10px;
+}
+.user .user-menu ul .photos {
+    background-position: -48px -34px;
+}
+.user .user-menu ul .photos:hover {
+    background-position: 0 -34px;
+}
+.user .user-menu ul .places {
+    background-position: -48px -80px;
+}
+.user .user-menu ul .places:hover {
+    background-position: 0 -80px;
+}
+.user .user-activity {
+    margin: 0 50px 0 50px;
+    padding-bottom: 20px;
+}
+.user .user-summary {
+    position: fixed;
+    bottom: 0;
+    height: 85px;
+    color: #e0e9f0;
+    margin: 20px 35px 25px 35px;
+    padding-top: 20px;
+    border-bottom: 1px solid #50606e;
+    border-top: 1px solid #50606e;
+}
+.user .user-summary .number {
+    line-height: 1;
+    height: 45px;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    font-size: 48px;
+    font-family: "Kalinga";
+}
+.user .user-summary .description {
+    margin: 0;
+    text-align: center;
+    font-size: 18px;
+    font-family: "ProximaNova-Light";
+}
+.user .user-summary .left-box {
+    width: 164px;
+    border-right: 1px solid #50606e;
+}
+.user .user-summary .right-box {
+    width: 165px;
+}

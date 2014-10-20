@@ -52,11 +52,11 @@ class RegisterIn extends Nette\Application\UI\Control
 			->addRule(Form::EQUAL, 'Passwords do not match', $form['password']);
 		$form->addCheckbox('public', 'Public profile');
 		$form->addSubmit('send', 'Register');
-		$form->onSuccess[] = $this->succes;
+		$form->onSuccess[] = $this->success;
 		return $form;
 	}
 
-	public function succes($form)
+	public function success($form)
 	{
 		try {
 			$values = $form->getValues();

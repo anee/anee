@@ -3,7 +3,6 @@
 namespace App\Modules\BackendModule\Presenters;
 
 use Nette;
-use App\Modules\BackendModule\Forms\TInjectSearchFormFactory;
 
 
 /**
@@ -15,15 +14,23 @@ abstract class BasePresenter extends \App\Modules\BaseModule\Presenters\BasePres
 	/** @var \Kappa\ThumbnailsHelper\ThumbnailsHelper @inject*/
 	public $thumbnailsHelper;
 
-	/** @var \App\Modules\BackendModule\Controls\ISearchFor @inject */
-	public $ISearchFor;
+	/** @var \App\Modules\BackendModule\Controls\ITopMenu @inject */
+	public $ITopMenu;
+
+	/** @var \App\Modules\BackendModule\Controls\ITopTopMenu @inject */
+	public $ITopTopMenu;
 
 	/** @var \App\Modules\BackendModule\Controls\IUserPanel @inject */
 	public $IUserPanel;
 
-	protected function createComponentSearchFor()
+	protected function createComponentTopMenu()
 	{
-		return $this->ISearchFor->create();
+		return $this->ITopMenu->create();
+	}
+
+	protected function createComponentTopTopMenu()
+	{
+		return $this->ITopTopMenu->create();
 	}
 
 	protected function createComponentUserPanel()
@@ -35,7 +42,6 @@ abstract class BasePresenter extends \App\Modules\BaseModule\Presenters\BasePres
 	{
 		$template = parent::createTemplate($class);
 
-		// HELPERS
 		$template->addFilter(NULL, 'App\TemplateHelpers::loader');
 		$template->addFilter('thumb', array($this->thumbnailsHelper, 'process'));
 

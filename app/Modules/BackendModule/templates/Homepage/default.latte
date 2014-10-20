@@ -1,9 +1,3 @@
 {block content}
-    {if $user->isLoggedIn()}
-       Page for logged in users
-    {else}
-        Page for unlogged or unregistered users
-        <a href="{plink :Security:Sign:in}">Sign in</a>
-        <a href="{plink :Security:Register:in}">Register in</a>
-    {/if}
+
 {/block}

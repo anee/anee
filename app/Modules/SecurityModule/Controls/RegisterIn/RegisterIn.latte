@@ -1,17 +1,21 @@
 
-
 {form registerInForm}
 
-    <ul class="errors" n:if="$form->hasErrors()">
-        <li n:foreach="$form->errors as $error">{$error}</li>
-    </ul>
+    <div class="register-box register">
 
-    {input username}
-    {input forename}
-    {input surename}
-    {input email}
-    {input password}
-    {input passwordRe}
-    {input send}
+        <h1>Register</h1>
+
+	    <ul class="errors" n:if="$form->hasErrors()">
+            <li n:foreach="$form->errors as $error">{$error}</li>
+        </ul>
+
+        {input username class => normal}
+        {input forename class => normal}
+        {input surname class => normal}
+        {input email class => normal}
+        {input password class => normal}
+        {input passwordRe class => beforeCheckbox}
+        {input public class => normal}
+        {input send}
+    </div>
 {/form}
-

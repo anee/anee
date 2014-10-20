@@ -4,16 +4,14 @@
 namespace App\Modules\BackendModule\Controls;
 
 
-
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
  */
-interface IProfile
+interface IUserPanelAdd
 {
 
 	/**
-	 * @param $username
-	 * @return Profile
+	 * @return /UserPanelAdd
 	 */
-	function create($username);
+	function create();
 }

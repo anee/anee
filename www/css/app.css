@@ -1,0 +1,102 @@
+/* Fonts
+----------------------------------------------------------*/
+@font-face {
+    font-family: "ProximaNova-Light";
+    src: url("../fonts/ProximaNova-Light.otf");
+}
+@font-face {
+    font-family: "MuseoSans";
+    src: url("../fonts/MuseoSans_500-webfont.ttf");
+}
+@font-face {
+    font-family: "Kalinga";
+    src: url("../fonts/kalinga.ttf");
+}
+
+/* Global
+----------------------------------------------------------*/
+html {
+    position: relative;
+    min-height: 100%;
+    background: url('../images/background.png') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+}
+body {
+    margin: 0 auto;
+    width: 100%;
+    font-size: 17px;
+    font-family: "ProximaNova-Light";
+}
+body > .container {
+    width: 100%;
+    padding: 0;
+}
+
+/* Headings
+----------------------------------------------------------*/
+h1, h1 a {
+    text-align: center;
+    color: #55676e;
+    font-size: 38px;
+    font-weight: normal;
+    letter-spacing: 4px;
+    font-family: Verdana;
+    margin-bottom: 50px;
+}
+h2 {
+    color: white;
+    position: absolute;
+    top: 200px;
+    left: 35px;
+    line-height: 30px;
+    font-size: 28px;
+    font-weight: normal;
+    font-family: "Verdana";
+}
+h2 a {
+    opacity: 0.6;
+    color: white;
+    text-decoration: none;
+}
+h2 a:hover {
+    opacity: 1;
+}
+h3, h3 a {
+    margin-top: 30px;
+    margin-bottom: 20px;
+    text-align: center;
+    letter-spacing: 2px;
+    color: #293c4b;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: "Verdana";
+}
+h4, h4 a {
+    color: #55676e;
+    font-size: 16px;
+    font-family: "Verdana";
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
+h1, h2, h3, h4 {
+    /*margin-top: 0;
+    font-weight: bold;
+    font-family: "Verdana";*/
+}
+h3 a:hover {
+    /*color: #6e797a;*/
+}
+h1 a:hover, h2 a:hover, h4 a:hover {
+    /*color: #484848;*/
+}
+
+/* Shortcuts
+----------------------------------------------------------*/
+.float-left {
+    float: left;
+}
+.float-right {
+    float: right;
+}
