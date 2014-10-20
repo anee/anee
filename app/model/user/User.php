@@ -93,6 +93,12 @@ class User extends BaseEntity {
 
 	public function getName()
 	{
-		return $this->forename.' '.$this->surname;
+		if($this->forename != "" && $this->surname != "") {
+			return $this->forename . ' ' . $this->surname;
+		} elseif($this->forename != "") {
+			return $this->forename;
+		} else {
+			return $this->username;
+		}
 	}
 }
