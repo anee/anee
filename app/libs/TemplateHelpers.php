@@ -103,7 +103,12 @@ class TemplateHelpers {
         return $value;
     }
 
-    public static function getDateAgoNumber($date)
+	/**
+	 * For example "8"
+	 * @param $date
+	 * @return string
+	 */
+    public static function dateAgoNumber($date)
     {
         $value = null;
         $seconds = round((date('U') - $date->format('U')));
@@ -122,15 +127,20 @@ class TemplateHelpers {
         return $value;
     }
 
-    public static function getDateAgoText($date)
+	/**
+	 * For example "days ago"
+	 * @param $date
+	 * @return string
+	 */
+    public static function dateAgoText($date)
     {
         $value = null;
         $seconds = round((date('U') - $date->format('U')));
 
         if ($seconds < 60)
-            $value = " second";
+            $value = " sec";
         else if($seconds < 60*60)
-            $value = " minute";
+            $value = " min";
         else if($seconds < 60*60*24)
             $value = " hour";
         else if($seconds < 60*60*24*30)
