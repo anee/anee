@@ -22,7 +22,6 @@
 }
 
 .user .user-menu {
-    border-bottom: 1px solid #4a5d6c;
     margin: 10px 35px 0 35px;
 }
 .user .user-menu ul {
@@ -78,10 +77,6 @@
 .user .user-menu ul .places:hover {
     background-position: 0 -80px;
 }
-.user .user-activity {
-    margin: 0 50px 0 50px;
-    padding-bottom: 20px;
-}
 .user .user-summary {
     position: fixed;
     bottom: 0;
@@ -116,7 +111,6 @@
 }
 .user .user-activity {
     margin: 0 50px 0 50px;
-    padding-bottom: 30px;
 }
 .user .user-activity h3 {
     color: #e0e9f0;
@@ -141,4 +135,7 @@
 }
 .user .user-activity .user-line p a:hover {
     font-weight: bold;
+}
+.user .add-border{
+    border-bottom: 1px solid #4a5d6c;
 }
