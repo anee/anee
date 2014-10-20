@@ -2,26 +2,41 @@ parameters:
   vendorDir: %appDir%/../vendor
 
 services:
+	wlCssFilter: WebLoader\Filter\CssUrlsFilter(%wwwDir%)
 	cssMin: App\WebLoader\CssMinFilter
+	lessFilter: WebLoader\Filter\LessFilter
 	jsMin: App\WebLoader\JsMinFilter
 
 extensions:
 	webloader: WebLoader\Nette\Extension
 
 webloader:
+
+		# application CSS
 		css:
 			default:
 				files:
 					# /Controls
 					- {files: ["*.css"], from: %appDir%/Modules/} # Nette\Utils\Finder support
+
+
+					- bootstrap.min.css
 					- app.css
 				filters:
 					- @cssMin
+					- @wlCssFilter
+
+		# application JS
 		js:
 			default:
 				files:
+					# /Controls
+					- {files: ["*.js"], from: %appDir%/Modules/} # Nette\Utils\Finder support
+
 					- %vendorDir%/nette/forms/src/assets/netteForms.js
-					- %wwwDir%/js/jquery-2.1.1.min.js
+					- jquery-2.1.1.min.js
+					- nette.ajax.js
+					- bootstrap.modal.js
 					- app.js
 				filters:
 					- @jsMin
