@@ -4,5 +4,6 @@ includes:
 		- ../Modules/BackendModule/Controls/config.controls.neon
 		- ../Modules/SecurityModule/Controls/config.controls.neon
 		- ../config/extension.webloader.neon
+		- ../config/extension.themes-manager.neon
 		- ../config/extension.thumb.neon
 		- ../config/extension.kdyby.neon

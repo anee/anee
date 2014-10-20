@@ -19,7 +19,9 @@
 		"nette/nette": "~2.2.3",
 		"kdyby/doctrine": "@dev",
 		"kappa/thumbnails-helper": "@dev",
-		"janmarek/webloader": "@dev"
+		"janmarek/webloader": "@dev",
+		"leafo/lessphp": "~0.4",
+		"kappa/themes-manager": "@dev"
 	},
 	"require-dev": {
 		"nette/tester": "~1.0"

@@ -1,0 +1,14 @@
+themes:
+    themeName:
+        helpers:
+            # helpers in format helperName: @service::method
+        macros:
+            # macros
+        pathMasks:
+            presenters:
+                # path masks for formatTemplateFiles
+            layouts:
+                # path masks for formatLayoutTemplateFiles
+        params:
+            themeDir: %wwwDir%/../../ # this is only required item
+            # and any next params
