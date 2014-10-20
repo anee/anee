@@ -5,6 +5,8 @@ namespace App\Modules\BaseModule\Presenters;
 use Nette;
 use WebLoader\Nette\CssLoader;
 use WebLoader\Nette\JavaScriptLoader;
+use Kdyby\Autowired\AutowireProperties;
+
 
 
 /**
@@ -12,6 +14,32 @@ use WebLoader\Nette\JavaScriptLoader;
  */
 abstract class BasePresenter extends Nette\Application\UI\Presenter
 {
+
+	use AutowireProperties;
+
+	/**
+	 * @var \Kappa\ThemesManager\Theme
+	 * @autowire(default, factory=\Kappa\ThemesManager\ThemeFactory)
+	 */
+	protected $theme;
+
+	public function formatLayoutTemplateFiles()
+	{
+		return $this->theme->getFormatLayoutTemplateFiles();
+	}
+
+	public function formatTemplateFiles()
+	{
+		return $this->theme->getFormatTemplateFiles();
+	}
+
+	public function getTemplateFactory()
+	{
+		$templateFactory = parent::getTemplateFactory();
+		$templateFactory->setTheme($this->theme);
+
+		return $templateFactory;
+	}
 
 	/**
 	 * @return CssLoader

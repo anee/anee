@@ -5,15 +5,28 @@ services:
 		implement: App\Modules\BackendModule\Controls\ISearchTitle
 		parameters: [Array values, App\Searching\SearchResults results]
 
-	SearchFor:
-		class: App\Modules\BackendModule\Controls\SearchFor
-		implement: App\Modules\BackendModule\Controls\ISearchFor
+	TopMenu:
+		class: App\Modules\BackendModule\Controls\TopMenu
+		implement: App\Modules\BackendModule\Controls\ITopMenu
+
+	TopTopMenu:
+		class: App\Modules\BackendModule\Controls\TopTopMenu
+		implement: App\Modules\BackendModule\Controls\ITopTopMenu
 
 	UserPanel:
 		class: App\Modules\BackendModule\Controls\UserPanel
 		implement: App\Modules\BackendModule\Controls\IUserPanel
 
+	UserPanelAdd:
+		class: App\Modules\BackendModule\Controls\UserPanelAdd
+		implement: App\Modules\BackendModule\Controls\IUserPanelAdd
+
 	Profil:
-		class: App\Modules\BackendModule\Controls\Profile(..., %username%)
+		class: App\Modules\BackendModule\Controls\Profile(..., ..., %username%)
 		implement: App\Modules\BackendModule\Controls\IProfile
+		parameters: [username]
+
+	ProfilContainer:
+		class: App\Modules\BackendModule\Controls\ProfileContainer(%username%)
+		implement: App\Modules\BackendModule\Controls\IProfileContainer
 		parameters: [username]

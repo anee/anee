@@ -21,7 +21,8 @@
 		"kappa/thumbnails-helper": "@dev",
 		"janmarek/webloader": "@dev",
 		"leafo/lessphp": "~0.4",
-		"kappa/themes-manager": "@dev"
+		"kappa/themes-manager": "@dev",
+		"kdyby/autowired": "~1.0"
 	},
 	"require-dev": {
 		"nette/tester": "~1.0"

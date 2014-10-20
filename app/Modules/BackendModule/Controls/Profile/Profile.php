@@ -30,9 +30,10 @@ class Profile extends Control
 		$this->user = $this->userBaseLogic->findOneByUsername($username);
     }
 
-	public function render()
+	public function render($file)
 	{
-		$this->template->setFile(__DIR__ . '/Profile.latte');
+		$this->template->setFile($file);
+
 		$this->template->addFilter(NULL, 'App\TemplateHelpers::loader');
 
 		$this->template->user = $this->user;

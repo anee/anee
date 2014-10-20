@@ -18,9 +18,9 @@ class TopTopMenu extends Control
 
     }
 
-	public function render()
+	public function render($file)
 	{
-		$this->template->setFile(__DIR__ . '/TopTopMenu.latte');
+		$this->template->setFile($file);
 		$this->template->render();
 	}
 }

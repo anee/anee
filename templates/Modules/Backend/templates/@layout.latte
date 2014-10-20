@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<title>{block title|striptags}Anee{/block}</title>
+
+	<meta name="description" content="" />
+	<meta name="keywords" content="anee, cycle, cycling, run, running, digital nomad, freelance" />
+	<meta name="author" http-equiv="content-type" content="Lukáš Drahník" />
+	<meta name="copyright" http-equiv="content-type" content="Lukáš Drahník" />
+
+	<meta name="robots" content="{$robots}" n:ifset="$robots">
+	<link rel="shortcut icon" href="{$basePath}/favicon.ico">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	{control cssScreen}
+
+	{block head}{/block}
+</head>
+
+<body>
+    <script> document.documentElement.className+=' js' </script>
+
+    {control topTopMenu, $themeDir.'/Modules/Backend/Controls/TopTopMenu/TopTopMenu.latte'}
+
+    {control topMenu, $themeDir.'/Modules/Backend/Controls/TopMenu/TopMenu.latte'}
+
+    {control userPanel, $themeDir.'/Modules/Backend/Controls/UserPanel/UserPanel.latte'}
+
+    <div id="content" style="padding: 107px 0 0 0;">
+        {include content}
+    </div>
+
+    {block scripts}
+	    {control js}
+    {/block}
+
+	</body>
+</html>

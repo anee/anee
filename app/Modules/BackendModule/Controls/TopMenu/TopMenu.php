@@ -25,9 +25,9 @@ class TopMenu extends Control
         $this->userBaseLogic = $userBaseLogic;
     }
 
-	public function render()
+	public function render($file)
 	{
-		$this->template->setFile(__DIR__ . '/TopMenu.latte');
+		$this->template->setFile($file);
 		$this->template->render();
 	}
 

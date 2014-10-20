@@ -1,14 +1,19 @@
+extensions:
+	themes: Kappa\ThemesManager\DI\ThemesManagerExtension
+
 themes:
-    themeName:
-        helpers:
+	default:
+		helpers:
+
             # helpers in format helperName: @service::method
-        macros:
+		macros:
             # macros
-        pathMasks:
-            presenters:
-                # path masks for formatTemplateFiles
-            layouts:
-                # path masks for formatLayoutTemplateFiles
-        params:
-            themeDir: %wwwDir%/../../ # this is only required item
-            # and any next params
+		pathMasks:
+			presenters:
+				- :themeDir:/Modules/:modules:/templates/:presenter:/:view:.latte
+
+			layouts:
+				- :themeDir:/Modules/:modules:/templates/@layout.latte
+
+		params:
+			themeDir: %wwwDir%/../templates/

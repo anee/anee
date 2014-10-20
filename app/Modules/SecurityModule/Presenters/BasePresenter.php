@@ -10,9 +10,10 @@ use Nette;
  */
 abstract class BasePresenter extends \App\Modules\BaseModule\Presenters\BasePresenter
 {
-	protected function beforeRender()
+
+	public function formatLayoutTemplateFiles()
 	{
-		parent::beforeRender();
-		$this->setLayout('\..\..\FrontendModule\templates\@layout');
+		$themeDir = $this->theme->getParameter('themeDir');
+		return [$themeDir . '/Modules/Frontend/templates/@layout.latte'];
 	}
 }

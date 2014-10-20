@@ -25,8 +25,10 @@ class SearchTitle extends Control {
 		$this->results = $results;
 	}
 
-	public function render()
+	public function render($file)
 	{
+		$this->template->setFile($file);
+
 		//$template = $this->template;
 		$this->template->setFile(__DIR__ . '/searchTitle.latte');
 		$this->template->addFilter(NULL, 'App\TemplateHelpers::loader');

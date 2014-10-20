@@ -38,7 +38,7 @@ abstract class BasePresenter extends \App\Modules\BaseModule\Presenters\BasePres
 		return $this->IUserPanel->create();
 	}
 
-	protected function createTemplate($class = NULL)
+	/*protected function createTemplate($class = NULL)
 	{
 		$template = parent::createTemplate($class);
 
@@ -46,14 +46,14 @@ abstract class BasePresenter extends \App\Modules\BaseModule\Presenters\BasePres
 		$template->addFilter('thumb', array($this->thumbnailsHelper, 'process'));
 
 		return $template;
-	}
-
-	protected function beforeRender()
+	}*/
+	public function formatLayoutTemplateFiles()
 	{
-		parent::beforeRender();
-
-		if(!$this->user->isLoggedIn()) {
-			$this->setLayout('\..\..\FrontendModule\templates\@layout');
+		if(!$this->getUser()->isLoggedIn()) {
+			$themeDir = $this->theme->getParameter('themeDir');
+			return [$themeDir . '/Modules/Frontend/templates/@layout.latte'];
+		} else {
+			return $this->theme->getFormatLayoutTemplateFiles();
 		}
 	}
 }

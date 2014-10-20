@@ -19,9 +19,9 @@ class ProfileContainer extends Control
 		$this->username = $username;
     }
 
-	public function render()
+	public function render($file)
 	{
-		$this->template->setFile(__DIR__ . '/ProfileContainer.latte');
+		$this->template->setFile($file);
 		$this->template->render();
 	}
 }

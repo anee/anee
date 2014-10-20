@@ -31,9 +31,10 @@ class UserPanel extends Control
 		return $this->IUserPanelAdd->create();
 	}
 
-	public function render()
+	public function render($file)
 	{
-		$this->template->setFile(__DIR__ . '/UserPanel.latte');
+		$this->template->setFile($file);
+
 		$this->template->addFilter(NULL, 'App\TemplateHelpers::loader');
 
 		$this->template->user = $this->userBaseLogic->findOneByUsername($this->getPresenter()->user->getIdentity()->data['username']);

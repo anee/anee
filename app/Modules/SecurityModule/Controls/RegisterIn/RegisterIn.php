@@ -24,9 +24,9 @@ class RegisterIn extends Nette\Application\UI\Control
 		$this->userBaseLogic = $userBaseLogic;
 	}
 
-	public function render()
+	public function render($file)
 	{
-		$this->template->setFile(__DIR__ . '/RegisterIn.latte');
+		$this->template->setFile($file);
 		$this->template->render();
 	}
 
