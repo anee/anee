@@ -25,16 +25,7 @@
 <body>
     <script> document.documentElement.className+=' js' </script>
 
-        <!-- Top-top-menu -->
-        <div class="top-top-menu" role="navigation">
-            <div class="info float-left">
-                Anee is place for sharing tracks and photos.
-            </div>
-            <div class="refs float-right">
-                <a href="{plink :Security:Sign:in}">Sign in</a>
-                <a href="{plink :Security:Register:in}">Register</a>
-            </div>
-        </div>
+        {control topTopMenu, $themeDir.'/Modules/Backend/Controls/TopTopMenu/TopTopMenu.latte'}
 
         <!-- Content -->
         <div id="content" style="padding: 17px 0 0 0;">

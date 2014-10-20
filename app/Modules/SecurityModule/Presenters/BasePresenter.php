@@ -11,6 +11,14 @@ use Nette;
 abstract class BasePresenter extends \App\Modules\BaseModule\Presenters\BasePresenter
 {
 
+	/** @var \App\Modules\BackendModule\Controls\ITopTopMenu @inject */
+	public $ITopTopMenu;
+
+	protected function createComponentTopTopMenu()
+	{
+		return $this->ITopTopMenu->create();
+	}
+
 	public function formatLayoutTemplateFiles()
 	{
 		$themeDir = $this->theme->getParameter('themeDir');
