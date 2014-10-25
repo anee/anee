@@ -11,9 +11,6 @@ use Nette;
 abstract class BasePresenter extends \App\Modules\BaseModule\Presenters\BasePresenter
 {
 
-	/** @var \Kappa\ThumbnailsHelper\ThumbnailsHelper @inject*/
-	public $thumbnailsHelper;
-
 	/** @var \App\Modules\BackendModule\Controls\ITopMenu @inject */
 	public $ITopMenu;
 
@@ -38,15 +35,6 @@ abstract class BasePresenter extends \App\Modules\BaseModule\Presenters\BasePres
 		return $this->IUserPanel->create();
 	}
 
-	/*protected function createTemplate($class = NULL)
-	{
-		$template = parent::createTemplate($class);
-
-		$template->addFilter(NULL, 'App\TemplateHelpers::loader');
-		$template->addFilter('thumb', array($this->thumbnailsHelper, 'process'));
-
-		return $template;
-	}*/
 	public function formatLayoutTemplateFiles()
 	{
 		if(!$this->getUser()->isLoggedIn()) {

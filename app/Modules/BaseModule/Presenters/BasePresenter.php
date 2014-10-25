@@ -41,6 +41,13 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 		return $templateFactory;
 	}
 
+	protected function createTemplate($class = NULL)
+	{
+		$template = parent::createTemplate($class);
+		$template->addFilter(NULL, 'App\TemplateHelpers::loader');
+		return $template;
+	}
+
 	/**
 	 * @return CssLoader
 	 */
