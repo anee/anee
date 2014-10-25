@@ -22,7 +22,7 @@ services:
 		implement: App\Modules\BackendModule\Controls\IUserPanelAdd
 
 	Profil:
-		class: App\Modules\BackendModule\Controls\Profile(..., ..., %username%)
+		class: App\Modules\BackendModule\Controls\Profile(..., ..., ..., %wwwDir%, %username%)
 		implement: App\Modules\BackendModule\Controls\IProfile
 		parameters: [username]
 

@@ -67,6 +67,18 @@ class User extends BaseEntity {
 	protected $followingUsers;
 
 	/**
+	 * @ORM\Column(type="string", nullable=TRUE)
+	 * @var string
+	 */
+	protected $profileImage;
+
+	/**
+	 * @ORM\Column(type="string", nullable=TRUE)
+	 * @var string
+	 */
+	protected $backgroundImage;
+
+	/**
 	 * @param $username
 	 * @param $public
 	 * @param $email

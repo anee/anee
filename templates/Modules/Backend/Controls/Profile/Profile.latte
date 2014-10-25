@@ -1,7 +1,8 @@
 <div class="profile-page">
     <div class="profile">
         <div class="profile-image">
-            <img src="../images/development/ldrahnik_profile_image.png">
+            <img src="{link getProfileImage, 'username' => $user->username}">
+            {*<img src="{$user->profileImage|thumb}">*}
             <h2><a style="opacity: 1;" href="{plink :Backend:Profile:default, 'username' => $user->username}">{$user->getName()}</a><br/>
                 <span class="profile-tags">{foreach $user->transports as $transport}
                     {var $args = array('values' => [filterTransport => array($transport->name)], 'username' => $user->username)}
