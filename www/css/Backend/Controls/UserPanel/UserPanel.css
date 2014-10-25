@@ -18,7 +18,7 @@
 .user .user-ref a {
     display: block;
     width: 80px; height: 70px;
-    background: url('../../../../../www/images/user_menu_icon.png') #293c4b no-repeat 31px 26px;
+    background: url('../../../../images/user_menu_icon.png') #293c4b no-repeat 31px 26px;
 }
 
 .user .user-menu {
@@ -32,10 +32,10 @@
 .user .user-menu ul .add a {
     margin-top: 15px;
     border-top: 1px solid #4a5d6c;
-    background: url('../../../../../www/images/add.png') center no-repeat;
+    background: url('../../../../images/add.png') center no-repeat;
 }
 .user .user-menu ul .add a:hover {
-    background: url('../../../../../www/images/add_hover.png') white center no-repeat;
+    background: url('../../../../images/add_hover.png') white center no-repeat;
 }
 .user .user-menu ul li {
     color: white;
@@ -57,7 +57,7 @@
 }
 .user .user-menu ul .icon {
     padding-left: 70px;
-    background: url('../../../../../www/images/profile_menu_icons.png') no-repeat;
+    background: url('../../../../images/profile_menu_icons.png') no-repeat;
 }
 .user .user-menu ul .tracks {
     background-position: -48px 10px;

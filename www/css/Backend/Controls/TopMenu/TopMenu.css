@@ -13,7 +13,7 @@
 .top-menu #search a {
     display: block;
     width: 130px; height: 70px;
-    background: url('../../../../../www/images/top_menu_search.png') no-repeat 53px 23px;
+    background: url('../../../../images/top_menu_search.png') no-repeat 53px 23px;
 }
 .top-menu #search a:hover {
     height: 67px;
@@ -100,5 +100,5 @@
     cursor: pointer;
     display: block;
     width: 80px; height: 70px;
-    background: url('../../../../../www/images/user_menu_icon.png') #293c4b no-repeat 31px 26px;
+    background: url('../../../../images/user_menu_icon.png') #293c4b no-repeat 31px 26px;
 }

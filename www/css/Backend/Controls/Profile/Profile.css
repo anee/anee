@@ -47,7 +47,7 @@
 }
 .profile .profile-menu ul .icon {
     padding-left: 70px;
-    background: url('../../../../../www/images/profile_menu_icons.png') no-repeat;
+    background: url('../../../../images/profile_menu_icons.png') no-repeat;
 }
 .profile .profile-menu ul .tracks {
     background-position: 0 10px;
