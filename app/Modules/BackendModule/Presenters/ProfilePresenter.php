@@ -17,6 +17,9 @@ class ProfilePresenter extends BasePresenter {
 	/** Profile username */
 	private $username;
 
+	/** @var \App\Model\User */
+	private $user;
+
 	protected function createComponentProfile()
 	{
 		return $this->IProfile->create($this->username);
@@ -24,10 +27,22 @@ class ProfilePresenter extends BasePresenter {
 
 	public function actionDefault($username)
 	{
-		if($this->userBaseLogic->findOneByUsername($username) == NULL || ($this->userBaseLogic->findOneByUsername($username)->public == FALSE && !$this->getUser()->isLoggedIn())) {
+		$user = $this->userBaseLogic->findOneByUsername($username);
+		if($user == NULL || ($this->userBaseLogic->findOneByUsername($username)->public == FALSE && !$this->getUser()->isLoggedIn())) {
 			$this->getPresenter()->redirect(':Backend:Homepage:default');
 		} else {
 			$this->username = $username;
+			$this->user = $user;
 		}
+	}
+
+	public function renderDefault($username)
+	{
+		$this->template->background = $this->getBackgroundImage();
+	}
+
+	public function getBackgroundImage()
+	{
+		return $this->thumbnailsHelper->process('../app/data/users/'.$this->user->id.'/backgroundImages/'.$this->user->backgroundImage, '1920x');
 	}
 } 
