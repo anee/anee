@@ -22,4 +22,15 @@ class HomepagePresenter extends BasePresenter
 		$profileContainer->addComponent($this->IProfile, 'a');
 		return $profileContainer;
 	}*/
+
+	public function renderDefault()
+	{
+		$this->template->background = $this->getBackgroundImage();
+	}
+
+	public function getBackgroundImage()
+	{
+		$user = $this->userBaseLogic->findOneById($this->getUser()->getId());
+		return $this->thumbnailsHelper->process('../app/data/users/'.$this->user->id.'/backgroundImages/'.$user->backgroundImage, '1920x');
+	}
 }

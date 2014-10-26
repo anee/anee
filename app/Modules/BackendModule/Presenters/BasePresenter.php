@@ -20,6 +20,12 @@ abstract class BasePresenter extends \App\Modules\BaseModule\Presenters\BasePres
 	/** @var \App\Modules\BackendModule\Controls\IUserPanel @inject */
 	public $IUserPanel;
 
+	/** @var \Kappa\ThumbnailsHelper\ThumbnailsHelper @inject*/
+	public $thumbnailsHelper;
+
+	/** @var \App\Model\UserBaseLogic @inject */
+	public $userBaseLogic;
+
 	protected function createComponentTopMenu()
 	{
 		return $this->ITopMenu->create();

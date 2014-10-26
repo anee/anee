@@ -36,6 +36,13 @@ class TracksPresenter extends BasePresenter
             throw new Nette\Application\BadRequestException;
         } else {
             $this->template->track = $this->track;
+			$this->template->background = $this->getBackgroundImage($username);
         }
+	}
+
+	public function getBackgroundImage($username)
+	{
+		$user = $this->userBaseLogic->findOneByUsername($username);
+		return $this->thumbnailsHelper->process('../app/data/users/'.$user->id.'/backgroundImages/'.$user->backgroundImage, '1920x');
 	}
 }

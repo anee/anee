@@ -1,3 +1,13 @@
 {block content}
 
+<script type="text/javascript">
+
+        var e = document.getElementsByTagName("html")[0];
+        var background = 'url(..{$background})';
+        var backgroundR = background.replace(/\"/g, "");
+        var backgroundF = backgroundR.replace(/\\/g, "/");
+        e.style.backgroundImage = backgroundF;
+
+</script>
+
 {/block}
