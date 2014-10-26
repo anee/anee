@@ -1,8 +1,7 @@
 <div class="profile-page">
     <div class="profile">
         <div class="profile-image">
-            <img src="{link getProfileImage, 'username' => $user->username}">
-            {*<img src="{$user->profileImage|thumb}">*}
+            <img src="{link getProfileImage}">
             <h2><a style="opacity: 1;" href="{plink :Backend:Profile:default, 'username' => $user->username}">{$user->getName()}</a><br/>
                 <span class="profile-tags">{foreach $user->transports as $transport}
                     {var $args = array('values' => [filterTransport => array($transport->name)], 'username' => $user->username)}
@@ -50,7 +49,6 @@
                     </div>
                 {/foreach}
             {/if}
-            {if count($tracks) > 0}
                 <h3>RECENT ACTIVITY</h3>
                 {foreach $tracks as $track}
                     <div class="activity-line">
@@ -59,7 +57,6 @@
                         <div style="clear: both;"></div>
                     </div>
                 {/foreach}
-            {/if}
         </div>
         <div class="profile-summary">
             <div class="left-box float-left">
@@ -73,3 +70,13 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+
+        var e = document.getElementsByTagName("html")[0];
+        var background = 'url(..{$background})';
+        var backgroundR = background.replace(/\"/g, "");
+        var backgroundF = backgroundR.replace(/\\/g, "/");
+        e.style.backgroundImage = backgroundF;
+
+</script>

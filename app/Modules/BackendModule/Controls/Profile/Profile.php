@@ -47,6 +47,7 @@ class Profile extends Control
 		$this->template->addFilter('thumb', array($this->thumbnailsHelper, 'process'));
 
 		$this->template->user = $this->user;
+		$this->template->background = $this->thumbnailsHelper->process('../app/data/users/'.$this->user->id.'/backgroundImages/'.$this->user->backgroundImage, '1920x');
 		$this->template->tracks = $this->trackBaseLogic->findLastByCount(2, $this->user->id);
 		$this->template->pinnedTracks = $this->trackBaseLogic->findLasPinnedByCount(2, $this->user->id);
 
