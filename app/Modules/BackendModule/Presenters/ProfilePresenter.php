@@ -11,13 +11,16 @@ namespace App\Modules\BackendModule\Presenters;
 class ProfilePresenter extends BasePresenter {
 
 
-	/** @var \App\Model\UserBaseLogic @inject */
-	public $userBaseLogic;
-
 	/** @var  \App\Modules\BackendModule\Controls\IProfile @inject */
 	public $IProfile;
 
+	/** Profile username */
 	private $username;
+
+	protected function createComponentProfile()
+	{
+		return $this->IProfile->create($this->username);
+	}
 
 	public function actionDefault($username)
 	{
@@ -26,10 +29,5 @@ class ProfilePresenter extends BasePresenter {
 		} else {
 			$this->username = $username;
 		}
-	}
-
-	protected function createComponentProfile()
-	{
-		return $this->IProfile->create($this->username);
 	}
 } 

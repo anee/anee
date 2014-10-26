@@ -12,9 +12,6 @@ use Nette;
 class TracksPresenter extends BasePresenter
 {
 
-	/** @var \App\Model\UserBaseLogic @inject */
-	public $userBaseLogic;
-
 	/** @var \App\Model\TrackBaseLogic @inject*/
 	public $trackBaseLogic;
 
