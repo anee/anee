@@ -62,6 +62,11 @@ class Track extends BaseEntity
 	 */
 	protected $pinned;
 
+	/**
+	 * @ORM\ManyToMany(targetEntity="App\Model\User", inversedBy="track", cascade={"persist"})
+	 */
+	protected $withUsers;
+
 
     public function __construct($transport, $distance, $timeInSeconds, $maxSpeed, $date, $place)
     {
