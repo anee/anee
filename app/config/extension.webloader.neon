@@ -34,9 +34,10 @@ webloader:
 					- nette.ajax.js
 					- %vendorDir%/nette/forms/src/assets/netteForms.js
 					- less.min.js
+					- masonry.pkgd.min.js
 
 					# /Base
-					- {files: ["*.js"], from: %wwwDir%/js/}
+					- {files: ["*.js"], from: %wwwDir%/js/Modules/}
 					#- app.js
 
 				filters:

@@ -2,8 +2,18 @@
     margin-top: 50px;
     margin-bottom: 50px;
 }
-.profile {
+.one-profile .profile {
     margin: 0 auto;
+}
+.many-profiles {
+    padding-left: 50px;
+    padding-right: 50px;
+}
+.many-profiles .profile {
+    float: left;
+    margin-bottom: 50px;
+}
+.profile {
     width: 500px;
     background-color: white;
     border: 1px solid #adbfcd;

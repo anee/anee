@@ -10,18 +10,27 @@ use Nette\Security as NS;
 class HomepagePresenter extends BasePresenter
 {
 
-	/*/** @var  \App\Modules\BackendModule\Controls\IProfileContainer @inject */
-	/*public $IProfileContainer;*/
+	/** @var  \App\Modules\BackendModule\Controls\IProfileContainer @inject */
+	public $IProfileContainer;
 
-	/*/** @var  \App\Modules\BackendModule\Controls\IProfile @inject */
-	/*public $IProfile;*/
+	/** @var  \App\Modules\BackendModule\Controls\IProfile @inject */
+	public $IProfile;
 
-	/*protected function createComponentProfileContainer()
+	protected function createComponentProfileContainer()
 	{
-		$profileContainer = $this->IProfileContainer->create($this->getUser()->getIdentity()->data['username']);
-		$profileContainer->addComponent($this->IProfile, 'a');
+		$username = $this->getUser()->getIdentity()->data['username'];
+		$user = $this->userBaseLogic->findOneByUsername($username);
+
+		$profileContainer = $this->IProfileContainer->create($username);
+		foreach($user->followingUsers as $follower) {
+			$profileContainer->addComponent($this->createComponentProfile($follower->username), $follower->id);
+		}
 		return $profileContainer;
-	}*/
+	}
+	protected function createComponentProfile($username)
+	{
+		return $this->IProfile->create($username);
+	}
 
 	public function renderDefault()
 	{
