@@ -21,8 +21,19 @@ class SearchPresenter extends BasePresenter
 		$this->searchFactory->setUser($username);
 	}
 
+	public function renderDefault($username)
+	{
+		$this->template->background = $this->getBackgroundImage($username);
+	}
+
 	protected function createComponentSearchTitle()
 	{
 		return $this->ISearchTitle->create($this->searchFactory->getValues(), $this->searchFactory->getResults());
+	}
+
+	public function getBackgroundImage($username)
+	{
+		$user = $this->userBaseLogic->findOneByUsername($username);
+		return $this->thumbnailsHelper->process('../app/data/users/'.$user->id.'/backgroundImages/'.$user->backgroundImage, '1920x');
 	}
 }
