@@ -7,6 +7,11 @@
     </div>
         <div class="user-menu">
             <ul>
+               <li>
+                    <a class="icon home" href="{plink :Backend:Homepage:default}">
+                        <span class="float-left">Home</span>
+                    </a>
+                </li>
                 <li>
                     {var $args = array('values' => [filterCategory => array('Tracks')], 'username' => $user->username)}
                     <a class="icon tracks" href="{plink :Backend:Search:default (expand) $args}">

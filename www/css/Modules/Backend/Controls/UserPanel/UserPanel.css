@@ -57,7 +57,7 @@
 }
 .user .user-menu ul .icon {
     padding-left: 70px;
-    background: url('../../../../images/profile_menu_icons.png') no-repeat;
+    background: url('../../../../images/icons.png') no-repeat;
 }
 .user .user-menu ul .tracks {
     background-position: -48px 10px;
@@ -66,16 +66,22 @@
     background-position: 0 10px;
 }
 .user .user-menu ul .photos {
-    background-position: -48px -34px;
-}
-.user .user-menu ul .photos:hover {
-    background-position: 0 -34px;
-}
-.user .user-menu ul .places {
     background-position: -48px -80px;
 }
-.user .user-menu ul .places:hover {
+.user .user-menu ul .photos:hover {
     background-position: 0 -80px;
+}
+.user .user-menu ul .places {
+    background-position: -48px -126px;
+}
+.user .user-menu ul .places:hover {
+    background-position: 0 -126px;
+}
+.user .user-menu ul .home {
+    background-position: -48px -34px;
+}
+.user .user-menu ul .home:hover {
+    background-position: 0 -34px;
 }
 .user .user-summary {
     position: fixed;
