@@ -47,7 +47,7 @@ class Profile extends Control
 		$this->template->addFilter('thumb', array($this->thumbnailsHelper, 'process'));
 
 		$this->template->user = $this->user;
-		$this->template->background = $this->thumbnailsHelper->process('../app/data/users/'.$this->user->id.'/backgroundImages/'.$this->user->backgroundImage, '1920x');
+		$this->template->background = $this->getBackgroundImage();
 		$this->template->tracks = $this->trackBaseLogic->findLastByCount(2, $this->user->id);
 		$this->template->pinnedTracks = $this->trackBaseLogic->findLasPinnedByCount(2, $this->user->id);
 
@@ -59,5 +59,10 @@ class Profile extends Control
 		$image = $this->thumbnailsHelper->process('../app/data/users/'.$this->user->id.'/profileImages/'.$this->user->profileImage, '500x');
 		$image = Image::fromFile($this->wwwDir.'/'.$image);
 		$image->send();
+	}
+
+	public function getBackgroundImage()
+	{
+		return $this->thumbnailsHelper->process('../app/data/users/'.$this->user->id.'/backgroundImages/'.$this->user->backgroundImage, '1920x');
 	}
 }
