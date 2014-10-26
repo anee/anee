@@ -16,6 +16,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 	{control cssScreen}
+    {block scripts}
+	    {control js}
+    {/block}
+
 
 	{block head}{/block}
 </head>
@@ -33,9 +37,9 @@
         {include content}
     </div>
 
-    {block scripts}
-	    {control js}
-    {/block}
+
+
+
 
 	</body>
 </html>

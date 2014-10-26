@@ -73,6 +73,7 @@ h3, h3 a {
     font-family: "Verdana";
 }
 h4, h4 a {
+    padding-left: 40px;
     color: #55676e;
     font-size: 16px;
     font-family: "Verdana";

@@ -35,6 +35,8 @@ webloader:
 					- %vendorDir%/nette/forms/src/assets/netteForms.js
 					- less.min.js
 					- masonry.pkgd.min.js
+					- bootstrap-3.1.1.min.js
+					- bootstrap-multiselect.js
 
 					# /Base
 					- {files: ["*.js"], from: %wwwDir%/js/Modules/}

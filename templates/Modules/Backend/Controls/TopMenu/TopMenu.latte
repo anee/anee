@@ -20,20 +20,37 @@
                 <div class="filter-col float-left">
                     <h4>Category</h4>
                     <div class="bloc">
-	                    {input filterCategory class=> test}
+	                    {input filterCategory class => multiselect}
                     </div>
                 </div>
 
                  <div class="filter-col float-left">
                      <h4>Transport</h4>
                      <div class="bloc">
-                	    {input filterTransport}
+                	    {input filterTransport class => multiselect}
                      </div>
                  </div>
 
-	             {*{input filterTime}
-	               {input filterSortBy}
-                  *}
+                <div class="filter-col float-left">
+                     <h4>Transport</h4>
+                     <div class="bloc">
+                	    {input filterTime class => multiselect}
+                     </div>
+                 </div>
+
+                <div class="filter-col float-left">
+                     <h4>Transport</h4>
+                     <div class="bloc">
+                	    {input filterSortBy class => multiselect}
+                     </div>
+                 </div>
             </div>
         {/form}
     </div>
+
+        <!-- Initialize the plugin: -->
+        	<script type="text/javascript">
+                    $('.multiselect').multiselect({
+
+                    });
+        	</script>
