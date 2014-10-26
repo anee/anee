@@ -54,6 +54,7 @@
                     </div>
                 {/foreach}
             {/if}
+            {if count($tracks) > 0}
                 <h3>RECENT ACTIVITY</h3>
                 {foreach $tracks as $track}
                     <div class="activity-line">
@@ -62,6 +63,7 @@
                         <div style="clear: both;"></div>
                     </div>
                 {/foreach}
+             {/if}
         </div>
         <div class="profile-summary">
             <div class="left-box float-left">

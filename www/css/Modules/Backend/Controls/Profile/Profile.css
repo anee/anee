@@ -78,6 +78,7 @@
     background-position: -48px -80px;
 }
 .profile .profile-activity {
+    min-height: 100px;
     margin: 0 50px 0 50px;
     padding-bottom: 30px;
 }
