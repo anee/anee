@@ -12,6 +12,6 @@ nette:
 
 services:
 	routerFactory: App\RouterFactory
-	router: @App\RouterFactory::createRouter
+	router: @routerFactory::createRouter
 	authenticator: App\Model\Authenticator
 	searchFactory: App\Searching\SearchFactory
