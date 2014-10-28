@@ -1,15 +1,16 @@
 {block content}
 
-    {control profileContainer, $themeDir.'/Modules/Backend/Controls/ProfileContainer/ProfileContainer.latte'}
+    {if $user->isLoggedIn()}
+        {control profileContainer, $themeDir.'/Modules/Backend/Controls/ProfileContainer/ProfileContainer.latte'}
 
-<script type="text/javascript">
+    <script type="text/javascript">
 
         var e = document.getElementsByTagName("html")[0];
         var background = 'url(..{$background})';
         var backgroundR = background.replace(/\"/g, "");
         var backgroundF = backgroundR.replace(/\\/g, "/");
         e.style.backgroundImage = backgroundF;
-
-</script>
+    </script>
+    {/if}
 
 {/block}
