@@ -103,7 +103,7 @@
 }
 
 
-.bloc input[type="button"], input[type="submit"], input[type="reset"], input[type="file"]::-webkit-file-upload-button, button {
+.bloc input[type="button"], .bloc input[type="submit"], .bloc input[type="reset"], .bloc input[type="file"]::-webkit-file-upload-button, .bloc button {
     display: none;
 }
 .multiselect-container>li>a>label.radio, .multiselect-container>li>a>label.checkbox {
