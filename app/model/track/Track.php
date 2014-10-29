@@ -18,7 +18,7 @@ class Track extends BaseEntity
 	protected $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Model\Transport", inversedBy="track")
+     * @ORM\ManyToOne(targetEntity="App\Model\Transport", inversedBy="tracks")
      */
     protected $transport;
 
@@ -53,7 +53,7 @@ class Track extends BaseEntity
     protected $placeTo;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Model\Photo", mappedBy="track")
+     * @ORM\OneToMany(targetEntity="App\Model\Photo", mappedBy="tracks")
      */
     protected $photos;
 
