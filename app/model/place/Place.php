@@ -5,6 +5,7 @@ namespace App\Model;
 use Doctrine\ORM\Mapping as ORM;
 use Nette\Utils\DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
+use Nette\Utils\Strings;
 
 /**
  * @ORM\Entity
@@ -22,6 +23,12 @@ class Place extends BaseEntity
      */
     protected $name;
 
+	/**
+	 * @ORM\Column(type="string", nullable=TRUE)
+	 * @var string
+	 */
+	protected $nameUrl;
+
     /**
      * @ORM\OneToMany(targetEntity="App\Model\Track", mappedBy="place")
      */
@@ -35,6 +42,7 @@ class Place extends BaseEntity
     public function __construct($name)
     {
         $this->name = $name;
+		$this->nameUrl = Strings::webalize($name);
         $this->tracks = new ArrayCollection();
     }
 
@@ -87,4 +95,9 @@ class Place extends BaseEntity
             return NULL;
         }
     }
+
+	public function getUrl()
+	{
+		return Strings::webalize($this->name);
+	}
 }
