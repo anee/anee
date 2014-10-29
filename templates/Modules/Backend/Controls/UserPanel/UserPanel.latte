@@ -45,33 +45,14 @@
                 </li>
             </ul>
         </div>
-        <div class="user-activity">
-            {if count($user->followingUsers) > 0}
-                <h3>FOLLOWING USERS</h3>
-                {foreach $user->followingUsers as $user}
-                    <div class="user-line">
-                        <p class="name float-left"><a href="{plink :Backend:Profile:default, 'username' => $user->username}">{$user->getName()}</a></p>
-                        <p class="date float-right"></p>
-                        <div style="clear: both;"></div>
-                    </div>
-                {/foreach}
-            {/if}
-        </div>
-        <div class="user-menu add-border">
-            <ul>
-                <li class="add">
-                    <a n:href="" class="ajaxdialog"></a>
-                </li>
-            </ul>
-        </div>
         <div class="user-summary">
             <div class="left-box float-left">
-                <p class="number">{$user->getTotalDistance()}</p>
-                <p class="description">total km</p>
+                <p class="number">{count($user->following)}</p>
+                <p class="description">following</p>
             </div>
             <div class="right-box float-left">
-                <p class="number">{count($user->getTracks())}</p>
-                <p class="description">total count</p>
+                <p class="number">{count($user->followers)}</p>
+                <p class="description">followers</p>
             </div>
         </div>
     </div>

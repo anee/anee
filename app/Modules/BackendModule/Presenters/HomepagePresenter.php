@@ -22,8 +22,8 @@ class HomepagePresenter extends BasePresenter
 		$user = $this->userBaseLogic->findOneByUsername($username);
 
 		$profileContainer = $this->IProfileContainer->create($username);
-		foreach($user->followingUsers as $follower) {
-			$profileContainer->addComponent($this->createComponentProfile($follower->username), $follower->id);
+		foreach($user->following as $following) {
+			$profileContainer->addComponent($this->createComponentProfile($following->username), $following->id);
 		}
 		return $profileContainer;
 	}

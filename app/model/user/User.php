@@ -4,6 +4,7 @@ namespace App\Model;
 
 use Nette\Security\Passwords;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 
 /**
@@ -62,9 +63,18 @@ class User extends BaseEntity {
 	protected $photos;
 
 	/**
-	 * @ORM\ManyToMany(targetEntity="App\Model\User", inversedBy="user", cascade={"persist"})
+	 * @ORM\ManyToMany(targetEntity="App\Model\User", mappedBy="following")
 	 */
-	protected $followingUsers;
+	protected $followers;
+
+	/**
+	 * @ORM\ManyToMany(targetEntity="App\Model\User", inversedBy="followers")
+	 * @ORM\JoinTable(name="followers",
+	 *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+	 *      inverseJoinColumns={@ORM\JoinColumn(name="follower_id", referencedColumnName="id")}
+	 *      )
+	 */
+	protected $following;
 
 	/**
 	 * @ORM\Column(type="string", nullable=TRUE)
