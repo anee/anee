@@ -18,16 +18,25 @@ class TracksPresenter extends BasePresenter
 	/** @var \App\Model\Track */
     public $track;
 
-	public function actionDefault($username, $id)
+	/**
+	 * @param $username
+	 * @param $url = id
+	 */
+	public function actionDefault($username, $url)
 	{
 		if($this->userBaseLogic->findOneByUsername($username) == NULL || ($this->userBaseLogic->findOneByUsername($username)->public == FALSE && !$this->getUser()->isLoggedIn())) {
 			$this->getPresenter()->redirect(':Backend:Homepage:default');
 		}
 	}
 
-	public function renderDefault($username, $id)
+	/**
+	 * @param $username
+	 * @param $url = id
+	 * @throws Nette\Application\BadRequestException
+	 */
+	public function renderDefault($username, $url)
 	{
-        $this->track = $this->trackBaseLogic->findOneByIdAndUserName($id, $username);
+        $this->track = $this->trackBaseLogic->findOneByIdAndUserName($url, $username);
 
         if ($this->track == null) {
             throw new Nette\Application\BadRequestException;

@@ -21,10 +21,18 @@ class BackendRoutes
 	 */
 	public static function create(RouteList $router)
 	{
+		// TRACKS
+		/*$router[] = new Route('<username>/<presenter>/<id>', array(
+			'module' => 'Backend',
+			'action' => 'default',
+			'presenter' => 'Tracks',
+			'url' => NULL,
+		));*/
 
-		// PLACES
+		// PLACES && TRACKS
 		$router[] = new Route('<username>/<presenter>/<url>', array(
 			'module' => 'Backend',
+			'action' => 'default',
 			'presenter' => 'Places',
 		));
 
