@@ -82,7 +82,6 @@ class Profile extends Control
 	{
 		$this->user->removeFollower($this->loggedUser);
 		$this->userBaseLogic->save($this->loggedUser, $this->user);
-
 		$this->getPresenter()->redirect(':Backend:Profile:Default', array ('username' => $this->user->username));
 	}
 }
