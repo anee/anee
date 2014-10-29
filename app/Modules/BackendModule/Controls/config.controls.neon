@@ -22,11 +22,10 @@ services:
 		implement: App\Modules\BackendModule\Controls\IUserPanelAdd
 
 	Profil:
-		class: App\Modules\BackendModule\Controls\Profile(..., ..., ..., %wwwDir%, %username%)
+		class: App\Modules\BackendModule\Controls\Profile(..., ..., ..., %wwwDir%, %loggedUser%, %user%)
 		implement: App\Modules\BackendModule\Controls\IProfile
-		parameters: [username]
+		parameters: [App\Model\User loggedUser, App\Model\User user]
 
 	ProfilContainer:
-		class: App\Modules\BackendModule\Controls\ProfileContainer(%username%)
+		class: App\Modules\BackendModule\Controls\ProfileContainer
 		implement: App\Modules\BackendModule\Controls\IProfileContainer
-		parameters: [username]

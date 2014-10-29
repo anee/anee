@@ -4,7 +4,6 @@ namespace App\Model;
 
 use Nette\Security\Passwords;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\ArrayCollection;
 
 
 /**
@@ -63,12 +62,12 @@ class User extends BaseEntity {
 	protected $photos;
 
 	/**
-	 * @ORM\ManyToMany(targetEntity="App\Model\User", mappedBy="following")
+	 * @ORM\ManyToMany(targetEntity="App\Model\User", mappedBy="following", cascade={"remove"})
 	 */
 	protected $followers;
 
 	/**
-	 * @ORM\ManyToMany(targetEntity="App\Model\User", inversedBy="followers")
+	 * @ORM\ManyToMany(targetEntity="App\Model\User", inversedBy="followers", cascade={"persist", "remove"})
 	 * @ORM\JoinTable(name="followers",
 	 *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
 	 *      inverseJoinColumns={@ORM\JoinColumn(name="follower_id", referencedColumnName="id")}
@@ -96,6 +95,9 @@ class User extends BaseEntity {
 	 */
 	public function __construct($username, $forename, $surname, $public, $email, $password)
 	{
+		$this->followers = new \Doctrine\Common\Collections\ArrayCollection();
+		$this->following = new \Doctrine\Common\Collections\ArrayCollection();
+
 		$this->forename = $forename;
 		$this->surname = $surname;
 		$this->username = $username;
@@ -122,5 +124,25 @@ class User extends BaseEntity {
 		} else {
 			return $this->username;
 		}
+	}
+
+	public function getFollowing()
+	{
+		return $this->following;
+	}
+	public function getFollowers()
+	{
+		return $this->followers;
+	}
+
+	public function removeFollowing(User $user)
+	{
+		$this->following->removeElement($user);
+	}
+
+	public function removeFollower(User $user)
+	{
+		$this->followers->removeElement($user);
+		$user->removeFollowing($this);
 	}
 }

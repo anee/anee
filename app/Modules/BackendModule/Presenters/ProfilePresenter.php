@@ -22,7 +22,8 @@ class ProfilePresenter extends BasePresenter {
 
 	protected function createComponentProfile()
 	{
-		return $this->IProfile->create($this->username);
+		$loggedUser = $this->userBaseLogic->findOneById($this->getUser()->getId());
+		return $this->IProfile->create($loggedUser, $this->user);
 	}
 
 	public function actionDefault($username)

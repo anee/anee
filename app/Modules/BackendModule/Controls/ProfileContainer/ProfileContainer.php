@@ -12,11 +12,10 @@ use Nette\Application\UI\Control;
 class ProfileContainer extends Control
 {
 
-	private $username;
 
-    public function __construct($username)
+    public function __construct()
     {
-		$this->username = $username;
+
     }
 
 	public function render($file)

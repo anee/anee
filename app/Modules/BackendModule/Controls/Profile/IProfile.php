@@ -3,7 +3,7 @@
 
 namespace App\Modules\BackendModule\Controls;
 
-
+use App\Model\User;
 
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
@@ -12,8 +12,9 @@ interface IProfile
 {
 
 	/**
-	 * @param $username
+	 * @param User $loggedUser
+	 * @param User $user
 	 * @return Profile
 	 */
-	function create($username);
+	function create(User $loggedUser, User $user);
 }

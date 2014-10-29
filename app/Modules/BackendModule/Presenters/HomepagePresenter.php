@@ -16,20 +16,20 @@ class HomepagePresenter extends BasePresenter
 	/** @var  \App\Modules\BackendModule\Controls\IProfile @inject */
 	public $IProfile;
 
-	protected function createComponentProfileContainer()
+	protected function createComponentFollowing()
 	{
-		$username = $this->getUser()->getIdentity()->data['username'];
-		$user = $this->userBaseLogic->findOneByUsername($username);
+		$loggedUser = $this->userBaseLogic->findOneById($this->getUser()->getId());
 
-		$profileContainer = $this->IProfileContainer->create($username);
-		foreach($user->following as $following) {
-			$profileContainer->addComponent($this->createComponentProfile($following->username), $following->id);
+		$profileContainer = $this->IProfileContainer->create();
+		foreach($loggedUser->following as $followingUser) {
+			$profileContainer->addComponent($this->createComponentProfile($loggedUser, $followingUser), $followingUser->id);
 		}
 		return $profileContainer;
 	}
-	protected function createComponentProfile($username)
+
+	protected function createComponentProfile($loggedUser, $user)
 	{
-		return $this->IProfile->create($username);
+		return $this->IProfile->create($loggedUser, $user);
 	}
 
 	public function renderDefault()

@@ -133,3 +133,49 @@
 .profile .profile-summary .right-box {
     width: 215px;
 }
+
+.following-status {
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+
+    padding-left: 20px;
+    padding-right: 20px;
+    height: 40px;
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    border: 2px solid white;
+}
+
+.following-status a {
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+
+    text-align: center;
+    letter-spacing: 2px;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: "Verdana";
+    padding-top: 11px;
+
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    display: block;
+    height: 40px;
+}
+.no-following:hover {
+    background: white;
+}
+.no-following a:hover {
+    color: #293c4b;
+}
+
+.following {
+    background: white;
+}
+.following a {
+    color: #293c4b;
+}

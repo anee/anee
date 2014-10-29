@@ -14,6 +14,17 @@
                 {/foreach}
                 </span>
             </h2>
+
+            {if $userLogged->following->contains($user)}
+                <div class="following-status following">
+                    <a href="{link unfollow!}">following</a>
+                </div>
+            {else}
+                <div class="following-status no-following">
+                    <a href="{link follow!}">follow</a>
+                </div>
+            {/if}
+
         </div>
         <div class="profile-menu">
             <ul>

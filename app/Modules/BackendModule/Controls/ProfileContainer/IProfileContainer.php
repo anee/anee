@@ -12,8 +12,7 @@ interface IProfileContainer
 {
 
 	/**
-	 * @param $username
-	 * @return Profile
+	 * @return ProfileContainer
 	 */
-	function create($username);
+	function create();
 }
