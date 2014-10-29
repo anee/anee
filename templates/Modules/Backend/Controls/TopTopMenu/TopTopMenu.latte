@@ -4,6 +4,8 @@
         </div>
         <div class="refs float-right">
            {if $user->isLoggedIn()}
+                <a href="mailto:L.Drahnik@gmail.com">Support</a>
+                <a href="">Settings</a>
                 <a href="{plink :Security:Sign:out}">Sign out</a>
             {else}
                 <a href="{plink :Security:Sign:in}">Sign in</a>
