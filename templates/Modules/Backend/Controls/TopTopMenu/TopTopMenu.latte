@@ -4,8 +4,9 @@
         </div>
         <div class="refs float-right">
            {if $user->isLoggedIn()}
-                <a href="mailto:L.Drahnik@gmail.com">Support</a>
+                <a href="{plink :Backend:Profile:default, 'username' => $user->getIdentity()->data['username']}">{$user->getIdentity()->data['forename']. ' ' .$user->getIdentity()->data['surname']}</a>
                 <a href="">Settings</a>
+                <a href="mailto:L.Drahnik@gmail.com">Support</a>
                 <a href="{plink :Security:Sign:out}">Sign out</a>
             {else}
                 <a href="{plink :Security:Sign:in}">Sign in</a>
