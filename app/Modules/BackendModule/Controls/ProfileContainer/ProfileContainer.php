@@ -21,7 +21,7 @@ class ProfileContainer extends Control
 	public function render($file)
 	{
 		$this->template->setFile($file);
-		$this->template->components = $this->components;
+		/*$this->template->components = $this->components;*/
 		$this->template->render();
 	}
 }

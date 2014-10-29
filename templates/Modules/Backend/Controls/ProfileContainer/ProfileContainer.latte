@@ -1,6 +1,6 @@
 <div class="profile-page many-profiles">
 <div id="container" class="js-masonry" data-masonry-options='{ "columnWidth": 550, "itemSelector": ".profile" }'>
-  {foreach $components as $control}
+  {foreach $control->components as $control}
         {control $control->getName(), $themeDir.'/Modules/Backend/Controls/Profile/Profile.latte'}
   {/foreach}
   </div>
