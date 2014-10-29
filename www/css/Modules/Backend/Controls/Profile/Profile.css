@@ -172,10 +172,14 @@
 .no-following a:hover {
     color: #293c4b;
 }
-
 .following {
     background: white;
 }
 .following a {
     color: #293c4b;
+}
+.profile .etc {
+    display: block;
+    padding-right: 50px;
+    background: url('../../../../images/etc.png') no-repeat right center;
 }

@@ -7,10 +7,16 @@
             {else}
                 <h2 style="top: 225px;"><a style="opacity: 1;" href="{plink :Backend:Profile:default, 'username' => $user->username}">{$user->getName()}</a><br/>
             {/if}
-                <span class="profile-tags">
+                {if count($user->transports) > 0}
+                   <span class="profile-tags etc">
+                {else}
+                    <span class="profile-tags">
+                {/if}
                 {foreach $user->transports as $transport}
-                    {var $args = array('values' => [filterTransport => array($transport->name)], 'username' => $user->username)}
-                     <a href="{plink :Backend:Search:default (expand) $args}">#{$transport->name}</a>
+                    {if $iterator->getCounter() < 3}
+                        {var $args = array('values' => [filterTransport => array($transport->name)], 'username' => $user->username)}
+                        <a href="{plink :Backend:Search:default (expand) $args}">#{$transport->name}</a>
+                    {/if}
                 {/foreach}
                 </span>
             </h2>
