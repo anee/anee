@@ -1,4 +1,4 @@
-    <div class="top-top-menu" role="navigation">
+    <div class="top-top-menu" id="top" role="navigation" style="display: block;">
         <div class="info float-left">
             Anee is place for sharing tracks and photos.
         </div>
@@ -13,3 +13,36 @@
             {/if}
         </div>
     </div>
+
+<script type="text/javascript">
+    $(window).scroll(function() {
+        var header_height = 10;
+        var current_scroll = $(window).scrollTop();
+
+        if (current_scroll > 35) {
+            var s = document.getElementById('top');
+            s.style.display = "none";
+
+            var u = document.getElementById('under-top');
+            u.style.top = "1px";
+
+            var u = document.getElementById('user-panel-ref');
+            u.style.top = "1px";
+
+            var u = document.getElementById('right-menu');
+            u.style.top = "1px";
+        } else {
+            var s = document.getElementById('top');
+            s.style.display = "block";
+
+            var u = document.getElementById('under-top');
+            u.style.top = "36px";
+
+            var u = document.getElementById('user-panel-ref');
+            u.style.top = "36px";
+
+            var u = document.getElementById('right-menu');
+            u.style.top = "36px";
+        }
+    });
+</script>
