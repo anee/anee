@@ -23,7 +23,7 @@ class TopTopMenu extends Control
 	/** @var \App\Model\User */
 	private $loggedUser;
 
-	public function __construct(ISettingsModal $ISettingsModal, UserBaseLogic $userBaseLogic, User $loggedUser)
+	public function __construct(ISettingsModal $ISettingsModal, UserBaseLogic $userBaseLogic, $loggedUser = NULL)
     {
 		$this->ISettingsModal = $ISettingsModal;
 		$this->userBaseLogic = $userBaseLogic;

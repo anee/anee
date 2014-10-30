@@ -15,5 +15,5 @@ interface ITopTopMenu
 	 * @param User $loggedUser
 	 * @return TopTopMenu
 	 */
-	function create(User $loggedUser);
+	function create($loggedUser = NULL);
 }
