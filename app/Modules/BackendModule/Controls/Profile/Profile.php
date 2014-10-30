@@ -75,13 +75,13 @@ class Profile extends Control
 		} catch(DuplicateEntryException $e) {
 
 		}
-		$this->getPresenter()->redirect(':Backend:Profile:Default', array ('username' => $this->user->username));
+		$this->getPresenter()->redirect('this');
 	}
 
 	public function handleUnfollow()
 	{
 		$this->user->removeFollower($this->loggedUser);
 		$this->userBaseLogic->save($this->loggedUser, $this->user);
-		$this->getPresenter()->redirect(':Backend:Profile:Default', array ('username' => $this->user->username));
+		$this->getPresenter()->redirect('this');
 	}
 }
