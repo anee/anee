@@ -2,8 +2,9 @@
     padding-top: 200px;
     margin: 0 auto;
     width: 500px;
+    text-align: center;
 }
-.sign-box input {
+.sign-box input[type="text"], .sign-box input[type="password"] {
     padding-left: 20px;
     width: 480px; height: 55px;
     border: none;
@@ -12,11 +13,13 @@
     font-family: "Verdana";
 }
 .sign-box input[type="submit"] {
-    width: 500px;
-    cursor: pointer;
+    color: #3c948b;
+    border-color: #3c948b;
+    margin-top: 30px;
+}
+.sign-box input[type="submit"]:hover {
     color: white;
     background-color: #3c948b;
-    margin-top: 30px;
 }
 .sign-box input[type="checkbox"] {
     color: white;
@@ -29,6 +32,7 @@
     margin-right: 5px;
 }
 .sign-box label {
+    text-align: left;
     color: #55676e;
     font-size: 14px;
     font-family: "Verdana";
