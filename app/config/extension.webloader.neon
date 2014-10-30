@@ -16,8 +16,13 @@ webloader:
 		css:
 			default:
 				files:
-					# /Base
-					- {files: ["*.css", "*.less"], from: %wwwDir%/css/}
+					- app.css
+					- app-modal.css
+					- app-multiselect.css
+
+					# /Modules
+					- {files: ["*.css", "*.less"], from: %wwwDir%/css/Modules/}
+
 				filters:
 					- @cssMin
 					- @wlCssFilter
@@ -29,18 +34,19 @@ webloader:
 		js:
 			default:
 				files:
-					# jquery $ less
 					- jquery-2.1.1.min.js
 					- nette.ajax.js
 					- %vendorDir%/nette/forms/src/assets/netteForms.js
 					- less.min.js
 					- masonry.pkgd.min.js
-					- bootstrap-3.1.1.min.js
+					- bootstrap.min.js
 					- bootstrap-multiselect.js
+					- bootstrap-modalmanager.js
+					- bootstrap-modal.js
+					- app.js
 
-					# /Base
+					# /Modules
 					- {files: ["*.js"], from: %wwwDir%/js/Modules/}
-					#- app.js
 
 				filters:
-					- @jsMin
+					#- @jsMin

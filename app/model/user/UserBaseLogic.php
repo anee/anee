@@ -2,7 +2,7 @@
 
 namespace App\Model;
 
-
+use Doctrine\ORM\Query;
 
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
@@ -25,6 +25,18 @@ class UserBaseLogic extends BaseLogic {
 			->setParameter('id', $id);
 
 		return $qb->getQuery()->getOneOrNullResult();
+	}
+
+	public function findOneByIdArray($id)
+	{
+		$qb = $this->dao->createQueryBuilder();
+		$qb
+			->select('e')
+			->from('App\Model\User', 'e')
+			->where('e.id = :id')
+			->setParameter('id', $id);
+
+		return $qb->getQuery()->getArrayResult(Query::HYDRATE_ARRAY);
 	}
 
 	public function findOneSignIn($input)

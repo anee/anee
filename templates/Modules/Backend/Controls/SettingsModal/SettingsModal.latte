@@ -1,0 +1,47 @@
+<div id="settings" class="modal fade" tabindex="-1" style="display: none;">
+        {form settingsForm class => ajax}
+            <div class="modal-header">
+                  <h2>Settings</h2>
+            </div>
+            <div class="modal-body">
+
+            <ul class="errors" n:if="$form->hasErrors()">
+                <li n:foreach="$form->errors as $error">{$error}</li>
+            </ul>
+
+            <div class="row">
+                  <h3>GENERAL</h3>
+                      <div class="line">
+                          <p class="name float-left">Username</p>
+                          <p class="name float-right">{$loggedUser->username}</p>
+                          <div style="clear: both;"></div>
+                      </div>
+                      <div class="line">
+                          <p class="name float-left">E-mail</p>
+                          <p class="name float-right">{$loggedUser->email}</p>
+                          <div style="clear: both;"></div>
+                      </div>
+                   <h3>CAN BE CHANGED</h3>
+                      <div class="line">
+                          <p class="name float-left">Forename</p>
+                          <p class="input float-right">{input forename}</p>
+                          <div style="clear: both;"></div>
+                      </div>
+                      <div class="line">
+                          <p class="name float-left">Surname</p>
+                          <p class="input float-right">{input surname}</p>
+                          <div style="clear: both;"></div>
+                      </div>
+                      <div class="line">
+                          <p class="name float-left">Public</p>
+                          <p class="input float-right">{input public}</p>
+                          <div style="clear: both;"></div>
+                      </div>
+            </div>
+
+            </div>
+            <div class="modal-footer">
+                {input save}
+            </div>
+        {/form}
+    </div>

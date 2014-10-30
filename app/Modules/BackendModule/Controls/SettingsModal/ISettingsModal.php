@@ -8,12 +8,12 @@ use App\Model\User;
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
  */
-interface ITopTopMenu
+interface ISettingsModal
 {
 
 	/**
 	 * @param User $loggedUser
-	 * @return TopTopMenu
+	 * @return SettingsModal
 	 */
 	function create(User $loggedUser);
 }

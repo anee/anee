@@ -10,8 +10,14 @@ services:
 		implement: App\Modules\BackendModule\Controls\ITopMenu
 
 	TopTopMenu:
-		class: App\Modules\BackendModule\Controls\TopTopMenu
+		class: App\Modules\BackendModule\Controls\TopTopMenu(..., ..., %loggedUser%)
 		implement: App\Modules\BackendModule\Controls\ITopTopMenu
+		parameters: [App\Model\User loggedUser]
+
+	SettingsModal:
+		class: App\Modules\BackendModule\Controls\SettingsModal(..., %loggedUser%)
+		implement: App\Modules\BackendModule\Controls\ISettingsModal
+		parameters: [App\Model\User loggedUser]
 
 	UserPanel:
 		class: App\Modules\BackendModule\Controls\UserPanel

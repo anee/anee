@@ -37,7 +37,7 @@ class UserPanel extends Control
 
 		$this->template->addFilter(NULL, 'App\TemplateHelpers::loader');
 
-		$this->template->user = $this->userBaseLogic->findOneByUsername($this->getPresenter()->user->getIdentity()->data['username']);
+		$this->template->user = $this->userBaseLogic->findOneById($this->getPresenter()->getUSer()->id);
 
 		$this->template->render();
 	}

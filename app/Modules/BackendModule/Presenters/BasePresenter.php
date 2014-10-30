@@ -33,7 +33,7 @@ abstract class BasePresenter extends \App\Modules\BaseModule\Presenters\BasePres
 
 	protected function createComponentTopTopMenu()
 	{
-		return $this->ITopTopMenu->create();
+		return $this->ITopTopMenu->create($this->userBaseLogic->findOneById($this->getUser()->id));
 	}
 
 	protected function createComponentUserPanel()

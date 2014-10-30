@@ -15,7 +15,7 @@
 }*/
 
 // aktivace odkazu na zobrazeni dialogu
-jQuery(function($) {
+/*jQuery(function($) {
     $('a.ajaxdialog').live('click', function(event) {
         event.preventDefault();
         $.post($.nette.href = this.href, function(data) {
@@ -27,13 +27,13 @@ jQuery(function($) {
             $("#snippet--simpleForm").dialog();
         }, "json");
     });
-});
+});*/
 // aktivace "ajaxoveho" formulare
-function activateAjaxForm () {
+/*function activateAjaxForm () {
     $("#snippet--simpleForm form :submit").click(function () {
         $(this).ajaxSubmit();
         $("#snippet--simpleForm").dialog( "destroy" ); // po submitnuti zavreme dialog
         return false;
     });
-}
+*/
 
