@@ -154,3 +154,13 @@ input[type="submit"]:active, input[type="submit"]:hover {
     text-align: right;
     border: none;
 }
+.close {
+    border: none;
+    cursor: pointer;
+    width: 32px; height: 28px;
+    margin: 0;
+    right: 35px;
+    top: 30px;
+    position: absolute;
+    background: url('../../../../images/close.png') no-repeat center center;
+}
