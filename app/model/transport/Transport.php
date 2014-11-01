@@ -28,8 +28,9 @@ class Transport extends BaseEntity
      */
     protected $tracks;
 
-    public function __construct($name)
+    public function __construct($name, $user)
     {
+		$this->user = $user;
         $this->name = $name;
         $this->tracks = new ArrayCollection();
     }

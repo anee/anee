@@ -2,6 +2,7 @@
 
 namespace App\Modules\BackendModule\Controls;
 
+use App\Model\Transport;
 use App\Model\TransportBaseLogic;
 use App\Model\UserBaseLogic;
 use App\Model\TrackBaseLogic;
@@ -52,7 +53,6 @@ class TransportsModal extends Control
 	protected function createComponentTransportsForm()
 	{
 		$form = new Form;
-
 		foreach($this->profileUser->transports as $transport) {
 			$form->addText($transport->name)->setRequired('Please enter name.');
 		}
@@ -90,6 +90,27 @@ class TransportsModal extends Control
 			$this->transportBaseLogic->remove($id);
 
 			//$this->flashMessage('Removed '.$transport->name.'.');
+			$this->getPresenter()->redirect('this');
+		}
+	}
+
+	protected function createComponentAddTransportForm()
+	{
+		$form = new Form;
+		$form->addText('name')->setRequired('Please enter name.')
+			->setAttribute('placeholder', 'Transport name...');
+		$form->addSubmit('add', 'add');
+		$form->onSuccess[] = $this->addTransport;
+
+		return $form;
+	}
+
+	public function addTransport($form)
+	{
+		$values = $form->getValues();
+
+		if ($this->getPresenter()->isAjax()) {
+			$this->transportBaseLogic->save(new Transport($values['name'], $this->loggedUser));
 			$this->getPresenter()->redirect('this');
 		}
 	}

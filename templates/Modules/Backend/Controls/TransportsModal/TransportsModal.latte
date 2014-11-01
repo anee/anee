@@ -1,5 +1,5 @@
 <div id="transports" class="modal fade" tabindex="-1" style="display: none;">
-       {form transportsForm class => ajax}
+
             <div class="modal-header">
                   <h2>Transports</h2>
                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
@@ -10,9 +10,13 @@
 
                         {foreach $flashes as $flash}<div class="flash {$flash->type}">{$flash->message}</div>{/foreach}
                     {/snippet}*}
-
+                {form transportsForm class => ajax}
                     {foreach $profileUser->transports as $transport}
-                      <div class="line">
+                      {if $iterator->last}
+                        <div class="line border">
+                      {else}
+                        <div class="line">
+                      {/if}
                           <p class="input float-left">{input $transport->name}</p>
                           <p class="name float-right">{count($transport->tracks)} tracks
                           {if $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
@@ -22,10 +26,17 @@
                           <div style="clear: both;"></div>
                       </div>
                     {/foreach}
-
+                    {input save}
+                {/form}
+                {form addTransportForm class => ajax}
+                    <div class="line">
+                          <p class="name float-left">Name</p>
+                          <p class="input float-right">{input name}</p>
+                          <div style="clear: both;"></div>
+                      </div>
             </div>
             <div class="modal-footer">
-                {input save}
+                    {input add}
+                {/form}
             </div>
-        {/form}
     </div>

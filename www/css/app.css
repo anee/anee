@@ -178,3 +178,11 @@ input[type="submit"]:active, input[type="submit"]:hover {
 .modal .modal-body .line .float-right input {
     text-align: right;
 }
+.modal .modal-body .border {
+    border-bottom: 1px solid #e5e5e5;
+    margin-bottom: 25px;
+    padding-bottom: 30px;
+}
+.modal .modal-body input[type="submit"] {
+    margin-bottom: 25px;
+}
