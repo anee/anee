@@ -28,10 +28,6 @@ services:
 		class: App\Modules\BackendModule\Controls\UserPanel
 		implement: App\Modules\BackendModule\Controls\IUserPanel
 
-	UserPanelAdd:
-		class: App\Modules\BackendModule\Controls\UserPanelAdd
-		implement: App\Modules\BackendModule\Controls\IUserPanelAdd
-
 	Profil:
 		class: App\Modules\BackendModule\Controls\Profile(..., ..., ..., ..., %wwwDir%, %loggedUser%, %profileUser%)
 		implement: App\Modules\BackendModule\Controls\IProfile

@@ -16,20 +16,10 @@ class UserPanel extends Control
 	/** @var \App\Model\UserBaseLogic @inject*/
 	public $userBaseLogic;
 
-	/** @var \App\Modules\BackendModule\Controls\IUserPanelAdd @inject */
-	public $IUserPanelAdd;
-
-
-    public function __construct(UserBaseLogic $userBaseLogic, IUserPanelAdd $IUserPanelAdd)
+    public function __construct(UserBaseLogic $userBaseLogic)
     {
 		$this->userBaseLogic = $userBaseLogic;
-		$this->IUserPanelAdd = $IUserPanelAdd;
     }
-
-	protected function createComponentUserPanelAdd()
-	{
-		return $this->IUserPanelAdd->create();
-	}
 
 	public function render($file)
 	{
