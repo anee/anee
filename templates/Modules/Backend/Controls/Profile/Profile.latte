@@ -2,59 +2,60 @@
     <div class="profile">
         <div class="profile-image">
             <img src="{link getProfileImage}">
-            {if count($user->transports) > 0}
-                <h2><a style="opacity: 1;" href="{plink :Backend:Profile:default, 'username' => $user->username}">{$user->getName()}</a><br/>
+            {if count($profileUser->transports) > 0}
+                <h2><a style="opacity: 1;" href="{plink :Backend:Profile:default, 'username' => $profileUser->username}">{$profileUser->getName()}</a><br/>
             {else}
-                <h2 style="top: 225px;"><a style="opacity: 1;" href="{plink :Backend:Profile:default, 'username' => $user->username}">{$user->getName()}</a><br/>
+                <h2 style="top: 225px;"><a style="opacity: 1;" href="{plink :Backend:Profile:default, 'username' => $profileUser->username}">{$profileUser->getName()}</a><br/>
             {/if}
-                {if count($user->transports) > 0}
-                   <span class="profile-tags etc">
-                {else}
-                    <span class="profile-tags">
-                {/if}
-                {foreach $user->transports as $transport}
+                <span class="profile-tags">
+                {foreach $profileUser->transports as $transport}
                     {if $iterator->getCounter() < 3}
-                        {var $args = array('values' => [filterTransport => array($transport->name)], 'username' => $user->username)}
+                        {var $args = array('values' => [filterTransport => array($transport->name)], 'username' => $profileUser->username)}
                         <a href="{plink :Backend:Search:default (expand) $args}">#{$transport->name}</a>
                     {/if}
+
                 {/foreach}
+                    {if count($profileUser->transports) > 0}
+                        <a class="tags-etc" data-toggle="modal" href="#transports">mana</a>
+                    {/if}
                 </span>
             </h2>
-
-            {if $userLogged->following->contains($user)}
-                <div class="following-status following">
-                    <a href="{link unfollow!}">following</a>
-                </div>
-            {else}
-                <div class="following-status no-following">
-                    <a href="{link follow!}">follow</a>
-                </div>
+            {if $user->isLoggedIn()}
+                {if $loggedUser->following->contains($user)}
+                    <div class="following-status following">
+                        <a href="{link unfollow!}">following</a>
+                    </div>
+                {else}
+                    <div class="following-status no-following">
+                        <a href="{link follow!}">follow</a>
+                    </div>
+                {/if}
             {/if}
 
         </div>
         <div class="profile-menu">
             <ul>
                 <li>
-                    {var $args = array('values' => [filterCategory => array('Tracks')], 'username' => $user->username)}
+                    {var $args = array('values' => [filterCategory => array('Tracks')], 'username' => $profileUser->username)}
                     <a class="icon tracks" href="{plink :Backend:Search:default (expand) $args}">
                         <span class="float-left">Tracks</span>
-                        <span class="float-right">{count($user->tracks)}</span>
+                        <span class="float-right">{count($profileUser->tracks)}</span>
                         <div style="clear: both;"></div>
                     </a>
                 </li>
                 <li>
-                    {var $args = array('values' => [filterCategory => array('Photos')], 'username' => $user->username)}
+                    {var $args = array('values' => [filterCategory => array('Photos')], 'username' => $profileUser->username)}
                     <a class="icon photos" href="{plink :Backend:Search:default (expand) $args}">
                         <span class="float-left">Photos</span>
-                        <span class="float-right">{count($user->photos)}</span>
+                        <span class="float-right">{count($profileUser->photos)}</span>
                         <div style="clear: both;"></div>
                     </a>
                 </li>
                 <li>
-                    {var $args = array('values' => [filterCategory => array('Places')], 'username' => $user->username)}
+                    {var $args = array('values' => [filterCategory => array('Places')], 'username' => $profileUser->username)}
                     <a class="icon places" href="{plink :Backend:Search:default (expand) $args}">
                         <span class="float-left">Places</span>
-                        <span class="float-right">{count($user->places)}</span>
+                        <span class="float-right">{count($profileUser->places)}</span>
                         <div style="clear: both;"></div>
                     </a>
                 </li>
@@ -65,7 +66,7 @@
                 <h3>PINNED ACTIVITY</h3>
                 {foreach $pinnedTracks as $track}
                     <div class="activity-line">
-                        <p class="name float-left"><a href="{plink :Backend:Tracks:Default, 'id' => $track->getId(), 'username' => $user->username}">{$track->getName()}</a></p>
+                        <p class="name float-left"><a href="{plink :Backend:Tracks:Default, 'id' => $track->getId(), 'username' => $profileUser->username}">{$track->getName()}</a></p>
                         <p class="date float-right">{$track->getDate()|dateAgoNumber}{$track->getDate()|dateAgoText}</p>
                         <div style="clear: both;"></div>
                     </div>
@@ -75,7 +76,7 @@
                 <h3>RECENT ACTIVITY</h3>
                 {foreach $tracks as $track}
                     <div class="activity-line">
-                        <p class="name float-left"><a href="{plink :Backend:Tracks:Default, 'id' => $track->getId(), 'username' => $user->username}">{$track->getName()}</a></p>
+                        <p class="name float-left"><a href="{plink :Backend:Tracks:Default, 'id' => $track->getId(), 'username' => $profileUser->username}">{$track->getName()}</a></p>
                         <p class="date float-right">{$track->getDate()|dateAgoNumber}{$track->getDate()|dateAgoText}</p>
                         <div style="clear: both;"></div>
                     </div>
@@ -84,12 +85,14 @@
         </div>
         <div class="profile-summary">
             <div class="left-box float-left">
-                <p class="number">{$user->getTotalDistance()}</p>
+                <p class="number">{$profileUser->getTotalDistance()}</p>
                 <p class="description">total km</p>
             </div>
             <div class="right-box float-left">
-                <p class="number">{count($user->getTracks())}</p>
+                <p class="number">{count($profileUser->getTracks())}</p>
                 <p class="description">total count</p>
             </div>
         </div>
     </div>
+
+    {control transportsModal, $themeDir.'Modules/Backend/Controls/TransportsModal/TransportsModal.latte'}

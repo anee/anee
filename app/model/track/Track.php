@@ -18,7 +18,7 @@ class Track extends BaseEntity
 	protected $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Model\Transport", inversedBy="tracks")
+     * @ORM\ManyToOne(targetEntity="App\Model\Transport", inversedBy="tracks", cascade={"persist", "remove"})
      */
     protected $transport;
 
@@ -63,7 +63,12 @@ class Track extends BaseEntity
 	protected $pinned;
 
 	/**
-	 * @ORM\ManyToMany(targetEntity="App\Model\User", inversedBy="track", cascade={"persist"})
+	 * @ORM\ManyToMany(targetEntity="App\Model\User", inversedBy="App\Model\Track", cascade={"persist"})
+	 * @ORM\JoinTable(name="track_user",
+	 *        joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+	 *        inverseJoinColumns={@ORM\JoinColumn(name="track_id", referencedColumnName="id")}
+	 *    )
+	 * @var []|\Doctrine\Common\Collections\ArrayCollection
 	 */
 	protected $withUsers;
 

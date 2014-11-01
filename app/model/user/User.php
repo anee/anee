@@ -68,7 +68,7 @@ class User extends BaseEntity {
 
 	/**
 	 * @ORM\ManyToMany(targetEntity="App\Model\User", inversedBy="followers", cascade={"persist", "remove"})
-	 * @ORM\JoinTable(name="followers",
+	 * @ORM\JoinTable(name="user_user",
 	 *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
 	 *      inverseJoinColumns={@ORM\JoinColumn(name="follower_id", referencedColumnName="id")}
 	 *      )

@@ -19,7 +19,7 @@ class Place extends BaseEntity
 	protected $user;
 
     /**
-     * @ORM\Column(type="string", nullable=false)
+     * @ORM\Column(type="string", nullable=false, unique=true)
      */
     protected $name;
 

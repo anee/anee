@@ -1,0 +1,31 @@
+<div id="transports" class="modal fade" tabindex="-1" style="display: none;">
+       {form transportsForm class => ajax}
+            <div class="modal-header">
+                  <h2>Transports</h2>
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+            </div>
+            <div class="modal-body">
+
+                    {*{snippet flashes}
+
+                        {foreach $flashes as $flash}<div class="flash {$flash->type}">{$flash->message}</div>{/foreach}
+                    {/snippet}*}
+
+                    {foreach $profileUser->transports as $transport}
+                      <div class="line">
+                          <p class="input float-left">{input $transport->name}</p>
+                          <p class="name float-right">{count($transport->tracks)} tracks
+                          {if $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
+                            | <a href="{link remove!, 'id' => $transport->id}" class="ajax">Remove</a>
+                          {/if}
+                          </p>
+                          <div style="clear: both;"></div>
+                      </div>
+                    {/foreach}
+
+            </div>
+            <div class="modal-footer">
+                {input save}
+            </div>
+        {/form}
+    </div>

@@ -8,13 +8,13 @@ use App\Model\User;
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
  */
-interface IProfile
+interface ITransportsModal
 {
 
 	/**
-	 * @param User $loggedUser
 	 * @param User $profileUser
-	 * @return Profile
+	 * @param User $loggedUser
+	 * @return TransportsModal
 	 */
-	function create(User $loggedUser, User $profileUser);
+	function create(User $profileUser, User $loggedUser);
 }

@@ -182,8 +182,7 @@
 .following a {
     color: #293c4b;
 }
-.profile .etc {
-    display: block;
-    padding-right: 50px;
-    background: url('../../../../images/etc.png') no-repeat right center;
+.tags-etc {
+    color: transparent;
+    background: url('../../../../images/etc.png') no-repeat center center;
 }

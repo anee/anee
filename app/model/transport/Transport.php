@@ -19,24 +19,18 @@ class Transport extends BaseEntity
 	protected $user;
 
     /**
-     * @ORM\Column(type="string", nullable=false)
+     * @ORM\Column(type="string", nullable=false, unique=true)
      */
     protected $name;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Model\Track", mappedBy="transport")
+     * @ORM\OneToMany(targetEntity="App\Model\Track", mappedBy="transport", cascade={"persist", "remove"})
      */
     protected $tracks;
-
 
     public function __construct($name)
     {
         $this->name = $name;
         $this->tracks = new ArrayCollection();
-    }
-
-    public function getCount()
-    {
-        return count($this->tracks);
     }
 }

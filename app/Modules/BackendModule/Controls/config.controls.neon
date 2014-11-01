@@ -19,6 +19,11 @@ services:
 		implement: App\Modules\BackendModule\Controls\ISettingsModal
 		parameters: [App\Model\User loggedUser]
 
+	TransportsModal:
+		class: App\Modules\BackendModule\Controls\TransportsModal(...,  ..., ..., %profileUser%, %loggedUser%)
+		implement: App\Modules\BackendMOdule\Controls\ITransportsModal
+		parameters: [App\Model\User profileUser, App\Model\User loggedUser]
+
 	UserPanel:
 		class: App\Modules\BackendModule\Controls\UserPanel
 		implement: App\Modules\BackendModule\Controls\IUserPanel
@@ -28,9 +33,9 @@ services:
 		implement: App\Modules\BackendModule\Controls\IUserPanelAdd
 
 	Profil:
-		class: App\Modules\BackendModule\Controls\Profile(..., ..., ..., %wwwDir%, %loggedUser%, %user%)
+		class: App\Modules\BackendModule\Controls\Profile(..., ..., ..., ..., %wwwDir%, %loggedUser%, %profileUser%)
 		implement: App\Modules\BackendModule\Controls\IProfile
-		parameters: [App\Model\User loggedUser, App\Model\User user]
+		parameters: [App\Model\User loggedUser, App\Model\User profileUser]
 
 	ProfilContainer:
 		class: App\Modules\BackendModule\Controls\ProfileContainer

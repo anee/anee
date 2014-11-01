@@ -140,6 +140,8 @@ tbody.collapse.in {
     line-height: 1.42857143;
 }
 .modal-body {
+    text-align: center;
+    margin-top: 35px;
     padding: 0 15px 35px 15px;
     position: relative;
 }

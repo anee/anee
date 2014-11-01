@@ -2,7 +2,7 @@
 
 namespace App\Model;
 
-
+use Doctrine\ORM\Query;
 
 
 /**

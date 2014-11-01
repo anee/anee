@@ -31,19 +31,28 @@ class Profile extends Control
 	private $loggedUser;
 
 	/** @var \App\Model\User */
-	private $user;
+	private $profileUser;
 
 	private $wwwDir;
 
-    public function __construct(ThumbnailsHelper $thumbnailsHelper, TrackBaseLogic $trackBaseLogic, UserBaseLogic $userBaseLogic, $wwwDir, User $loggedUser, User $user)
+	/** @var \App\Modules\BackendModule\Controls\ITransportsModal @inject */
+	public $ITransportsModal;
+
+    public function __construct(ITransportsModal $ITransportsModal, ThumbnailsHelper $thumbnailsHelper, TrackBaseLogic $trackBaseLogic, UserBaseLogic $userBaseLogic, $wwwDir, User $loggedUser, User $profileUser)
     {
+		$this->ITransportsModal = $ITransportsModal;
 		$this->wwwDir = $wwwDir;
 		$this->thumbnailsHelper = $thumbnailsHelper;
 		$this->trackBaseLogic = $trackBaseLogic;
 		$this->userBaseLogic = $userBaseLogic;
 		$this->loggedUser = $loggedUser;
-		$this->user = $user;
+		$this->profileUser = $profileUser;
     }
+
+	protected function createComponentTransportsModal()
+	{
+		return $this->ITransportsModal->create($this->profileUser, $this->loggedUser);
+	}
 
 	public function render($file)
 	{
@@ -52,17 +61,17 @@ class Profile extends Control
 		$this->template->addFilter(NULL, 'App\TemplateHelpers::loader');
 		$this->template->addFilter('thumb', array($this->thumbnailsHelper, 'process'));
 
-		$this->template->user = $this->user;
-		$this->template->userLogged = $this->loggedUser;
-		$this->template->tracks = $this->trackBaseLogic->findLastByCount(2, $this->user->id);
-		$this->template->pinnedTracks = $this->trackBaseLogic->findLasPinnedByCount(2, $this->user->id);
+		$this->template->profileUser = $this->profileUser;
+		$this->template->loggedUser = $this->loggedUser;
+		$this->template->tracks = $this->trackBaseLogic->findLastByCount(2, $this->profileUser->id);
+		$this->template->pinnedTracks = $this->trackBaseLogic->findLasPinnedByCount(2, $this->profileUser->id);
 
 		$this->template->render();
 	}
 
 	public function handleGetProfileImage()
 	{
-		$image = $this->thumbnailsHelper->process('../app/data/users/'.$this->user->id.'/profileImages/'.$this->user->profileImage, '500x');
+		$image = $this->thumbnailsHelper->process('../app/data/users/'.$this->profileUser->id.'/profileImages/'.$this->profileUser->profileImage, '500x');
 		$image = Image::fromFile($this->wwwDir.'/'.$image);
 		$image->send();
 	}
@@ -70,7 +79,7 @@ class Profile extends Control
 	public function handleFollow()
 	{
 		try {
-			$this->loggedUser->following->add($this->user);
+			$this->loggedUser->following->add($this->profileUser);
 			$this->userBaseLogic->save($this->loggedUser);
 		} catch(DuplicateEntryException $e) {
 
@@ -80,8 +89,8 @@ class Profile extends Control
 
 	public function handleUnfollow()
 	{
-		$this->user->removeFollower($this->loggedUser);
-		$this->userBaseLogic->save($this->loggedUser, $this->user);
+		$this->profileUser->removeFollower($this->loggedUser);
+		$this->userBaseLogic->save($this->loggedUser, $this->profileUser);
 		$this->getPresenter()->redirect('this');
 	}
 }

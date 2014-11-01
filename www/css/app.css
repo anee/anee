@@ -132,26 +132,34 @@ input[type="submit"]:active, input[type="submit"]:hover {
     position: inherit;
     margin: 0;
 }
-.modal .modal-body .row h3 {
-    margin-top: 35px;
+.modal .modal-body input[type="checkbox"] {
+    margin-top: 15px;
 }
-.modal .modal-body .row .line .name {
+.modal .modal-body h3:first-child {
+    margin-top: 0;
+}
+.modal .modal-body h3 {
+    margin-top: 35x;
+}
+.modal .modal-body .line .name {
      color: #293c4b;
      margin: 10px 0 10px 0;
      font-size: 16px;
      font-weight: normal;
      font-family: "Verdana";
 }
-.modal .modal-body .row .line .input {
+.modal .modal-body .line .name a {
+    color: #293c4b;
+}
+.modal .modal-body .line .input {
     margin-top: 0;
     margin-bottom: 0;
 }
-.modal .modal-body input {
+.modal .modal-body input[type="text"] {
     height: 38px;
     font-size: 16px;
     font-weight: normal;
     font-family: "Verdana";
-    text-align: right;
     border: none;
 }
 .close {
@@ -163,4 +171,10 @@ input[type="submit"]:active, input[type="submit"]:hover {
     top: 30px;
     position: absolute;
     background: url('../../../../images/close.png') no-repeat center center;
+}
+.modal .modal-body .line .float-left input {
+    text-align: left;
+}
+.modal .modal-body .line .float-right input {
+    text-align: right;
 }
