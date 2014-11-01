@@ -38,7 +38,6 @@ webloader:
 					- nette.ajax.js
 					- %vendorDir%/nette/forms/src/assets/netteForms.js
 					- less.min.js
-					- masonry.pkgd.min.js
 					- bootstrap.min.js
 					- bootstrap-multiselect.js
 					- bootstrap-modalmanager.js
