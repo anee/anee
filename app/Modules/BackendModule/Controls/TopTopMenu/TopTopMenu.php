@@ -17,14 +17,18 @@ class TopTopMenu extends Control
 	/** @var \App\Modules\BackendModule\Controls\ISettingsModal @inject */
 	public $ISettingsModal;
 
+	/** @var \App\Modules\BackendModule\Controls\IProfileModal @inject */
+	public $IProfileModal;
+
 	/** @var \App\Model\UserBaseLogic @inject*/
 	public $userBaseLogic;
 
 	/** @var \App\Model\User */
 	private $loggedUser;
 
-	public function __construct(ISettingsModal $ISettingsModal, UserBaseLogic $userBaseLogic, $loggedUser = NULL)
+	public function __construct(IProfileModal $IProfileModal, ISettingsModal $ISettingsModal, UserBaseLogic $userBaseLogic, $loggedUser = NULL)
     {
+		$this->IProfileModal = $IProfileModal;
 		$this->ISettingsModal = $ISettingsModal;
 		$this->userBaseLogic = $userBaseLogic;
 		$this->loggedUser = $loggedUser;
@@ -33,6 +37,11 @@ class TopTopMenu extends Control
 	protected function createComponentSettingsModal()
 	{
 		return $this->ISettingsModal->create($this->loggedUser);
+	}
+
+	protected function createComponentProfileModal()
+	{
+		return $this->IProfileModal->create($this->loggedUser, $this->loggedUser);
 	}
 
 	public function render($file)

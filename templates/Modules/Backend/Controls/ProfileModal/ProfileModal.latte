@@ -1,4 +1,4 @@
-
+ <div id="profile" class="modal fade" tabindex="-1" style="display: none;">
     <div class="profile">
         <div class="profile-image">
             <img src="{link getProfileImage}">
@@ -21,7 +21,7 @@
                 </span>
             </h2>
             {if $user->isLoggedIn()}
-                {if $loggedUser->following->contains($user)}
+                {if $loggedUser->following->contains($profileUser)}
                     <div class="following-status following">
                         <a href="{link unfollow!}">following</a>
                     </div>
@@ -93,6 +93,12 @@
                 <p class="description">total count</p>
             </div>
         </div>
+        <div style="text-align:center; padding-bottom: 40px;">
+            <a class="button" href="{plink :Backend:Profile:default, 'username' => $loggedUser->username}">
+                full profile
+            </a>
+        </div>
     </div>
+</div>
 
-    {control transportsModal, $themeDir.'Modules/Backend/Controls/TransportsModal/TransportsModal.latte'}
+{control transportsModal, $themeDir.'Modules/Backend/Controls/TransportsModal/TransportsModal.latte'}

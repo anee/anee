@@ -101,7 +101,7 @@ h1 a:hover, h2 a:hover, h4 a:hover {
     float: right;
 }
 
-/* Buttons
+/* Buttons in forms
 ----------------------------------------------------------*/
 input[type="submit"] {
     cursor: pointer;
@@ -122,6 +122,30 @@ input[type="submit"] {
 }
 
 input[type="submit"]:active, input[type="submit"]:hover {
+    color: white;
+    background-color: #293c4b;
+}
+
+/* Buttons
+----------------------------------------------------------*/
+.button {
+    text-decoration: none;
+    cursor: pointer;
+    padding: 11px 20px 11px 20px;
+    text-align: center;
+    letter-spacing: 2px;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: "Verdana";
+    background-color: transparent;
+    color: #293c4b;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    border: 2px solid #293c4b;
+}
+
+.button:active, .button:hover {
     color: white;
     background-color: #293c4b;
 }

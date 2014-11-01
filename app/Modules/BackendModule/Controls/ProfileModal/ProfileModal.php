@@ -15,7 +15,7 @@ use App\Model\User;
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
  */
-class Profile extends Control
+class ProfileModal extends Control
 {
 
 	/** @var \Kappa\ThumbnailsHelper\ThumbnailsHelper @inject*/

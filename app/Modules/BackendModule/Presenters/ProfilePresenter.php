@@ -11,8 +11,8 @@ namespace App\Modules\BackendModule\Presenters;
 class ProfilePresenter extends BasePresenter {
 
 
-	/** @var  \App\Modules\BackendModule\Controls\IProfile @inject */
-	public $IProfile;
+	/** @var  \App\Modules\BackendModule\Controls\IProfileModal @inject */
+	public $IProfileModal;
 
 	/** Profile username */
 	private $username;
@@ -20,10 +20,10 @@ class ProfilePresenter extends BasePresenter {
 	/** @var \App\Model\User */
 	private $user;
 
-	protected function createComponentProfile()
+	protected function createComponentProfileModal()
 	{
 		$loggedUser = $this->userBaseLogic->findOneById($this->getUser()->getId());
-		return $this->IProfile->create($loggedUser, $this->user);
+		return $this->IProfileModal->create($loggedUser, $this->user);
 	}
 
 	public function actionDefault($username)

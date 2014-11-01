@@ -1,4 +1,4 @@
-.profile-page {
+.modal .profile-page {
     margin-top: 50px;
     margin-bottom: 50px;
 }
@@ -13,105 +13,104 @@
     float: left;
     margin-bottom: 50px;
 }
-.profile {
+.modal .profile {
     width: 500px;
     background-color: white;
-    border: 1px solid #adbfcd;
 }
-.profile .profile-image {
+.modal .profile .profile-image {
     position: relative;
     width: 100%; height: 300px; /* for IE 6 */
 }
-.profile img {
+.modal .profile img {
     width: 500px; height: 300px;
 }
-.profile .profile-tags {
+.modal .profile .profile-tags {
     font-size: 16px;
 }
-.profile .profile-menu {
+.modal .profile .profile-menu {
     border-bottom: 1px solid #adbfcd;
     margin: 15px 35px 0 35px;
     padding-bottom: 15px;
 }
-.profile .profile-menu ul {
+.modal .profile .profile-menu ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
 }
-.profile .profile-menu ul li {
+.modal .profile .profile-menu ul li {
     height: 45px;
     font-size: 16px;
     font-weight: bold;
     font-family: "Verdana";
 }
-.profile .profile-menu ul li a {
+.modal .profile .profile-menu ul li a {
     display: block;
     padding: 14px 15px 0 15px;
     height: 30px;
     color: #293c4b;
     text-decoration: none;
 }
-.profile .profile-menu ul li a:hover {
+.modal .profile .profile-menu ul li a:hover {
     color: white;
     background-color: #293c4b;
 }
-.profile .profile-menu ul .icon {
+.modal .profile .profile-menu ul .icon {
     padding-left: 70px;
     background: url('../../../../images/icons.png') no-repeat;
 }
-.profile .profile-menu ul .tracks {
+.modal .profile .profile-menu ul .tracks {
     background-position: 0 10px;
 }
-.profile .profile-menu ul .tracks:hover {
+.modal .profile .profile-menu ul .tracks:hover {
     background-position: -48px 10px;
 }
-.profile .profile-menu ul .photos {
+.modal .profile .profile-menu ul .photos {
     background-position: 0 -35px;
 }
-.profile .profile-menu ul .photos:hover {
+.modal .profile .profile-menu ul .photos:hover {
     background-position: -48px -35px;
 }
-.profile .profile-menu ul .places {
+.modal .profile .profile-menu ul .places {
     background-position: 0 -80px;
 }
-.profile .profile-menu ul .places:hover {
+.modal .profile .profile-menu ul .places:hover {
     background-position: -48px -80px;
 }
-.profile .profile-activity {
+.modal .profile .profile-activity {
     min-height: 100px;
     margin: 0 50px 0 50px;
     padding-bottom: 30px;
 }
-.profile .profile-activity .name {
+.modal .profile .profile-activity .name {
     color: #293c4b;
     margin: 10px 0 10px 0;
     font-size: 16px;
     font-weight: normal;
     font-family: "Verdana";
 }
-.profile .profile-activity .date {
+.modal .profile .profile-activity .date {
     color: #293c4b;
     margin: 10px 0 10px 0;
     font-size: 16px;
     font-weight: normal;
     font-family: "Verdana";
 }
-.profile .profile-activity .activity-line p a {
-     color: #293c4b;
-     text-decoration: none;
- }
-.profile .profile-activity .activity-line p a:hover {
+.modal .profile .profile-activity .activity-line p a {
+    color: #293c4b;
+    text-decoration: none;
+}
+.modal .profile .profile-activity .activity-line p a:hover {
     font-weight: bold;
 }
-.profile .profile-summary {
+.modal .profile .profile-summary {
     height: 83px;
     color: #293c4b;
-    margin: 0 35px 55px 35px;
+    margin: 0 35px 40px 35px;
     padding-top: 20px;
     border-bottom: 1px solid #adbfcd;
     border-top: 1px solid #adbfcd;
 }
-.profile .profile-summary .number {
+.modal .profile .profile-summary .number {
     line-height: 1;
     height: 45px;
     padding: 0;
@@ -120,17 +119,17 @@
     font-size: 48px;
     font-family: "Kalinga";
 }
-.profile .profile-summary .description {
+.modal .profile .profile-summary .description {
     margin: 0;
     text-align: center;
     font-size: 18px;
     font-family: "ProximaNova-Light";
 }
-.profile .profile-summary .left-box {
+.modal .profile .profile-summary .left-box {
     width: 214px;
     border-right: 1px solid #adbfcd;
 }
-.profile .profile-summary .right-box {
+.modal .profile .profile-summary .right-box {
     width: 215px;
 }
 
@@ -138,8 +137,6 @@
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
     border-radius: 20px;
-
-
     height: 40px;
     position: absolute;
     top: 25px;
@@ -151,7 +148,6 @@
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
     border-radius: 20px;
-
     padding-left: 20px;
     padding-right: 20px;
     text-align: center;
@@ -160,7 +156,6 @@
     font-weight: bold;
     font-family: "Verdana";
     padding-top: 12px;
-
     color: white;
     text-decoration: none;
     cursor: pointer;

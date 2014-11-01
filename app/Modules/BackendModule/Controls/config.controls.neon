@@ -10,7 +10,7 @@ services:
 		implement: App\Modules\BackendModule\Controls\ITopMenu
 
 	TopTopMenu:
-		class: App\Modules\BackendModule\Controls\TopTopMenu(..., ..., %loggedUser%)
+		class: App\Modules\BackendModule\Controls\TopTopMenu(..., ..., ..., %loggedUser%)
 		implement: App\Modules\BackendModule\Controls\ITopTopMenu
 		parameters: [loggedUser = NULL]
 

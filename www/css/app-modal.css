@@ -142,13 +142,13 @@ tbody.collapse.in {
 .modal-body {
     text-align: center;
     margin-top: 35px;
-    padding: 0 15px 35px 15px;
+    padding: 0 15px 0 15px;
     position: relative;
 }
 .modal-footer {
-    padding: 25px 15px 25px 15px;
+    padding: 0 15px 0 15px;
+    margin-bottom: 25px;
     text-align: center;
-    border-top: 1px solid #e5e5e5;
 }
 .modal-footer .btn + .btn {
     margin-left: 5px;

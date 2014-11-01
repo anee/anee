@@ -13,8 +13,8 @@ class HomepagePresenter extends BasePresenter
 	/** @var  \App\Modules\BackendModule\Controls\IProfileContainer @inject */
 	public $IProfileContainer;
 
-	/** @var  \App\Modules\BackendModule\Controls\IProfile @inject */
-	public $IProfile;
+	/** @var  \App\Modules\BackendModule\Controls\IProfilePreview @inject */
+	public $IProfilePreview;
 
 	protected function createComponentFollowing()
 	{
@@ -22,14 +22,14 @@ class HomepagePresenter extends BasePresenter
 
 		$profileContainer = $this->IProfileContainer->create();
 		foreach($loggedUser->following as $followingUser) {
-			$profileContainer->addComponent($this->createComponentProfile($loggedUser, $followingUser), $followingUser->id);
+			$profileContainer->addComponent($this->createComponentProfilePreview($loggedUser, $followingUser), $followingUser->id);
 		}
 		return $profileContainer;
 	}
 
-	protected function createComponentProfile($loggedUser, $user)
+	protected function createComponentProfilePreview($loggedUser, $user)
 	{
-		return $this->IProfile->create($loggedUser, $user);
+		return $this->IProfilePreview->create($loggedUser, $user);
 	}
 
 	public function renderDefault()

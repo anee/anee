@@ -4,12 +4,13 @@
         </div>
         <div class="refs float-right">
            {if $user->isLoggedIn()}
-                <a href="{plink :Backend:Profile:default, 'username' => $loggedUser->username}">{$loggedUser->getName()}</a>
+                <a href="#profile" data-toggle="modal">{$loggedUser->getName()}</a>
                 <a data-toggle="modal" href="#settings">Settings</a>
                 <a href="mailto:L.Drahnik@gmail.com">Support</a>
                 <a href="{plink :Security:Sign:out}">Sign out</a>
 
                 {control settingsModal, $themeDir.'Modules/Backend/Controls/SettingsModal/SettingsModal.latte'}
+                {control profileModal, $themeDir.'Modules/Backend/Controls/ProfileModal/ProfileModal.latte'}
 
             {else}
                 <a href="{plink :Security:Sign:in}">Sign in</a>
