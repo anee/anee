@@ -28,9 +28,14 @@ services:
 		class: App\Modules\BackendModule\Controls\UserPanel
 		implement: App\Modules\BackendModule\Controls\IUserPanel
 
-	Profil:
-		class: App\Modules\BackendModule\Controls\Profile(..., ..., ..., ..., %wwwDir%, %loggedUser%, %profileUser%)
-		implement: App\Modules\BackendModule\Controls\IProfile
+	ProfileModal:
+		class: App\Modules\BackendModule\Controls\ProfileModal(..., ..., ..., ..., %wwwDir%, %loggedUser%, %profileUser%)
+		implement: App\Modules\BackendModule\Controls\IProfileModal
+		parameters: [App\Model\User loggedUser, App\Model\User profileUser]
+
+	ProfilePreview:
+		class: App\Modules\BackendModule\Controls\ProfilePreview(..., ..., ..., %wwwDir%, %loggedUser%, %profileUser%)
+		implement: App\Modules\BackendModule\Controls\IProfilePreview
 		parameters: [App\Model\User loggedUser, App\Model\User profileUser]
 
 	ProfilContainer:

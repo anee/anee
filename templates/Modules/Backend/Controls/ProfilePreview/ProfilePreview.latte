@@ -1,0 +1,38 @@
+
+    <div class="profile">
+        <div class="profile-image">
+            <img src="{link getProfileImage}">
+            {if count($profileUser->transports) > 0}
+                <h2><a style="opacity: 1;" href="{plink :Backend:Profile:default, 'username' => $profileUser->username}">{$profileUser->getName()}</a><br/>
+            {else}
+                <h2 style="top: 225px;"><a style="opacity: 1;" href="{plink :Backend:Profile:default, 'username' => $profileUser->username}">{$profileUser->getName()}</a><br/>
+            {/if}
+                <span class="profile-tags">
+                {foreach $profileUser->transports as $transport}
+                    {if $iterator->getCounter() < 3}
+                        {var $args = array('values' => [filterTransport => array($transport->name)], 'username' => $profileUser->username)}
+                        <a href="{plink :Backend:Search:default (expand) $args}">#{$transport->name}</a>
+                    {/if}
+
+                {/foreach}
+                    {if count($profileUser->transports) > 0}
+                        <a class="tags-etc" data-toggle="modal" href="#transports">mana</a>
+                    {/if}
+                </span>
+            </h2>
+            {if $user->isLoggedIn()}
+                {if $loggedUser->following->contains($profileUser)}
+                    <div class="following-status following">
+                        <a href="{link unfollow!}">following</a>
+                    </div>
+                {else}
+                    <div class="following-status no-following">
+                        <a href="{link follow!}">follow</a>
+                    </div>
+                {/if}
+            {/if}
+
+        </div>
+    </div>
+
+    {control transportsModal, $themeDir.'Modules/Backend/Controls/TransportsModal/TransportsModal.latte'}
