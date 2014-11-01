@@ -49,4 +49,4 @@ webloader:
 					- {files: ["*.js"], from: %wwwDir%/js/Modules/}
 
 				filters:
-					#- @jsMin
+					- @jsMin
