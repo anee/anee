@@ -165,10 +165,10 @@ input[type="submit"]:active, input[type="submit"]:hover {
 .close {
     border: none;
     cursor: pointer;
-    width: 32px; height: 28px;
+    width: 28px; height: 28px;
     margin: 0;
-    right: 35px;
-    top: 30px;
+    right: 50px;
+    top: 28px;
     position: absolute;
     background: url('../../../../images/close.png') no-repeat center center;
 }
