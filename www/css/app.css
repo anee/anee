@@ -210,3 +210,16 @@ input[type="submit"]:active, input[type="submit"]:hover {
 .modal .modal-body input[type="submit"] {
     margin-bottom: 25px;
 }
+
+/* Profile container */
+.profile-page {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+.many-profiles .profile {
+    float: left;
+    margin-right: 25px;
+    margin-bottom: 25px;
+}

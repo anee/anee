@@ -15,7 +15,7 @@ use App\Model\User;
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
  */
-class ProfilePreview extends Control
+class Profile extends Control
 {
 
 	/** @var \Kappa\ThumbnailsHelper\ThumbnailsHelper @inject*/
@@ -23,6 +23,9 @@ class ProfilePreview extends Control
 
 	/** @var \App\Model\UserBaseLogic @inject*/
 	public $userBaseLogic;
+
+	/** @var \App\Model\TrackBaseLogic @inject*/
+	public $trackBaseLogic;
 
 	/** @var \App\Model\User */
 	private $loggedUser;
@@ -35,24 +38,16 @@ class ProfilePreview extends Control
 	/** @var \App\Modules\BackendModule\Controls\ITransportsModal @inject */
 	public $ITransportsModal;
 
-	/** @var \App\Modules\BackendModule\Controls\IProfileModal @inject */
-	public $IProfileModal;
-
-    public function __construct(IProfileModal $IProfileModal, ITransportsModal $ITransportsModal, ThumbnailsHelper $thumbnailsHelper, UserBaseLogic $userBaseLogic, $wwwDir, User $loggedUser, User $profileUser)
+    public function __construct(ITransportsModal $ITransportsModal, ThumbnailsHelper $thumbnailsHelper, TrackBaseLogic $trackBaseLogic, UserBaseLogic $userBaseLogic, $wwwDir, User $loggedUser, User $profileUser)
     {
-		$this->IProfileModal = $IProfileModal;
 		$this->ITransportsModal = $ITransportsModal;
 		$this->wwwDir = $wwwDir;
 		$this->thumbnailsHelper = $thumbnailsHelper;
+		$this->trackBaseLogic = $trackBaseLogic;
 		$this->userBaseLogic = $userBaseLogic;
 		$this->loggedUser = $loggedUser;
 		$this->profileUser = $profileUser;
     }
-
-	protected function createComponentProfileModal()
-	{
-		return $this->IProfileModal->create($this->loggedUser, $this->profileUser);
-	}
 
 	protected function createComponentTransportsModal()
 	{
@@ -68,6 +63,8 @@ class ProfilePreview extends Control
 
 		$this->template->profileUser = $this->profileUser;
 		$this->template->loggedUser = $this->loggedUser;
+		$this->template->tracks = $this->trackBaseLogic->findLastByCount(2, $this->profileUser->id);
+		$this->template->pinnedTracks = $this->trackBaseLogic->findLasPinnedByCount(2, $this->profileUser->id);
 
 		$this->template->render();
 	}

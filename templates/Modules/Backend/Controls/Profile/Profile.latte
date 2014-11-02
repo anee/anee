@@ -1,5 +1,4 @@
- <div id="profile{$profileUser->id}" class="modal fade" tabindex="-1" style="display: none;">
-    <div class="modal-profile">
+    <div class="main-profile">
         <div class="profile-image">
             <img src="{link getProfileImage}">
             {if count($profileUser->transports) > 0}
@@ -9,7 +8,7 @@
             {/if}
                 <span class="profile-tags">
                 {foreach $profileUser->transports as $transport}
-                    {if $iterator->getCounter() < 3}
+                    {if $iterator->getCounter() < 6}
                         {var $args = array('values' => [filterTransport => array($transport->name)], 'username' => $profileUser->username)}
                         <a href="{plink :Backend:Search:default (expand) $args}">#{$transport->name}</a>
                     {/if}
@@ -33,7 +32,7 @@
             {/if}
 
         </div>
-        {*<div class="profile-menu">
+        <div class="profile-menu">
             <ul>
                 <li>
                     {var $args = array('values' => [filterCategory => array('Tracks')], 'username' => $profileUser->username)}
@@ -60,29 +59,8 @@
                     </a>
                 </li>
             </ul>
-        </div>*}
-        <div class="profile-activity">
-            {if count($pinnedTracks) > 0}
-                <h3>PINNED ACTIVITY</h3>
-                {foreach $pinnedTracks as $track}
-                    <div class="activity-line">
-                        <p class="name float-left"><a href="{plink :Backend:Tracks:Default, 'id' => $track->getId(), 'username' => $profileUser->username}">{$track->getName()}</a></p>
-                        <p class="date float-right">{$track->getDate()|dateAgoNumber}{$track->getDate()|dateAgoText}</p>
-                        <div style="clear: both;"></div>
-                    </div>
-                {/foreach}
-            {/if}
-            {if count($tracks) > 0}
-                <h3>RECENT ACTIVITY</h3>
-                {foreach $tracks as $track}
-                    <div class="activity-line">
-                        <p class="name float-left"><a href="{plink :Backend:Tracks:Default, 'id' => $track->getId(), 'username' => $profileUser->username}">{$track->getName()}</a></p>
-                        <p class="date float-right">{$track->getDate()|dateAgoNumber}{$track->getDate()|dateAgoText}</p>
-                        <div style="clear: both;"></div>
-                    </div>
-                {/foreach}
-             {/if}
         </div>
+
         <div class="profile-summary">
             <div class="left-box float-left">
                 <p class="number">{$profileUser->getTotalDistance()}</p>
@@ -93,12 +71,6 @@
                 <p class="description">total count</p>
             </div>
         </div>
-        <div style="text-align:center; padding-bottom: 40px;">
-            <a class="button" href="{plink :Backend:Profile:default, 'username' => $loggedUser->username}">
-                full profile
-            </a>
-        </div>
     </div>
-</div>
 
 {control transportsModal, $themeDir.'Modules/Backend/Controls/TransportsModal/TransportsModal.latte'}

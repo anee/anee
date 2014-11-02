@@ -4,7 +4,7 @@
         </div>
         <div class="refs float-right">
            {if $user->isLoggedIn()}
-                <a href="#profile" data-toggle="modal">{$loggedUser->getName()}</a>
+                <a href="#profile{$loggedUser->id}" data-toggle="modal">{$loggedUser->getName()}</a>
                 <a data-toggle="modal" href="#settings">Settings</a>
                 <a href="mailto:L.Drahnik@gmail.com">Support</a>
                 <a href="{plink :Security:Sign:out}">Sign out</a>

@@ -1,9 +1,9 @@
 
-    <div class="profile">
+    <div class="profile-preview">
         <div class="profile-image">
             <img src="{link getProfileImage}">
             {if count($profileUser->transports) > 0}
-                <h2><a style="opacity: 1;" href="{plink :Backend:Profile:default, 'username' => $profileUser->username}">{$profileUser->getName()}</a><br/>
+                 <h2><a style="opacity: 1;" href="#profile{$profileUser->id}" data-toggle="modal">{$profileUser->getName()}</a><br/>
             {else}
                 <h2 style="top: 225px;"><a style="opacity: 1;" href="{plink :Backend:Profile:default, 'username' => $profileUser->username}">{$profileUser->getName()}</a><br/>
             {/if}
@@ -16,7 +16,7 @@
 
                 {/foreach}
                     {if count($profileUser->transports) > 0}
-                        <a class="tags-etc" data-toggle="modal" href="#transports">mana</a>
+                        <a class="tags-etc" data-toggle="modal" href="#transports{$profileUser->id}">mana</a>
                     {/if}
                 </span>
             </h2>
@@ -35,4 +35,4 @@
         </div>
     </div>
 
-    {control transportsModal, $themeDir.'Modules/Backend/Controls/TransportsModal/TransportsModal.latte'}
+    {control profileModal, $themeDir.'Modules/Backend/Controls/ProfileModal/ProfileModal.latte'}
