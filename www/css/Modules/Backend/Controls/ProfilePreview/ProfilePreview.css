@@ -3,17 +3,17 @@
     background-color: white;
     border: 1px solid #adbfcd;
 }
-.profile-preview .profile-preview-image {
+.profile-preview .profile-image {
     position: relative;
     width: 100%; height: 300px; /* for IE 6 */
 }
 .profile-preview img {
     width: 500px; height: 300px;
 }
-.profile-preview .profile-preview-tags {
+.profile-preview .profile-tags {
     font-size: 16px;
 }
-.profile-preview .profile-preview-menu {
+.profile-preview .profile-menu {
     border-bottom: 1px solid #adbfcd;
     margin: 15px 35px 0 35px;
     padding-bottom: 15px;
