@@ -14,7 +14,7 @@
     font-size: 16px;
 }
 .main-profile .profile-menu {
-    width: 350px;
+    width: 300px;
     margin: 15px 35px 135px 35px;
     padding-bottom: 15px;
 }
@@ -89,7 +89,7 @@
     font-weight: bold;
 }
 .main-profile .profile-summary {
-    width: 350px; height: 83px;
+    width: 300px; height: 83px;
     color: #293c4b;
     margin: 0 35px 40px 35px;
     padding-top: 20px;
@@ -112,13 +112,12 @@
     font-family: "ProximaNova-Light";
 }
 .main-profile .profile-summary .left-box {
-    width: 174px;
+    width: 149px;
     border-right: 1px solid #adbfcd;
 }
 .main-profile .profile-summary .right-box {
-    width: 175px;
+    width: 150px;
 }
-
 .following-status {
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
