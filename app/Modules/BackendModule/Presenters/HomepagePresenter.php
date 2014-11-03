@@ -40,6 +40,6 @@ class HomepagePresenter extends BasePresenter
 	public function getBackgroundImage()
 	{
 		$user = $this->userBaseLogic->findOneById($this->getUser()->getId());
-		return $this->thumbnailsHelper->process('../app/data/users/'.$this->user->id.'/backgroundImages/'.$user->backgroundImage, '1920x');
+		return $this->thumbnailsHelper->process('../app/data/users/'.$this->user->id.'/images/'.$user->backgroundImage, '1920x');
 	}
 }

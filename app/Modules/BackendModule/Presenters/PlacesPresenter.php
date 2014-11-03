@@ -40,6 +40,6 @@ class PlacesPresenter extends BasePresenter
 	public function getBackgroundImage($username)
 	{
 		$user = $this->userBaseLogic->findOneByUsername($username);
-		return $this->thumbnailsHelper->process('../app/data/users/'.$user->id.'/backgroundImages/'.$user->backgroundImage, '1920x');
+		return $this->thumbnailsHelper->process('../app/data/users/'.$user->id.'/images/'.$user->backgroundImage, '1920x');
 	}
 }

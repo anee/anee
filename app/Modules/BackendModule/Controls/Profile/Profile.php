@@ -71,9 +71,14 @@ class Profile extends Control
 
 	public function handleGetProfileImage()
 	{
-		$image = $this->thumbnailsHelper->process('../app/data/users/'.$this->profileUser->id.'/profileImages/'.$this->profileUser->profileImage, '500x');
-		$image = Image::fromFile($this->wwwDir.'/'.$image);
-		$image->send();
+		if ($this->profileUser->profileImage != NULL) {
+			$image = $this->thumbnailsHelper->process('../app/data/users/' . $this->profileUser->id . '/images/' . $this->profileUser->profileImage, '500x');
+			$image = Image::fromFile($this->wwwDir . '/' . $image);
+			$image->send();
+		} else {
+			$image = Image::fromBlank(500, 300, Image::rgb(255, 255, 255));
+			$image->send();
+		}
 	}
 
 	public function handleFollow()

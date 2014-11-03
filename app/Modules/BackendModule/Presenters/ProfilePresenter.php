@@ -43,6 +43,6 @@ class ProfilePresenter extends BasePresenter {
 
 	public function getBackgroundImage()
 	{
-		return $this->thumbnailsHelper->process('../app/data/users/'.$this->user->id.'/backgroundImages/'.$this->user->backgroundImage, '1920x');
+		return $this->thumbnailsHelper->process('../app/data/users/'.$this->user->id.'/images/'.$this->user->backgroundImage, '1920x');
 	}
 } 
