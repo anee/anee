@@ -186,6 +186,30 @@ input[type="submit"]:active, input[type="submit"]:hover {
     font-family: "Verdana";
     border: none;
 }
+.fileUpload {
+    position: relative;
+    overflow: hidden;
+}
+.fileUpload span {
+    margin-right: 5px;
+    color: #293c4b;
+    font-size: 16px;
+    font-weight: normal;
+    font-family: "Verdana";
+    margin-top: 10px;
+    float: right;
+}
+.fileUpload input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
 .close {
     border: none;
     cursor: pointer;

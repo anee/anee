@@ -21,8 +21,11 @@ class SettingsModal extends Control
 	/** @var \App\Model\User */
 	private $loggedUser;
 
-	public function __construct(UserBaseLogic $userBaseLogic, User $loggedUser)
+	private $appDir;
+
+	public function __construct(UserBaseLogic $userBaseLogic, User $loggedUser, $appDir)
 	{
+		$this->appDir = $appDir;
 		$this->userBaseLogic = $userBaseLogic;
 		$this->loggedUser = $loggedUser;
 	}
@@ -43,6 +46,8 @@ class SettingsModal extends Control
 		$form->addText('surname')->setRequired('Please enter your surname.')
 			->setAttribute('placeholder', 'Surname');
 		$form->addCheckbox('public');
+		$form->addUpload('profileImage');
+		$form->addUpload('backgroundImage');
 		$form->addSubmit('save', 'save');
 		$form->onSuccess[] = $this->success;
 
@@ -53,15 +58,54 @@ class SettingsModal extends Control
 
 	public function success($form)
 	{
-		$values = $form->getValues();
-
 		if ($this->getPresenter()->isAjax()) {
+			$values = $form->getValues();
 			$user = $this->loggedUser;
 
+			$filename = null;
+			$filePath = null;
+			if ($values->profileImage->getSanitizedName() != null) {
+				if ($values->profileImage->isOk()) {
+					$filename = $values->profileImage->getSanitizedName();
+					$filePath = $this->appDir."/data/users/".$this->loggedUser->id."/images/$filename";
+					$values->profileImage->move($filePath);
+					$user->profileImage = $filename;
+				}
+			}
+			$filename = null;
+			$filePath = null;
+			if ($values->backgroundImage->getSanitizedName() != null) {
+				if ($values->backgroundImage->isOk()) {
+					$filename = $values->backgroundImage->getSanitizedName();
+					$filePath = $this->appDir."/data/users/".$this->loggedUser->id."/images/$filename";
+					$values->backgroundImage->move($filePath);
+					$user->backgroundImage = $filename;
+				}
+			}
 			$user->public = $values['public'];
 			$user->surname = $values['surname'];
 			$user->forename = $values['forename'];
 
+			$this->userBaseLogic->save($user);
+
+			$this->getPresenter()->redirect('this');
+		}
+	}
+
+	public function handleRemoveProfileImage()
+	{
+		if ($this->getPresenter()->isAjax()) {
+			$user = $this->loggedUser->setProfileImage(NULL);
+			$this->userBaseLogic->save($user);
+
+			$this->getPresenter()->redirect('this');
+		}
+	}
+
+	public function handleRemoveBackgroundImage()
+	{
+		if ($this->getPresenter()->isAjax()) {
+			$user = $this->loggedUser->setBackgroundImage(NULL);
 			$this->userBaseLogic->save($user);
 
 			$this->getPresenter()->redirect('this');

@@ -15,7 +15,7 @@ services:
 		parameters: [loggedUser = NULL]
 
 	SettingsModal:
-		class: App\Modules\BackendModule\Controls\SettingsModal(..., %loggedUser%)
+		class: App\Modules\BackendModule\Controls\SettingsModal(..., %loggedUser%, %appDir%)
 		implement: App\Modules\BackendModule\Controls\ISettingsModal
 		parameters: [App\Model\User loggedUser]
 

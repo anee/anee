@@ -10,7 +10,7 @@
                 <li n:foreach="$form->errors as $error">{$error}</li>
             </ul>
 
-                  <h3>GENERAL</h3>
+                  <h3>ACCOUNT</h3>
                       <div class="line">
                           <p class="name float-left">Username</p>
                           <p class="name float-right">{$loggedUser->username}</p>
@@ -21,7 +21,7 @@
                           <p class="name float-right">{$loggedUser->email}</p>
                           <div style="clear: both;"></div>
                       </div>
-                   <h3>CAN BE CHANGED</h3>
+                   <h3>PROFILE</h3>
                       <div class="line">
                           <p class="name float-left">Forename</p>
                           <p class="input float-right">{input forename}</p>
@@ -32,12 +32,50 @@
                           <p class="input float-right">{input surname}</p>
                           <div style="clear: both;"></div>
                       </div>
-                      <div class="line border">
+                      <div class="line">
                           <p class="name float-left">Public</p>
                           <p class="input float-right">{input public}</p>
                           <div style="clear: both;"></div>
                       </div>
-
+                      <div class="line">
+                            <p class="name float-left">Photo</p>
+                            <p class="name float-right">
+                                {if $loggedUser->profileImage != NULL}
+                                 | <a href="{link removeProfileImage!}" class="ajax"> Remove</a>
+                                {/if}
+                                <div class="fileUpload">
+                                    <span>
+                                    {if $loggedUser->profileImage != NULL}
+                                        {$loggedUser->profileImage} | Upload
+                                    {else}
+                                        None | Upload
+                                    {/if}
+                                    </span>
+                                    {input profileImage class => upload}
+                                </div>
+                            </p>
+                            <div style="clear: both;"></div>
+                      </div>
+                      <h3>DESIGN</h3>
+                      <div class="line border">
+                            <p class="name float-left">Background</p>
+                            <p class="name float-right">
+                                {if $loggedUser->backgroundImage != NULL}
+                                 | <a href="{link removeBackgroundImage!}" class="ajax"> Remove</a>
+                                {/if}
+                                <div class="fileUpload">
+                                    <span>
+                                        {if $loggedUser->backgroundImage != NULL}
+                                          {$loggedUser->backgroundImage} | Upload
+                                        {else}
+                                           None | Upload
+                                        {/if}
+                                    </span>
+                                    {input backgroundImage class => upload}
+                                </div>
+                            </p>
+                            <div style="clear: both;"></div>
+                      </div>
             </div>
             <div class="modal-footer">
                 {input save}
