@@ -182,10 +182,10 @@
     margin-left: 0;
 }
 .line .name a {
+    margin-left: 40px;
     text-decoration: none;
     font-size: 16px;
     font-family: "Verdana";
-    margin-left: 40px;
     color: #293c4b;
 }
 .line .name a:hover {

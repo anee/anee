@@ -172,6 +172,9 @@ input[type="submit"]:active, input[type="submit"]:hover {
      font-weight: normal;
      font-family: "Verdana";
 }
+.modal .modal-body .line .name:first-child {
+    margin: 10px 40px 10px 0;
+}
 .modal .modal-body .line .name a {
     color: #293c4b;
 }
