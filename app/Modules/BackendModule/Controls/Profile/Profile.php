@@ -38,20 +38,29 @@ class Profile extends Control
 	/** @var \App\Modules\BackendModule\Controls\ITransportsModal @inject */
 	public $ITransportsModal;
 
-    public function __construct(ITransportsModal $ITransportsModal, ThumbnailsHelper $thumbnailsHelper, TrackBaseLogic $trackBaseLogic, UserBaseLogic $userBaseLogic, $wwwDir, User $loggedUser, User $profileUser)
+	/** @var \App\Modules\BackendModule\Controls\IAddTrackModal @inject */
+	public $IAddTrackModal;
+
+    public function __construct(IAddTrackModal $IAddTrackModal, ITransportsModal $ITransportsModal, ThumbnailsHelper $thumbnailsHelper, TrackBaseLogic $trackBaseLogic, UserBaseLogic $userBaseLogic, $wwwDir, User $loggedUser, User $profileUser)
     {
-		$this->ITransportsModal = $ITransportsModal;
 		$this->wwwDir = $wwwDir;
 		$this->thumbnailsHelper = $thumbnailsHelper;
 		$this->trackBaseLogic = $trackBaseLogic;
 		$this->userBaseLogic = $userBaseLogic;
 		$this->loggedUser = $loggedUser;
 		$this->profileUser = $profileUser;
+		$this->ITransportsModal = $ITransportsModal;
+		$this->IAddTrackModal = $IAddTrackModal;
     }
 
 	protected function createComponentTransportsModal()
 	{
 		return $this->ITransportsModal->create($this->profileUser, $this->loggedUser);
+	}
+
+	protected function createComponentAddTrackModal()
+	{
+		return $this->IAddTrackModal->create($this->profileUser, $this->loggedUser);
 	}
 
 	public function render($file)

@@ -29,7 +29,7 @@ services:
 		implement: App\Modules\BackendModule\Controls\IUserPanel
 
 	Profile:
-		class: App\Modules\BackendModule\Controls\Profile(..., ..., ..., ..., %wwwDir%, %loggedUser%, %profileUser%)
+		class: App\Modules\BackendModule\Controls\Profile(..., ..., ..., ..., ..., %wwwDir%, %loggedUser%, %profileUser%)
 		implement: App\Modules\BackendModule\Controls\IProfile
 		parameters: [App\Model\User loggedUser, App\Model\User profileUser]
 
@@ -46,3 +46,8 @@ services:
 	ProfilContainer:
 		class: App\Modules\BackendModule\Controls\ProfileContainer
 		implement: App\Modules\BackendModule\Controls\IProfileContainer
+
+	AddTrackModal:
+		class: App\Modules\BackendModule\Controls\AddTrackModal(..., %loggedUser%)
+		implement: App\Modules\BackendModule\Controls\IAddTrackModal
+		parameters: [App\Model\User loggedUser]

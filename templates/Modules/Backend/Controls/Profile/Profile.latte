@@ -76,7 +76,8 @@
         <div class="wall">
             <div class="wall-title">
                 <div class="line">
-                    <p class="name float-left"><a href="">New Track</a><a href="">New Photo</a></p>
+                    <p class="name float-left"><a data-toggle="modal" href="#addTrack">New Track</a>
+                                               <a data-toggle="modal" href="#addPhoto">New Photo</a></p>
                     <p class="name float-right"></p>
                     <div style="clear: both;"></div>
                 </div>
@@ -91,3 +92,4 @@
     </div>
 
 {control transportsModal, $themeDir.'Modules/Backend/Controls/TransportsModal/TransportsModal.latte'}
+{control addTrackModal, $themeDir.'Modules/Backend/Controls/AddTrackModal/AddTrackModal.latte'}
