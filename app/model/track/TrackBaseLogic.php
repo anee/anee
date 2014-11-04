@@ -83,6 +83,17 @@ class TrackBaseLogic extends BaseLogic {
 		return $this->addFilterByUser($qb, $userId)->getQuery()->getResult();
 	}
 
+	public function findAllUnpinnedByUserId($userId)
+	{
+		$qb = $this->dao->createQueryBuilder();
+		$qb
+			->select('e')
+			->from('App\Model\Track', 'e')
+			->where('e.pinned = FALSE')
+			->orderBy('e.date', 'DESC');
+
+		return $this->addFilterByUser($qb, $userId)->getQuery()->getResult();
+	}
 
 	public function findOneById($id)
     {

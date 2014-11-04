@@ -72,8 +72,8 @@ class Profile extends Control
 
 		$this->template->profileUser = $this->profileUser;
 		$this->template->loggedUser = $this->loggedUser;
-		$this->template->tracks = $this->trackBaseLogic->findLastByCount(2, $this->profileUser->id);
-		$this->template->pinnedTracks = $this->trackBaseLogic->findLasPinnedByCount(2, $this->profileUser->id);
+		$this->template->unpinnedTracks = $this->trackBaseLogic->findAllUnpinnedByUserId($this->profileUser->id);
+		$this->template->pinnedTracks = $this->trackBaseLogic->findAllPinnedByUserId($this->profileUser->id);
 
 		$this->template->render();
 	}
