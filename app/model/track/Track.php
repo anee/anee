@@ -95,6 +95,10 @@ class Track extends BaseEntity
 
     public function getAvgSpeed()
     {
-        return round((($this->distance * 1000) / $this->timeInSeconds) * 3.6, 2);
+		if($this->distance == 0 || $this->timeInSeconds == 0) {
+			return 0;
+		} else {
+			return round((($this->distance * 1000) / $this->timeInSeconds) * 3.6, 2);
+		}
     }
 }
