@@ -21,7 +21,7 @@
 .bar .bar-value {
     font-size: 28px;
 }
-.info {
+/*.info {
     margin: 8px 0 5px 0;
     padding-left: 15px;
     padding-right: 15px;
@@ -37,10 +37,7 @@
     font-size: 13px;
     font-family: "ProximaNova-Light";
     margin-bottom: 0;
-}
-.border {
-    border-left: 1px solid #8ed6d6;
-}
+}*/
 .overall {
     color: #91a4b3;
 }
