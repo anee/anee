@@ -76,16 +76,27 @@
         <div class="wall">
             <div class="wall-title">
                 <div class="line">
-                    <p class="name float-left"><a data-toggle="modal" href="#addTrack">New Track</a>
-                                               <a data-toggle="modal" href="#addPhoto">New Photo</a></p>
+                    <p class="name float-left">
+                        <a data-toggle="modal" href="#addTrack">New Track</a>
+                        <a data-toggle="modal" href="#addPhoto">New Photo</a></p>
                     <p class="name float-right"></p>
                     <div style="clear: both;"></div>
                 </div>
                 <div class="profile-activity">
                      <h3>PINNED ACTIVITY</h3>
+                       {foreach $control->components as $component}
+                            {if $template->strpos($component->getName(), 'YES')}
+                                {control $component->getName(), $themeDir.'/Modules/Backend/Controls/TrackRow/TrackRow.latte'}
+                            {/if}
+                       {/foreach}
                 </div>
                 <div class="profile-activity">
                     <h3>RECENT ACTIVITY</h3>
+                       {foreach $control->components as $component}
+                            {if $template->strpos($component->getName(), 'NO')}
+                                {control $component->getName(), $themeDir.'/Modules/Backend/Controls/TrackRow/TrackRow.latte'}
+                            {/if}
+                       {/foreach}
                 </div>
             </div>
         </div>

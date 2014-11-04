@@ -51,3 +51,8 @@ services:
 		class: App\Modules\BackendModule\Controls\AddTrackModal(..., %loggedUser%)
 		implement: App\Modules\BackendModule\Controls\IAddTrackModal
 		parameters: [App\Model\User loggedUser]
+
+	TrackRow:
+		class: App\Modules\BackendModule\Controls\TrackRow(..., ..., %track%, %loggedUser%, %profileUser%)
+		implement: App\Modules\BackendModule\Controls\ITrackRow
+		parameters: [App\Model\Track track, App\Model\User loggedUser, App\Model\User profileUser]

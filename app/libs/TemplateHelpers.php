@@ -182,4 +182,19 @@ class TemplateHelpers {
             return false;
         }
     }
+
+	/**
+	 * Same function as strpos in classic php
+	 * @param $name
+	 * @param $searchingValue
+	 * @return bool
+	 */
+	public static function strpos($name, $searchingValue)
+	{
+		if (strpos($name, $searchingValue) !== false) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }

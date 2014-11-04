@@ -26,14 +26,34 @@ class ProfilePresenter extends BasePresenter {
 	/** @var  \App\Modules\BackendModule\Controls\IProfilePreview @inject */
 	public $IProfilePreview;
 
+	/** @var  \App\Modules\BackendModule\Controls\ITrackRow @inject */
+	public $ITrackRow;
+
 	protected function createComponentProfile()
 	{
-		return $this->IProfile->create($this->userBaseLogic->findOneById($this->getUser()->getId()), $this->user);
+		$user = $this->userBaseLogic->findOneByUsername($this->username);
+		$loggedUser = $this->userBaseLogic->findOneById($this->getUser()->getId());
+
+		$profile = $this->IProfile->create($loggedUser, $this->user);
+		foreach($user->tracks as $track) {
+			if($track->pinned == NULL) {
+				$profile->addComponent($this->createComponentTrackRow($track, $loggedUser, $this->user), 'NO'.$track->id);
+			} elseif($track->pinned == TRUE){
+				$profile->addComponent($this->createComponentTrackRow($track, $loggedUser, $this->user), 'YES'.$track->id);
+			}
+		}
+		return $profile;
+	}
+
+	protected function createComponentTrackRow($track, $loggedUser, $profileUser)
+	{
+		return $this->ITrackRow->create($track, $loggedUser, $profileUser);
 	}
 
 	public function actionDefault($username)
 	{
 		$user = $this->userBaseLogic->findOneByUsername($username);
+
 		if($user == NULL || ($this->userBaseLogic->findOneByUsername($username)->public == FALSE && !$this->getUser()->isLoggedIn())) {
 			$this->getPresenter()->redirect(':Backend:Homepage:default');
 		} else {
@@ -55,6 +75,7 @@ class ProfilePresenter extends BasePresenter {
 	public function actionFollowing($username)
 	{
 		$user = $this->userBaseLogic->findOneByUsername($username);
+
 		if($user == NULL || ($this->userBaseLogic->findOneByUsername($username)->public == FALSE && !$this->getUser()->isLoggedIn())) {
 			$this->getPresenter()->redirect(':Backend:Homepage:default');
 		} else {
