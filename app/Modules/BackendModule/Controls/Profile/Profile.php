@@ -85,8 +85,7 @@ class Profile extends Control
 			$image = Image::fromFile($this->wwwDir . '/' . $image);
 			$image->send();
 		} else {
-			$image = Image::fromBlank(500, 300, Image::rgb(255, 255, 255));
-			$image->send();
+			return NULL;
 		}
 	}
 

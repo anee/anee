@@ -2,7 +2,6 @@
     position: relative;
     float: left;
     width: 100%;
-    background-color: white;
     padding-bottom: 20px;
 }
 .main-profile .profile-image {
@@ -172,23 +171,23 @@
     width: 100%;
     float: left;
 }
-.line {
+.title-line {
     padding-top: 10px;
     padding-bottom: 10px;
     padding-left: 20px;
 
 }
-.line .name a:first-child {
+.title-line .name a:first-child {
     margin-left: 0;
 }
-.line .name a {
+.title-line .name a {
     margin-left: 40px;
     text-decoration: none;
     font-size: 16px;
     font-family: "Verdana";
     color: #293c4b;
 }
-.line .name a:hover {
+.title-line .name a:hover {
     font-weight: bold;
 }
 .profile-activity {
@@ -198,7 +197,7 @@
 }
 .wall-summary {
     float: left;
-    width: 300px;
+    background-color: white;
 }
 .wall {
     position: absolute;

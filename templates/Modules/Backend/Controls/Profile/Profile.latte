@@ -1,6 +1,8 @@
     <div class="main-profile">
         <div class="profile-image">
-            <img src="{link getProfileImage}">
+            {if $profileUser->profileImage != NULL}
+                <img src="{link getProfileImage}">
+            {/if}
             {if count($profileUser->transports) > 0}
                 <h2><a style="opacity: 1;" href="{plink :Backend:Profile:default, 'username' => $profileUser->username}">{$profileUser->getName()}</a><br/>
             {else}
@@ -75,13 +77,15 @@
         </div>
         <div class="wall">
             <div class="wall-title">
-                <div class="line">
+                <div class="title-line">
                     <p class="name float-left">
                         <a data-toggle="modal" href="#addTrack">New Track</a>
                         <a data-toggle="modal" href="#addPhoto">New Photo</a></p>
                     <p class="name float-right"></p>
                     <div style="clear: both;"></div>
                 </div>
+            </div>
+               {if count($pinnedTracks) > 0}
                 <div class="profile-activity">
                      <h3>PINNED ACTIVITY</h3>
                        {foreach $control->components as $component}
@@ -90,6 +94,8 @@
                             {/if}
                        {/foreach}
                 </div>
+                {/if}
+                {if count($tracks) > 0}
                 <div class="profile-activity">
                     <h3>RECENT ACTIVITY</h3>
                        {foreach $control->components as $component}
@@ -98,7 +104,7 @@
                             {/if}
                        {/foreach}
                 </div>
-            </div>
+                {/if}
         </div>
     </div>
 

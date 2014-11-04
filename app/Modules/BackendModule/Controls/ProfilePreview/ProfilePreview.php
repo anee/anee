@@ -79,7 +79,7 @@ class ProfilePreview extends Control
 			$image = Image::fromFile($this->wwwDir . '/' . $image);
 			$image->send();
 		} else {
-			$image = Image::fromBlank(500, 300, Image::rgb(255, 255, 255));
+			$image = Image::fromBlank(500, 300, Image::rgb(153,153,153));
 			$image->send();
 		}
 	}
