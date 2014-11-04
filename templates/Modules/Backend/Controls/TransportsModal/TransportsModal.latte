@@ -7,7 +7,6 @@
             <div class="modal-body">
 
                     {*{snippet flashes}
-
                         {foreach $flashes as $flash}<div class="flash {$flash->type}">{$flash->message}</div>{/foreach}
                     {/snippet}*}
                 {form transportsForm class => ajax}
@@ -26,7 +25,9 @@
                           <div style="clear: both;"></div>
                       </div>
                     {/foreach}
-                    {input save}
+                    {if count($profileUser->transports) > 0}
+                        {input save}
+                    {/if}
                 {/form}
                 {form addTransportForm class => ajax}
                     <div class="line border">
