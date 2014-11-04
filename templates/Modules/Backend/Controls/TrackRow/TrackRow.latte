@@ -1,6 +1,12 @@
         <div class="track-row">
                       <div class="line">
-                            <p class="track-name float-left"><a href="{plink :Backend:Tracks:Default, 'url' => $track->id, 'username' => $profileUser->username}">{$track->name} <span class="transport">by {$track->transport->name}</span></a></p>
+                            <p class="track-name float-left">
+                                <a href="{plink :Backend:Tracks:Default, 'url' => $track->id, 'username' => $profileUser->username}">{$track->name}
+                                {if $track->transport != NULL}
+                                    <span class="transport">by {$track->transport->name}</span>
+                                {/if}
+                                </a>
+                            </p>
                             <p class="options float-right">
 
                                     {$track->date|dateAgoNumber}

@@ -7,7 +7,6 @@
             {if $profileUser->profileImage != NULL}
                 <img src="{link getProfileImage}">
             {/if}
-
             {if $profileUser->profileImage != NULL}
                 <h2><a style="opacity: 1;" href="{plink :Backend:Profile:default, 'username' => $profileUser->username}">{$profileUser->getName()}</a><br/>
             {else}
@@ -21,9 +20,7 @@
                     {/if}
 
                 {/foreach}
-
-                        <a class="tags-etc" data-toggle="modal" href="#transports{$profileUser->id}">mana</a>
-
+                <a class="tags-etc" data-toggle="modal" href="#transports{$profileUser->id}">mana</a>
                 </span>
             </h2>
             {if $user->isLoggedIn()}
