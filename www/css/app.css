@@ -177,6 +177,10 @@ input[type="submit"]:active, input[type="submit"]:hover {
 }
 .modal .modal-body .line .name a {
     color: #293c4b;
+    text-decoration: none;
+}
+.modal .modal-body .line .name a:hover {
+    font-weight: bold;
 }
 .modal .modal-body .line .input {
     margin-top: 0;

@@ -1,12 +1,17 @@
     <div class="main-profile">
-        <div class="profile-image">
+        {if $profileUser->profileImage != NULL}
+            <div class="profile-image">
+        {else}
+            <div class="profile-image" style="height: 100px;">
+        {/if}
             {if $profileUser->profileImage != NULL}
                 <img src="{link getProfileImage}">
             {/if}
-            {if count($profileUser->transports) > 0}
+
+            {if $profileUser->profileImage != NULL}
                 <h2><a style="opacity: 1;" href="{plink :Backend:Profile:default, 'username' => $profileUser->username}">{$profileUser->getName()}</a><br/>
             {else}
-                <h2 style="top: 225px;"><a style="opacity: 1;" href="{plink :Backend:Profile:default, 'username' => $profileUser->username}">{$profileUser->getName()}</a><br/>
+                <h2 style="top: 0px;"><a style="opacity: 1;" href="{plink :Backend:Profile:default, 'username' => $profileUser->username}">{$profileUser->getName()}</a><br/>
             {/if}
                 <span class="profile-tags">
                 {foreach $profileUser->transports as $transport}
@@ -16,9 +21,9 @@
                     {/if}
 
                 {/foreach}
-                    {if count($profileUser->transports) > 0}
+
                         <a class="tags-etc" data-toggle="modal" href="#transports{$profileUser->id}">mana</a>
-                    {/if}
+
                 </span>
             </h2>
             {if $user->isLoggedIn()}
@@ -32,8 +37,8 @@
                     </div>
                 {/if}
             {/if}
-
         </div>
+
         <div class="wall-summary float-left">
         <div class="profile-menu">
             <ul>
@@ -95,7 +100,7 @@
                        {/foreach}
                 </div>
                 {/if}
-                {if count($tracks) > 0}
+                {if count($unpinnedtracks) > 0}
                 <div class="profile-activity">
                     <h3>RECENT ACTIVITY</h3>
                        {foreach $control->components as $component}

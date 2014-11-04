@@ -119,18 +119,18 @@
 .main-profile .profile-summary .right-box {
     width: 150px;
 }
-.following-status {
+.main-profile .profile-image .following-status {
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
     border-radius: 20px;
     height: 40px;
     position: absolute;
     top: 25px;
-    right: 35px;
+    right: 50px;
     border: 2px solid white;
 }
 
-.following-status a {
+.main-profile .profile-image .following-status a {
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
     border-radius: 20px;
@@ -148,19 +148,19 @@
     display: block;
     height: 28px;
 }
-.no-following a:hover {
+.main-profile .profile-image .no-following a:hover {
     /*background-color: white;*/
 }
-.no-following:hover {
+.main-profile .profile-image .no-following:hover {
     background: white;
 }
-.no-following a:hover {
+.main-profile .profile-image .no-following a:hover {
     color: #293c4b;
 }
-.following {
+.main-profile .profile-image .following {
     background: white;
 }
-.following a {
+.main-profile .profile-image .following a {
     color: #293c4b;
 }
 .tags-etc {
