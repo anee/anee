@@ -112,7 +112,7 @@ class User extends BaseEntity {
 		foreach($this->tracks as $track) {
 			$distance += $track->distance;
 		}
-		return $distance;
+		return round($distance);
 	}
 
 	public function getName()
