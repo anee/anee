@@ -115,6 +115,14 @@
 .user .user-summary .right-box {
     width: 165px;
 }
+.user .user-summary .left-box a, .user .user-summary .right-box a {
+    text-decoration: none;
+    color: #e0e9f0;
+}
+.user .user-summary .left-box a:hover, .user .user-summary .right-box a:hover {
+    color: #e0e9f0;
+    font-weight: bold;
+}
 .user .add-border{
     border-bottom: 1px solid #4a5d6c;
 }

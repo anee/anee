@@ -105,8 +105,8 @@ class ProfilePresenter extends BasePresenter {
 		$user = $this->userBaseLogic->findOneByUsername($this->username);
 
 		$profileContainer = $this->IProfileContainer->create();
-		foreach($user->following as $followingUser) {
-			$profileContainer->addComponent($this->createComponentProfilePreview($user, $followingUser), $followingUser->id);
+		foreach($user->followers as $followerUser) {
+			$profileContainer->addComponent($this->createComponentProfilePreview($user, $followerUser), $followerUser->id);
 		}
 		return $profileContainer;
 	}
