@@ -10,13 +10,13 @@ use Nette\Security as NS;
 class HomepagePresenter extends BasePresenter
 {
 
-	/** @var  \App\Modules\BackendModule\Controls\IProfileContainer @inject */
-	public $IProfileContainer;
+	/*/** @var  \App\Modules\BackendModule\Controls\IProfileContainer @inject */
+	/*public $IProfileContainer;*/
 
-	/** @var  \App\Modules\BackendModule\Controls\IProfilePreview @inject */
-	public $IProfilePreview;
+	/*/** @var  \App\Modules\BackendModule\Controls\IProfilePreview @inject */
+	/*public $IProfilePreview;*/
 
-	protected function createComponentFollowing()
+	/*protected function createComponentFollowing()
 	{
 		$loggedUser = $this->userBaseLogic->findOneById($this->getUser()->getId());
 
@@ -30,7 +30,7 @@ class HomepagePresenter extends BasePresenter
 	protected function createComponentProfilePreview($loggedUser, $user)
 	{
 		return $this->IProfilePreview->create($loggedUser, $user);
-	}
+	}*/
 
 	public function renderDefault()
 	{

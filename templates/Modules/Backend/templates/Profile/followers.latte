@@ -1,6 +1,7 @@
 {block content}
 
     {if $user->isLoggedIn()}
+        {control followers, $themeDir.'/Modules/Backend/Controls/ProfileContainer/ProfileContainer.latte'}
 
     <script type="text/javascript">
 

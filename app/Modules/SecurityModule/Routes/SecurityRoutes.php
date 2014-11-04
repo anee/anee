@@ -21,8 +21,15 @@ class SecurityRoutes
 	 */
 	public static function create(RouteList $router)
 	{
-		$router[] = new Route('<presenter>/<action>', array(
+		$router[] = new Route('Register/In', array(
 			'module' => 'Security',
+			'presenter' => 'Register',
+			'action' => 'in',
+		));
+		$router[] = new Route('Sign/In', array(
+			'module' => 'Security',
+			'presenter' => 'Sign',
+			'action' => 'in',
 		));
 
 		return $router;
