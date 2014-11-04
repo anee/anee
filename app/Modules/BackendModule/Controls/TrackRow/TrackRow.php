@@ -52,4 +52,27 @@ class TrackRow extends Control
 
 		$this->template->render();
 	}
+
+	public function handlePin($id)
+	{
+		$track = $this->trackBaseLogic->findOneById($id);
+		$track->pinned = TRUE;
+		$this->trackBaseLogic->save($track);
+		$this->redirect('this');
+	}
+
+	public function handleUnpin($id)
+	{
+		$track = $this->trackBaseLogic->findOneById($id);
+		$track->pinned = FALSE;
+		$this->trackBaseLogic->save($track);
+		$this->redirect('this');
+	}
+
+	public function handleRemove($id)
+	{
+		$this->trackBaseLogic->remove($id);
+		$this->redirect('this');
+
+	}
 }

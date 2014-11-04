@@ -1,0 +1,76 @@
+.part{
+    width: 100%;
+    float: left;
+    margin-bottom: 40px;
+    border-bottom: 1px solid #91a4b3;
+    border-top: 1px solid #91a4b3;
+}
+
+/* BARS
+----------------------------------------------------------*/
+.bar {
+    padding-bottom: 8px;
+    padding-top: 8px;
+    text-align: center;
+    width: 200px; height: 35px;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    font-family: "Verdana";
+}
+.bar .bar-value {
+    font-size: 28px;
+}
+.info {
+    margin: 8px 0 5px 0;
+    padding-left: 15px;
+    padding-right: 15px;
+    height: 40px;
+    line-height: 1.1;
+}
+.info p:first-child {
+    font-size: 24px;
+    font-family: "MuseoSans";
+    margin-bottom: 0;
+}
+.info p {
+    font-size: 13px;
+    font-family: "ProximaNova-Light";
+    margin-bottom: 0;
+}
+.border {
+    border-left: 1px solid #8ed6d6;
+}
+.overall {
+    color: #91a4b3;
+}
+.overall-bg {
+    background-color: #91a4b3;
+}
+.partial {
+    color: #F0886D;
+}
+.partial-bg {
+    background-color: #F0886D;
+}
+.track-row .line {
+    padding-left: 0;
+}
+.track-row .line .options, .track-row .line .options a {
+    color: #55676e;
+    text-decoration: none;
+}
+.track-row .line .options a:hover {
+    font-weight: bold;
+}
+.track-row .line .track-name a {
+    color: #55676e;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: "Verdana";
+}
+.track-row .line .track-name .transport {
+    font-weight: normal;
+    font-family: "ProximaNova-Light";
+}
