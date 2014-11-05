@@ -12,7 +12,6 @@ interface IAddPhotoModal
 {
 
 	/**
-	 * @param appDir
 	 * @param User $loggedUser
 	 * @return AddPhotoModal
 	 */
