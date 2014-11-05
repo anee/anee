@@ -2,6 +2,7 @@
 
 namespace App\Modules\BackendModule\Controls;
 
+use App\Utils\Strings;
 use Nette;
 use Nette\Application\UI\Control;
 use App\Model\UserBaseLogic;
@@ -81,7 +82,7 @@ class AddTrackModal extends Control
 		$form->addSelect('transport', NULL, $transports)
 			->setRequired('You have not selected transport type.');
 		$form->addText('timeInSeconds')
-			->setAttribute('placeholder', 'in seconds');
+			->setAttribute('placeholder', '00h 00m 00s');
 		$form->addText('friendName')
 			->setAttribute('placeholder', 'username');
 		$date = new DateTime();
@@ -103,7 +104,8 @@ class AddTrackModal extends Control
 			$place = $this->placeBaseLogic->findOneById($values->place);
 			$transport = $this->transportBaseLogic->findById($values->transport);
 
-			$track = new Track($user, $transport, $values->distance, $values->timeInSeconds, $place, new DateTime($values->date), $values->pinned);
+			$seconds = intval(substr($values->timeInSeconds, 0, -9)) * 3600 + intval(substr($values->timeInSeconds, 4, -5) * 60) + intval(substr($values->timeInSeconds, 8, -1));
+			$track = new Track($user, $transport, $values->distance, $seconds, $place, new DateTime($values->date), $values->pinned);
 			if($values->maxSpeed != '') {
 				$track->maxSpeed = $values->maxSpeed;
 			}

@@ -53,7 +53,7 @@ class Track extends BaseEntity
     protected $placeTo;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Model\Photo", mappedBy="tracks")
+     * @ORM\OneToMany(targetEntity="App\Model\Photo", mappedBy="tracks", cascade={"persist", "remove"})
      */
     protected $photos;
 
