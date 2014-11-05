@@ -71,8 +71,6 @@ class TrackRow extends Control
 
 	public function handleRemove($id)
 	{
-		dump($id);
-		die();
 		$this->trackBaseLogic->remove($id);
 		$this->redirect('this');
 

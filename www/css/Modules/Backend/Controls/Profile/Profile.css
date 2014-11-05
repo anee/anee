@@ -52,16 +52,16 @@
     background-position: -48px 10px;
 }
 .main-profile .profile-menu ul .photos {
-    background-position: 0 -35px;
-}
-.main-profile .profile-menu ul .photos:hover {
-    background-position: -48px -35px;
-}
-.main-profile .profile-menu ul .places {
     background-position: 0 -80px;
 }
-.main-profile .profile-menu ul .places:hover {
+.main-profile .profile-menu ul .photos:hover {
     background-position: -48px -80px;
+}
+.main-profile .profile-menu ul .places {
+    background-position: 0 -126px;
+}
+.main-profile .profile-menu ul .places:hover {
+    background-position: -48px -126px;
 }
 .main-profile .profile-activity {
     min-height: 100px;
