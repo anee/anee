@@ -71,8 +71,8 @@ class AddPhotoModal extends Control
 
 		$form = new Form;
 		$form->addUpload('photo');
-		$form->addSelect('places', NULL, $places);
-		$form->addSelect('tracks', NULL, $tracks);
+		$form->addSelect('place', NULL, $places);
+		$form->addSelect('track', NULL, $tracks);
 		$date = new DateTime();
 		$form->addText('date')->setDefaultValue($date->format('Y-m-d H:i:s'));
 		$form->addSubmit('save', 'save');
@@ -97,11 +97,11 @@ class AddPhotoModal extends Control
 
 					// new photo
 					$photo = new Photo($user, $filename, $filePath, new DateTime($values->date));
-					if ($values->tracks != '') {
-						$photo->track = $this->trackBaseLogic->findOneById($values->tracks);
+					if ($values->track != '') {
+						$photo->track = $this->trackBaseLogic->findOneById($values->track);
 					}
-					if ($values->places != '') {
-						$photo->place = $this->placeBaseLogic->findOneById($values->places);
+					if ($values->place != '') {
+						$photo->place = $this->placeBaseLogic->findOneById($values->place);
 					}
 					$this->photoBaseLogic->save($photo);
 				}
