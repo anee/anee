@@ -11,6 +11,7 @@ use App\Model\PlaceBaseLogic;
 use Nette\Application\UI\Form;
 use App\Model\User;
 use App\Model\Photo;
+use Nette\Utils\DateTime;
 
 
 
@@ -72,7 +73,8 @@ class AddPhotoModal extends Control
 		$form->addUpload('photo');
 		$form->addSelect('places', NULL, $places);
 		$form->addSelect('tracks', NULL, $tracks);
-		$form->addText('date')->setDefaultValue('2012-06-15 14:45');
+		$date = new DateTime();
+		$form->addText('date')->setDefaultValue($date->format('Y-m-d H:i:s'));
 		$form->addSubmit('save', 'save');
 		$form->onSuccess[] = $this->success;
 
@@ -94,7 +96,7 @@ class AddPhotoModal extends Control
 					$values->photo->move($filePath);
 
 					// new photo
-					$photo = new Photo($user, $filename, $filePath);
+					$photo = new Photo($user, $filename, $filePath, new DateTime($values->date));
 					if ($values->tracks != '') {
 						$photo->track = $this->trackBaseLogic->findOneById($values->tracks);
 					}
