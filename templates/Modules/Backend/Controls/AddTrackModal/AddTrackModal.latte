@@ -1,4 +1,4 @@
-<div id="addTrack" class="modal fade" tabindex="-1" style="display: none;">
+    <div id="addTrack" class="modal fade" tabindex="-1" style="display: none;">
         {form addTrackForm class => ajax}
             <div class="modal-header">
                   <h2>Add track</h2>
@@ -9,11 +9,63 @@
             <ul class="errors" n:if="$form->hasErrors()">
                 <li n:foreach="$form->errors as $error">{$error}</li>
             </ul>
-
-
+                    <div class="line">
+                            <p class="name float-left">Transport</p>
+                            <p class="input float-right">{input transport class => select}</p>
+                            <div style="clear: both;"></div>
+                    </div>
+                    <div class="line">
+                            <p class="name float-left">Place</p>
+                            <p class="input float-right">{input place class => select}</p>
+                            <div style="clear: both;"></div>
+                    </div>
+                  <div class="line">
+                            <p class="name float-left">Place to</p>
+                            <p class="input float-right">{input placeTo class => select}</p>
+                            <div style="clear: both;"></div>
+                    </div>
+                    <div class="line">
+                            <p class="name float-left">Distance</p>
+                            <p class="input float-right">{input distance}</p>
+                            <div style="clear: both;"></div>
+                    </div>
+                    <div class="line">
+                            <p class="name float-left">Trip time</p>
+                            <p class="input float-right">{input timeInSeconds}</p>
+                            <div style="clear: both;"></div>
+                    </div>
+                    <div class="line">
+                            <p class="name float-left">Max speed</p>
+                            <p class="input float-right">{input maxSpeed}</p>
+                            <div style="clear: both;"></div>
+                    </div>
+                    <div class="line">
+                            <p class="name float-left">Date</p>
+                            <p class="input float-right">{input date class => datetime}</p>
+                            <div style="clear: both;"></div>
+                    </div>
+                      <div class="line border">
+                          <p class="name float-left">Pinned</p>
+                          <p class="input float-right">{input pinned}</p>
+                          <div style="clear: both;"></div>
+                      </div>
+                    <h3>FRIENDS</h3>
+                    <div class="line border">
+                           <p class="name float-left">Name</p>
+                           <p class="input float-right">{input friendName}</p>
+                           <div style="clear: both;"></div>
+                    </div>
             </div>
             <div class="modal-footer">
                 {input save}
             </div>
         {/form}
     </div>
+
+    <script type="text/javascript">
+        $(".datetime").datetimepicker ({
+           format: 'yyyy-mm-dd hh:ii',
+           autoclose: true,
+           todayBtn: true
+        });
+    </script>

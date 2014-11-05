@@ -73,12 +73,16 @@ class Track extends BaseEntity
 	protected $withUsers;
 
 
-    public function __construct($transport, $distance, $timeInSeconds, $maxSpeed, $date, $place)
+    public function __construct($user, $transport, $distance, $timeInSeconds, $place, $date, $pinned, $placeTo = NULL, $maxSpeed = NULL)
     {
+		$this->withUsers = new \Doctrine\Common\Collections\ArrayCollection();
+
+		$this->pinned = $pinned;
+		$this->user = $user;
         $this->transport = $transport;
         $this->distance = $distance;
         $this->timeInSeconds = $timeInSeconds;
-        $this->maxSpeed = $maxSpeed;
+		$this->maxSpeed = $maxSpeed;
         $this->date = $date;
         $this->place = $place;
     }
@@ -101,4 +105,9 @@ class Track extends BaseEntity
 			return round((($this->distance * 1000) / $this->timeInSeconds) * 3.6, 2);
 		}
     }
+
+	public function getWithUsers()
+	{
+		return $this->withUsers;
+	}
 }
