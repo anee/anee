@@ -19,6 +19,10 @@ webloader:
 					- app.css
 					- app-modal.css
 					- app-multiselect.css
+					#- bootstrap.css
+					#- bootstrap-theme.min.css
+					#- bootstrap-datetimepicker.min.css
+					- app-datetimepicker.css
 
 					# /Modules
 					- {files: ["*.css", "*.less"], from: %wwwDir%/css/Modules/}
@@ -41,6 +45,7 @@ webloader:
 					- bootstrap.min.js
 					- bootstrap-multiselect.js
 					- bootstrap-modalmanager.js
+					- bootstrap-datetimepicker.min.js
 					- bootstrap-modal.js
 					- app.js
 

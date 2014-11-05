@@ -1,0 +1,54 @@
+<div id="addPhoto" class="modal fade" tabindex="-1" style="display: none;">
+        {form addPhotoForm class => ajax}
+            <div class="modal-header">
+                  <h2>Add photo</h2>
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+            </div>
+            <div class="modal-body">
+
+            <ul class="errors" n:if="$form->hasErrors()">
+                <li n:foreach="$form->errors as $error">{$error}</li>
+            </ul>
+                    <div class="line">
+                            <p class="name float-left">Place</p>
+                            <p class="input float-right">{input places class => select}</p>
+                            <div style="clear: both;"></div>
+                      </div>
+                    <div class="line">
+                            <p class="name float-left">Track</p>
+                            <p class="input float-right">{input tracks class => select}</p>
+                            <div style="clear: both;"></div>
+                      </div>
+                      <div class="line border">
+                            <p class="name float-left">Photo</p>
+                            <p class="name float-right">
+                                <div class="fileUpload">
+                                    <span>
+                                           Upload
+                                    </span>
+                                    {input photo class => upload}
+                                </div>
+                            </p>
+                            <div style="clear: both;"></div>
+                      </div>
+                    <div class="line">
+                            <p class="name float-left">Date</p>
+                            <p class="name float-right">{input date class => datetime}</p>
+                            <div style="clear: both;"></div>
+
+                    </div>
+            </div>
+            <div class="modal-footer">
+                {input save}
+            </div>
+        {/form}
+    </div>
+
+<script type="text/javascript">
+    $(".datetime").datetimepicker ({
+       format: 'yyyy-mm-dd hh:ii',
+       autoclose: true,
+       startDate: "2014-11-5 15:00",
+       todayBtn: true
+    });
+</script>

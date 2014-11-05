@@ -35,7 +35,7 @@ class AddTrackModal extends Control
 		$this->template->render();
 	}
 
-	protected function createComponentSettingsForm()
+	protected function createComponentAddTrackForm()
 	{
 		$form = new Form;
 

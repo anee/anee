@@ -42,11 +42,17 @@ class Photo extends BaseEntity
     protected $track;
 
 
-    public function __construct($name, $path, $place)
+    public function __construct($user, $fileName, $filePath, $date = NULL, $place = NULL, $track = NULL)
     {
-        $this->name = $name;
-        $this->path = $path;
-        $this->date = new DateTime;
+		$this->user = $user;
+        $this->fileName = $fileName;
+        $this->filePath = $filePath;
         $this->place = $place;
+		$this->track = $track;
+		if($date == NULL) {
+			$this->date = new DateTime;
+		} else {
+			$this->date = $date;
+		}
     }
 }

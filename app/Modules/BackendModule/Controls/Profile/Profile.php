@@ -41,7 +41,10 @@ class Profile extends Control
 	/** @var \App\Modules\BackendModule\Controls\IAddTrackModal @inject */
 	public $IAddTrackModal;
 
-    public function __construct(IAddTrackModal $IAddTrackModal, ITransportsModal $ITransportsModal, ThumbnailsHelper $thumbnailsHelper, TrackBaseLogic $trackBaseLogic, UserBaseLogic $userBaseLogic, $wwwDir, User $loggedUser, User $profileUser)
+	/** @var \App\Modules\BackendModule\Controls\IAddPhotoModal @inject */
+	public $IAddPhotoModal;
+
+    public function __construct(IAddPhotoModal $IAddPhotoModal, IAddTrackModal $IAddTrackModal, ITransportsModal $ITransportsModal, ThumbnailsHelper $thumbnailsHelper, TrackBaseLogic $trackBaseLogic, UserBaseLogic $userBaseLogic, $wwwDir, User $loggedUser, User $profileUser)
     {
 		$this->wwwDir = $wwwDir;
 		$this->thumbnailsHelper = $thumbnailsHelper;
@@ -51,6 +54,7 @@ class Profile extends Control
 		$this->profileUser = $profileUser;
 		$this->ITransportsModal = $ITransportsModal;
 		$this->IAddTrackModal = $IAddTrackModal;
+		$this->IAddPhotoModal = $IAddPhotoModal;
     }
 
 	protected function createComponentTransportsModal()
@@ -61,6 +65,11 @@ class Profile extends Control
 	protected function createComponentAddTrackModal()
 	{
 		return $this->IAddTrackModal->create($this->profileUser, $this->loggedUser);
+	}
+
+	protected function createComponentAddPhotoModal()
+	{
+		return $this->IAddPhotoModal->create($this->profileUser, $this->loggedUser);
 	}
 
 	public function render($file)
