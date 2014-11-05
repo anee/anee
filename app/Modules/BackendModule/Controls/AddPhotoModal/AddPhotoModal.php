@@ -66,7 +66,7 @@ class AddPhotoModal extends Control
 		$tracks = Array();
 		$tracks[''] = '';
 		foreach($this->loggedUser->tracks as $track) {
-			$tracks[$track->id] = $track->getName().' - '.$track->date->format('d.m.Y');
+			$tracks[$track->id] = $track->getName().' - '.$track->date->format('d.m.Y H:i:s');
 		}
 
 		$form = new Form;
