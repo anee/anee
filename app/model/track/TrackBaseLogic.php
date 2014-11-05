@@ -59,7 +59,7 @@ class TrackBaseLogic extends BaseLogic {
         return $this->addFilterByUser($qb, $userId)->getQuery()->setMaxResults($count)->getResult();
     }
 
-	public function findLasPinnedByCount($count, $userId)
+	public function findLastPinnedByCount($count, $userId)
 	{
 		$qb = $this->dao->createQueryBuilder();
 		$qb
@@ -112,7 +112,8 @@ class TrackBaseLogic extends BaseLogic {
 		$qb = $this->dao->createQueryBuilder();
 		$qb
 			->select('e')
-			->from('App\Model\Track', 'e');
+			->from('App\Model\Track', 'e')
+			->orderBy('e.date', 'DESC');
 
 		return $this->addFilterByUser($qb, $userId)->getQuery()->getResult();
 	}
@@ -124,7 +125,8 @@ class TrackBaseLogic extends BaseLogic {
 			->select('e')
 			->from('App\Model\Track', 'e')
 			->andWhere('e.id = :id')
-			->setParameter('id', $id);
+			->setParameter('id', $id)
+			->orderBy('e.date', 'DESC');
 
 		return $this->addFilterByUser($qb, $userId)->getQuery()->getOneOrNullResult();
 	}

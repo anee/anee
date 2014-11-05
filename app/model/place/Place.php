@@ -30,12 +30,12 @@ class Place extends BaseEntity
 	protected $nameUrl;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Model\Track", mappedBy="place")
+     * @ORM\OneToMany(targetEntity="App\Model\Track", mappedBy="place", cascade={"persist", "remove"})
      */
     protected $tracks;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Model\Photo", mappedBy="place")
+     * @ORM\OneToMany(targetEntity="App\Model\Photo", mappedBy="place", cascade={"persist", "remove"})
      */
     protected $photos;
 

@@ -34,6 +34,18 @@ class BackendRoutes
 			'action' => 'followers',
 		));
 
+		$router[] = new Route('<username>/tracks', array(
+			'module' => 'Backend',
+			'presenter' => 'Profile',
+			'action' => 'tracks',
+		));
+
+		$router[] = new Route('<username>/places', array(
+			'module' => 'Backend',
+			'presenter' => 'Profile',
+			'action' => 'places',
+		));
+
 		// PLACES && TRACKS
 		$router[] = new Route('<username>/<presenter>/<url>', array(
 			'module' => 'Backend',

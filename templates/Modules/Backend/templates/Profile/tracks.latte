@@ -1,0 +1,16 @@
+{block content}
+    <div class="profile-page one-profil">
+        {control profileTracks, $themeDir.'Modules/Backend/Controls/Profile/Profile.latte'}
+    </div>
+
+
+    <script type="text/javascript">
+
+        var e = document.getElementsByTagName("html")[0];
+        var background = 'url(..{$background})';
+        var backgroundR = background.replace(/\"/g, "");
+        var backgroundF = backgroundR.replace(/\\/g, "/");
+        e.style.backgroundImage = backgroundF;
+
+    </script>
+{/block}

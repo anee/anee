@@ -29,7 +29,7 @@ services:
 		implement: App\Modules\BackendModule\Controls\IUserPanel
 
 	Profile:
-		class: App\Modules\BackendModule\Controls\Profile(..., ..., ..., ..., ..., ..., %wwwDir%, %loggedUser%, %profileUser%)
+		class: App\Modules\BackendModule\Controls\Profile(..., ..., ..., ..., ..., ..., ..., ..., %wwwDir%, %loggedUser%, %profileUser%)
 		implement: App\Modules\BackendModule\Controls\IProfile
 		parameters: [App\Model\User loggedUser, App\Model\User profileUser]
 
@@ -61,3 +61,8 @@ services:
 		class: App\Modules\BackendModule\Controls\TrackRow(..., ..., %track%, %loggedUser%, %profileUser%)
 		implement: App\Modules\BackendModule\Controls\ITrackRow
 		parameters: [App\Model\Track track, App\Model\User loggedUser, App\Model\User profileUser]
+
+	PlaceRow:
+		class: App\Modules\BackendModule\Controls\PlaceRow(..., ..., %place%, %loggedUser%, %profileUser%)
+		implement: App\Modules\BackendModule\Controls\IPlaceRow
+		parameters: [App\Model\Place place, App\Model\User loggedUser, App\Model\User profileUser]

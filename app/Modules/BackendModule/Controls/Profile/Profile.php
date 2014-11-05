@@ -3,6 +3,8 @@
 namespace App\Modules\BackendModule\Controls;
 
 use App\Model\TrackBaseLogic;
+use App\Model\PhotoBaseLogic;
+use App\Model\PlaceBaseLogic;
 use App\Model\UserBaseLogic;
 use Kappa\ThumbnailsHelper\ThumbnailsHelper;
 use Kdyby\Doctrine\DuplicateEntryException;
@@ -24,6 +26,12 @@ class Profile extends Control
 	/** @var \App\Model\UserBaseLogic @inject*/
 	public $userBaseLogic;
 
+	/** @var \App\Model\PlaceBaseLogic @inject*/
+	public $placeBaseLogic;
+
+	/** @var \App\Model\PhotoBaseLogic @inject*/
+	public $photoBaseLogic;
+
 	/** @var \App\Model\TrackBaseLogic @inject*/
 	public $trackBaseLogic;
 
@@ -44,7 +52,7 @@ class Profile extends Control
 	/** @var \App\Modules\BackendModule\Controls\IAddPhotoModal @inject */
 	public $IAddPhotoModal;
 
-    public function __construct(IAddPhotoModal $IAddPhotoModal, IAddTrackModal $IAddTrackModal, ITransportsModal $ITransportsModal, ThumbnailsHelper $thumbnailsHelper, TrackBaseLogic $trackBaseLogic, UserBaseLogic $userBaseLogic, $wwwDir, User $loggedUser, User $profileUser)
+    public function __construct(IAddPhotoModal $IAddPhotoModal, IAddTrackModal $IAddTrackModal, ITransportsModal $ITransportsModal, ThumbnailsHelper $thumbnailsHelper, TrackBaseLogic $trackBaseLogic, UserBaseLogic $userBaseLogic, PlaceBaseLogic $placeBaseLogic, PhotoBaseLogic $photoBaseLogic, $wwwDir, User $loggedUser, User $profileUser)
     {
 		$this->wwwDir = $wwwDir;
 		$this->thumbnailsHelper = $thumbnailsHelper;
@@ -55,6 +63,8 @@ class Profile extends Control
 		$this->ITransportsModal = $ITransportsModal;
 		$this->IAddTrackModal = $IAddTrackModal;
 		$this->IAddPhotoModal = $IAddPhotoModal;
+		$this->placeBaseLogic = $placeBaseLogic;
+		$this->photoBaseLogic = $photoBaseLogic;
     }
 
 	protected function createComponentTransportsModal()
@@ -81,15 +91,30 @@ class Profile extends Control
 
 		$this->template->profileUser = $this->profileUser;
 		$this->template->loggedUser = $this->loggedUser;
-		$this->template->unpinnedTracks = $this->trackBaseLogic->findAllUnpinnedByUserId($this->profileUser->id);
-		$this->template->pinnedTracks = $this->trackBaseLogic->findAllPinnedByUserId($this->profileUser->id);
+
+		$unpinnedTracks = Array();
+		$pinnedTracks = Array();
+		$tracks = FALSE;
+		$places = FALSE;
+		if($this->getPresenter()->getAction() == 'default') {
+			$unpinnedTracks = $this->trackBaseLogic->findAllUnpinnedByUserId($this->profileUser->id);
+			$pinnedTracks = $this->trackBaseLogic->findAllPinnedByUserId($this->profileUser->id);
+		} elseif($this->getPresenter()->getAction() == 'tracks') {
+			$tracks = TRUE;
+		} elseif ($this->getPresenter()->getAction() == 'places') {
+			$places = TRUE;
+		}
+		$this->template->unpinnedTracks = $unpinnedTracks;
+		$this->template->pinnedTracks = $pinnedTracks;
+		$this->template->tracks = $tracks;
+		$this->template->places = $places;
 
 		$this->template->render();
 	}
 
 	public function handleGetProfileImage()
 	{
-		if ($this->profileUser->profileImage != NULL) {
+		if($this->profileUser->profileImage != NULL) {
 			$image = $this->thumbnailsHelper->process('../app/data/users/' . $this->profileUser->id . '/images/' . $this->profileUser->profileImage, '500x');
 			$image = Image::fromFile($this->wwwDir . '/' . $image);
 			$image->send();

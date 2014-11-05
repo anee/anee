@@ -20,6 +20,12 @@ class ProfilePresenter extends BasePresenter {
 	/** @var \App\Model\User */
 	private $user;
 
+	/** @var \App\Model\TrackBaseLogic @inject*/
+	public $trackBaseLogic;
+
+	/** @var \App\Model\PlaceBaseLogic @inject*/
+	public $placeBaseLogic;
+
 	/** @var  \App\Modules\BackendModule\Controls\IProfileContainer @inject */
 	public $IProfileContainer;
 
@@ -28,6 +34,9 @@ class ProfilePresenter extends BasePresenter {
 
 	/** @var  \App\Modules\BackendModule\Controls\ITrackRow @inject */
 	public $ITrackRow;
+
+	/** @var \App\Modules\BackendModule\Controls\IPlaceRow @inject */
+	public $IPlaceRow;
 
 	protected function createComponentProfile()
 	{
@@ -48,6 +57,11 @@ class ProfilePresenter extends BasePresenter {
 	protected function createComponentTrackRow($track, $loggedUser, $profileUser)
 	{
 		return $this->ITrackRow->create($track, $loggedUser, $profileUser);
+	}
+
+	protected function createComponentPlaceRow($place, $loggedUser, $profileUser)
+	{
+		return $this->IPlaceRow->create($place, $loggedUser, $profileUser);
 	}
 
 	public function actionDefault($username)
@@ -130,5 +144,65 @@ class ProfilePresenter extends BasePresenter {
 			$profileContainer->addComponent($this->createComponentProfilePreview($user, $followerUser), $followerUser->id);
 		}
 		return $profileContainer;
+	}
+
+	public function actionTracks($username)
+	{
+		$user = $this->userBaseLogic->findOneByUsername($username);
+
+		if($user == NULL || ($this->userBaseLogic->findOneByUsername($username)->public == FALSE && !$this->getUser()->isLoggedIn())) {
+			$this->getPresenter()->redirect(':Backend:Homepage:default');
+		} else {
+			$this->username = $username;
+			$this->user = $user;
+		}
+	}
+
+	public function renderTracks($username)
+	{
+		$this->template->background = $this->getBackgroundImage();
+	}
+
+	protected function createComponentProfileTracks()
+	{
+		$profileUser = $this->userBaseLogic->findOneByUsername($this->username);
+		$loggedUser = $this->userBaseLogic->findOneById($this->getUser()->getId());
+
+		$profile = $this->IProfile->create($loggedUser, $this->user);
+		$tracks = $this->trackBaseLogic->findAll($profileUser->id);
+		foreach($tracks as $track) {
+			$profile->addComponent($this->createComponentTrackRow($track, $loggedUser, $this->user), $track->id);
+		}
+		return $profile;
+	}
+
+	public function renderPlaces($username)
+	{
+		$this->template->background = $this->getBackgroundImage();
+	}
+
+	protected function createComponentProfilePlaces()
+	{
+		$profileUser = $this->userBaseLogic->findOneByUsername($this->username);
+		$loggedUser = $this->userBaseLogic->findOneById($this->getUser()->getId());
+
+		$profile = $this->IProfile->create($loggedUser, $this->user);
+		$places = $this->placeBaseLogic->findAll($profileUser->id);
+		foreach($places as $place) {
+			$profile->addComponent($this->createComponentPlaceRow($place, $loggedUser, $this->user), $place->id);
+		}
+		return $profile;
+	}
+
+	public function actionPlaces($username)
+	{
+		$user = $this->userBaseLogic->findOneByUsername($username);
+
+		if($user == NULL || ($this->userBaseLogic->findOneByUsername($username)->public == FALSE && !$this->getUser()->isLoggedIn())) {
+			$this->getPresenter()->redirect(':Backend:Homepage:default');
+		} else {
+			$this->username = $username;
+			$this->user = $user;
+		}
 	}
 } 
