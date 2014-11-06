@@ -1,0 +1,22 @@
+        <div class="photo-row">
+            <img src="{link getImage, 'id' => '5'}">
+                      <div class="line">
+                          <p class="name float-left">
+                            {if $photo->track != NULL}
+                                <a href="{plink :Backend:Tracks:Default, 'url' => $photo->track->id, 'username' => $profileUser->username}">{$photo->track->name}</a>
+                            {/if}
+                            {if $photo->place != NULL}
+                                , <a href="{plink :Backend:Places:Default, 'url' => $photo->place->id, 'username' => $profileUser->username}">{$photo->place->name}</a>
+                            {/if}
+                          </p>
+                          <p class="options float-right">
+                            {$photo->date|dateAgoNumber}
+                            {$photo->date|dateAgoText}
+                            {if $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
+                                ·
+                                <a href="{link remove!, 'id' => $photo->id}" class="ajax">remove</a>
+                            {/if}
+                          </p>
+                          <div style="clear: both;"></div>
+                      </div>
+        </div>

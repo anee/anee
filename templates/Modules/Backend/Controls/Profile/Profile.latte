@@ -47,8 +47,7 @@
                     </a>
                 </li>
                 <li>
-                    {var $args = array('values' => [filterCategory => array('Photos')], 'username' => $profileUser->username)}
-                    <a class="icon photos" href="{plink :Backend:Search:default (expand) $args}">
+                    <a class="icon places" href="{plink :Backend:Profile:photos, 'username' => $profileUser->username}">
                         <span class="float-left">Photos</span>
                         <span class="float-right">{count($profileUser->photos)}</span>
                         <div style="clear: both;"></div>
@@ -118,6 +117,14 @@
                     <h3>PLACES</h3>
                         {foreach $control->components as $component}
                             {control $component->getName(), $themeDir.'/Modules/Backend/Controls/PlaceRow/PlaceRow.latte'}
+                        {/foreach}
+                </div>
+                {/if}
+                {if $photos == TRUE}
+                <div class="profile-activity">
+                    <h3>PHOTOS</h3>
+                        {foreach $control->components as $component}
+                            {control $component->getName(), $themeDir.'/Modules/Backend/Controls/PhotoRow/PhotoRow.latte'}
                         {/foreach}
                 </div>
                 {/if}

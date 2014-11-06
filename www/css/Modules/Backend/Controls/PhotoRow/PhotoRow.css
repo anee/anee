@@ -1,0 +1,27 @@
+.photo-row {
+    margin: 0 auto;
+    width: 50%;
+    padding-bottom: 100px;
+}
+.photo-row img {
+    width: 100%;
+}
+.photo-row .line .options, .photo-row .line .options a {
+    margin-top: 10px;
+    font-size: 17px;
+    font-family: "ProximaNova-Light";
+    color: #55676e;
+    text-decoration: none;
+}
+.photo-row .line .options a:hover {
+    font-weight: bold;
+}
+.photo-row .line .name a {
+    font-size: 16px;
+    font-family: "Verdana";
+    text-decoration: none;
+    color: #293c4b;
+}
+.photo-row .line .name a:hover {
+    font-weight: bold;
+}

@@ -96,6 +96,7 @@ class Profile extends Control
 		$pinnedTracks = Array();
 		$tracks = FALSE;
 		$places = FALSE;
+		$photos = FALSE;
 		if($this->getPresenter()->getAction() == 'default') {
 			$unpinnedTracks = $this->trackBaseLogic->findAllUnpinnedByUserId($this->profileUser->id);
 			$pinnedTracks = $this->trackBaseLogic->findAllPinnedByUserId($this->profileUser->id);
@@ -103,11 +104,14 @@ class Profile extends Control
 			$tracks = TRUE;
 		} elseif ($this->getPresenter()->getAction() == 'places') {
 			$places = TRUE;
+		} elseif ($this->getPresenter()->getAction() == 'photos') {
+			$photos = TRUE;
 		}
 		$this->template->unpinnedTracks = $unpinnedTracks;
 		$this->template->pinnedTracks = $pinnedTracks;
 		$this->template->tracks = $tracks;
 		$this->template->places = $places;
+		$this->template->photos = $photos;
 
 		$this->template->render();
 	}

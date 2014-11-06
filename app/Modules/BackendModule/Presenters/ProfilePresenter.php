@@ -20,11 +20,14 @@ class ProfilePresenter extends BasePresenter {
 	/** @var \App\Model\User */
 	private $user;
 
-	/** @var \App\Model\TrackBaseLogic @inject*/
+	/** @var \App\Model\TrackBaseLogic @inject */
 	public $trackBaseLogic;
 
-	/** @var \App\Model\PlaceBaseLogic @inject*/
+	/** @var \App\Model\PlaceBaseLogic @inject */
 	public $placeBaseLogic;
+
+	/** @var \App\Model\PhotoBaseLogic @inject */
+	public $photoBaseLogic;
 
 	/** @var  \App\Modules\BackendModule\Controls\IProfileContainer @inject */
 	public $IProfileContainer;
@@ -37,6 +40,9 @@ class ProfilePresenter extends BasePresenter {
 
 	/** @var \App\Modules\BackendModule\Controls\IPlaceRow @inject */
 	public $IPlaceRow;
+
+	/** @var \App\Modules\BackendModule\Controls\IPhotoRow @inject */
+	public $IPhotoRow;
 
 	protected function createComponentProfile()
 	{
@@ -57,6 +63,11 @@ class ProfilePresenter extends BasePresenter {
 	protected function createComponentTrackRow($track, $loggedUser, $profileUser)
 	{
 		return $this->ITrackRow->create($track, $loggedUser, $profileUser);
+	}
+
+	protected function createComponentPhotoRow($photo, $loggedUser, $profileUser)
+	{
+		return $this->IPhotoRow->create($photo, $loggedUser, $profileUser);
 	}
 
 	protected function createComponentPlaceRow($place, $loggedUser, $profileUser)
@@ -84,7 +95,7 @@ class ProfilePresenter extends BasePresenter {
 	public function getBackgroundImage()
 	{
 		return $this->thumbnailsHelper->process('../app/data/users/'.$this->user->id.'/images/'.$this->user->backgroundImage, '1920x');
-	}
+}
 
 	public function actionFollowing($username)
 	{
@@ -195,6 +206,36 @@ class ProfilePresenter extends BasePresenter {
 	}
 
 	public function actionPlaces($username)
+	{
+		$user = $this->userBaseLogic->findOneByUsername($username);
+
+		if($user == NULL || ($this->userBaseLogic->findOneByUsername($username)->public == FALSE && !$this->getUser()->isLoggedIn())) {
+			$this->getPresenter()->redirect(':Backend:Homepage:default');
+		} else {
+			$this->username = $username;
+			$this->user = $user;
+		}
+	}
+
+	public function renderPhotos($username)
+	{
+		$this->template->background = $this->getBackgroundImage();
+	}
+
+	protected function createComponentProfilePhotos()
+	{
+		$profileUser = $this->userBaseLogic->findOneByUsername($this->username);
+		$loggedUser = $this->userBaseLogic->findOneById($this->getUser()->getId());
+
+		$profile = $this->IProfile->create($loggedUser, $this->user);
+		$photos = $this->photoBaseLogic->findAll($profileUser->id);
+		foreach($photos as $photo) {
+			$profile->addComponent($this->createComponentPhotoRow($photo, $loggedUser, $this->user), $photo->id);
+		}
+		return $profile;
+	}
+
+	public function actionPhotos($username)
 	{
 		$user = $this->userBaseLogic->findOneByUsername($username);
 
