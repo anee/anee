@@ -36,7 +36,7 @@
             {/if}
         </div>
 
-        <div class="wall-summary float-left">
+        <div class="wall-summary float-left" id="wall-summary">
         <div class="profile-menu">
             <ul>
                 <li>
@@ -134,3 +134,22 @@
 {control transportsModal, $themeDir.'Modules/Backend/Controls/TransportsModal/TransportsModal.latte'}
 {control addTrackModal, $themeDir.'Modules/Backend/Controls/AddTrackModal/AddTrackModal.latte'}
 {control addPhotoModal, $themeDir.'Modules/Backend/Controls/AddPhotoModal/AddPhotoModal.latte'}
+
+
+
+    <script type="text/javascript">
+    $(window).scroll(function() {
+        var header_height = 10;
+        var current_scroll = $(window).scrollTop();
+
+        if (current_scroll > 150) {
+            var s = document.getElementById('wall-summary');
+            s.style.top = "100px";
+            s.style.position = "fixed";
+        } else {
+            var s = document.getElementById('wall-summary');
+            s.style.top = "";
+            s.style.position = "";
+        }
+    });
+    </script>
