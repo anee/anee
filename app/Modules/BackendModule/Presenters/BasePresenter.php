@@ -26,6 +26,19 @@ abstract class BasePresenter extends \App\Modules\BaseModule\Presenters\BasePres
 	/** @var \App\Model\UserBaseLogic @inject */
 	public $userBaseLogic;
 
+	/**
+	 * Method for updating lastLogged variable in entity
+	 */
+	protected function startup()
+	{
+		parent::startup();
+		if ($this->user->isLoggedIn()) {
+			$loggedUser = $this->userBaseLogic->findOneById($this->user->id);
+			$loggedUser->setLastLogged(new Nette\Utils\DateTime());
+			$this->userBaseLogic->save($loggedUser);
+		}
+	}
+
 	protected function createComponentTopMenu()
 	{
 		return $this->ITopMenu->create();

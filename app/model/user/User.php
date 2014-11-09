@@ -4,6 +4,7 @@ namespace App\Model;
 
 use Nette\Security\Passwords;
 use Doctrine\ORM\Mapping as ORM;
+use Nette\Utils\DateTime;
 
 
 /**
@@ -88,6 +89,11 @@ class User extends BaseEntity {
 	protected $backgroundImage;
 
 	/**
+	 * @ORM\Column(type="datetime", nullable=TRUE)
+	 */
+	protected $lastLogged;
+
+	/**
 	 * @param $username
 	 * @param $public
 	 * @param $email
@@ -104,6 +110,7 @@ class User extends BaseEntity {
 		$this->email = $email;
 		$this->public = $public;
 		$this->password = Passwords::hash($password);
+		$this->lastLogin = new DateTime();
 	}
 
 	public function getTotalDistance()
@@ -144,5 +151,13 @@ class User extends BaseEntity {
 	{
 		$this->followers->removeElement($user);
 		$user->removeFollowing($this);
+	}
+
+	public function setLastLogin($lastLogin) {
+		$this->lastLogin = $lastLogin;
+	}
+
+	public function getLastLogin() {
+		return $this->lastLogin;
 	}
 }
