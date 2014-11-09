@@ -1,6 +1,18 @@
 {block content}
 
     {if $user->isLoggedIn()}
+           <div style="margin: 50px 0 0 0;">
+                {if count($control->components) > 0}
+                <div class="profile-activity">
+                    <h3>TRACKS</h3>
+                        {foreach $control->components as $component}
+                            {if $template->strpos($component->name, 'Track')}
+                                {control $component->getName(), $themeDir.'/Modules/Backend/Controls/TrackRow/TrackRow.latte'}
+                            {/if}
+                        {/foreach}
+                </div>
+                {/if}
+        </div>
 
     <script type="text/javascript">
 

@@ -94,6 +94,11 @@ class User extends BaseEntity {
 	protected $lastLogged;
 
 	/**
+	 * @ORM\Column(type="datetime", nullable=TRUE)
+	 */
+	protected $lastVisitedHome;
+
+	/**
 	 * @param $username
 	 * @param $public
 	 * @param $email
@@ -159,5 +164,13 @@ class User extends BaseEntity {
 
 	public function getLastLogin() {
 		return $this->lastLogin;
+	}
+
+	public function setLastVisitedHome($datetime) {
+		$this->lastVisitedHome = $datetime;
+	}
+
+	public function getLastVisitedHome() {
+		return $this->lastVisitedHome;
 	}
 }

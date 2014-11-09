@@ -3,6 +3,7 @@
 namespace App\Modules\BackendModule\Presenters;
 
 use Nette\Security as NS;
+use Nette\Utils\DateTime;
 
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
@@ -10,27 +11,26 @@ use Nette\Security as NS;
 class HomepagePresenter extends BasePresenter
 {
 
-	/*/** @var  \App\Modules\BackendModule\Controls\IProfileContainer @inject */
-	/*public $IProfileContainer;*/
+	/** @var \App\Modules\BackendModule\Controls\ITrackRow @inject */
+	public $ITrackRow;
 
-	/*/** @var  \App\Modules\BackendModule\Controls\IProfilePreview @inject */
-	/*public $IProfilePreview;*/
-
-	/*protected function createComponentFollowing()
+	public function actionDefault()
 	{
-		$loggedUser = $this->userBaseLogic->findOneById($this->getUser()->getId());
+		if ($this->user->isLoggedIn()) {
+			$loggedUser = $this->userBaseLogic->findOneById($this->user->id);
 
-		$profileContainer = $this->IProfileContainer->create();
-		foreach($loggedUser->following as $followingUser) {
-			$profileContainer->addComponent($this->createComponentProfilePreview($loggedUser, $followingUser), $followingUser->id);
+			/** Added all tracks from following users */
+			foreach ($loggedUser->following as $followingUser) {
+				foreach($followingUser->tracks as $track) {
+					$this->addComponent($this->createComponentTrackRow($track, $loggedUser, $followingUser), 'Track'.$track->id);
+				}
+			}
+
+			/** Updated LastVisitedHome after displaying all tracks */
+			$loggedUser->setLastVisitedHome(new DateTime());
+			$this->userBaseLogic->save($loggedUser);
 		}
-		return $profileContainer;
 	}
-
-	protected function createComponentProfilePreview($loggedUser, $user)
-	{
-		return $this->IProfilePreview->create($loggedUser, $user);
-	}*/
 
 	public function renderDefault()
 	{
@@ -41,5 +41,10 @@ class HomepagePresenter extends BasePresenter
 	{
 		$user = $this->userBaseLogic->findOneById($this->getUser()->getId());
 		return $this->thumbnailsHelper->process('../app/data/users/'.$this->user->id.'/images/'.$user->backgroundImage, '1920x');
+	}
+
+	protected function createComponentTrackRow($track, $loggedUser, $profileUser)
+	{
+		return $this->ITrackRow->create($track, $loggedUser, $profileUser);
 	}
 }
