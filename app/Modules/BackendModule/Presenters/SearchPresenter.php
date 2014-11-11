@@ -30,6 +30,9 @@ class SearchPresenter extends BasePresenter
 		$this->searchFactory->setValues($this->getParameter('values'));
 		$this->searchFactory->setUser($username);
 
+		/** Results to template, need know count of all */
+		$this->template->results = $this->searchFactory->getResults();
+
 		/** ==> byName = NULL, there are all results only for one user */
 		if ($username != NULL) {
 			$profileUser = $this->userBaseLogic->findOneByUsername($username);
