@@ -22,7 +22,7 @@ class HomepagePresenter extends BasePresenter
 			/** Added all tracks from following users */
 			foreach ($loggedUser->following as $followingUser) {
 				foreach($followingUser->tracks as $track) {
-					$this->addComponent($this->createComponentTrackRow($track, $loggedUser, $followingUser), 'Track'.$track->id);
+					$this->addComponent($this->createComponentTrackRow($track, $loggedUser, $followingUser, TRUE), 'Track'.$track->id);
 				}
 			}
 
@@ -43,8 +43,8 @@ class HomepagePresenter extends BasePresenter
 		return $this->thumbnailsHelper->process('../app/data/users/'.$this->user->id.'/images/'.$user->backgroundImage, '1920x');
 	}
 
-	protected function createComponentTrackRow($track, $loggedUser, $profileUser)
+	protected function createComponentTrackRow($track, $loggedUser, $profileUser, $byName)
 	{
-		return $this->ITrackRow->create($track, $loggedUser, $profileUser);
+		return $this->ITrackRow->create($track, $loggedUser, $profileUser, $byName);
 	}
 }

@@ -16,7 +16,8 @@ interface ITrackRow
 	 * @param Track $track
 	 * @param User $loggedUser
 	 * @param User $profileUser
+	 * @param string $byName
 	 * @return TrackRow
 	 */
-	function create(Track $track, User $loggedUser, User $profileUser);
+	function create(Track $track, User $loggedUser, User $profileUser, $byName = NULL);
 }

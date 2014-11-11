@@ -58,9 +58,9 @@ services:
 		parameters: [App\Model\User loggedUser]
 
 	TrackRow:
-		class: App\Modules\BackendModule\Controls\TrackRow(..., ..., %track%, %loggedUser%, %profileUser%)
+		class: App\Modules\BackendModule\Controls\TrackRow(..., ..., %track%, %loggedUser%, %profileUser%, %byName%)
 		implement: App\Modules\BackendModule\Controls\ITrackRow
-		parameters: [App\Model\Track track, App\Model\User loggedUser, App\Model\User profileUser]
+		parameters: [App\Model\Track track, App\Model\User loggedUser, App\Model\User profileUser, byName = FALSE]
 
 	PlaceRow:
 		class: App\Modules\BackendModule\Controls\PlaceRow(..., ..., %place%, %loggedUser%, %profileUser%)

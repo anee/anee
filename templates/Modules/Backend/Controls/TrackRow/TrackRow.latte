@@ -9,6 +9,9 @@
                             </p>
                             <p class="options float-right">
 
+                                    {if $byName != FALSE}
+                                        by <a href="{plink :Backend:Profile:Default, 'username' => $profileUser->username}">{$profileUser->getName()}</a> ·
+                                    {/if}
                                     {$track->date|dateAgoNumber}
                                     {$track->date|dateAgoText}
                                     {if count($track->withUsers) > 0}
@@ -32,7 +35,6 @@
                                         ·
                                         <a href="{link pin!, 'id' => $track->id}" class="ajax">pin</a>
                                     {/if}
-
                             </p>
                             <div style="clear: both;"></div>
                       </div>
