@@ -13,6 +13,9 @@
     color: #55676e;
     text-decoration: none;
 }
+.photo-row .line p {
+    margin-top: 10px;
+}
 .photo-row .line .options a:hover {
     font-weight: bold;
 }
