@@ -21,7 +21,7 @@ class BackendRoutes
 	 */
 	public static function create(RouteList $router)
 	{
-		//
+
 		$router[] = new Route('<username>/following', array(
 			'module' => 'Backend',
 			'presenter' => 'Profile',
@@ -65,7 +65,6 @@ class BackendRoutes
 			'presenter' => 'Search',
 			'id' => NULL,
 		));
-
 
 		// BACKEND HOMEPAGE ( / )
 		$router[] = new Route('<username>/<presenter>/<id>', array(

@@ -9,7 +9,7 @@
                             </p>
                             <p class="options float-right">
 
-                                    {if $byName != FALSE}
+                                    {if $byName != NULL}
                                         by <a href="{plink :Backend:Profile:Default, 'username' => $profileUser->username}">{$profileUser->getName()}</a> ·
                                     {/if}
                                     {$track->date|dateAgoNumber}

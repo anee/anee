@@ -2,8 +2,32 @@
 
     {control searchTitle, $themeDir.'Modules/Backend/Controls/SearchTitle/SearchTitle.latte'}
 
-<script type="text/javascript">
+    <div class="profile-activity">
+                    <h3>TRACKS</h3>
+                        {foreach $control->components as $component}
+                            {if $template->strpos($component->name, 'Track')}
+                                {control $component->getName(), $themeDir.'/Modules/Backend/Controls/TrackRow/TrackRow.latte'}
+                            {/if}
+                        {/foreach}
+    </div>
+    <div class="profile-activity">
+                    <h3>PLACES</h3>
+                        {foreach $control->components as $component}
+                            {if $template->strpos($component->name, 'Place')}
+                                {control $component->getName(), $themeDir.'/Modules/Backend/Controls/PlaceRow/PlaceRow.latte'}
+                            {/if}
+                        {/foreach}
+    </div>
+    <div class="profile-activity">
+                    <h3>PHOTOS</h3>
+                        {foreach $control->components as $component}
+                            {if $template->strpos($component->name, 'Photo')}
+                                {control $component->getName(), $themeDir.'/Modules/Backend/Controls/PhotoRow/PhotoRow.latte'}
+                            {/if}
+                        {/foreach}
+    </div>
 
+<script type="text/javascript">
         var e = document.getElementsByTagName("html")[0];
         var background = 'url(../..{$background})';
         var backgroundR = background.replace(/\"/g, "");
