@@ -18,6 +18,9 @@
                                     {if count($track->withUsers) > 0}
                                         · with
                                     {/if}
+                                    {if count($track->photos) > 0}
+                                        · {count($track->photos)} photos
+                                    {/if}
                                     {foreach $track->withUsers as $friend}
                                         {if $iterator->first}
                                             <a href="{plink :Backend:Profile:default, 'username' => $friend->username}" class="ajax"> {$friend->getName()}</a>
