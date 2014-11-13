@@ -63,4 +63,9 @@ abstract class BasePresenter extends \App\Modules\BaseModule\Presenters\BasePres
 			return $this->theme->getFormatLayoutTemplateFiles();
 		}
 	}
+
+	public function getBackgroundImage($user)
+	{
+		return $this->thumbnailsHelper->process('../app/data/users/'.$user->id.'/images/'.$user->backgroundImage, '1920x');
+	}
 }

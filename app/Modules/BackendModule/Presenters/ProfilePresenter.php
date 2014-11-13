@@ -89,13 +89,8 @@ class ProfilePresenter extends BasePresenter {
 
 	public function renderDefault($username)
 	{
-		$this->template->background = $this->getBackgroundImage();
+		$this->template->background = $this->getBackgroundImage($this->user);
 	}
-
-	public function getBackgroundImage()
-	{
-		return $this->thumbnailsHelper->process('../app/data/users/'.$this->user->id.'/images/'.$this->user->backgroundImage, '1920x');
-}
 
 	public function actionFollowing($username)
 	{
@@ -111,7 +106,7 @@ class ProfilePresenter extends BasePresenter {
 
 	public function renderFollowing($username)
 	{
-		$this->template->background = $this->getBackgroundImage();
+		$this->template->background = $this->getBackgroundImage($this->user);
 	}
 
 	public function actionFollowers($username)
@@ -127,7 +122,7 @@ class ProfilePresenter extends BasePresenter {
 
 	public function renderFollowers($username)
 	{
-		$this->template->background = $this->getBackgroundImage();
+		$this->template->background = $this->getBackgroundImage($this->user);
 	}
 
 	protected function createComponentFollowing()
@@ -171,7 +166,7 @@ class ProfilePresenter extends BasePresenter {
 
 	public function renderTracks($username)
 	{
-		$this->template->background = $this->getBackgroundImage();
+		$this->template->background = $this->getBackgroundImage($this->user);
 	}
 
 	protected function createComponentProfileTracks()
@@ -189,7 +184,7 @@ class ProfilePresenter extends BasePresenter {
 
 	public function renderPlaces($username)
 	{
-		$this->template->background = $this->getBackgroundImage();
+		$this->template->background = $this->getBackgroundImage($this->user);
 	}
 
 	protected function createComponentProfilePlaces()
@@ -219,7 +214,7 @@ class ProfilePresenter extends BasePresenter {
 
 	public function renderPhotos($username)
 	{
-		$this->template->background = $this->getBackgroundImage();
+		$this->template->background = $this->getBackgroundImage($this->user);
 	}
 
 	protected function createComponentProfilePhotos()

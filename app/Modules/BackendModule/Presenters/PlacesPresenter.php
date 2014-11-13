@@ -58,13 +58,7 @@ class PlacesPresenter extends BasePresenter
 	public function renderDefault($username, $url)
 	{
 		$this->template->place = $this->place;
-		$this->template->background = $this->getBackgroundImage($username);
-	}
-
-	public function getBackgroundImage($username)
-	{
-		$user = $this->userBaseLogic->findOneByUsername($username);
-		return $this->thumbnailsHelper->process('../app/data/users/'.$user->id.'/images/'.$user->backgroundImage, '1920x');
+		$this->template->background = $this->getBackgroundImage($this->userBaseLogic->findOneByUsername($username));
 	}
 
 	protected function createComponentProfilePlace()

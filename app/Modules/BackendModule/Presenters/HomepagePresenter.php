@@ -34,13 +34,7 @@ class HomepagePresenter extends BasePresenter
 
 	public function renderDefault()
 	{
-		$this->template->background = $this->getBackgroundImage();
-	}
-
-	public function getBackgroundImage()
-	{
-		$user = $this->userBaseLogic->findOneById($this->getUser()->getId());
-		return $this->thumbnailsHelper->process('../app/data/users/'.$this->user->id.'/images/'.$user->backgroundImage, '1920x');
+		$this->template->background = $this->getBackgroundImage($this->userBaseLogic->findOneById($this->getUser()->getId()));
 	}
 
 	protected function createComponentTrackRow($track, $loggedUser, $profileUser, $byName)
