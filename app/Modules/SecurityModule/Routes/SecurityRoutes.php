@@ -32,6 +32,12 @@ class SecurityRoutes
 			'action' => 'in',
 		));
 
+		$router[] = new Route('Sign/Out', array(
+			'module' => 'Security',
+			'presenter' => 'Sign',
+			'action' => 'out',
+		));
+
 		return $router;
 	}
 
