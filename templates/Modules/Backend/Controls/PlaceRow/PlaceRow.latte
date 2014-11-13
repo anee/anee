@@ -6,13 +6,14 @@
                             </p>
                             <p class="options float-right">
 
+                                {if $place->getLastUpdate() != NULL}
                                     {$place->getLastUpdate()|dateAgoNumber}
                                     {$place->getLastUpdate()|dateAgoText}
-
-                                    {if $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
-                                        ·
-                                        <a href="{link remove!, 'id' => $place->id}" class="ajax">remove</a>
-                                    {/if}
+                                    ·
+                                {/if}
+                                {if $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
+                                     <a href="{link remove!, 'id' => $place->id}" class="ajax">remove</a>
+                                {/if}
 
                             </p>
                             <div style="clear: both;"></div>
@@ -38,17 +39,25 @@
         <div class="track-row">
                       <div class="line">
                             <p class="track-name float-left">
+                             {if $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
+                                {form placeEditForm class => ajax}
+                                    {input name}
+                                    {input save}
+                                {/form}
+                            {else}
                                 <a href="{plink :Backend:Places:Default, 'url' => $place->nameUrl, 'username' => $profileUser->username}">{$place->name}</a>
+                            {/if}
                             </p>
                             <p class="options float-right">
 
+                                {if $place->getLastUpdate() != NULL}
                                     {$place->getLastUpdate()|dateAgoNumber}
                                     {$place->getLastUpdate()|dateAgoText}
-
-                                    {if $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
-                                        ·
-                                        <a href="{link remove!, 'id' => $place->id}" class="ajax">remove</a>
-                                    {/if}
+                                    ·
+                                {/if}
+                                {if $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
+                                    <a href="{link remove!, 'id' => $place->id}" class="ajax">remove</a>
+                                {/if}
 
                             </p>
                             <div style="clear: both;"></div>
