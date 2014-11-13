@@ -79,7 +79,7 @@ class PlacesPresenter extends BasePresenter
 
 	protected function createComponentPlaceRow($place, $loggedUser, $profileUser)
 	{
-		return $this->IPlaceRow->create($place, $loggedUser, $profileUser, NULL, TRUE);
+		return $this->IPlaceRow->create($place, $loggedUser, $profileUser, TRUE);
 	}
 }
 

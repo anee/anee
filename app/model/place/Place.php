@@ -30,14 +30,15 @@ class Place extends BaseEntity
 	protected $nameUrl;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Model\Track", mappedBy="place", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="App\Model\Track", mappedBy="place", cascade={"remove"})
      */
     protected $tracks;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Model\Photo", mappedBy="place", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="App\Model\Photo", mappedBy="place", cascade={"remove"})
      */
     protected $photos;
+
 
     public function __construct($name)
     {
@@ -99,5 +100,11 @@ class Place extends BaseEntity
 	public function getUrl()
 	{
 		return Strings::webalize($this->name);
+	}
+
+	public function setName($name)
+	{
+		$this->name = $name;
+		$this->nameUrl = Strings::webalize($name);
 	}
 }

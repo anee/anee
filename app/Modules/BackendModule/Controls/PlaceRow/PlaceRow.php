@@ -8,6 +8,7 @@ use Nette;
 use Nette\Application\UI\Control;
 use App\Model\Place;
 use App\Model\User;
+use Nette\Forms\Form;
 
 
 /**
@@ -59,8 +60,35 @@ class PlaceRow extends Control
 
 	public function handleRemove($id)
 	{
-		$this->placeBaseLogic->remove($id);
-		$this->redirect('this');
+		if ($this->getPresenter()->isAjax()) {
+			$this->placeBaseLogic->remove($id);
 
+			$this->redirect('this');
+		}
+	}
+
+	protected function createComponentPlaceEditForm()
+	{
+		$form = new Form;
+
+		$form->addText('name')->setRequired('Place name is not valid.')
+			->setAttribute('placeholder', 'Place name')
+			->setDefaultValue($this->place->name);
+		$form->addSubmit('save', 'save');
+		$form->onSuccess[] = $this->success;
+
+		return $form;
+	}
+
+	public function success($form)
+	{
+		if ($this->getPresenter()->isAjax()) {
+			/** Change name, so also need change nameUrl */
+			$place = $this->place;
+			$place->setName($form->getValues()->name);
+			$this->placeBaseLogic->save($place);
+
+			//$this->redirect('this');
+		}
 	}
 }

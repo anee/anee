@@ -24,7 +24,7 @@ class Transport extends BaseEntity
     protected $name;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Model\Track", mappedBy="transport", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="App\Model\Track", mappedBy="transport", cascade={"remove"})
      */
     protected $tracks;
 

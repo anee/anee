@@ -18,7 +18,7 @@ class Track extends BaseEntity
 	protected $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Model\Transport", inversedBy="tracks", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="App\Model\Transport", inversedBy="tracks")
      */
     protected $transport;
 
