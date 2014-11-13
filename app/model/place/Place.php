@@ -40,11 +40,13 @@ class Place extends BaseEntity
     protected $photos;
 
 
-    public function __construct($name)
+    public function __construct($name, $user)
     {
         $this->name = $name;
 		$this->nameUrl = Strings::webalize($name);
+		$this->user = $user;
         $this->tracks = new ArrayCollection();
+		$this->photos = new ArrayCollection();
     }
 
     public function getDistance()

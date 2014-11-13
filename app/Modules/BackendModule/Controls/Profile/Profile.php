@@ -52,10 +52,13 @@ class Profile extends Control
 	/** @var \App\Modules\BackendModule\Controls\IAddPhotoModal */
 	public $IAddPhotoModal;
 
+	/** @var \App\Modules\BackendModule\Controls\IAddPlaceModal */
+	public $IAddPlaceModal;
+
 	/** bool which say if we will display detail of one track or summary */
 	private $detail;
 
-    public function __construct(IAddPhotoModal $IAddPhotoModal, IAddTrackModal $IAddTrackModal, ITransportsModal $ITransportsModal, ThumbnailsHelper $thumbnailsHelper, TrackBaseLogic $trackBaseLogic, UserBaseLogic $userBaseLogic, PlaceBaseLogic $placeBaseLogic, PhotoBaseLogic $photoBaseLogic, $wwwDir, User $loggedUser, User $profileUser, $detail = NULL)
+    public function __construct(IAddPlaceModal $IAddPlaceModal, IAddPhotoModal $IAddPhotoModal, IAddTrackModal $IAddTrackModal, ITransportsModal $ITransportsModal, ThumbnailsHelper $thumbnailsHelper, TrackBaseLogic $trackBaseLogic, UserBaseLogic $userBaseLogic, PlaceBaseLogic $placeBaseLogic, PhotoBaseLogic $photoBaseLogic, $wwwDir, User $loggedUser, User $profileUser, $detail = NULL)
     {
 		$this->wwwDir = $wwwDir;
 		$this->thumbnailsHelper = $thumbnailsHelper;
@@ -66,6 +69,7 @@ class Profile extends Control
 		$this->ITransportsModal = $ITransportsModal;
 		$this->IAddTrackModal = $IAddTrackModal;
 		$this->IAddPhotoModal = $IAddPhotoModal;
+		$this->IAddPlaceModal = $IAddPlaceModal;
 		$this->placeBaseLogic = $placeBaseLogic;
 		$this->photoBaseLogic = $photoBaseLogic;
 		$this->detail = $detail;
@@ -78,12 +82,17 @@ class Profile extends Control
 
 	protected function createComponentAddTrackModal()
 	{
-		return $this->IAddTrackModal->create($this->profileUser, $this->loggedUser);
+		return $this->IAddTrackModal->create($this->loggedUser);
 	}
 
 	protected function createComponentAddPhotoModal()
 	{
-		return $this->IAddPhotoModal->create($this->profileUser, $this->loggedUser);
+		return $this->IAddPhotoModal->create($this->loggedUser);
+	}
+
+	protected function createComponentAddPlaceModal()
+	{
+		return $this->IAddPlaceModal->create($this->loggedUser);
 	}
 
 	public function render($file)

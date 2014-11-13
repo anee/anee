@@ -29,7 +29,7 @@ services:
 		implement: App\Modules\BackendModule\Controls\IUserPanel
 
 	Profile:
-		class: App\Modules\BackendModule\Controls\Profile(..., ..., ..., ..., ..., ..., ..., ..., %wwwDir%, %loggedUser%, %profileUser%, %detail%)
+		class: App\Modules\BackendModule\Controls\Profile(..., ..., ..., ..., ..., ..., ..., ..., ..., %wwwDir%, %loggedUser%, %profileUser%, %detail%)
 		implement: App\Modules\BackendModule\Controls\IProfile
 		parameters: [App\Model\User loggedUser, App\Model\User profileUser, detail = NULL]
 
@@ -55,6 +55,11 @@ services:
 	AddPhotoModal:
 		class: App\Modules\BackendModule\Controls\AddPhotoModal(..., ..., ..., ..., %appDir%, %loggedUser%)
 		implement: App\Modules\BackendModule\Controls\IAddPhotoModal
+		parameters: [App\Model\User loggedUser]
+
+	AddPlaceModal:
+		class: App\Modules\BackendModule\Controls\AddPlaceModal(..., ..., %loggedUser%)
+		implement: App\Modules\BackendModule\Controls\IAddPlaceModal
 		parameters: [App\Model\User loggedUser]
 
 	TrackRow:
