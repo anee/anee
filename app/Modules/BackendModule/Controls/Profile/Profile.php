@@ -52,7 +52,10 @@ class Profile extends Control
 	/** @var \App\Modules\BackendModule\Controls\IAddPhotoModal @inject */
 	public $IAddPhotoModal;
 
-    public function __construct(IAddPhotoModal $IAddPhotoModal, IAddTrackModal $IAddTrackModal, ITransportsModal $ITransportsModal, ThumbnailsHelper $thumbnailsHelper, TrackBaseLogic $trackBaseLogic, UserBaseLogic $userBaseLogic, PlaceBaseLogic $placeBaseLogic, PhotoBaseLogic $photoBaseLogic, $wwwDir, User $loggedUser, User $profileUser)
+	/** bool which say if we will display detail of one track or summary */
+	private $detail;
+
+    public function __construct(IAddPhotoModal $IAddPhotoModal, IAddTrackModal $IAddTrackModal, ITransportsModal $ITransportsModal, ThumbnailsHelper $thumbnailsHelper, TrackBaseLogic $trackBaseLogic, UserBaseLogic $userBaseLogic, PlaceBaseLogic $placeBaseLogic, PhotoBaseLogic $photoBaseLogic, $wwwDir, User $loggedUser, User $profileUser, $detail = NULL)
     {
 		$this->wwwDir = $wwwDir;
 		$this->thumbnailsHelper = $thumbnailsHelper;
@@ -65,6 +68,7 @@ class Profile extends Control
 		$this->IAddPhotoModal = $IAddPhotoModal;
 		$this->placeBaseLogic = $placeBaseLogic;
 		$this->photoBaseLogic = $photoBaseLogic;
+		$this->detail = $detail;
     }
 
 	protected function createComponentTransportsModal()
@@ -97,21 +101,22 @@ class Profile extends Control
 		$tracks = FALSE;
 		$places = FALSE;
 		$photos = FALSE;
-		if($this->getPresenter()->getAction() == 'default') {
+		if($this->getPresenter()->getAction() == 'tracks' || ($this->getPresenter()->getName() == 'Backend:Tracks' && $this->getPresenter()->getAction() == 'default')) {
+			$tracks = TRUE;
+		} elseif ($this->getPresenter()->getAction() == 'places' || ($this->getPresenter()->getName() == 'Backend:Places' && $this->getPresenter()->getAction() == 'default')) {
+			$places = TRUE;
+		} elseif ($this->getPresenter()->getAction() == 'photos' || ($this->getPresenter()->getName() == 'Backend:Photos' && $this->getPresenter()->getAction() == 'default')) {
+			$photos = TRUE;
+		} elseif($this->getPresenter()->getAction() == 'default') {
 			$unpinnedTracks = $this->trackBaseLogic->findAllUnpinnedByUserId($this->profileUser->id);
 			$pinnedTracks = $this->trackBaseLogic->findAllPinnedByUserId($this->profileUser->id);
-		} elseif($this->getPresenter()->getAction() == 'tracks') {
-			$tracks = TRUE;
-		} elseif ($this->getPresenter()->getAction() == 'places') {
-			$places = TRUE;
-		} elseif ($this->getPresenter()->getAction() == 'photos') {
-			$photos = TRUE;
 		}
 		$this->template->unpinnedTracks = $unpinnedTracks;
 		$this->template->pinnedTracks = $pinnedTracks;
 		$this->template->tracks = $tracks;
 		$this->template->places = $places;
 		$this->template->photos = $photos;
+		$this->template->detail = $this->detail;
 
 		$this->template->render();
 	}

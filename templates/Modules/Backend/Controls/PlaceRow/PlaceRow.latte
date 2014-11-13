@@ -1,3 +1,4 @@
+        {if $detail != TRUE}
         <div class="track-row">
                       <div class="line">
                             <p class="track-name float-left">
@@ -33,3 +34,40 @@
                                 </div>*}
                       </div>
         </div>
+        {else}
+        <div class="track-row">
+                      <div class="line">
+                            <p class="track-name float-left">
+                                <a href="{plink :Backend:Places:Default, 'url' => $place->nameUrl, 'username' => $profileUser->username}">{$place->name}</a>
+                            </p>
+                            <p class="options float-right">
+
+                                    {$place->getLastUpdate()|dateAgoNumber}
+                                    {$place->getLastUpdate()|dateAgoText}
+
+                                    {if $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
+                                        ·
+                                        <a href="{link remove!, 'id' => $place->id}" class="ajax">remove</a>
+                                    {/if}
+
+                            </p>
+                            <div style="clear: both;"></div>
+                      </div>
+                      <div class="part">
+            					<div class="bar overall-bg float-left">
+            						<span class="bar-value">{$place->getDistance()}</span> km
+            					</div>
+            					{*<div class="info overall float-left">
+            						<p>{$track->getTimeInSeconds()|getSpanTimeFromSecondsNumber}</p>
+                                    <p>{$track->getTimeInSeconds()|getSpanTimeFromSecondsText}</p>
+            					</div>*}
+                                <div class="bar partial-bg float-right">
+                                	<span class="bar-value">{count($place->tracks)}</span>{*{$track->getTimeInSeconds()|getSpanTimeFromSecondsNumber} {$track->getTimeInSeconds()|getSpanTimeFromSecondsText|strtolower}*}
+                                </div>
+                                {*<div class="info partial float-right text-align-right">
+                                	<p>{$track->getAvgSpeed()}</p>
+                                	<p></p>
+                                </div>*}
+                      </div>
+        </div>
+        {/if}

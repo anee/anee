@@ -1,3 +1,4 @@
+       {if $detail != TRUE}
         <div class="track-row">
                       <div class="line">
                             <p class="track-name float-left">
@@ -55,3 +56,62 @@
                                 </div>*}
                       </div>
         </div>
+        {else}
+        <div class="track-row">
+                      <div class="line">
+                            <p class="track-name float-left">
+                                <a href="{plink :Backend:Tracks:Default, 'url' => $track->id, 'username' => $profileUser->username}">{$track->name}
+                                {if $track->transport != NULL}
+                                    <span class="transport">by {$track->transport->name}</span>
+                                {/if}
+                                </a>
+                            </p>
+                            <p class="options float-right">
+
+                                    {if $byName != NULL}
+                                        by <a href="{plink :Backend:Profile:Default, 'username' => $profileUser->username}">{$profileUser->getName()}</a> ·
+                                    {/if}
+                                    {$track->date|dateAgoNumber}
+                                    {$track->date|dateAgoText}
+                                    {if count($track->withUsers) > 0}
+                                        · with
+                                    {/if}
+                                    {foreach $track->withUsers as $friend}
+                                        {if $iterator->first}
+                                            <a href="{plink :Backend:Profile:default, 'username' => $friend->username}" class="ajax"> {$friend->getName()}</a>
+                                        {else}
+                                            <a href="{plink :Backend:Profile:default, 'username' => $friend->username}" class="ajax"> ,{$friend->getName()}</a>
+                                        {/if}
+                                    {/foreach}
+                                    {if $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
+                                        ·
+                                        <a href="{link remove!, 'id' => $track->id}" class="ajax">remove</a>
+                                    {/if}
+                                    {if $track->pinned == TRUE}
+                                        ·
+                                        <a href="{link unpin!, 'id' => $track->id}" class="ajax">unpin</a>
+                                    {else}
+                                        ·
+                                        <a href="{link pin!, 'id' => $track->id}" class="ajax">pin</a>
+                                    {/if}
+                            </p>
+                            <div style="clear: both;"></div>
+                      </div>
+                      <div class="part">
+            					<div class="bar overall-bg float-left">
+            						<span class="bar-value">{$track->getDistance()}</span> km
+            					</div>
+            					{*<div class="info overall float-left">
+            						<p>{$track->getTimeInSeconds()|getSpanTimeFromSecondsNumber}</p>
+                                    <p>{$track->getTimeInSeconds()|getSpanTimeFromSecondsText}</p>
+            					</div>*}
+                                <div class="bar partial-bg float-right">
+                                	<span class="bar-value">{$track->getAvgSpeed()}</span> km/h{*{$track->getTimeInSeconds()|getSpanTimeFromSecondsNumber} {$track->getTimeInSeconds()|getSpanTimeFromSecondsText|strtolower}*}
+                                </div>
+                                {*<div class="info partial float-right text-align-right">
+                                	<p>{$track->getAvgSpeed()}</p>
+                                	<p></p>
+                                </div>*}
+                      </div>
+        </div>
+        {/if}

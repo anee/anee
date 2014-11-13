@@ -31,13 +31,16 @@ class PlaceRow extends Control
 	/** @var Place */
 	private $place;
 
-    public function __construct(PlaceBaseLogic $placeBaseLogic, UserBaseLogic $userBaseLogic, Place $place, User $loggedUser, User $profileUser)
+	private $detail;
+
+    public function __construct(PlaceBaseLogic $placeBaseLogic, UserBaseLogic $userBaseLogic, Place $place, User $loggedUser, User $profileUser, $detail = NULL)
     {
 		$this->place = $place;
 		$this->placeBaseLogic = $placeBaseLogic;
 		$this->userBaseLogic = $userBaseLogic;
 		$this->loggedUser = $loggedUser;
 		$this->profileUser = $profileUser;
+		$this->detail = $detail;
     }
 
 	public function render($file)
@@ -49,6 +52,7 @@ class PlaceRow extends Control
 		$this->template->profileUser = $this->profileUser;
 		$this->template->loggedUser = $this->loggedUser;
 		$this->template->place = $this->place;
+		$this->template->detail = $this->detail;
 
 		$this->template->render();
 	}

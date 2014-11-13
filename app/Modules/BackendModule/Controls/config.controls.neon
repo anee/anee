@@ -29,9 +29,9 @@ services:
 		implement: App\Modules\BackendModule\Controls\IUserPanel
 
 	Profile:
-		class: App\Modules\BackendModule\Controls\Profile(..., ..., ..., ..., ..., ..., ..., ..., %wwwDir%, %loggedUser%, %profileUser%)
+		class: App\Modules\BackendModule\Controls\Profile(..., ..., ..., ..., ..., ..., ..., ..., %wwwDir%, %loggedUser%, %profileUser%, %detail%)
 		implement: App\Modules\BackendModule\Controls\IProfile
-		parameters: [App\Model\User loggedUser, App\Model\User profileUser]
+		parameters: [App\Model\User loggedUser, App\Model\User profileUser, detail = NULL]
 
 	ProfileModal:
 		class: App\Modules\BackendModule\Controls\ProfileModal(..., ..., ..., ..., %wwwDir%, %loggedUser%, %profileUser%)
@@ -58,14 +58,14 @@ services:
 		parameters: [App\Model\User loggedUser]
 
 	TrackRow:
-		class: App\Modules\BackendModule\Controls\TrackRow(..., ..., %track%, %loggedUser%, %profileUser%, %byName%)
+		class: App\Modules\BackendModule\Controls\TrackRow(..., ..., %track%, %loggedUser%, %profileUser%, %byName%, %detail%)
 		implement: App\Modules\BackendModule\Controls\ITrackRow
-		parameters: [App\Model\Track track, App\Model\User loggedUser, App\Model\User profileUser, byName = FALSE]
+		parameters: [App\Model\Track track, App\Model\User loggedUser, App\Model\User profileUser, byName = NULL, detail = NULL]
 
 	PlaceRow:
-		class: App\Modules\BackendModule\Controls\PlaceRow(..., ..., %place%, %loggedUser%, %profileUser%)
+		class: App\Modules\BackendModule\Controls\PlaceRow(..., ..., %place%, %loggedUser%, %profileUser%, %detail%)
 		implement: App\Modules\BackendModule\Controls\IPlaceRow
-		parameters: [App\Model\Place place, App\Model\User loggedUser, App\Model\User profileUser]
+		parameters: [App\Model\Place place, App\Model\User loggedUser, App\Model\User profileUser, detail = NULL]
 
 	PhotoRow:
 		class: App\Modules\BackendModule\Controls\PhotoRow(..., ..., ..., %wwwDir%, %photo%, %loggedUser%, %profileUser%)

@@ -14,7 +14,8 @@ interface IProfile
 	/**
 	 * @param User $loggedUser
 	 * @param User $profileUser
+	 * @param bool $detail
 	 * @return Profile
 	 */
-	function create(User $loggedUser, User $profileUser);
+	function create(User $loggedUser, User $profileUser, $detail = NULL);
 }

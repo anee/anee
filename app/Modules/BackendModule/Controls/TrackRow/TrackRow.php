@@ -34,7 +34,10 @@ class TrackRow extends Control
 	/** @var bool which say if is home page or profile page */
 	private $byName;
 
-    public function __construct(TrackBaseLogic $trackBaseLogic, UserBaseLogic $userBaseLogic, Track $track, User $loggedUser, User $profileUser, $byName = FALSE)
+	/** @var bool which say if is detail of concrete track or not */
+	private $detail;
+
+    public function __construct(TrackBaseLogic $trackBaseLogic, UserBaseLogic $userBaseLogic, Track $track, User $loggedUser, User $profileUser, $byName = NULL, $detail = NULL)
     {
 		$this->track = $track;
 		$this->trackBaseLogic = $trackBaseLogic;
@@ -42,6 +45,7 @@ class TrackRow extends Control
 		$this->loggedUser = $loggedUser;
 		$this->profileUser = $profileUser;
 		$this->byName = $byName;
+		$this->detail = $detail;
     }
 
 	public function render($file)
@@ -54,6 +58,7 @@ class TrackRow extends Control
 		$this->template->loggedUser = $this->loggedUser;
 		$this->template->track = $this->track;
 		$this->template->byName = $this->byName;
+		$this->template->detail = $this->detail;
 
 		$this->template->render();
 	}

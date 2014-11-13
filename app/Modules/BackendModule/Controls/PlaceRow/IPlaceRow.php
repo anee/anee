@@ -16,7 +16,8 @@ interface IPlaceRow
 	 * @param Place $place
 	 * @param User $loggedUser
 	 * @param User $profileUser
+	 * @param bool $detail
 	 * @return PlaceRow
 	 */
-	function create(Place $place, User $loggedUser, User $profileUser);
+	function create(Place $place, User $loggedUser, User $profileUser, $detail = NULL);
 }

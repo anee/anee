@@ -18,37 +18,67 @@ class TracksPresenter extends BasePresenter
 	/** @var \App\Model\Track */
     public $track;
 
-	/**
-	 * @param $username
-	 * @param $url = id
-	 */
-	public function actionDefault($username, $url)
-	{
-		if($this->userBaseLogic->findOneByUsername($username) == NULL || ($this->userBaseLogic->findOneByUsername($username)->public == FALSE && !$this->getUser()->isLoggedIn())) {
-			$this->getPresenter()->redirect(':Backend:Homepage:default');
-		}
-	}
+	/** @var \App\Modules\BackendModule\Controls\IProfile @inject */
+	public $IProfile;
+
+	/** @var \App\Modules\BackendModule\Controls\ITrackRow @inject */
+	public $ITrackRow;
+
+	private $username;
+
+	private $user;
 
 	/**
 	 * @param $username
 	 * @param $url = id
 	 * @throws Nette\Application\BadRequestException
 	 */
+	public function actionDefault($username, $url)
+	{
+		$user = $this->userBaseLogic->findOneByUsername($username);
+		$track = $this->trackBaseLogic->findOneByIdAndUserName($url, $username);
+
+		if($user == NULL || ($this->userBaseLogic->findOneByUsername($username)->public == FALSE && !$this->getUser()->isLoggedIn())) {
+			$this->getPresenter()->redirect(':Backend:Homepage:default');
+		} else {
+			if ($track == null) {
+				throw new Nette\Application\BadRequestException;
+			} else {
+				$this->username = $username;
+				$this->user = $user;
+				$this->track = $track;
+			}
+		}
+	}
+
+	/**
+	 * @param $username
+	 * @param $url = id
+	 */
 	public function renderDefault($username, $url)
 	{
-        $this->track = $this->trackBaseLogic->findOneByIdAndUserName($url, $username);
-
-        if ($this->track == null) {
-            throw new Nette\Application\BadRequestException;
-        } else {
-            $this->template->track = $this->track;
-			$this->template->background = $this->getBackgroundImage($username);
-        }
+		$this->template->track = $this->track;
+		$this->template->background = $this->getBackgroundImage($username);
 	}
 
 	public function getBackgroundImage($username)
 	{
 		$user = $this->userBaseLogic->findOneByUsername($username);
 		return $this->thumbnailsHelper->process('../app/data/users/'.$user->id.'/images/'.$user->backgroundImage, '1920x');
+	}
+
+	protected function createComponentProfileTrack()
+	{
+		$loggedUser = $this->userBaseLogic->findOneById($this->getUser()->getId());
+
+		$profile = $this->IProfile->create($loggedUser, $this->user, TRUE);
+		$profile->addComponent($this->createComponentTrackRow($this->track, $loggedUser, $this->user), $this->track->id);
+
+		return $profile;
+	}
+
+	protected function createComponentTrackRow($track, $loggedUser, $profileUser)
+	{
+		return $this->ITrackRow->create($track, $loggedUser, $profileUser, NULL, TRUE);
 	}
 }

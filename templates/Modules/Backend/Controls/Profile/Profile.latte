@@ -84,6 +84,7 @@
                     <div style="clear: both;"></div>
                 </div>
             </div>
+            {if $detail != TRUE}
                {if count($pinnedTracks) > 0}
                 <div class="profile-activity">
                      <h3>PINNED ACTIVITY</h3>
@@ -128,6 +129,29 @@
                         {/foreach}
                 </div>
                 {/if}
+            {else}
+                {if $tracks == TRUE}
+                <div class="profile-activity">
+                        {foreach $control->components as $component}
+                            {control $component->getName(), $themeDir.'/Modules/Backend/Controls/TrackRow/TrackRow.latte'}
+                        {/foreach}
+                </div>
+                {/if}
+                {if $places == TRUE}
+                <div class="profile-activity">
+                        {foreach $control->components as $component}
+                            {control $component->getName(), $themeDir.'/Modules/Backend/Controls/PlaceRow/PlaceRow.latte'}
+                        {/foreach}
+                </div>
+                {/if}
+                {if $photos == TRUE}
+                <div class="profile-activity">
+                        {foreach $control->components as $component}
+                            {control $component->getName(), $themeDir.'/Modules/Backend/Controls/PhotoRow/PhotoRow.latte'}
+                        {/foreach}
+                </div>
+                {/if}
+            {/if}
         </div>
     </div>
 
