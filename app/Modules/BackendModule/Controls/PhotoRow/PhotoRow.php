@@ -2,7 +2,7 @@
 
 namespace App\Modules\BackendModule\Controls;
 
-use App\Model\TrackBaseLogic;
+use App\Model\PhotoBaseLogic;
 use App\Model\UserBaseLogic;
 use Nette;
 use Nette\Application\UI\Control;
@@ -21,8 +21,8 @@ class PhotoRow extends Control
 	/** @var \App\Model\UserBaseLogic */
 	public $userBaseLogic;
 
-	/** @var \App\Model\TrackBaseLogic */
-	public $trackBaseLogic;
+	/** @var \App\Model\PhotoBaseLogic */
+	public $photoBaseLogic;
 
 	/** @var \App\Model\User */
 	private $loggedUser;
@@ -38,12 +38,12 @@ class PhotoRow extends Control
 
 	private $wwwDir;
 
-    public function __construct(ThumbnailsHelper $thumbnailsHelper, TrackBaseLogic $trackBaseLogic, UserBaseLogic $userBaseLogic, $wwwDir, Photo $photo, User $loggedUser, User $profileUser)
+    public function __construct(ThumbnailsHelper $thumbnailsHelper, PhotoBaseLogic $photoBaseLogic, UserBaseLogic $userBaseLogic, $wwwDir, Photo $photo, User $loggedUser, User $profileUser)
     {
 		$this->wwwDir = $wwwDir;
 		$this->thumbnailsHelper = $thumbnailsHelper;
 		$this->photo = $photo;
-		$this->trackBaseLogic = $trackBaseLogic;
+		$this->photoBaseLogic = $photoBaseLogic;
 		$this->userBaseLogic = $userBaseLogic;
 		$this->loggedUser = $loggedUser;
 		$this->profileUser = $profileUser;
@@ -64,8 +64,11 @@ class PhotoRow extends Control
 
 	public function handleRemove($id)
 	{
-		$this->trackBaseLogic->remove($id);
-		$this->redirect('this');
+		if ($this->getPresenter()->isAjax()) {
+			$this->photoBaseLogic->remove($id);
+
+			$this->redirect('this');
+		}
 	}
 
 	public function handleGetImage()

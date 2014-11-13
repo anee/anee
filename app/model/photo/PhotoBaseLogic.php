@@ -63,7 +63,7 @@ class PhotoBaseLogic extends BaseLogic {
 		$qb = $this->dao->createQueryBuilder();
 		$qb
 			->select('e')
-			->from('App\Model\dao', 'e')
+			->from('App\Model\Photo', 'e')
 			->where('e.id = :id')
 			->setParameter('id', $id);
 
@@ -75,7 +75,7 @@ class PhotoBaseLogic extends BaseLogic {
         $qb = $this->dao->createQueryBuilder();
         $qb
             ->select('e')
-            ->from('App\Model\dao', 'e')
+            ->from('App\Model\Photo', 'e')
             ->where('e.id = :id')
             ->setParameter('id', $id);
 
