@@ -16,7 +16,7 @@ use App\Model\User;
 class RegisterIn extends Nette\Application\UI\Control
 {
 
-	/** @var \App\Model\UserBaseLogic @inject */
+	/** @var \App\Model\UserBaseLogic */
 	public $userBaseLogic;
 
 	public function __construct(UserBaseLogic $userBaseLogic)

@@ -17,7 +17,7 @@ class TopMenu extends Control
 
 	private $username;
 
-	/** @var \App\Model\UserBaseLogic @inject */
+	/** @var \App\Model\UserBaseLogic */
     public $userBaseLogic;
 
     public function __construct(UserBaseLogic $userBaseLogic)

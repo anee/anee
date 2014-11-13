@@ -16,10 +16,10 @@ use App\Model\User;
 class TrackRow extends Control
 {
 
-	/** @var \App\Model\UserBaseLogic @inject*/
+	/** @var \App\Model\UserBaseLogic */
 	public $userBaseLogic;
 
-	/** @var \App\Model\TrackBaseLogic @inject*/
+	/** @var \App\Model\TrackBaseLogic */
 	public $trackBaseLogic;
 
 	/** @var \App\Model\User */

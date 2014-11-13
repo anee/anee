@@ -14,13 +14,13 @@ use App\Model\User;
 class TopTopMenu extends Control
 {
 
-	/** @var \App\Modules\BackendModule\Controls\ISettingsModal @inject */
+	/** @var \App\Modules\BackendModule\Controls\ISettingsModal */
 	public $ISettingsModal;
 
-	/** @var \App\Modules\BackendModule\Controls\IProfileModal @inject */
+	/** @var \App\Modules\BackendModule\Controls\IProfileModal */
 	public $IProfileModal;
 
-	/** @var \App\Model\UserBaseLogic @inject*/
+	/** @var \App\Model\UserBaseLogic */
 	public $userBaseLogic;
 
 	/** @var \App\Model\User */

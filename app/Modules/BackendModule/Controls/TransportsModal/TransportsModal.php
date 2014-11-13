@@ -18,13 +18,13 @@ use App\Model\User;
 class TransportsModal extends Control
 {
 
-	/** @var \App\Model\UserBaseLogic @inject*/
+	/** @var \App\Model\UserBaseLogic */
 	public $userBaseLogic;
 
-	/** @var \App\Model\TransportBaseLogic @inject */
+	/** @var \App\Model\TransportBaseLogic  */
 	public $transportBaseLogic;
 
-	/** @var \App\Model\TrackBaseLogic @inject */
+	/** @var \App\Model\TrackBaseLogic */
 	public $trackBaseLogic;
 
 	/** @var \App\Model\User */

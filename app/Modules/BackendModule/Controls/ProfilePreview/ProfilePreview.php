@@ -18,10 +18,10 @@ use App\Model\User;
 class ProfilePreview extends Control
 {
 
-	/** @var \Kappa\ThumbnailsHelper\ThumbnailsHelper @inject*/
+	/** @var \Kappa\ThumbnailsHelper\ThumbnailsHelper */
 	public $thumbnailsHelper;
 
-	/** @var \App\Model\UserBaseLogic @inject*/
+	/** @var \App\Model\UserBaseLogic */
 	public $userBaseLogic;
 
 	/** @var \App\Model\User */
@@ -32,10 +32,10 @@ class ProfilePreview extends Control
 
 	private $wwwDir;
 
-	/** @var \App\Modules\BackendModule\Controls\ITransportsModal @inject */
+	/** @var \App\Modules\BackendModule\Controls\ITransportsModal */
 	public $ITransportsModal;
 
-	/** @var \App\Modules\BackendModule\Controls\IProfileModal @inject */
+	/** @var \App\Modules\BackendModule\Controls\IProfileModal */
 	public $IProfileModal;
 
     public function __construct(IProfileModal $IProfileModal, ITransportsModal $ITransportsModal, ThumbnailsHelper $thumbnailsHelper, UserBaseLogic $userBaseLogic, $wwwDir, User $loggedUser, User $profileUser)

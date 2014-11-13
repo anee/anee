@@ -20,19 +20,19 @@ use App\Model\User;
 class Profile extends Control
 {
 
-	/** @var \Kappa\ThumbnailsHelper\ThumbnailsHelper @inject*/
+	/** @var \Kappa\ThumbnailsHelper\ThumbnailsHelper */
 	public $thumbnailsHelper;
 
-	/** @var \App\Model\UserBaseLogic @inject*/
+	/** @var \App\Model\UserBaseLogic */
 	public $userBaseLogic;
 
-	/** @var \App\Model\PlaceBaseLogic @inject*/
+	/** @var \App\Model\PlaceBaseLogic */
 	public $placeBaseLogic;
 
-	/** @var \App\Model\PhotoBaseLogic @inject*/
+	/** @var \App\Model\PhotoBaseLogic */
 	public $photoBaseLogic;
 
-	/** @var \App\Model\TrackBaseLogic @inject*/
+	/** @var \App\Model\TrackBaseLogic */
 	public $trackBaseLogic;
 
 	/** @var \App\Model\User */
@@ -43,13 +43,13 @@ class Profile extends Control
 
 	private $wwwDir;
 
-	/** @var \App\Modules\BackendModule\Controls\ITransportsModal @inject */
+	/** @var \App\Modules\BackendModule\Controls\ITransportsModal */
 	public $ITransportsModal;
 
-	/** @var \App\Modules\BackendModule\Controls\IAddTrackModal @inject */
+	/** @var \App\Modules\BackendModule\Controls\IAddTrackModal */
 	public $IAddTrackModal;
 
-	/** @var \App\Modules\BackendModule\Controls\IAddPhotoModal @inject */
+	/** @var \App\Modules\BackendModule\Controls\IAddPhotoModal */
 	public $IAddPhotoModal;
 
 	/** bool which say if we will display detail of one track or summary */

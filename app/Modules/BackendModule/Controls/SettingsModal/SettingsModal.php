@@ -15,7 +15,7 @@ use App\Model\User;
 class SettingsModal extends Control
 {
 
-	/** @var \App\Model\UserBaseLogic @inject */
+	/** @var \App\Model\UserBaseLogic */
 	public $userBaseLogic;
 
 	/** @var \App\Model\User */

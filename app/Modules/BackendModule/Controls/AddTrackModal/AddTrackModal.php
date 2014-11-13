@@ -22,16 +22,16 @@ use Nette\Utils\DateTime;
 class AddTrackModal extends Control
 {
 
-	/** @var UserBaseLogic @inject */
+	/** @var UserBaseLogic */
 	public $userBaseLogic;
 
-	/** @var TrackBaseLogic @inject */
+	/** @var TrackBaseLogic */
 	public $trackBaseLogic;
 
-	/** @var PlaceBaseLogic @inject */
+	/** @var PlaceBaseLogic */
 	public $placeBaseLogic;
 
-	/** @var TransportBaseLogic  @inject */
+	/** @var TransportBaseLogic */
 	public $transportBaseLogic;
 
 	/** @var User */

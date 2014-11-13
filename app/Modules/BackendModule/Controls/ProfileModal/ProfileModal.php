@@ -18,13 +18,13 @@ use App\Model\User;
 class ProfileModal extends Control
 {
 
-	/** @var \Kappa\ThumbnailsHelper\ThumbnailsHelper @inject*/
+	/** @var \Kappa\ThumbnailsHelper\ThumbnailsHelper */
 	public $thumbnailsHelper;
 
-	/** @var \App\Model\UserBaseLogic @inject*/
+	/** @var \App\Model\UserBaseLogic */
 	public $userBaseLogic;
 
-	/** @var \App\Model\TrackBaseLogic @inject*/
+	/** @var \App\Model\TrackBaseLogic */
 	public $trackBaseLogic;
 
 	/** @var \App\Model\User */
@@ -35,7 +35,7 @@ class ProfileModal extends Control
 
 	private $wwwDir;
 
-	/** @var \App\Modules\BackendModule\Controls\ITransportsModal @inject */
+	/** @var \App\Modules\BackendModule\Controls\ITransportsModal */
 	public $ITransportsModal;
 
     public function __construct(ITransportsModal $ITransportsModal, ThumbnailsHelper $thumbnailsHelper, TrackBaseLogic $trackBaseLogic, UserBaseLogic $userBaseLogic, $wwwDir, User $loggedUser, User $profileUser)

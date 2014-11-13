@@ -21,10 +21,10 @@ use Nette\Utils\DateTime;
 class AddPhotoModal extends Control
 {
 
-	/** @var UserBaseLogic @inject */
+	/** @var UserBaseLogic */
 	public $userBaseLogic;
 
-	/** @var PhotoBaseLogic @inject */
+	/** @var PhotoBaseLogic */
 	public $photoBaseLogic;
 
 	/** @var TrackBaseLogic  */
