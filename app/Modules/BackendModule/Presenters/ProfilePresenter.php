@@ -49,12 +49,12 @@ class ProfilePresenter extends BasePresenter {
 		$user = $this->userBaseLogic->findOneByUsername($this->username);
 		$loggedUser = $this->userBaseLogic->findOneById($this->getUser()->getId());
 
-		$profile = $this->IProfile->create($loggedUser, $this->user);
+		$profile = $this->IProfile->create($loggedUser, $user);
 		foreach($user->tracks as $track) {
 			if($track->pinned == NULL) {
-				$profile->addComponent($this->createComponentTrackRow($track, $loggedUser, $this->user), 'NO'.$track->id);
+				$profile->addComponent($this->createComponentTrackRow($track, $loggedUser, $user), 'NO'.$track->id);
 			} elseif($track->pinned == TRUE){
-				$profile->addComponent($this->createComponentTrackRow($track, $loggedUser, $this->user), 'YES'.$track->id);
+				$profile->addComponent($this->createComponentTrackRow($track, $loggedUser, $user), 'YES'.$track->id);
 			}
 		}
 		return $profile;
