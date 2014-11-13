@@ -1,23 +1,25 @@
-<!DOCTYPE html>
 <html>
 <head>
-	<!--Meta-->
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 	<title>{block title|striptags}Anee{/block}</title>
 
-	<meta name="description" content="" />
-	<meta name="keywords" content="anee, cycle, cycling, run, running, digital nomad, freelance" />
-	<meta name="author" http-equiv="content-type" content="Lukáš Drahník" />
-	<meta name="copyright" http-equiv="content-type" content="Lukáš Drahník" />
+	<meta name="keywords" content="Anee, anee" />
+	<meta name="author" http-equiv="content-type" content="Anee © 2014" />
+	<meta name="copyright" http-equiv="content-type" content="Anee © 2014" />
 
 	<meta name="robots" content="{$robots}" n:ifset="$robots">
 	<link rel="shortcut icon" href="{$basePath}/favicon.ico">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-	<!--Styles-->
+    {* WebLoader *}
 	{control cssScreen}
+
+    {block scripts}
+	    {control js}
+    {/block}
+    {* /WebLoader *}
 
 	{block head}{/block}
 </head>
@@ -25,16 +27,11 @@
 <body>
     <script> document.documentElement.className+=' js' </script>
 
-        {control topTopMenu, $themeDir.'/Modules/Backend/Controls/TopTopMenu/TopTopMenu.latte'}
+    {control topTopMenu, $themeDir.'/Modules/Backend/Controls/TopTopMenu/TopTopMenu.latte'}
 
-        <!-- Content -->
-        <div id="content" style="padding: 17px 0 0 0;">
-            {include content}
-        </div>
-
-        {block scripts}
-            {control js}
-        {/block}
+    <div id="content" style="padding: 17px 0 0 0;">
+        {include content}
+    </div>
 
 </body>
 </html>
