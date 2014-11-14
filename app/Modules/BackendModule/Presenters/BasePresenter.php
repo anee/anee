@@ -66,6 +66,10 @@ abstract class BasePresenter extends \App\Modules\BaseModule\Presenters\BasePres
 
 	public function getBackgroundImage($user)
 	{
-		return $this->thumbnailsHelper->process('../app/data/users/'.$user->id.'/images/'.$user->backgroundImage, '1920x');
+		if ($user != NULL) {
+			return $this->thumbnailsHelper->process('../app/data/users/' . $user->id . '/images/' . $user->backgroundImage, '1920x');
+		} else {
+			return NULL;
+		}
 	}
 }
