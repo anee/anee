@@ -10,7 +10,6 @@ use Nette;
 use Nette\Application\UI\Control;
 use Nette\Application\UI\Form;
 use App\Model\User;
-use Kdyby\Doctrine\DuplicateEntryException;
 
 
 /**
@@ -108,14 +107,14 @@ class TransportsModal extends Control
 
 	public function addTransport($form)
 	{
-
 		if ($this->getPresenter()->isAjax()) {
-			try {
-				$values = $form->getValues();
+
+			$values = $form->getValues();
+
+			$transport = $this->transportBaseLogic->findOneByNameAndUserId($values->name, $this->loggedUser->id);
+			if ($transport == NULL) {
 				$this->transportBaseLogic->save(new Transport($values->name, $this->loggedUser));
 				$this->getPresenter()->redirect('this');
-			} catch (DuplicateEntryException $e) {
-				$form->addError('Transports with this name already exist.');
 			}
 		}
 	}
