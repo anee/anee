@@ -57,12 +57,21 @@ class AddPlaceModal extends Control
 		if ($this->getPresenter()->isAjax()) {
 			$values = $form->getValues();
 
-			/** Create new place */
-			$user = $this->loggedUser;
-			$place = new Place($values->name, $user);
-			$this->placeBaseLogic->save($place);
+			/** Check if not exist */
+			$place = $this->placeBaseLogic->findOneByNameAndUserName($values->name, $user->username);
 
-			$this->getPresenter()->redirect('this');
+
+			/** Create new place */
+			if ($place == NULL) {
+				$user = $this->loggedUser;
+
+				$place = new Place($values->name, $user);
+				$this->placeBaseLogic->save($place);
+
+				$this->getPresenter()->redirect('this');
+			} else {
+				$form->addError('Place with this name already exist.');
+			}
 		}
 	}
 }
