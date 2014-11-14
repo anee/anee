@@ -2,7 +2,7 @@
         <div class="track-row">
                       <div class="line">
                             <p class="track-name float-left">
-                                <a href="{plink :Backend:Tracks:Default, 'url' => $track->id, 'username' => $profileUser->username}">{$track->name}
+                                <a href="{plink :Backend:Tracks:Default, 'url' => $track->id, 'username' => $profileUser->username}">{$track->getName()}
                                 {if $track->transport != NULL}
                                     <span class="transport">by {$track->transport->name}</span>
                                 {/if}
@@ -61,13 +61,21 @@
         </div>
         {else}
         <div class="track-row">
+            {form trackEditForm class => ajax}
                       <div class="line">
                             <p class="track-name float-left">
+                             {if $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
+                                <span class="inline-change">From {input place} to {input placeTo}</span>
+                                {if $track->transport != NULL}
+                                    <span class="inline-change transport">by {input transport}</span>
+                                {/if}
+                             {else}
                                 <a href="{plink :Backend:Tracks:Default, 'url' => $track->id, 'username' => $profileUser->username}">{$track->name}
                                 {if $track->transport != NULL}
                                     <span class="transport">by {$track->transport->name}</span>
                                 {/if}
                                 </a>
+                             {/if}
                             </p>
                             <p class="options float-right">
 
@@ -88,6 +96,7 @@
                                     {/foreach}
                                     {if $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
                                         ·
+                                        <a href="" class="inline-save-change">{input save}</a> ·
                                         <a href="{link remove!, 'id' => $track->id}" class="ajax">remove</a>
                                     {/if}
                                     {if $track->pinned == TRUE}
@@ -102,7 +111,11 @@
                       </div>
                       <div class="part">
             					<div class="bar overall-bg float-left">
-            						<span class="bar-value">{$track->getDistance()}</span> km
+                                    {if $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
+                                        <span class="bar-value">{input distance}</span> km
+                                    {else}
+                                        <span class="bar-value">{$track->getDistance()}</span> km
+                                    {/if}
             					</div>
             					{*<div class="info overall float-left">
             						<p>{$track->getTimeInSeconds()|getSpanTimeFromSecondsNumber}</p>
@@ -116,5 +129,6 @@
                                 	<p></p>
                                 </div>*}
                       </div>
+            {/form}
         </div>
         {/if}

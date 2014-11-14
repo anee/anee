@@ -51,4 +51,16 @@ class TransportBaseLogic extends BaseLogic {
 
 		return $this->addFilterByUser($qb, $userId)->getQuery()->getOneOrNullResult();
 	}
+
+	public function findOneByNameAndUserId($name, $userId)
+	{
+		$qb = $this->dao->createQueryBuilder();
+		$qb
+			->select('e')
+			->from('App\Model\Transport', 'e')
+			->where('e.name = :name')
+			->setParameter('name', $name);
+
+		return $this->addFilterByUser($qb, $userId)->getQuery()->getOneOrNullResult();
+	}
 }

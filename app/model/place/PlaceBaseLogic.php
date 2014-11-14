@@ -71,4 +71,16 @@ class PlaceBaseLogic extends BaseLogic {
 
 		return $this->addFilterByUserName($qb, $username)->getQuery()->getOneOrNullResult();
 	}
+
+	public function findOneByNameAndUserName($name, $username)
+	{
+		$qb = $this->dao->createQueryBuilder();
+		$qb
+			->select('e')
+			->from('App\Model\Place', 'e')
+			->where('e.name = :name')
+			->setParameter('name', $name);
+
+		return $this->addFilterByUserName($qb, $username)->getQuery()->getOneOrNullResult();
+	}
 }

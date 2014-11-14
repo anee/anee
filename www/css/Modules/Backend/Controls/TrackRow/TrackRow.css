@@ -21,6 +21,16 @@
 .bar .bar-value {
     font-size: 28px;
 }
+.bar .bar-value input {
+    max-width: 45%;
+    text-align: center;
+    border: none;
+    background: transparent;
+    color: white;
+    font-size: 28px;
+    font-weight: bold;
+    font-family: "Verdana";
+}
 /*.info {
     margin: 8px 0 5px 0;
     padding-left: 15px;
@@ -68,6 +78,12 @@
     font-family: "Verdana";
 }
 .track-row .line .track-name .transport {
+    color: #55676e;
+    font-weight: normal;
+    font-family: "ProximaNova-Light";
+}
+.track-row .line .track-name .transport input {
+    color: #55676e;
     font-weight: normal;
     font-family: "ProximaNova-Light";
 }

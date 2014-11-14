@@ -263,7 +263,7 @@ input[type="submit"]:active, input[type="submit"]:hover {
 }
 
 /* Inline changes in details place && tracks */
-.inline-change input {
+.inline-change input, .inline-change {
     border: none;
     color: #55676e;
     background: transparent;
