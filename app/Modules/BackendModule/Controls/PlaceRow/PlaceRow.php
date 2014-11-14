@@ -4,11 +4,12 @@ namespace App\Modules\BackendModule\Controls;
 
 use App\Model\PlaceBaseLogic;
 use App\Model\UserBaseLogic;
+use Kdyby\Doctrine\DuplicateEntryException;
 use Nette;
 use Nette\Application\UI\Control;
 use App\Model\Place;
 use App\Model\User;
-use Nette\Forms\Form;
+use Nette\Application\UI\Form;
 
 
 /**
@@ -74,7 +75,7 @@ class PlaceRow extends Control
 		$form->addText('name')->setRequired('Place name is not valid.')
 			->setAttribute('placeholder', 'Place name')
 			->setDefaultValue($this->place->name);
-		$form->addSubmit('save', 'save');
+		$form->addSubmit('save', 'save changes');
 		$form->onSuccess[] = $this->success;
 
 		return $form;
@@ -86,9 +87,12 @@ class PlaceRow extends Control
 			/** Change name, so also need change nameUrl */
 			$place = $this->place;
 			$place->setName($form->getValues()->name);
-			$this->placeBaseLogic->save($place);
-
-			//$this->redirect('this');
+			try {
+				$this->placeBaseLogic->save($place);
+			} catch (DuplicateEntryException $e) {
+				$this->redirect('this');
+			}
+			$this->getPresenter()->redirect(':Backend:Places:default', array('username' => $this->loggedUser->username, 'url' => $place->getUrl()));
 		}
 	}
 }

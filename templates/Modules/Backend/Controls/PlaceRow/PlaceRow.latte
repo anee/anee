@@ -37,13 +37,11 @@
         </div>
         {else}
         <div class="track-row">
+        {form placeEditForm class => ajax}
                       <div class="line">
-                            <p class="track-name float-left">
-                             {if $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
-                                {form placeEditForm class => ajax}
-                                    {input name}
-                                    {input save}
-                                {/form}
+                            <p class="track-name inline-change float-left">
+                            {if $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
+                                {input name}
                             {else}
                                 <a href="{plink :Backend:Places:Default, 'url' => $place->nameUrl, 'username' => $profileUser->username}">{$place->name}</a>
                             {/if}
@@ -56,8 +54,10 @@
                                     ·
                                 {/if}
                                 {if $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
+                                    <a href="" class="inline-save-change">{input save}</a> ·
                                     <a href="{link remove!, 'id' => $place->id}" class="ajax">remove</a>
                                 {/if}
+
 
                             </p>
                             <div style="clear: both;"></div>
@@ -78,5 +78,6 @@
                                 	<p></p>
                                 </div>*}
                       </div>
+        {/form}
         </div>
         {/if}
