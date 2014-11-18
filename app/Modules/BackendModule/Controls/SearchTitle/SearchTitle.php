@@ -29,7 +29,6 @@ class SearchTitle extends Control {
 	{
 		$this->template->setFile($file);
 
-		//$template = $this->template;
 		$this->template->setFile($file);
 		$this->template->addFilter(NULL, 'App\TemplateHelpers::loader');
 
