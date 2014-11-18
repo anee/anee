@@ -39,7 +39,7 @@ class TrackSearchQuery extends BaseSearchQuery
 	public function addFilterByTransport($transport)
 	{
 		$this->filter[] = function (QueryBuilder $qb) use ($transport) {
-			if(empty($values['filterTransport']) != true) {
+			if(empty($transport) == FALSE) {
 				$qb
 					->join('e.transport', 'eTransport')
 					->andWhere('eTransport.name IN (:transports)')
