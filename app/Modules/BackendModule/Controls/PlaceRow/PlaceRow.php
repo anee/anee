@@ -73,7 +73,7 @@ class PlaceRow extends Control
 		$form = new Form;
 
 		$form->addText('name')->setRequired('Place name is not valid.')
-			->setAttribute('placeholder', 'Place name')
+			->setAttribute('placeholder', 'Name')
 			->setDefaultValue($this->place->name);
 		$form->addSubmit('save', 'save changes');
 		$form->onSuccess[] = $this->success;

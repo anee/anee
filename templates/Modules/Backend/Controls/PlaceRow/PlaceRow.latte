@@ -41,7 +41,7 @@
                       <div class="line">
                             <p class="track-name inline-change float-left">
                             {if $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
-                                {input name}
+                                {input name class => autosize}
                             {else}
                                 <a href="{plink :Backend:Places:Default, 'url' => $place->nameUrl, 'username' => $profileUser->username}">{$place->name}</a>
                             {/if}

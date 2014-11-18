@@ -290,3 +290,9 @@ input[type="submit"]:active, input[type="submit"]:hover {
     font-weight: bold;
     background-color: transparent;
 }
+
+/* AUTOSIZE inputs */
+.autosize {
+    transition: width 0.25s;
+    min-width: 50px;
+}

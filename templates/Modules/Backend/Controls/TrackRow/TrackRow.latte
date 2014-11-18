@@ -65,9 +65,9 @@
                       <div class="line">
                             <p class="track-name float-left">
                              {if $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
-                                <span class="inline-change">From {input place} to {input placeTo}</span>
+                                <span class="inline-change">From {input place class => autosize} to {input placeTo class => autosize}</span>
                                 {if $track->transport != NULL}
-                                    <span class="inline-change transport">by {input transport}</span>
+                                    <span class="inline-change transport">by {input transport class => autosize}</span>
                                 {/if}
                              {else}
                                 <a href="{plink :Backend:Tracks:Default, 'url' => $track->id, 'username' => $profileUser->username}">{$track->name}
@@ -112,7 +112,7 @@
                       <div class="part">
             					<div class="bar overall-bg float-left">
                                     {if $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
-                                        <span class="bar-value">{input distance}</span> km
+                                        <span class="bar-value">{input distance class => autosize}</span> km
                                     {else}
                                         <span class="bar-value">{$track->getDistance()}</span> km
                                     {/if}

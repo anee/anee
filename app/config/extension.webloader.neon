@@ -39,6 +39,7 @@ webloader:
 			default:
 				files:
 					- jquery-2.1.1.min.js
+					- jquery.autosize.input.js
 					- nette.ajax.js
 					- %vendorDir%/nette/forms/src/assets/netteForms.js
 					- less.min.js

@@ -113,6 +113,7 @@ class TrackRow extends Control
 
 		$form->addText('distance')
 			->setRequired('You have not filled distance.')
+			->setAttribute('placeholder', '0')
 			->setDefaultValue($this->track->distance);
 		$form->addText('place')
 			->setRequired('Place name is not valid.')
