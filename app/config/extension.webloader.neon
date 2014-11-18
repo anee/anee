@@ -44,7 +44,6 @@ webloader:
 					- %vendorDir%/nette/forms/src/assets/netteForms.js
 					- less.min.js
 					- bootstrap.min.js
-					- bootstrap-multiselect.js
 					- bootstrap-modalmanager.js
 					- bootstrap-datetimepicker.min.js
 					- bootstrap-modal.js
