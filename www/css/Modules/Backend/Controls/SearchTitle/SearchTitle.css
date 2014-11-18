@@ -1,0 +1,17 @@
+.search-title {
+    color: #55676e;
+    font-family: "Verdana";
+    height: 30px;
+    margin: 0 50px 0 50px;
+    padding-top: 60px;
+}
+.highlight, .highlight a {
+    color: #55676e;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: "Verdana";
+}
+.highlight a:hover {
+    font-size: 16px;
+}
