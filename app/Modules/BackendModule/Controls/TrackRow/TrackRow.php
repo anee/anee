@@ -111,6 +111,19 @@ class TrackRow extends Control
 	{
 		$form = new Form;
 
+		$place = "";
+		if($this->track->place != NULL) {
+			$place = $this->track->place->getName();
+		}
+		$placeTo = "";
+		if($this->track->placeTo != NULL) {
+			$placeTo = $this->track->placeTo->getName();
+		}
+		$transport = "";
+		if($this->track->transport != NULL) {
+			$placeTo = $this->track->transport->getName();
+		}
+
 		$form->addText('distance')
 			->setRequired('You have not filled distance.')
 			->setAttribute('placeholder', '0')
@@ -118,14 +131,14 @@ class TrackRow extends Control
 		$form->addText('place')
 			->setRequired('Place name is not valid.')
 			->setAttribute('placeholder', 'place')
-			->setDefaultValue($this->track->place->name);
+			->setDefaultValue($place);
 		$form->addText('placeTo')
 			->setAttribute('placeholder', 'place')
-			->setDefaultValue($this->track->placeTo->name);
+			->setDefaultValue($placeTo);
 		$form->addText('transport')
 			->setAttribute('placeholder', 'transport')
 			->setRequired('Transport is empty.')
-			->setDefaultValue($this->track->transport->name);
+			->setDefaultValue($transport);
 		$form->addSubmit('save', 'save changes');
 		$form->onSuccess[] = $this->success;
 

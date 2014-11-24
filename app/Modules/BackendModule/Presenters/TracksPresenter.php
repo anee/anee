@@ -46,7 +46,7 @@ class TracksPresenter extends BasePresenter
 			} else {
 				$this->username = $username;
 				$this->user = $user;
-				$this->track = $track;
+				$this->track = $track;;
 			}
 		}
 	}
