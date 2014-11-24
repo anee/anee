@@ -10,7 +10,7 @@ services:
 		implement: App\Modules\BackendModule\Controls\ITopMenu
 
 	TopTopMenu:
-		class: App\Modules\BackendModule\Controls\TopTopMenu(..., ..., ..., %loggedUser%)
+		class: App\Modules\BackendModule\Controls\TopTopMenu(..., ..., ..., ..., %loggedUser%)
 		implement: App\Modules\BackendModule\Controls\ITopTopMenu
 		parameters: [loggedUser = NULL]
 
@@ -76,3 +76,8 @@ services:
 		class: App\Modules\BackendModule\Controls\PhotoRow(..., ..., ..., %wwwDir%, %photo%, %loggedUser%, %profileUser%)
 		implement: App\Modules\BackendModule\Controls\IPhotoRow
 		parameters: [App\Model\Photo photo, App\Model\User loggedUser, App\Model\User profileUser]
+
+	FeedbackModal:
+		class: App\Modules\BackendModule\Controls\FeedbackModal(%loggedUser%)
+		implement: App\Modules\BackendModule\Controls\IFeedbackModal
+		parameters: [App\Model\User loggedUser]

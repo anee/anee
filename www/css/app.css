@@ -193,6 +193,16 @@ input[type="submit"]:active, input[type="submit"]:hover {
     font-family: "Verdana";
     border: none;
 }
+.modal .modal-body textarea {
+    width: 500px;
+    font-size: 16px;
+    font-weight: normal;
+    font-family: "Verdana";
+    border: none;
+    padding: 0;
+    min-height: 200px;
+    margin: 10px 0 0 0;
+}
 .select {
     height: 38px;
     font-size: 16px;
