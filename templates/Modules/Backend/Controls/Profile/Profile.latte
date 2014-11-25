@@ -1,17 +1,6 @@
     <div class="main-profile">
-        {if $profileUser->profileImage != NULL}
-            <div class="profile-image">
-        {else}
-            <div class="profile-image" style="height: 100px;">
-        {/if}
-            {if $profileUser->profileImage != NULL}
-                <img src="{link getProfileImage}">
-            {/if}
-            {if $profileUser->profileImage != NULL}
-                <h2><a style="opacity: 1;" href="{plink :Backend:Profile:default, 'username' => $profileUser->username}">{$profileUser->getName()}</a><br/>
-            {else}
-                <h2 style="top: 0px;"><a style="opacity: 1;" href="{plink :Backend:Profile:default, 'username' => $profileUser->username}">{$profileUser->getName()}</a><br/>
-            {/if}
+            <div class="profile-image" style="height: 200px;">
+                <h2 style="top: 100px;"><a style="opacity: 1;" href="{plink :Backend:Profile:default, 'username' => $profileUser->username}">{$profileUser->getName()}</a><br/>
                 <span class="profile-tags">
                 {foreach $profileUser->transports as $transport}
                     {if $iterator->getCounter() < 6}
