@@ -128,6 +128,9 @@ class TrackRow extends Control
 			->setRequired('You have not filled distance.')
 			->setAttribute('placeholder', '0')
 			->setDefaultValue($this->track->distance);
+		$form->addText('maxSpeed')
+			->setAttribute('placeholder', 'N/A')
+			->setDefaultValue($this->track->maxSpeed);
 		$form->addText('place')
 			->setRequired('Place name is not valid.')
 			->setAttribute('placeholder', 'place')
@@ -154,6 +157,13 @@ class TrackRow extends Control
 
 			/** Change $distance */
 			$track->distance = $values->distance;
+
+			/** Change $maxSpeed */
+			if($values->maxSpeed != '') {
+				$track->maxSpeed = $values->maxSpeed;
+			} else {
+				$track->maxSpeed = 0;
+			}
 
 			/** Change $place */
 			if ($values->place != $track->place->name) {

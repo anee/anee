@@ -48,6 +48,15 @@
     font-family: "ProximaNova-Light";
     margin-bottom: 0;
 }
+.info p input {
+    margin-top: 0;
+    font-size: 24px;
+    font-family: "MuseoSans";
+    margin-bottom: 0;
+    border: none;
+    color: #F0886D;
+    background-color: transparent;
+}
 .track-date {
     margin: 8px 0 0 0;
     padding-left: 15px;
@@ -75,7 +84,7 @@
     margin-bottom: 0;
 }
 .overall {
-    /*color: #91a4b3;*/
+    color: #293C4B;
 }
 .overall-bg {
     background-color: #293c4b;
