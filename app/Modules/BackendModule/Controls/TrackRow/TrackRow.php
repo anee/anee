@@ -121,7 +121,7 @@ class TrackRow extends Control
 		}
 		$transport = "";
 		if($this->track->transport != NULL) {
-			$placeTo = $this->track->transport->getName();
+			$transport = $this->track->transport->getName();
 		}
 
 		$form->addText('distance')
@@ -168,8 +168,8 @@ class TrackRow extends Control
 			}
 
 			/** Change $placeTo */
-			if ($values->placeTo != '' || $values->placeTo != $track->placeTo->name) {
-				$placeTo = $this->placeBaseLogic->findOneByNameAndUserName($values->place, $this->loggedUser->username);
+			if ($values->placeTo != '') {
+				$placeTo = $this->placeBaseLogic->findOneByNameAndUserName($values->placeTo, $this->loggedUser->username);
 				if ($placeTo != NULL) {
 					$track->placeTo = $placeTo;
 				} else {
