@@ -132,16 +132,28 @@
                                         <span class="bar-value">{$track->getDistance()}</span> km
                                     {/if}
             					</div>
-                                     <div class="track-date overall float-left text-align-center">
+                                     <div style="margin-top: 6px;" class="track-date overall float-left text-align-center">
+                                     {if $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
+                                        <p>{input dateHours class => autosize}</p>
+                                     {else}
                                          <p>{$track->getTimeInSeconds()|fromSecondsHours}</p>
+                                     {/if}
                                  	    <p>HOURS</p>
                                      </div>
-                                     <div class="track-date overall float-left text-align-center">
+                                     <div style="margin-top: 6px;" class="track-date overall float-left text-align-center">
+                                     {if $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
+                                        <p>{input dateMinutes class => autosize}</p>
+                                     {else}
                                          <p>{$track->getTimeInSeconds()|fromSecondsMinutes}</p>
+                                     {/if}
                                  	    <p>MINS</p>
                                      </div>
-                                     <div class="track-date track-date-end overall float-left text-align-center">
+                                     <div style="margin-top: 6px;" class="track-date track-date-end overall float-left text-align-center">
+                                     {if $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
+                                        <p>{input dateSeconds class => autosize}</p>
+                                     {else}
                                          <p>{$track->getTimeInSeconds()|fromSecondsSeconds}</p>
+                                     {/if}
                                  	    <p>SECS</p>
                                      </div>
                                 <div class="bar partial-bg float-right">

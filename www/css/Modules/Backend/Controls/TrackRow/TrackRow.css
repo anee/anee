@@ -83,6 +83,15 @@
     font-family: "ProximaNova-Light";
     margin-bottom: 0;
 }
+.track-date p input {
+    height: 28px;
+    text-align: center;
+    font-size: 24px;
+    font-family: "MuseoSans";
+    border: none;
+    color: #293C4B;
+    background-color: transparent;
+}
 .overall {
     color: #293C4B;
 }

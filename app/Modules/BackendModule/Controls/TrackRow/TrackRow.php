@@ -7,6 +7,7 @@ use App\Model\PlaceBaseLogic;
 use App\Model\TrackBaseLogic;
 use App\Model\TransportBaseLogic;
 use App\Model\UserBaseLogic;
+use App\Utils\TimeUtils;
 use Nette;
 use Nette\Application\UI\Control;
 use App\Model\Track;
@@ -131,6 +132,15 @@ class TrackRow extends Control
 		$form->addText('maxSpeed')
 			->setAttribute('placeholder', 'N/A')
 			->setDefaultValue($this->track->maxSpeed);
+		$form->addText('dateHours')
+			->setAttribute('placeholder', '0')
+			->setDefaultValue(TimeUtils::fromSecondsHours($this->track->timeInSeconds));
+		$form->addText('dateMinutes')
+			->setAttribute('placeholder', '0')
+			->setDefaultValue(TimeUtils::fromSecondsMinutes($this->track->timeInSeconds));
+		$form->addText('dateSeconds')
+			->setAttribute('placeholder', '0')
+			->setDefaultValue(TimeUtils::fromSecondsSeconds($this->track->timeInSeconds));
 		$form->addText('place')
 			->setRequired('Place name is not valid.')
 			->setAttribute('placeholder', 'place')
@@ -164,6 +174,9 @@ class TrackRow extends Control
 			} else {
 				$track->maxSpeed = 0;
 			}
+
+			/** Change $timeInSeconds */
+			$this->track->timeInSeconds = TimeUtils::fromSpanToSeconds($values->dateHours, $values->dateMinutes, $values->dateSeconds);
 
 			/** Change $place */
 			if ($values->place != $track->place->name) {
