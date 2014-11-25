@@ -19,10 +19,12 @@ class HomepagePresenter extends BasePresenter
 		if ($this->user->isLoggedIn()) {
 			$loggedUser = $this->userBaseLogic->findOneById($this->user->id);
 
-			/** Added all tracks from following users */
+			/** Added all tracks from following users BUT ignore tracks from myself */
 			foreach ($loggedUser->following as $followingUser) {
 				foreach($followingUser->tracks as $track) {
-					$this->addComponent($this->createComponentTrackRow($track, $loggedUser, $followingUser, TRUE), 'Track'.$track->id);
+					if($loggedUser->id != $followingUser->id) {
+						$this->addComponent($this->createComponentTrackRow($track, $loggedUser, $followingUser, TRUE), 'Track' . $track->id);
+					}
 				}
 			}
 

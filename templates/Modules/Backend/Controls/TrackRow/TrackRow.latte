@@ -31,13 +31,14 @@
                                     {if $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
                                         ·
                                         <a href="{link remove!, 'id' => $track->id}" class="ajax">remove</a>
-                                    {/if}
-                                    {if $track->pinned == TRUE}
-                                        ·
-                                        <a href="{link unpin!, 'id' => $track->id}" class="ajax">unpin</a>
-                                    {else}
-                                        ·
-                                        <a href="{link pin!, 'id' => $track->id}" class="ajax">pin</a>
+
+                                        {if $track->pinned == TRUE}
+                                            ·
+                                            <a href="{link unpin!, 'id' => $track->id}" class="ajax">unpin</a>
+                                        {else}
+                                            ·
+                                            <a href="{link pin!, 'id' => $track->id}" class="ajax">pin</a>
+                                        {/if}
                                     {/if}
                             </p>
                             <div style="clear: both;"></div>
@@ -98,13 +99,14 @@
                                         ·
                                         <a href="" class="inline-save-change">{input save}</a> ·
                                         <a href="{link remove!, 'id' => $track->id}" class="ajax">remove</a>
-                                    {/if}
-                                    {if $track->pinned == TRUE}
-                                        ·
-                                        <a href="{link unpin!, 'id' => $track->id}" class="ajax">unpin</a>
-                                    {else}
-                                        ·
-                                        <a href="{link pin!, 'id' => $track->id}" class="ajax">pin</a>
+                                                                      
+                                        {if $track->pinned == TRUE}
+                                            ·
+                                            <a href="{link unpin!, 'id' => $track->id}" class="ajax">unpin</a>
+                                        {else}
+                                            ·
+                                            <a href="{link pin!, 'id' => $track->id}" class="ajax">pin</a>
+                                        {/if}
                                     {/if}
                             </p>
                             <div style="clear: both;"></div>
