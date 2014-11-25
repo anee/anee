@@ -5,7 +5,7 @@
             {if count($profileUser->transports) > 0}
                  <h2><a style="opacity: 1;" href="#profile{$profileUser->id}" data-toggle="modal">{$profileUser->getName()}</a><br/>
             {else}
-                <h2 style="top: 225px;"><a style="opacity: 1;" href="{plink :Backend:Profile:default, 'username' => $profileUser->username}">{$profileUser->getName()}</a><br/>
+                <h2 style="top: 225px;"><a style="opacity: 1;" href="#profile{$profileUser->id}" data-toggle="modal">{$profileUser->getName()}</a><br/>
             {/if}
                 <span class="profile-tags">
                 {foreach $profileUser->transports as $transport}
