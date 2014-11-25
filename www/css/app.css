@@ -103,6 +103,9 @@ h1 a:hover, h2 a:hover, h4 a:hover {
 .text-align-right {
     text-align: right;
 }
+.text-align-center {
+    text-align: center;
+}
 
 /* Buttons in forms
 ----------------------------------------------------------*/

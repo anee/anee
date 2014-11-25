@@ -48,11 +48,37 @@
     font-family: "ProximaNova-Light";
     margin-bottom: 0;
 }
+.track-date {
+    margin: 8px 0 0 0;
+    padding-left: 15px;
+    padding-right: 15px;
+    height: 40px;
+    line-height: 1.1;
+    border-right: 1px solid #293c4b;
+}
+.track-date-end {
+    border-right: none;
+}
+.track-date:first-of-type {
+    border-right: none;
+}
+.track-date p:first-child {
+    margin-top: 0;
+    font-size: 24px;
+    font-family: "MuseoSans";
+    margin-bottom: 0;
+}
+.track-date p {
+    margin-top: 0;
+    font-size: 13px;
+    font-family: "ProximaNova-Light";
+    margin-bottom: 0;
+}
 .overall {
-    color: #91a4b3;
+    /*color: #91a4b3;*/
 }
 .overall-bg {
-    background-color: #91a4b3;
+    background-color: #293c4b;
 }
 .partial {
     color: #F0886D;

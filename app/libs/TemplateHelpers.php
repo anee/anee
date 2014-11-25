@@ -62,7 +62,21 @@ class TemplateHelpers {
 
         return "$hours:$minutes:$seconds";
     }
-
+	public static function fromSecondsHours($secParam)
+	{
+		$hours = floor($secParam / 3600);
+		return $hours;
+	}
+	public static function fromSecondsMinutes($secParam)
+	{
+		$minutes = floor(($secParam / 60) % 60);
+		return $minutes;
+	}
+	public static function fromSecondsSeconds($secParam)
+	{
+		$seconds = $secParam % 60;
+		return $seconds;
+	}
     public static function getSpanTimeFromSecondsText($seconds)
     {
         $value = null;
