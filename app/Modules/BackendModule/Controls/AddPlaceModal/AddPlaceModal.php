@@ -46,7 +46,7 @@ class AddPlaceModal extends Control
 		$form = new Form;
 		$form->addText('name')->setRequired('You have no filled place name.')
 			->setAttribute('placeholder', 'Place name');
-		$form->addSubmit('save', 'save');
+		$form->addSubmit('save', 'add');
 		$form->onSuccess[] = $this->success;
 
 		return $form;
