@@ -29,23 +29,25 @@
     font-weight: bold;
     font-family: "Verdana";
 }
-/*.info {
-    margin: 8px 0 5px 0;
+.info {
+    margin: 8px 0 0 0;
     padding-left: 15px;
     padding-right: 15px;
     height: 40px;
     line-height: 1.1;
 }
 .info p:first-child {
+    margin-top: 0;
     font-size: 24px;
     font-family: "MuseoSans";
     margin-bottom: 0;
 }
 .info p {
+    margin-top: 0;
     font-size: 13px;
     font-family: "ProximaNova-Light";
     margin-bottom: 0;
-}*/
+}
 .overall {
     color: #91a4b3;
 }
