@@ -25,13 +25,13 @@ class TimeUtils {
 
 	public static function fromSpanToSeconds($hours, $minutes, $seconds) {
 		$secondsTotal = 0;
-		if($hours != "") {
+		if(is_numeric($hours)) {
 			$secondsTotal += $hours * 3600;
 		}
-		if($minutes != "") {
+		if(is_numeric($minutes)) {
 			$secondsTotal += $minutes * 60;
 		}
-		if($hours != "") {
+		if(is_numeric($seconds)) {
 			$secondsTotal += $seconds;
 		}
 		return $secondsTotal;
