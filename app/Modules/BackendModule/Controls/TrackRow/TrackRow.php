@@ -49,8 +49,8 @@ class TrackRow extends Control
 	/** @var bool which say if is detail of concrete track or not */
 	private $detail;
 
-    public function __construct(TransportBaseLogic $transportBaseLogic, PlaceBaseLogic $placeBaseLogic, TrackBaseLogic $trackBaseLogic, UserBaseLogic $userBaseLogic, Track $track, User $loggedUser, User $profileUser, $byName = NULL, $detail = NULL)
-    {
+	public function __construct(TransportBaseLogic $transportBaseLogic, PlaceBaseLogic $placeBaseLogic, TrackBaseLogic $trackBaseLogic, UserBaseLogic $userBaseLogic, Track $track, User $loggedUser, User $profileUser, $byName = NULL, $detail = NULL)
+	{
 		$this->track = $track;
 		$this->transportBaseLogic = $transportBaseLogic;
 		$this->placeBaseLogic = $placeBaseLogic;
@@ -60,7 +60,7 @@ class TrackRow extends Control
 		$this->profileUser = $profileUser;
 		$this->byName = $byName;
 		$this->detail = $detail;
-    }
+	}
 
 	public function render($file)
 	{
@@ -113,15 +113,15 @@ class TrackRow extends Control
 		$form = new Form;
 
 		$place = "";
-		if($this->track->place != NULL) {
+		if ($this->track->place != NULL) {
 			$place = $this->track->place->getName();
 		}
 		$placeTo = "";
-		if($this->track->placeTo != NULL) {
+		if ($this->track->placeTo != NULL) {
 			$placeTo = $this->track->placeTo->getName();
 		}
 		$transport = "";
-		if($this->track->transport != NULL) {
+		if ($this->track->transport != NULL) {
 			$transport = $this->track->transport->getName();
 		}
 
@@ -169,7 +169,7 @@ class TrackRow extends Control
 			$track->distance = $values->distance;
 
 			/** Change $maxSpeed */
-			if($values->maxSpeed != '') {
+			if ($values->maxSpeed != '') {
 				$track->maxSpeed = $values->maxSpeed;
 			} else {
 				$track->maxSpeed = 0;
@@ -206,9 +206,9 @@ class TrackRow extends Control
 			if ($values->transport != '') {
 				$transport = $this->transportBaseLogic->findOneByNameAndUserId($values->transport, $this->loggedUser->id);
 				if ($transport != NULL) {
-					$track->transport  = $transport ;
+					$track->transport = $transport;
 				} else {
-					$transport  = new Transport($values->placeTo, $this->loggedUser);
+					$transport = new Transport($values->placeTo, $this->loggedUser);
 					$this->transportBaseLogic->save($transport);
 					$track->transport = $transport;
 				}

@@ -1,27 +1,26 @@
 {block content}
 
     {if $user->isLoggedIn()}
-           <div style="margin: 50px 0 0 0;">
-                {if count($control->components) > 0}
+        <div style="margin: 50px 0 0 0;">
+            {if count($control->components) > 0}
                 <div class="profile-activity">
                     <h3>TRACKS</h3>
-                        {foreach $control->components as $component}
-                            {if $template->strpos($component->name, 'Track')}
-                                {control $component->getName(), $themeDir.'/Modules/Backend/Controls/TrackRow/TrackRow.latte'}
-                            {/if}
-                        {/foreach}
+                    {foreach $control->components as $component}
+                        {if $template->strpos($component->name, 'Track')}
+                            {control $component->getName(), $themeDir.'/Modules/Backend/Controls/TrackRow/TrackRow.latte'}
+                        {/if}
+                    {/foreach}
                 </div>
-                {/if}
+            {/if}
         </div>
+        <script type="text/javascript">
 
-    <script type="text/javascript">
-
-        var e = document.getElementsByTagName("html")[0];
-        var background = 'url(..{$background})';
-        var backgroundR = background.replace(/\"/g, "");
-        var backgroundF = backgroundR.replace(/\\/g, "/");
-        e.style.backgroundImage = backgroundF;
-    </script>
+            var e = document.getElementsByTagName("html")[0];
+            var background = 'url(..{$background})';
+            var backgroundR = background.replace(/\"/g, "");
+            var backgroundF = backgroundR.replace(/\\/g, "/");
+            e.style.backgroundImage = backgroundF;
+        </script>
     {/if}
 
 {/block}

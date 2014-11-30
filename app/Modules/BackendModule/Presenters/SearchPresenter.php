@@ -3,7 +3,6 @@
 namespace App\Modules\BackendModule\Presenters;
 
 
-
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
  */

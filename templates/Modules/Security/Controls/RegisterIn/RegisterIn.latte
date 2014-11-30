@@ -1,11 +1,9 @@
-
 {form registerInForm}
-
     <div class="register-box register">
 
         <h1>Register</h1>
 
-	    <ul class="errors" n:if="$form->hasErrors()">
+        <ul class="errors" n:if="$form->hasErrors()">
             <li n:foreach="$form->errors as $error">{$error}</li>
         </ul>
 

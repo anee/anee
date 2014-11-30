@@ -4,11 +4,11 @@
 namespace App\Modules\BackendModule\Presenters;
 
 
-
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
  */
-class ProfilePresenter extends BasePresenter {
+class ProfilePresenter extends BasePresenter
+{
 
 
 	/** @var  \App\Modules\BackendModule\Controls\IProfile @inject */
@@ -50,11 +50,11 @@ class ProfilePresenter extends BasePresenter {
 		$loggedUser = $this->userBaseLogic->findOneById($this->getUser()->getId());
 
 		$profile = $this->IProfile->create($loggedUser, $user);
-		foreach($user->tracks as $track) {
-			if($track->pinned == NULL) {
-				$profile->addComponent($this->createComponentTrackRow($track, $loggedUser, $user), 'NO'.$track->id);
-			} elseif($track->pinned == TRUE){
-				$profile->addComponent($this->createComponentTrackRow($track, $loggedUser, $user), 'YES'.$track->id);
+		foreach ($user->tracks as $track) {
+			if ($track->pinned == NULL) {
+				$profile->addComponent($this->createComponentTrackRow($track, $loggedUser, $user), 'NO' . $track->id);
+			} elseif ($track->pinned == TRUE) {
+				$profile->addComponent($this->createComponentTrackRow($track, $loggedUser, $user), 'YES' . $track->id);
 			}
 		}
 		return $profile;
@@ -79,7 +79,7 @@ class ProfilePresenter extends BasePresenter {
 	{
 		$user = $this->userBaseLogic->findOneByUsername($username);
 
-		if($user == NULL || ($this->userBaseLogic->findOneByUsername($username)->public == FALSE && !$this->getUser()->isLoggedIn())) {
+		if ($user == NULL || ($this->userBaseLogic->findOneByUsername($username)->public == FALSE && !$this->getUser()->isLoggedIn())) {
 			$this->getPresenter()->redirect(':Backend:Homepage:default');
 		} else {
 			$this->username = $username;
@@ -96,7 +96,7 @@ class ProfilePresenter extends BasePresenter {
 	{
 		$user = $this->userBaseLogic->findOneByUsername($username);
 
-		if($user == NULL || ($this->userBaseLogic->findOneByUsername($username)->public == FALSE && !$this->getUser()->isLoggedIn())) {
+		if ($user == NULL || ($this->userBaseLogic->findOneByUsername($username)->public == FALSE && !$this->getUser()->isLoggedIn())) {
 			$this->getPresenter()->redirect(':Backend:Homepage:default');
 		} else {
 			$this->username = $username;
@@ -112,7 +112,7 @@ class ProfilePresenter extends BasePresenter {
 	public function actionFollowers($username)
 	{
 		$user = $this->userBaseLogic->findOneByUsername($username);
-		if($user == NULL || ($this->userBaseLogic->findOneByUsername($username)->public == FALSE && !$this->getUser()->isLoggedIn())) {
+		if ($user == NULL || ($this->userBaseLogic->findOneByUsername($username)->public == FALSE && !$this->getUser()->isLoggedIn())) {
 			$this->getPresenter()->redirect(':Backend:Homepage:default');
 		} else {
 			$this->username = $username;
@@ -130,7 +130,7 @@ class ProfilePresenter extends BasePresenter {
 		$user = $this->userBaseLogic->findOneByUsername($this->username);
 
 		$profileContainer = $this->IProfileContainer->create();
-		foreach($user->following as $followingUser) {
+		foreach ($user->following as $followingUser) {
 			$profileContainer->addComponent($this->createComponentProfilePreview($user, $followingUser), $followingUser->id);
 		}
 		return $profileContainer;
@@ -146,7 +146,7 @@ class ProfilePresenter extends BasePresenter {
 		$user = $this->userBaseLogic->findOneByUsername($this->username);
 
 		$profileContainer = $this->IProfileContainer->create();
-		foreach($user->followers as $followerUser) {
+		foreach ($user->followers as $followerUser) {
 			$profileContainer->addComponent($this->createComponentProfilePreview($user, $followerUser), $followerUser->id);
 		}
 		return $profileContainer;
@@ -156,7 +156,7 @@ class ProfilePresenter extends BasePresenter {
 	{
 		$user = $this->userBaseLogic->findOneByUsername($username);
 
-		if($user == NULL || ($this->userBaseLogic->findOneByUsername($username)->public == FALSE && !$this->getUser()->isLoggedIn())) {
+		if ($user == NULL || ($this->userBaseLogic->findOneByUsername($username)->public == FALSE && !$this->getUser()->isLoggedIn())) {
 			$this->getPresenter()->redirect(':Backend:Homepage:default');
 		} else {
 			$this->username = $username;
@@ -176,7 +176,7 @@ class ProfilePresenter extends BasePresenter {
 
 		$profile = $this->IProfile->create($loggedUser, $this->user);
 		$tracks = $this->trackBaseLogic->findAll($profileUser->id);
-		foreach($tracks as $track) {
+		foreach ($tracks as $track) {
 			$profile->addComponent($this->createComponentTrackRow($track, $loggedUser, $this->user), $track->id);
 		}
 		return $profile;
@@ -194,7 +194,7 @@ class ProfilePresenter extends BasePresenter {
 
 		$profile = $this->IProfile->create($loggedUser, $this->user);
 		$places = $this->placeBaseLogic->findAll($profileUser->id);
-		foreach($places as $place) {
+		foreach ($places as $place) {
 			$profile->addComponent($this->createComponentPlaceRow($place, $loggedUser, $this->user), $place->id);
 		}
 		return $profile;
@@ -204,7 +204,7 @@ class ProfilePresenter extends BasePresenter {
 	{
 		$user = $this->userBaseLogic->findOneByUsername($username);
 
-		if($user == NULL || ($this->userBaseLogic->findOneByUsername($username)->public == FALSE && !$this->getUser()->isLoggedIn())) {
+		if ($user == NULL || ($this->userBaseLogic->findOneByUsername($username)->public == FALSE && !$this->getUser()->isLoggedIn())) {
 			$this->getPresenter()->redirect(':Backend:Homepage:default');
 		} else {
 			$this->username = $username;
@@ -224,7 +224,7 @@ class ProfilePresenter extends BasePresenter {
 
 		$profile = $this->IProfile->create($loggedUser, $this->user);
 		$photos = $this->photoBaseLogic->findAll($profileUser->id);
-		foreach($photos as $photo) {
+		foreach ($photos as $photo) {
 			$profile->addComponent($this->createComponentPhotoRow($photo, $loggedUser, $this->user), $photo->id);
 		}
 		return $profile;
@@ -234,7 +234,7 @@ class ProfilePresenter extends BasePresenter {
 	{
 		$user = $this->userBaseLogic->findOneByUsername($username);
 
-		if($user == NULL || ($this->userBaseLogic->findOneByUsername($username)->public == FALSE && !$this->getUser()->isLoggedIn())) {
+		if ($user == NULL || ($this->userBaseLogic->findOneByUsername($username)->public == FALSE && !$this->getUser()->isLoggedIn())) {
 			$this->getPresenter()->redirect(':Backend:Homepage:default');
 		} else {
 			$this->username = $username;

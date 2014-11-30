@@ -5,18 +5,17 @@ namespace App\Modules\BackendModule\Presenters;
 use Nette;
 
 
-
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
  */
 class TracksPresenter extends BasePresenter
 {
 
-	/** @var \App\Model\TrackBaseLogic @inject*/
+	/** @var \App\Model\TrackBaseLogic @inject */
 	public $trackBaseLogic;
 
 	/** @var \App\Model\Track */
-    public $track;
+	public $track;
 
 	/** @var \App\Modules\BackendModule\Controls\IProfile @inject */
 	public $IProfile;
@@ -38,7 +37,7 @@ class TracksPresenter extends BasePresenter
 		$user = $this->userBaseLogic->findOneByUsername($username);
 		$track = $this->trackBaseLogic->findOneByIdAndUserName($url, $username);
 
-		if($user == NULL || ($this->userBaseLogic->findOneByUsername($username)->public == FALSE && !$this->getUser()->isLoggedIn())) {
+		if ($user == NULL || ($this->userBaseLogic->findOneByUsername($username)->public == FALSE && !$this->getUser()->isLoggedIn())) {
 			$this->getPresenter()->redirect(':Backend:Homepage:default');
 		} else {
 			if ($track == null) {

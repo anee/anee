@@ -1,10 +1,8 @@
 {block content}
-
     <div class="profile-page one-profil">
         {control profilePlace, $themeDir.'Modules/Backend/Controls/Profile/Profile.latte'}
     </div>
-
-<script type="text/javascript">
+    <script type="text/javascript">
 
         var e = document.getElementsByTagName("html")[0];
         var background = 'url(../..{$background})';
@@ -12,6 +10,5 @@
         var backgroundF = backgroundR.replace(/\\/g, "/");
         e.style.backgroundImage = backgroundF;
         console.log(backgroundF);
-</script>
-
+    </script>
 {/block}

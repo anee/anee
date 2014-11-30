@@ -20,7 +20,7 @@ abstract class BasePresenter extends \App\Modules\BaseModule\Presenters\BasePres
 	/** @var \App\Modules\BackendModule\Controls\IUserPanel @inject */
 	public $IUserPanel;
 
-	/** @var \Kappa\ThumbnailsHelper\ThumbnailsHelper @inject*/
+	/** @var \Kappa\ThumbnailsHelper\ThumbnailsHelper @inject */
 	public $thumbnailsHelper;
 
 	/** @var \App\Model\UserBaseLogic @inject */
@@ -56,7 +56,7 @@ abstract class BasePresenter extends \App\Modules\BaseModule\Presenters\BasePres
 
 	public function formatLayoutTemplateFiles()
 	{
-		if(!$this->getUser()->isLoggedIn()) {
+		if (!$this->getUser()->isLoggedIn()) {
 			$themeDir = $this->theme->getParameter('themeDir');
 			return [$themeDir . '/Modules/Frontend/templates/@layout.latte'];
 		} else {

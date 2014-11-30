@@ -1,6 +1,7 @@
-    <div class="main-profile">
-            <div class="profile-image" style="height: 200px;">
-                <h2 style="top: 100px;"><a style="opacity: 1;" href="{plink :Backend:Profile:default, 'username' => $profileUser->username}">{$profileUser->getName()}</a><br/>
+<div class="main-profile">
+    <div class="profile-image" style="height: 200px;">
+        <h2 style="top: 100px;"><a style="opacity: 1;"
+                                   href="{plink :Backend:Profile:default, 'username' => $profileUser->username}">{$profileUser->getName()}</a><br/>
                 <span class="profile-tags">
                 {foreach $profileUser->transports as $transport}
                     {if $iterator->getCounter() < 6}
@@ -9,29 +10,30 @@
                     {/if}
 
                 {/foreach}
-                <a class="tags-etc" data-toggle="modal" href="#transports{$profileUser->id}">mana</a>
+                    <a class="tags-etc" data-toggle="modal" href="#transports{$profileUser->id}">mana</a>
                 </span>
-            </h2>
-            {if $user->isLoggedIn()}
-                {if $loggedUser->following->contains($profileUser)}
-                    <div class="following-status following">
-                        <a href="{link unfollow!}">following</a>
-                    </div>
-                {else}
-                    <div class="following-status no-following">
-                        <a href="{link follow!}">follow</a>
-                    </div>
-                {/if}
+        </h2>
+        {if $user->isLoggedIn()}
+            {if $loggedUser->following->contains($profileUser)}
+                <div class="following-status following">
+                    <a href="{link unfollow!}">following</a>
+                </div>
+            {else}
+                <div class="following-status no-following">
+                    <a href="{link follow!}">follow</a>
+                </div>
             {/if}
-        </div>
+        {/if}
+    </div>
 
-        <div class="wall-summary float-left" id="wall-summary">
+    <div class="wall-summary float-left" id="wall-summary">
         <div class="profile-menu">
             <ul>
                 <li>
                     <a class="icon tracks" href="{plink :Backend:Profile:tracks, 'username' => $profileUser->username}">
                         <span class="float-left">Tracks</span>
                         <span class="float-right">{count($profileUser->tracks)}</span>
+
                         <div style="clear: both;"></div>
                     </a>
                 </li>
@@ -39,6 +41,7 @@
                     <a class="icon photos" href="{plink :Backend:Profile:photos, 'username' => $profileUser->username}">
                         <span class="float-left">Photos</span>
                         <span class="float-right">{count($profileUser->photos)}</span>
+
                         <div style="clear: both;"></div>
                     </a>
                 </li>
@@ -46,6 +49,7 @@
                     <a class="icon places" href="{plink :Backend:Profile:places, 'username' => $profileUser->username}">
                         <span class="float-left">Places</span>
                         <span class="float-right">{count($profileUser->places)}</span>
+
                         <div style="clear: both;"></div>
                     </a>
                 </li>
@@ -55,99 +59,103 @@
         <div class="profile-summary">
             <div class="left-box float-left">
                 <p class="number">{$profileUser->getTotalDistance()}</p>
+
                 <p class="description">total km</p>
             </div>
             <div class="right-box float-left">
                 <p class="number">{count($profileUser->getTracks())}</p>
+
                 <p class="description">tracks</p>
             </div>
         </div>
-        </div>
-        <div class="wall">
-            {if $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
+    </div>
+    <div class="wall">
+        {if $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
             <div class="wall-title">
                 <div class="title-line">
                     <p class="name float-left">
                         <a data-toggle="modal" href="#addTrack">New Track</a>
                         <a data-toggle="modal" href="#addPhoto">New Photo</a>
                         <a data-toggle="modal" href="#addPlace">New Place</a></p>
+
                     <p class="name float-right"></p>
+
                     <div style="clear: both;"></div>
                 </div>
             </div>
-            {/if}
-            {if $detail != TRUE}
-               {if count($pinnedTracks) > 0}
+        {/if}
+        {if $detail != TRUE}
+            {if count($pinnedTracks) > 0}
                 <div class="profile-activity">
-                     <h3>PINNED ACTIVITY</h3>
-                       {foreach $control->components as $component}
-                            {if $template->strpos($component->getName(), 'YES')}
-                                {control $component->getName(), $themeDir.'/Modules/Backend/Controls/TrackRow/TrackRow.latte'}
-                            {/if}
-                       {/foreach}
+                    <h3>PINNED ACTIVITY</h3>
+                    {foreach $control->components as $component}
+                        {if $template->strpos($component->getName(), 'YES')}
+                            {control $component->getName(), $themeDir.'/Modules/Backend/Controls/TrackRow/TrackRow.latte'}
+                        {/if}
+                    {/foreach}
                 </div>
-                {/if}
-                {if count($unpinnedTracks) > 0}
+            {/if}
+            {if count($unpinnedTracks) > 0}
                 <div class="profile-activity">
                     <h3>RECENT ACTIVITY</h3>
-                       {foreach $control->components as $component}
-                            {if $template->strpos($component->getName(), 'NO')}
-                                {control $component->getName(), $themeDir.'/Modules/Backend/Controls/TrackRow/TrackRow.latte'}
-                            {/if}
-                       {/foreach}
+                    {foreach $control->components as $component}
+                        {if $template->strpos($component->getName(), 'NO')}
+                            {control $component->getName(), $themeDir.'/Modules/Backend/Controls/TrackRow/TrackRow.latte'}
+                        {/if}
+                    {/foreach}
                 </div>
-                {/if}
-                {if $tracks == TRUE}
+            {/if}
+            {if $tracks == TRUE}
                 <div class="profile-activity">
                     <h3>TRACKS</h3>
-                        {foreach $control->components as $component}
-                            {control $component->getName(), $themeDir.'/Modules/Backend/Controls/TrackRow/TrackRow.latte'}
-                        {/foreach}
+                    {foreach $control->components as $component}
+                        {control $component->getName(), $themeDir.'/Modules/Backend/Controls/TrackRow/TrackRow.latte'}
+                    {/foreach}
                 </div>
-                {/if}
-                {if $places == TRUE}
+            {/if}
+            {if $places == TRUE}
                 <div class="profile-activity">
                     <h3>PLACES</h3>
-                        {foreach $control->components as $component}
-                            {control $component->getName(), $themeDir.'/Modules/Backend/Controls/PlaceRow/PlaceRow.latte'}
-                        {/foreach}
+                    {foreach $control->components as $component}
+                        {control $component->getName(), $themeDir.'/Modules/Backend/Controls/PlaceRow/PlaceRow.latte'}
+                    {/foreach}
                 </div>
-                {/if}
-                {if $photos == TRUE}
+            {/if}
+            {if $photos == TRUE}
                 <div class="profile-activity">
                     <h3>PHOTOS</h3>
-                        {foreach $control->components as $component}
-                            {control $component->getName(), $themeDir.'/Modules/Backend/Controls/PhotoRow/PhotoRow.latte'}
-                        {/foreach}
+                    {foreach $control->components as $component}
+                        {control $component->getName(), $themeDir.'/Modules/Backend/Controls/PhotoRow/PhotoRow.latte'}
+                    {/foreach}
                 </div>
-                {/if}
-            {else}
-                {if $tracks == TRUE}
-                <div class="profile-activity">
-                        {foreach $control->components as $component}
-                            {control $component->getName(), $themeDir.'/Modules/Backend/Controls/TrackRow/TrackRow.latte'}
-                        {/foreach}
-                </div>
-                {/if}
-                {if $places == TRUE}
-                <div class="profile-activity">
-                        {foreach $control->components as $component}
-                            {control $component->getName(), $themeDir.'/Modules/Backend/Controls/PlaceRow/PlaceRow.latte'}
-                        {/foreach}
-                </div>
-                {/if}
-                {if $photos == TRUE}
-                <div class="profile-activity">
-                        {foreach $control->components as $component}
-                            {control $component->getName(), $themeDir.'/Modules/Backend/Controls/PhotoRow/PhotoRow.latte'}
-                        {/foreach}
-                </div>
-                {/if}
             {/if}
-        </div>
+        {else}
+            {if $tracks == TRUE}
+                <div class="profile-activity">
+                    {foreach $control->components as $component}
+                        {control $component->getName(), $themeDir.'/Modules/Backend/Controls/TrackRow/TrackRow.latte'}
+                    {/foreach}
+                </div>
+            {/if}
+            {if $places == TRUE}
+                <div class="profile-activity">
+                    {foreach $control->components as $component}
+                        {control $component->getName(), $themeDir.'/Modules/Backend/Controls/PlaceRow/PlaceRow.latte'}
+                    {/foreach}
+                </div>
+            {/if}
+            {if $photos == TRUE}
+                <div class="profile-activity">
+                    {foreach $control->components as $component}
+                        {control $component->getName(), $themeDir.'/Modules/Backend/Controls/PhotoRow/PhotoRow.latte'}
+                    {/foreach}
+                </div>
+            {/if}
+        {/if}
     </div>
+</div>
 
-    {control transportsModal, $themeDir.'Modules/Backend/Controls/TransportsModal/TransportsModal.latte'}
+{control transportsModal, $themeDir.'Modules/Backend/Controls/TransportsModal/TransportsModal.latte'}
 
 {if $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
     {control addTrackModal, $themeDir.'Modules/Backend/Controls/AddTrackModal/AddTrackModal.latte'}
@@ -155,8 +163,8 @@
     {control addPlaceModal, $themeDir.'Modules/Backend/Controls/AddPlaceModal/AddPlaceModal.latte'}
 {/if}
 
-    <script type="text/javascript">
-    $(window).scroll(function() {
+<script type="text/javascript">
+    $(window).scroll(function () {
         var header_height = 10;
         var current_scroll = $(window).scrollTop();
 
@@ -170,4 +178,4 @@
             s.style.position = "";
         }
     });
-    </script>
+</script>

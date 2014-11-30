@@ -1,49 +1,64 @@
 <div id="settings" class="modal fade" tabindex="-1" style="display: none;">
-        {form settingsForm class => ajax}
-            <div class="modal-header">
-                  <h2>Settings</h2>
-                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-            </div>
-            <div class="modal-body">
+    {form settingsForm class => ajax}
+        <div class="modal-header">
+            <h2>Settings</h2>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+        </div>
+        <div class="modal-body">
 
             <ul class="errors" n:if="$form->hasErrors()">
                 <li n:foreach="$form->errors as $error">{$error}</li>
             </ul>
 
-                  <h3>ACCOUNT</h3>
-                      <div class="line">
-                          <p class="name float-left">Username</p>
-                          <p class="name float-right">{$loggedUser->username}</p>
-                          <div style="clear: both;"></div>
-                      </div>
-                      <div class="line">
-                          <p class="name float-left">E-mail</p>
-                          <p class="name float-right">{$loggedUser->email}</p>
-                          <div style="clear: both;"></div>
-                      </div>
-                   <h3>PROFILE</h3>
-                      <div class="line">
-                          <p class="name float-left">Forename</p>
-                          <p class="input float-right">{input forename}</p>
-                          <div style="clear: both;"></div>
-                      </div>
-                      <div class="line">
-                          <p class="name float-left">Surname</p>
-                          <p class="input float-right">{input surname}</p>
-                          <div style="clear: both;"></div>
-                      </div>
-                      <div class="line">
-                          <p class="name float-left">Public</p>
-                          <p class="input float-right">{input public}</p>
-                          <div style="clear: both;"></div>
-                      </div>
-                      <div class="line">
-                            <p class="name float-left">Photo</p>
-                            <p class="name float-right">
-                                {if $loggedUser->profileImage != NULL}
-                                 | <a href="{link removeProfileImage!}" class="ajax"> Remove</a>
-                                {/if}
-                                <div class="fileUpload">
+            <h3>ACCOUNT</h3>
+
+            <div class="line">
+                <p class="name float-left">Username</p>
+
+                <p class="name float-right">{$loggedUser->username}</p>
+
+                <div style="clear: both;"></div>
+            </div>
+            <div class="line">
+                <p class="name float-left">E-mail</p>
+
+                <p class="name float-right">{$loggedUser->email}</p>
+
+                <div style="clear: both;"></div>
+            </div>
+            <h3>PROFILE</h3>
+
+            <div class="line">
+                <p class="name float-left">Forename</p>
+
+                <p class="input float-right">{input forename}</p>
+
+                <div style="clear: both;"></div>
+            </div>
+            <div class="line">
+                <p class="name float-left">Surname</p>
+
+                <p class="input float-right">{input surname}</p>
+
+                <div style="clear: both;"></div>
+            </div>
+            <div class="line">
+                <p class="name float-left">Public</p>
+
+                <p class="input float-right">{input public}</p>
+
+                <div style="clear: both;"></div>
+            </div>
+            <div class="line">
+                <p class="name float-left">Photo</p>
+
+                <p class="name float-right">
+                    {if $loggedUser->profileImage != NULL}
+                        |
+                        <a href="{link removeProfileImage!}" class="ajax"> Remove</a>
+                    {/if}
+
+                <div class="fileUpload">
                                     <span>
                                     {if $loggedUser->profileImage != NULL}
                                         {$loggedUser->profileImage} | Upload
@@ -51,34 +66,38 @@
                                         None | Upload
                                     {/if}
                                     </span>
-                                    {input profileImage class => upload}
-                                </div>
-                            </p>
-                            <div style="clear: both;"></div>
-                      </div>
-                      <h3>DESIGN</h3>
-                      <div class="line border">
-                            <p class="name float-left">Background</p>
-                            <p class="name float-right">
-                                {if $loggedUser->backgroundImage != NULL}
-                                 | <a href="{link removeBackgroundImage!}" class="ajax"> Remove</a>
-                                {/if}
-                                <div class="fileUpload">
+                    {input profileImage class => upload}
+                </div>
+                </p>
+                <div style="clear: both;"></div>
+            </div>
+            <h3>DESIGN</h3>
+
+            <div class="line border">
+                <p class="name float-left">Background</p>
+
+                <p class="name float-right">
+                    {if $loggedUser->backgroundImage != NULL}
+                        |
+                        <a href="{link removeBackgroundImage!}" class="ajax"> Remove</a>
+                    {/if}
+
+                <div class="fileUpload">
                                     <span>
                                         {if $loggedUser->backgroundImage != NULL}
-                                          {$loggedUser->backgroundImage} | Upload
+                                            {$loggedUser->backgroundImage} | Upload
                                         {else}
-                                           None | Upload
+                                            None | Upload
                                         {/if}
                                     </span>
-                                    {input backgroundImage class => upload}
-                                </div>
-                            </p>
-                            <div style="clear: both;"></div>
-                      </div>
+                    {input backgroundImage class => upload}
+                </div>
+                </p>
+                <div style="clear: both;"></div>
             </div>
-            <div class="modal-footer">
-                {input save}
-            </div>
-        {/form}
-    </div>
+        </div>
+        <div class="modal-footer">
+            {input save}
+        </div>
+    {/form}
+</div>

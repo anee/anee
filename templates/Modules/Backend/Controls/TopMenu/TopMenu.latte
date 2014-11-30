@@ -1,49 +1,52 @@
+<div class="top-menu" id="under-top" role="navigation" style="top: 36px;">
 
-    <div class="top-menu" id="under-top" role="navigation" style="top: 36px;">
-
-        <div id="user-panel-ref">
-            <a onclick="userPanel();"></a>
-        </div>
-
-         <div id="search">
-            <a onclick="searchBar();"></a>
-        </div>
-
-        {form searchForForm}
-            <div id="search-bar" style="display:none;">
-                <div class="filters-ref float-left">
-                    <a onclick="searchBarFilters();">Filters</a> |
-                </div>
-                {input search class => search}
-            </div>
-            <div id="search-bar-filters" style="display:none;">
-                <div class="filter-col float-left">
-                    <h4>Category</h4>
-                    <div class="bloc">
-	                    {input filterCategory class => multiselect}
-                    </div>
-                </div>
-
-                 <div class="filter-col float-left">
-                     <h4>Transport</h4>
-                     <div class="bloc">
-                	    {input filterTransport}
-                     </div>
-                 </div>
-
-                <div class="filter-col float-left">
-                     <h4>Time</h4>
-                     <div class="bloc">
-                	    {input filterTime}
-                     </div>
-                 </div>
-
-                <div class="filter-col float-left">
-                     <h4>Sort by</h4>
-                     <div class="bloc">
-                	    {input filterSortBy}
-                     </div>
-                 </div>
-            </div>
-        {/form}
+    <div id="user-panel-ref">
+        <a onclick="userPanel();"></a>
     </div>
+
+    <div id="search">
+        <a onclick="searchBar();"></a>
+    </div>
+
+    {form searchForForm}
+        <div id="search-bar" style="display:none;">
+            <div class="filters-ref float-left">
+                <a onclick="searchBarFilters();">Filters</a> |
+            </div>
+            {input search class => search}
+        </div>
+        <div id="search-bar-filters" style="display:none;">
+            <div class="filter-col float-left">
+                <h4>Category</h4>
+
+                <div class="bloc">
+                    {input filterCategory class => multiselect}
+                </div>
+            </div>
+
+            <div class="filter-col float-left">
+                <h4>Transport</h4>
+
+                <div class="bloc">
+                    {input filterTransport}
+                </div>
+            </div>
+
+            <div class="filter-col float-left">
+                <h4>Time</h4>
+
+                <div class="bloc">
+                    {input filterTime}
+                </div>
+            </div>
+
+            <div class="filter-col float-left">
+                <h4>Sort by</h4>
+
+                <div class="bloc">
+                    {input filterSortBy}
+                </div>
+            </div>
+        </div>
+    {/form}
+</div>

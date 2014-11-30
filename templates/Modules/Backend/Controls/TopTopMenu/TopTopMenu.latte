@@ -1,68 +1,67 @@
-    <div class="top-top-menu" id="top" role="navigation" style="display: block;">
-        <div class="info float-left">
-            Anee is place for sharing tracks and photos.
-        </div>
-        <div class="refs float-right">
-           {if $user->isLoggedIn()}
-                <a href="#profile{$loggedUser->id}" data-toggle="modal">{$loggedUser->getName()}</a>
-                <a data-toggle="modal" href="#settings">Settings</a>
-                <a data-toggle="modal" href="#feedback">Support</a>
-                <a href="{plink :Security:Sign:out}">Sign out</a>
-
-                {control settingsModal, $themeDir.'Modules/Backend/Controls/SettingsModal/SettingsModal.latte'}
-                {control profileModal, $themeDir.'Modules/Backend/Controls/ProfileModal/ProfileModal.latte'}
-                {control feedbackModal, $themeDir.'Modules/Backend/Controls/FeedbackModal/FeedbackModal.latte'}
-
-            {else}
-                <a href="{plink :Security:Sign:in}">Sign in</a>
-                <a href="{plink :Security:Register:in}">Register</a>
-            {/if}
-        </div>
+<div class="top-top-menu" id="top" role="navigation" style="display: block;">
+    <div class="info float-left">
+        Anee is place for sharing tracks and photos.
     </div>
+    <div class="refs float-right">
+        {if $user->isLoggedIn()}
+            <a href="#profile{$loggedUser->id}" data-toggle="modal">{$loggedUser->getName()}</a>
+            <a data-toggle="modal" href="#settings">Settings</a>
+            <a data-toggle="modal" href="#feedback">Support</a>
+            <a href="{plink :Security:Sign:out}">Sign out</a>
+            {control settingsModal, $themeDir.'Modules/Backend/Controls/SettingsModal/SettingsModal.latte'}
+            {control profileModal, $themeDir.'Modules/Backend/Controls/ProfileModal/ProfileModal.latte'}
+            {control feedbackModal, $themeDir.'Modules/Backend/Controls/FeedbackModal/FeedbackModal.latte'}
+
+        {else}
+            <a href="{plink :Security:Sign:in}">Sign in</a>
+            <a href="{plink :Security:Register:in}">Register</a>
+        {/if}
+    </div>
+</div>
 
 {if $user->isLoggedIn()}
     <script type="text/javascript">
-    $(window).scroll(function() {
-        var header_height = 10;
-        var current_scroll = $(window).scrollTop();
+        $(window).scroll(function () {
+            var header_height = 10;
+            var current_scroll = $(window).scrollTop();
 
-        if (current_scroll > 35) {
-            var s = document.getElementById('top');
-            s.style.display = "none";
+            if (current_scroll > 35) {
+                var s = document.getElementById('top');
+                s.style.display = "none";
 
-            var u = document.getElementById('under-top');
-            u.style.top = "1px";
+                var u = document.getElementById('under-top');
+                u.style.top = "1px";
 
-            var u = document.getElementById('user-panel-ref');
-            u.style.top = "1px";
+                var u = document.getElementById('user-panel-ref');
+                u.style.top = "1px";
 
-            var u = document.getElementById('right-menu');
-            u.style.top = "1px";
+                var u = document.getElementById('right-menu');
+                u.style.top = "1px";
 
-            var u = document.getElementById('search-bar');
-            u.style.top = "70px";
+                var u = document.getElementById('search-bar');
+                u.style.top = "70px";
 
-            var u = document.getElementById('search-bar-filters');
-            u.style.top = "111px";
-        } else {
-            var s = document.getElementById('top');
-            s.style.display = "block";
+                var u = document.getElementById('search-bar-filters');
+                u.style.top = "111px";
+            } else {
+                var s = document.getElementById('top');
+                s.style.display = "block";
 
-            var u = document.getElementById('under-top');
-            u.style.top = "36px";
+                var u = document.getElementById('under-top');
+                u.style.top = "36px";
 
-            var u = document.getElementById('user-panel-ref');
-            u.style.top = "36px";
+                var u = document.getElementById('user-panel-ref');
+                u.style.top = "36px";
 
-            var u = document.getElementById('right-menu');
-            u.style.top = "36px";
+                var u = document.getElementById('right-menu');
+                u.style.top = "36px";
 
-            var u = document.getElementById('search-bar');
-            u.style.top = "106px";
+                var u = document.getElementById('search-bar');
+                u.style.top = "106px";
 
-            var u = document.getElementById('search-bar-filters');
-            u.style.top = "147px";
-        }
-    });
+                var u = document.getElementById('search-bar-filters');
+                u.style.top = "147px";
+            }
+        });
     </script>
 {/if}

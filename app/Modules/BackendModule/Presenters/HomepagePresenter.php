@@ -21,8 +21,8 @@ class HomepagePresenter extends BasePresenter
 
 			/** Added all tracks from following users BUT ignore tracks from myself */
 			foreach ($loggedUser->following as $followingUser) {
-				foreach($followingUser->tracks as $track) {
-					if($loggedUser->id != $followingUser->id) {
+				foreach ($followingUser->tracks as $track) {
+					if ($loggedUser->id != $followingUser->id) {
 						$this->addComponent($this->createComponentTrackRow($track, $loggedUser, $followingUser, TRUE), 'Track' . $track->id);
 					}
 				}

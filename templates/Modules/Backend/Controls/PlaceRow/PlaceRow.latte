@@ -1,83 +1,90 @@
-        {if $detail != TRUE}
-        <div class="track-row">
-                      <div class="line">
-                            <p class="track-name float-left">
-                                <a href="{plink :Backend:Places:Default, 'url' => $place->nameUrl, 'username' => $profileUser->username}">{$place->name}</a>
-                            </p>
-                            <p class="options float-right">
+{if $detail != TRUE}
+    <div class="track-row">
+        <div class="line">
+            <p class="track-name float-left">
+                <a href="{plink :Backend:Places:Default, 'url' => $place->nameUrl, 'username' => $profileUser->username}">{$place->name}</a>
+            </p>
 
-                                {if $place->getLastUpdate() != NULL}
-                                    {$place->getLastUpdate()|dateAgoNumber}
-                                    {$place->getLastUpdate()|dateAgoText}
-                                    ·
-                                {/if}
-                                {if $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
-                                     <a href="{link remove!, 'id' => $place->id}" class="ajax">remove</a>
-                                {/if}
+            <p class="options float-right">
 
-                            </p>
-                            <div style="clear: both;"></div>
-                      </div>
-                      <div class="part">
-            					<div class="bar overall-bg float-left">
-            						<span class="bar-value">{$place->getDistance()}</span> km
-            					</div>
-            					{*<div class="info overall float-left">
-            						<p>{$track->getTimeInSeconds()|getSpanTimeFromSecondsNumber}</p>
-                                    <p>{$track->getTimeInSeconds()|getSpanTimeFromSecondsText}</p>
-            					</div>*}
-                                <div class="bar partial-bg float-right">
-                                	<span class="bar-value">{count($place->tracks)}</span> tracks{*{$track->getTimeInSeconds()|getSpanTimeFromSecondsNumber} {$track->getTimeInSeconds()|getSpanTimeFromSecondsText|strtolower}*}
-                                </div>
-                                {*<div class="info partial float-right text-align-right">
-                                	<p>{$track->getAvgSpeed()}</p>
-                                	<p></p>
-                                </div>*}
-                      </div>
+                {if $place->getLastUpdate() != NULL}
+                    {$place->getLastUpdate()|dateAgoNumber}
+                    {$place->getLastUpdate()|dateAgoText}
+                    ·
+                {/if}
+                {if $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
+                    <a href="{link remove!, 'id' => $place->id}" class="ajax">remove</a>
+                {/if}
+
+            </p>
+
+            <div style="clear: both;"></div>
         </div>
-        {else}
-        <div class="track-row">
+        <div class="part">
+            <div class="bar overall-bg float-left">
+                <span class="bar-value">{$place->getDistance()}</span> km
+            </div>
+            {*<div class="info overall float-left">
+                <p>{$track->getTimeInSeconds()|getSpanTimeFromSecondsNumber}</p>
+                <p>{$track->getTimeInSeconds()|getSpanTimeFromSecondsText}</p>
+            </div>*}
+            <div class="bar partial-bg float-right">
+                <span class="bar-value">{count($place->tracks)}</span>
+                tracks{*{$track->getTimeInSeconds()|getSpanTimeFromSecondsNumber} {$track->getTimeInSeconds()|getSpanTimeFromSecondsText|strtolower}*}
+            </div>
+            {*<div class="info partial float-right text-align-right">
+                <p>{$track->getAvgSpeed()}</p>
+                <p></p>
+            </div>*}
+        </div>
+    </div>
+{else}
+    <div class="track-row">
         {form placeEditForm class => ajax}
-                      <div class="line">
-                            <p class="track-name inline-change float-left">
-                            {if $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
-                                {input name class => autosize}
-                            {else}
-                                <a href="{plink :Backend:Places:Default, 'url' => $place->nameUrl, 'username' => $profileUser->username}">{$place->name}</a>
-                            {/if}
-                            </p>
-                            <p class="options float-right">
+            <div class="line">
+                <p class="track-name inline-change float-left">
+                    {if $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
+                        {input name class => autosize}
+                    {else}
+                        <a href="{plink :Backend:Places:Default, 'url' => $place->nameUrl, 'username' => $profileUser->username}">{$place->name}</a>
+                    {/if}
+                </p>
 
-                                {if $place->getLastUpdate() != NULL}
-                                    {$place->getLastUpdate()|dateAgoNumber}
-                                    {$place->getLastUpdate()|dateAgoText}
-                                    ·
-                                {/if}
-                                {if $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
-                                    <a href="" class="inline-save-change">{input save}</a> ·
-                                    <a href="{link remove!, 'id' => $place->id}" class="ajax">remove</a>
-                                {/if}
+                <p class="options float-right">
+
+                    {if $place->getLastUpdate() != NULL}
+                        {$place->getLastUpdate()|dateAgoNumber}
+                        {$place->getLastUpdate()|dateAgoText}
+                        ·
+                    {/if}
+                    {if $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
+                        <a href="" class="inline-save-change">{input save}</a>
+                        ·
+                        <a href="{link remove!, 'id' => $place->id}" class="ajax">remove</a>
+                    {/if}
 
 
-                            </p>
-                            <div style="clear: both;"></div>
-                      </div>
-                      <div class="part">
-            					<div class="bar overall-bg float-left">
-            						<span class="bar-value">{$place->getDistance()}</span> km
-            					</div>
-            					{*<div class="info overall float-left">
-            						<p>{$track->getTimeInSeconds()|getSpanTimeFromSecondsNumber}</p>
-                                    <p>{$track->getTimeInSeconds()|getSpanTimeFromSecondsText}</p>
-            					</div>*}
-                                <div class="bar partial-bg float-right">
-                                	<span class="bar-value">{count($place->tracks)}</span> tracks{*{$track->getTimeInSeconds()|getSpanTimeFromSecondsNumber} {$track->getTimeInSeconds()|getSpanTimeFromSecondsText|strtolower}*}
-                                </div>
-                                {*<div class="info partial float-right text-align-right">
-                                	<p>{$track->getAvgSpeed()}</p>
-                                	<p></p>
-                                </div>*}
-                      </div>
+                </p>
+
+                <div style="clear: both;"></div>
+            </div>
+            <div class="part">
+                <div class="bar overall-bg float-left">
+                    <span class="bar-value">{$place->getDistance()}</span> km
+                </div>
+                {*<div class="info overall float-left">
+                    <p>{$track->getTimeInSeconds()|getSpanTimeFromSecondsNumber}</p>
+                    <p>{$track->getTimeInSeconds()|getSpanTimeFromSecondsText}</p>
+                </div>*}
+                <div class="bar partial-bg float-right">
+                    <span class="bar-value">{count($place->tracks)}</span>
+                    tracks{*{$track->getTimeInSeconds()|getSpanTimeFromSecondsNumber} {$track->getTimeInSeconds()|getSpanTimeFromSecondsText|strtolower}*}
+                </div>
+                {*<div class="info partial float-right text-align-right">
+                    <p>{$track->getAvgSpeed()}</p>
+                    <p></p>
+                </div>*}
+            </div>
         {/form}
-        </div>
-        {/if}
+    </div>
+{/if}

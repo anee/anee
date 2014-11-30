@@ -5,18 +5,17 @@ namespace App\Modules\BackendModule\Presenters;
 use Nette;
 
 
-
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
  */
 class PlacesPresenter extends BasePresenter
 {
 
-	/** @var \App\Model\PlaceBaseLogic @inject*/
+	/** @var \App\Model\PlaceBaseLogic @inject */
 	public $placeBaseLogic;
 
 	/** @var \App\Model\Place */
-    public $place;
+	public $place;
 
 	/** @var \App\Modules\BackendModule\Controls\IProfile @inject */
 	public $IProfile;
@@ -38,7 +37,7 @@ class PlacesPresenter extends BasePresenter
 		$user = $this->userBaseLogic->findOneByUsername($username);
 		$place = $this->placeBaseLogic->findOneByNameUrlAndUserName($url, $username);
 
-		if($user == NULL || ($this->userBaseLogic->findOneByUsername($username)->public == FALSE && !$this->getUser()->isLoggedIn())) {
+		if ($user == NULL || ($this->userBaseLogic->findOneByUsername($username)->public == FALSE && !$this->getUser()->isLoggedIn())) {
 			$this->getPresenter()->redirect(':Backend:Homepage:default');
 		} else {
 			if ($place == null) {
