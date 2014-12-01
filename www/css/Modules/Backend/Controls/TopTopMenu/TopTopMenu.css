@@ -8,10 +8,10 @@
     position: fixed;
     border-bottom: 1px solid #adbfcd;
 }
-.top-top-menu .refs, .top-top-menu .info {
+.top-top-menu .refs, .top-top-menu .project-description {
     padding-top: 10px;
 }
-.top-top-menu .info {
+.top-top-menu .project-description {
     margin-left: 25px;
 }
 .top-top-menu a {
