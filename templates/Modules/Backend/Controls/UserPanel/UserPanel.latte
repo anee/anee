@@ -1,5 +1,37 @@
 <div id="user-panel" style="display: none;">
-    <div class="user" id="right-menu">
+    <div class="user" id="right-menu-preview" style="display: none;">
+        <div class="user-title">
+            <div class="user-ref float-left">
+                <a onclick="userPanel();"></a>
+            </div>
+        </div>
+        <div class="user-menu">
+            <ul>
+                <li>
+                    <a class="icon home" href="{plink :Backend:Homepage:default}">
+                    </a>
+                </li>
+                <li>
+                    {var $args = array('values' => [filterCategory => array('Tracks')], 'username' => $user->username)}
+                    <a class="icon tracks" href="{plink :Backend:Search:default (expand) $args}">
+                    </a>
+                </li>
+                <li>
+                    {var $args = array('values' => [filterCategory => array('Photos')], 'username' => $user->username)}
+                    <a class="icon photos" href="{plink :Backend:Search:default (expand) $args}">
+                    </a>
+                </li>
+                <li>
+                    {var $args = array('values' => [filterCategory => array('Places')], 'username' => $user->username)}
+                    <a class="icon places" href="{plink :Backend:Search:default (expand) $args}">
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="user" id="right-menu" style="display: none;">
         <div class="user-title">
             <div class="user-ref float-left">
                 <a onclick="userPanel();"></a>

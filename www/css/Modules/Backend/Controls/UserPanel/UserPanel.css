@@ -1,89 +1,92 @@
-.user {
+#right-menu-preview {
     z-index: 2;
     position: fixed;
     top: 36px;
     right: 0;
-    width: 400px;
+    width: 80px;
     height: 100%;
     background-color: #293c4b;
 }
-.user .user-title {
+#right-menu-preview .user-title {
     width: 500px; height: 70px;
     /*border-bottom: 1px solid #4a5d6c;*/
 }
-.user .user-ref {
+#right-menu-preview .user-ref {
     cursor: pointer;
     width: 80px; height: 70px;
 }
-.user .user-ref a {
+#right-menu-preview .user-ref a {
     display: block;
     width: 80px; height: 70px;
     background: url('../../../../images/user_menu_icon.png') #293c4b no-repeat 31px 26px;
 }
-
-.user .user-menu {
-    margin: 10px 35px 0 35px;
+#right-menu-preview .user-menu {
+    margin: 10px 0 0 0;
 }
-.user .user-menu ul {
+#right-menu-preview .user-menu ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
 }
-.user .user-menu ul .add a {
+#right-menu-preview .user-menu ul .add a {
     margin-top: 15px;
     border-top: 1px solid #4a5d6c;
     background: url('../../../../images/add.png') center no-repeat;
 }
-.user .user-menu ul .add a:hover {
+#right-menu-preview .user-menu ul .add a:hover {
     background: url('../../../../images/add_hover.png') white center no-repeat;
 }
-.user .user-menu ul li {
+#right-menu-preview .user-menu ul li {
+    padding-left: 8px;
     color: white;
     height: 45px;
     font-size: 16px;
     font-weight: bold;
     font-family: "Verdana";
 }
-.user .user-menu ul li a {
+#right-menu-preview .user-menu ul li:hover {
+    background-color: white;
+}
+#right-menu-preview .user-menu ul li a {
     display: block;
     padding: 14px 15px 0 15px;
     height: 30px;
     color: white;
     text-decoration: none;
 }
-.user .user-menu ul li a:hover {
+/*#right-menu-preview .user-menu ul li a:hover {
     color: #293c4b;
     background-color: white;
-}
-.user .user-menu ul .icon {
+}*/
+#right-menu-preview .user-menu ul .icon {
     padding-left: 70px;
     background: url('../../../../images/icons.png') no-repeat;
 }
-.user .user-menu ul .tracks {
+#right-menu-preview .user-menu ul .tracks {
     background-position: -48px 10px;
 }
-.user .user-menu ul .tracks:hover {
+#right-menu-preview .user-menu ul .tracks:hover {
     background-position: 0 10px;
 }
-.user .user-menu ul .photos {
+#right-menu-preview .user-menu ul .photos {
     background-position: -48px -80px;
 }
-.user .user-menu ul .photos:hover {
+#right-menu-preview .user-menu ul .photos:hover {
     background-position: 0 -80px;
 }
-.user .user-menu ul .places {
+#right-menu-preview .user-menu ul .places {
     background-position: -48px -126px;
 }
-.user .user-menu ul .places:hover {
+#right-menu-preview .user-menu ul .places:hover {
     background-position: 0 -126px;
 }
-.user .user-menu ul .home {
+#right-menu-preview .user-menu ul .home {
     background-position: -48px -34px;
 }
-.user .user-menu ul .home:hover {
+#right-menu-preview .user-menu ul .home:hover {
     background-position: 0 -34px;
 }
-.user .user-summary {
+#right-menu-preview .user-summary {
     position: fixed;
     bottom: 0;
     height: 85px;
@@ -93,7 +96,7 @@
     border-bottom: 1px solid #50606e;
     border-top: 1px solid #50606e;
 }
-.user .user-summary .number {
+#right-menu-preview .user-summary .number {
     line-height: 1;
     height: 45px;
     padding: 0;
@@ -102,27 +105,157 @@
     font-size: 48px;
     font-family: "Kalinga";
 }
-.user .user-summary .description {
+#right-menu-preview .user-summary .description {
     margin: 0;
     text-align: center;
     font-size: 18px;
     font-family: "ProximaNova-Light";
 }
-.user .user-summary .left-box {
+#right-menu-preview .user-summary .left-box {
     width: 164px;
     border-right: 1px solid #50606e;
 }
-.user .user-summary .right-box {
+#right-menu-preview .user-summary .right-box {
     width: 165px;
 }
-.user .user-summary .left-box a, .user .user-summary .right-box a {
+#right-menu-preview .user-summary .left-box a, #right-menu .user-summary .right-box a {
     text-decoration: none;
     color: #e0e9f0;
 }
-.user .user-summary .left-box a:hover, .user .user-summary .right-box a:hover {
+#right-menu-preview .user-summary .left-box a:hover, #right-menu .user-summary .right-box a:hover {
     color: #e0e9f0;
     font-weight: bold;
 }
-.user .add-border{
+#right-menu-preview .add-border{
+    border-bottom: 1px solid #4a5d6c;
+}
+
+/* RIGHT MENU FULL VERSION */
+#right-menu {
+    z-index: 2;
+    position: fixed;
+    top: 36px;
+    right: 0;
+    width: 400px;
+    height: 100%;
+    background-color: #293c4b;
+}
+#right-menu .user-title {
+    width: 500px; height: 70px;
+    /*border-bottom: 1px solid #4a5d6c;*/
+}
+#right-menu .user-ref {
+    cursor: pointer;
+    width: 80px; height: 70px;
+}
+#right-menu .user-ref a {
+    display: block;
+    width: 80px; height: 70px;
+    background: url('../../../../images/user_menu_icon.png') #293c4b no-repeat 31px 26px;
+}
+
+#right-menu .user-menu {
+    margin: 10px 35px 0 35px;
+}
+#right-menu .user-menu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+#right-menu .user-menu ul .add a {
+    margin-top: 15px;
+    border-top: 1px solid #4a5d6c;
+    background: url('../../../../images/add.png') center no-repeat;
+}
+#right-menu .user-menu ul .add a:hover {
+    background: url('../../../../images/add_hover.png') white center no-repeat;
+}
+#right-menu .user-menu ul li {
+    color: white;
+    height: 45px;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: "Verdana";
+}
+#right-menu .user-menu ul li a {
+    display: block;
+    padding: 14px 15px 0 15px;
+    height: 30px;
+    color: white;
+    text-decoration: none;
+}
+#right-menu .user-menu ul li a:hover {
+    color: #293c4b;
+    background-color: white;
+}
+#right-menu .user-menu ul .icon {
+    padding-left: 70px;
+    background: url('../../../../images/icons.png') no-repeat;
+}
+#right-menu .user-menu ul .tracks {
+    background-position: -48px 10px;
+}
+#right-menu .user-menu ul .tracks:hover {
+    background-position: 0 10px;
+}
+#right-menu .user-menu ul .photos {
+    background-position: -48px -80px;
+}
+#right-menu .user-menu ul .photos:hover {
+    background-position: 0 -80px;
+}
+#right-menu .user-menu ul .places {
+    background-position: -48px -126px;
+}
+#right-menu .user-menu ul .places:hover {
+    background-position: 0 -126px;
+}
+#right-menu .user-menu ul .home {
+    background-position: -48px -34px;
+}
+#right-menu .user-menu ul .home:hover {
+    background-position: 0 -34px;
+}
+#right-menu .user-summary {
+    position: fixed;
+    bottom: 0;
+    height: 85px;
+    color: #e0e9f0;
+    margin: 20px 35px 25px 35px;
+    padding-top: 20px;
+    border-bottom: 1px solid #50606e;
+    border-top: 1px solid #50606e;
+}
+#right-menu .user-summary .number {
+    line-height: 1;
+    height: 45px;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    font-size: 48px;
+    font-family: "Kalinga";
+}
+#right-menu .user-summary .description {
+    margin: 0;
+    text-align: center;
+    font-size: 18px;
+    font-family: "ProximaNova-Light";
+}
+#right-menu .user-summary .left-box {
+    width: 164px;
+    border-right: 1px solid #50606e;
+}
+#right-menu .user-summary .right-box {
+    width: 165px;
+}
+#right-menu .user-summary .left-box a, #right-menu .user-summary .right-box a {
+    text-decoration: none;
+    color: #e0e9f0;
+}
+#right-menu .user-summary .left-box a:hover, #right-menu .user-summary .right-box a:hover {
+    color: #e0e9f0;
+    font-weight: bold;
+}
+#right-menu .add-border{
     border-bottom: 1px solid #4a5d6c;
 }
