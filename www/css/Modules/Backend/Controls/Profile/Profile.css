@@ -148,6 +148,10 @@
     display: block;
     height: 28px;
 }
+.main-profile .profile-image h2 a, .main-profile .profile-image h2 a:hover {
+    color: #55676e;
+}
+
 .main-profile .profile-image .no-following a:hover {
     /*background-color: white;*/
 }
