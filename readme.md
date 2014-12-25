@@ -16,3 +16,4 @@ Mark as       | What it means
 `[Refactored]` | code was changed but result is the same
 `[Fixed]`| for bugs, issues
 `[Solved]` | only for pull requests
+`[Design]`    | for visual changes
