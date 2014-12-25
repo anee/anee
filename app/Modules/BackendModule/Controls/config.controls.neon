@@ -1,5 +1,4 @@
 services:
-
 	SearchTitle:
 		class: App\Modules\BackendModule\Controls\SearchTitle(%values%, %results%)
 		implement: App\Modules\BackendModule\Controls\ISearchTitle
