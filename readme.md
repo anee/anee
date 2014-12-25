@@ -13,5 +13,5 @@ Interface tries to be intuitive. If you dont know anything do not be shy to cont
 Reporting bugs
 ---------------
 
-If something is wrong, use support form in application or if you think that it's bug you can report issue on [Github](https://github.com/ldrahnik/anee/issues).
+If something is wrong, use support form in application or if you think that it's bug you can report issue [here](https://github.com/ldrahnik/anee/issues) or if you know how fix it you should send [pull request](https://github.com/ldrahnik/anee/pulls).
 
