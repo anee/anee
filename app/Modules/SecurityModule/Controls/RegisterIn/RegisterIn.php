@@ -61,7 +61,7 @@ class RegisterIn extends Nette\Application\UI\Control
 		try {
 			$values = $form->getValues();
 			$this->userBaseLogic->save(new User($values->username, $values->forename, $values->surname, $values->public, $values->email, $values->password));
-			$this->getPresenter()->redirect(':Backend:Homepage:default');
+			$this->getPresenter()->redirect(':Security:Sign:in');
 		} catch(DuplicateEntryException $e) {
 			$form->addError('User with this username or email already exist.');
 		}
