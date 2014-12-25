@@ -31,7 +31,7 @@ services:
 	Profile:
 		class: App\Modules\BackendModule\Controls\Profile(..., ..., ..., ..., ..., ..., ..., ..., ..., %wwwDir%, %loggedUser%, %profileUser%, %detail%)
 		implement: App\Modules\BackendModule\Controls\IProfile
-		parameters: [App\Model\User loggedUser, App\Model\User profileUser, detail = NULL]
+		parameters: [App\Model\User loggedUser = NULL, App\Model\User profileUser, detail = NULL]
 
 	ProfileModal:
 		class: App\Modules\BackendModule\Controls\ProfileModal(..., ..., ..., ..., %wwwDir%, %loggedUser%, %profileUser%)
