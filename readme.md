@@ -14,5 +14,5 @@ Mark as       | What it means
 `[Changed]`    | almost the same as `[Refactored]` but result may be slightly different
 `[Removed]`  | for remove files, part of logic or something else
 `[Refactored]` | code was changed but result is the same
-`[Fixed]`| for non reported bugs
+`[Fixed]`| for bugs, issues
 `[Solved]` | only for pull requests
