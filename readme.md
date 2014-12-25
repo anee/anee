@@ -1,19 +1,17 @@
-## Content
-* [Info](https://bitbucket.org/ifj2014/project/overview#markdown-header-info)
-* [Git rules](https://bitbucket.org/ifj2014/project/overview#markdown-header-git)
+[Anee](http://anee.drahnik-lukas.com)
+===================================
+
+Anee is place for sharing tracks and photos. I develop this service in free time and for non-commercial using.
 
 
-## Info
-* Anee is place for sharing tracks and photos.
+Getting started
+---------------
+
+Interface tries to be intuitive. If you dont know anything do not be shy to contact me. 
 
 
-## Git rules
-Mark as       | What it means
---------------|-----------------------------------------------------------------
-`[Added]`    | for new files, features or something else
-`[Changed]`    | almost the same as `[Refactored]` but result may be slightly different
-`[Removed]`  | for remove files, part of logic or something else
-`[Refactored]` | code was changed but result is the same
-`[Fixed]`| for bugs, issues
-`[Solved]` | only for pull requests
-`[Design]`    | for visual changes
+Reporting bugs
+---------------
+
+If something is wrong, use support form in application or if you think that it's bug you can report issue on [Github](https://github.com/ldrahnik/anee/issues).
+
