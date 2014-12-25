@@ -16,9 +16,7 @@
                     {/if}
 
                 {/foreach}
-                    {if count($profileUser->transports) > 0}
-                        <a class="tags-etc" style="color: transparent;" data-toggle="modal" href="#transports{$profileUser->id}">mana</a>
-                    {/if}
+                    <a class="tags-etc" style="color: transparent;" data-toggle="modal" href="#transports{$profileUser->id}">mana</a>
                 </span>
             </h2>
             {if $user->isLoggedIn()}
