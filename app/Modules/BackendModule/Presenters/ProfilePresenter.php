@@ -50,7 +50,8 @@ class ProfilePresenter extends BasePresenter
 		$loggedUser = $this->userBaseLogic->findOneById($this->getUser()->getId());
 
 		$profile = $this->IProfile->create($loggedUser, $user);
-		foreach ($user->tracks as $track) {
+		$tracks = $this->trackBaseLogic->findAll($user->id);
+		foreach ($tracks as $track) {
 			if ($track->pinned == NULL) {
 				$profile->addComponent($this->createComponentTrackRow($track, $loggedUser, $user), 'NO' . $track->id);
 			} elseif ($track->pinned == TRUE) {
