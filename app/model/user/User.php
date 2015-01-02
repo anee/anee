@@ -91,7 +91,7 @@ class User extends BaseEntity {
 	/**
 	 * @ORM\Column(type="datetime", nullable=TRUE)
 	 */
-	protected $lastLogged;
+	protected $lastLogin;
 
 	/**
 	 * @ORM\Column(type="datetime", nullable=TRUE)

@@ -34,7 +34,7 @@ abstract class BasePresenter extends \App\Modules\BaseModule\Presenters\BasePres
 		parent::startup();
 		if ($this->user->isLoggedIn()) {
 			$loggedUser = $this->userBaseLogic->findOneById($this->user->id);
-			$loggedUser->setLastLogged(new Nette\Utils\DateTime());
+			$loggedUser->setLastLogin(new Nette\Utils\DateTime());
 			$this->userBaseLogic->save($loggedUser);
 		}
 	}
