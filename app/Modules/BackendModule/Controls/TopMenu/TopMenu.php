@@ -15,7 +15,7 @@ class TopMenu extends Control
 {
 
 
-	private $username;
+	private $usernameUrl;
 
 	/** @var \App\Model\UserBaseLogic */
     public $userBaseLogic;
@@ -33,15 +33,15 @@ class TopMenu extends Control
 
     protected function createComponentSearchForForm()
     {
-		$username = $this->getPresenter()->getParameter('username');
-		if($username != NULL) {
-			$this->username = $username;
-		} elseif ($this->getPresenter()->getUser()->isLoggedIn()) {
-			$this->username = $this->getPresenter()->getUser()->getIdentity()->data['username'];
-		}
+        $user = $this->userBaseLogic->findOneByUsername($this->getPresenter()->getParameter('username'));
+        if($user != NULL) {
+            $this->usernameUrl = $user->usernameUrl;
+        } elseif ($this->getPresenter()->getUser()->isLoggedIn()) {
+            $this->usernameUrl = $this->userBaseLogic->findOneByUsername($this->getPresenter()->getUser()->getIdentity()->data['username'])->usernameUrl;
+        }
 
 		$transports = array();
-		foreach($this->userBaseLogic->findOneByUsername($this->username)->transports as $transport) {
+		foreach($this->userBaseLogic->findOneByUsernameUrl($this->usernameUrl)->transports as $transport) {
 			$transports[$transport->name] = ucfirst($transport->name);
 		}
 
@@ -75,6 +75,6 @@ class TopMenu extends Control
 
     public function success($form)
     {
-        $this->presenter->redirect(':Backend:Search:default', array('values' => $form->values, 'username' => $this->username));
+        $this->presenter->redirect(':Backend:Search:default', array('values' => $form->values, 'username' => $this->usernameUrl));
     }
 }

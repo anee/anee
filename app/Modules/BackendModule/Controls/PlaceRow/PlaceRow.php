@@ -92,7 +92,7 @@ class PlaceRow extends Control
 			} catch (DuplicateEntryException $e) {
 				$this->redirect('this');
 			}
-			$this->getPresenter()->redirect(':Backend:Places:default', array('username' => $this->loggedUser->username, 'url' => $place->getUrl()));
+			$this->getPresenter()->redirect(':Backend:Places:default', array('username' => $this->loggedUser->usernameUrl, 'url' => $place->getUrl()));
 		}
 	}
 }

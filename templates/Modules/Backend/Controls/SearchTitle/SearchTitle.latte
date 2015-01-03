@@ -11,14 +11,14 @@
                 in
                 <span class="highlight">
                     <a href="
-            						{var $args = array('values' => [filterCategory => array($category)], 'username' => $values['username'])}
+            						{var $args = array('values' => [filterCategory => array($category)], 'username' => $values['usernameUrl'])}
                                     {plink Search:default (expand) $args}
                     ">{$category}</a></span>
                 {var $first = 1}
             {elseif $category != ""}
                 ,
                 <span class="highlight"><a href="
-            						{var $args = array('values' => [filterCategory => array($category)], 'username' => $values['username'])}
+            						{var $args = array('values' => [filterCategory => array($category)], 'username' => $values['usernameUrl'])}
                                     {plink Search:default (expand) $args}
                                                                             ">{$category}</a></span>
             {/if}
@@ -26,12 +26,12 @@
         {if ($values['filterEntity'] == "Track" || $values['filterEntity'] == "Event") && $template->arrayContainsOneOrMore(array('Photos', 'Places'), $values['filterCategory'])}
             during
             <span class="highlight"><a href="
-            					{plink :Backend:Tracks:Default, 'url' => $results->getEntityObject()->id, 'username' => $values['username']}
+            					{plink :Backend:Tracks:Default, 'url' => $results->getEntityObject()->id, 'username' => $values['usernameUrl']}
                                                         *}">{$results->getEntityObject()->getName()}</a></span>
         {elseif $values['filterEntity'] == "Place" && $template->arrayContainsOneOrMore(array('Tracks', 'Events', 'Photos', 'Places'), $values['filterCategory'])}
             near
             <span class="highlight"><a href="
-            					    {plink :Backend:Places:Default, 'url' => $results->getEntityObject()->name, 'username' => $values['username']}
+            					    {plink :Backend:Places:Default, 'url' => $results->getEntityObject()->name, 'username' => $values['usernameUrl']}
                                 ">{$results->getEntityObject()->name}</a></span>
         {/if}
         {var $first = 0}
@@ -39,14 +39,14 @@
             {if $first == 0 && $transport != ""}
                 by
                 <span class="highlight"><a href="
-                            			{var $args = array('values' => [filterTransport => array($transport)], 'username' => $values['username'])}
+                            			{var $args = array('values' => [filterTransport => array($transport)], 'username' => $values['usernameUrl'])}
                                     	{plink :Backend:Search:default (expand) $args}
                             		">{ucfirst($transport)}</a></span>
                 {var $first = 1}
             {elseif $transport != ""}
                 ,
                 <span class="highlight"><a href="
-                            		    {var $args = array('values' => [filterTransport => array($transport)], 'username' => $values['username'])}
+                            		    {var $args = array('values' => [filterTransport => array($transport)], 'username' => $values['usernameUrl'])}
                                         {plink Search:default (expand) $args}
                                                             ">{ucfirst($transport)}</a></span>
             {/if}

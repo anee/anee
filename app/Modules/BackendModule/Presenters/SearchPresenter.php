@@ -34,7 +34,7 @@ class SearchPresenter extends BasePresenter
 
 		/** ==> byName = NULL, there are all results only for one user */
 		if ($username != NULL) {
-			$profileUser = $this->userBaseLogic->findOneByUsername($username);
+			$profileUser = $this->userBaseLogic->findOneByUsernameUrl($username);
 			$loggedUser = $this->userBaseLogic->findOneById($this->user->id);
 
 			/** Added all tracks from search results */
@@ -56,7 +56,7 @@ class SearchPresenter extends BasePresenter
 
 	public function renderDefault($username)
 	{
-		$this->template->background = $this->getBackgroundImage($this->userBaseLogic->findOneByUsername($username));
+		$this->template->background = $this->getBackgroundImage($this->userBaseLogic->findOneByUsernameUrl($username));
 	}
 
 	protected function createComponentSearchTitle()

@@ -143,6 +143,17 @@ class TrackBaseLogic extends BaseLogic {
 		return $this->addFilterByUserName($qb, $username)->getQuery()->getOneOrNullResult();
 	}
 
+	public function findOneByIdAndUsernameUrl($id, $username)
+	{
+		$qb = $this->dao->createQueryBuilder();
+		$qb
+			->select('e')
+			->from('App\Model\Track', 'e')
+			->andWhere('e.id = :id')
+			->setParameter('id', $id);
+
+		return $this->addFilterByUserNameUrl($qb, $username)->getQuery()->getOneOrNullResult();
+	}
 
 	public function distanceSum($userId)
     {

@@ -2,7 +2,7 @@
     <div class="track-row">
         <div class="line">
             <p class="track-name float-left">
-                <a href="{plink :Backend:Tracks:Default, 'url' => $track->id, 'username' => $profileUser->username}">{$track->getName()}
+                <a href="{plink :Backend:Tracks:Default, 'url' => $track->id, 'username' => $profileUser->usernameUrl}">{$track->getName()}
                     {if $track->transport != NULL}
                         <span class="transport">by {$track->transport->name}</span>
                     {/if}
@@ -13,7 +13,7 @@
 
                 {if $byName != NULL}
                     by
-                    <a href="{plink :Backend:Profile:Default, 'username' => $profileUser->username}">{$profileUser->getName()}</a>
+                    <a href="{plink :Backend:Profile:Default, 'username' => $profileUser->usernameUrl}">{$profileUser->getName()}</a>
                     ·
                 {/if}
                 {$track->date|dateAgoNumber}
@@ -93,7 +93,7 @@
                             <span class="inline-change transport">by {input transport class => autosize}</span>
                         {/if}
                     {else}
-                        <a href="{plink :Backend:Tracks:Default, 'url' => $track->id, 'username' => $profileUser->username}">{$track->name}
+                        <a href="{plink :Backend:Tracks:Default, 'url' => $track->id, 'username' => $profileUser->usernameUrl}">{$track->name}
                             {if $track->transport != NULL}
                                 <span class="transport">by {$track->transport->name}</span>
                             {/if}
@@ -105,7 +105,7 @@
 
                     {if $byName != NULL}
                         by
-                        <a href="{plink :Backend:Profile:Default, 'username' => $profileUser->username}">{$profileUser->getName()}</a>
+                        <a href="{plink :Backend:Profile:Default, 'username' => $profileUser->usernameUrl}">{$profileUser->getName()}</a>
                         ·
                     {/if}
                     {$track->date|dateAgoNumber}
@@ -115,10 +115,10 @@
                     {/if}
                     {foreach $track->withUsers as $friend}
                         {if $iterator->first}
-                            <a href="{plink :Backend:Profile:default, 'username' => $friend->username}"
+                            <a href="{plink :Backend:Profile:default, 'username' => $friend->usernameUrl}"
                                class="ajax"> {$friend->getName()}</a>
                         {else}
-                            <a href="{plink :Backend:Profile:default, 'username' => $friend->username}" class="ajax">
+                            <a href="{plink :Backend:Profile:default, 'username' => $friend->usernameUrl}" class="ajax">
                                 ,{$friend->getName()}</a>
                         {/if}
                     {/foreach}

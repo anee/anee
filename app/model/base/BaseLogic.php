@@ -41,5 +41,11 @@ class BaseLogic extends Object
 			->andWhere('eUser.username = :username')
 			->setParameter('username', $username);
 	}
-
+	public function addFilterByUsernameUrl(QueryBuilder $qb, $username)
+	{
+		return $qb
+			->join('e.user', 'eUser')
+			->andWhere('eUser.usernameUrl = :username')
+			->setParameter('username', $username);
+	}
 } 

@@ -11,7 +11,7 @@
                 <span class="profile-tags">
                 {foreach $profileUser->transports as $transport}
                     {if $iterator->getCounter() < 3}
-                        {var $args = array('values' => [filterTransport => array($transport->name)], 'username' => $profileUser->username)}
+                        {var $args = array('values' => [filterTransport => array($transport->name)], 'username' => $profileUser->usernameUrl)}
                         <a href="{plink :Backend:Search:default (expand) $args}">#{$transport->name}</a>
                     {/if}
 

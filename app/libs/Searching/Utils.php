@@ -35,6 +35,7 @@ class Utils {
 			'search' => '',
 			'userId' => '',
 			'username' => '',
+			'usernameUrl' => '',
 			'filterCategory' => array(),
 			'filterTransport' => array(),
 			'filterTimeStart' => '',

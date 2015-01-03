@@ -111,11 +111,12 @@ class SearchFactory extends Nette\Object
 	}
 
 	/**
-	 * @param $username
+	 * @param $usernameUrl
 	 */
-	public function setUser($username)
+	public function setUser($usernameUrl)
 	{
-		$this->values['username'] = $username;
-		$this->values['userId']= $this->userBaseLogic->findOneByUsername($username)->id;
+		$this->values['usernameUrl'] = $usernameUrl;
+		$this->values['username'] = $this->userBaseLogic->findOneByUsernameUrl($usernameUrl)->username;
+		$this->values['userId']= $this->userBaseLogic->findOneByUsernameUrl($usernameUrl)->id;
 	}
 }

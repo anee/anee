@@ -5,6 +5,7 @@ namespace App\Model;
 use Nette\Security\Passwords;
 use Doctrine\ORM\Mapping as ORM;
 use Nette\Utils\DateTime;
+use Nette\Utils\Strings;
 
 
 /**
@@ -16,6 +17,11 @@ class User extends BaseEntity {
 	 * @ORM\Column(type="string", length=128, unique=true)
 	 */
 	protected $username;
+
+	/**
+	 * @ORM\Column(type="string", length=128, unique=true)
+	 */
+	protected $usernameUrl;
 
 	/**
 	 * @ORM\Column(type="string", nullable=FALSE)
@@ -112,6 +118,7 @@ class User extends BaseEntity {
 		$this->forename = $forename;
 		$this->surname = $surname;
 		$this->username = $username;
+		$this->username = Strings::webalize($username);
 		$this->email = $email;
 		$this->public = $public;
 		$this->password = Passwords::hash($password);

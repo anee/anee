@@ -34,10 +34,10 @@ class TracksPresenter extends BasePresenter
 	 */
 	public function actionDefault($username, $url)
 	{
-		$user = $this->userBaseLogic->findOneByUsername($username);
-		$track = $this->trackBaseLogic->findOneByIdAndUserName($url, $username);
+		$user = $this->userBaseLogic->findOneByUsernameUrl($username);
+		$track = $this->trackBaseLogic->findOneByIdAndUserNameUrl($url, $username);
 
-		if ($user == NULL || ($this->userBaseLogic->findOneByUsername($username)->public == FALSE && !$this->getUser()->isLoggedIn())) {
+		if ($user == NULL || ($this->userBaseLogic->findOneByUsernameUrl($username)->public == FALSE && !$this->getUser()->isLoggedIn())) {
 			$this->getPresenter()->redirect(':Backend:Homepage:default');
 		} else {
 			if ($track == null) {
@@ -57,7 +57,7 @@ class TracksPresenter extends BasePresenter
 	public function renderDefault($username, $url)
 	{
 		$this->template->track = $this->track;
-		$this->template->background = $this->getBackgroundImage($this->userBaseLogic->findOneByUsername($username));
+		$this->template->background = $this->getBackgroundImage($this->userBaseLogic->findOneByUsernameUrl($username));
 	}
 
 	protected function createComponentProfileTrack()

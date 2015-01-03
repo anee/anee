@@ -34,10 +34,10 @@ class PlacesPresenter extends BasePresenter
 	 */
 	public function actionDefault($username, $url)
 	{
-		$user = $this->userBaseLogic->findOneByUsername($username);
-		$place = $this->placeBaseLogic->findOneByNameUrlAndUserName($url, $username);
+		$user = $this->userBaseLogic->findOneByUsernameUrl($username);
+		$place = $this->placeBaseLogic->findOneByNameUrlAndUserNameUrl($url, $username);
 
-		if ($user == NULL || ($this->userBaseLogic->findOneByUsername($username)->public == FALSE && !$this->getUser()->isLoggedIn())) {
+		if ($user == NULL || ($this->userBaseLogic->findOneByUsernameUrl($username)->public == FALSE && !$this->getUser()->isLoggedIn())) {
 			$this->getPresenter()->redirect(':Backend:Homepage:default');
 		} else {
 			if ($place == null) {
@@ -57,7 +57,7 @@ class PlacesPresenter extends BasePresenter
 	public function renderDefault($username, $url)
 	{
 		$this->template->place = $this->place;
-		$this->template->background = $this->getBackgroundImage($this->userBaseLogic->findOneByUsername($username));
+		$this->template->background = $this->getBackgroundImage($this->userBaseLogic->findOneByUsernameUrl($username));
 	}
 
 	protected function createComponentProfilePlace()

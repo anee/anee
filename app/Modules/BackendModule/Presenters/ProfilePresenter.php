@@ -46,7 +46,7 @@ class ProfilePresenter extends BasePresenter
 
 	protected function createComponentProfile()
 	{
-		$user = $this->userBaseLogic->findOneByUsername($this->username);
+		$user = $this->userBaseLogic->findOneByUsernameUrl($this->username);
 		$loggedUser = $this->userBaseLogic->findOneById($this->getUser()->getId());
 
 		$profile = $this->IProfile->create($loggedUser, $user);
@@ -78,9 +78,9 @@ class ProfilePresenter extends BasePresenter
 
 	public function actionDefault($username)
 	{
-		$user = $this->userBaseLogic->findOneByUsername($username);
+		$user = $this->userBaseLogic->findOneByUsernameUrl($username);
 
-		if ($user == NULL || ($this->userBaseLogic->findOneByUsername($username)->public == FALSE && !$this->getUser()->isLoggedIn())) {
+		if ($user == NULL || ($this->userBaseLogic->findOneByUsernameUrl($username)->public == FALSE && !$this->getUser()->isLoggedIn())) {
 			$this->getPresenter()->redirect(':Backend:Homepage:default');
 		} else {
 			$this->username = $username;
@@ -95,9 +95,9 @@ class ProfilePresenter extends BasePresenter
 
 	public function actionFollowing($username)
 	{
-		$user = $this->userBaseLogic->findOneByUsername($username);
+		$user = $this->userBaseLogic->findOneByUsernameUrl($username);
 
-		if ($user == NULL || ($this->userBaseLogic->findOneByUsername($username)->public == FALSE && !$this->getUser()->isLoggedIn())) {
+		if ($user == NULL || ($this->userBaseLogic->findOneByUsernameUrl($username)->public == FALSE && !$this->getUser()->isLoggedIn())) {
 			$this->getPresenter()->redirect(':Backend:Homepage:default');
 		} else {
 			$this->username = $username;
@@ -112,8 +112,8 @@ class ProfilePresenter extends BasePresenter
 
 	public function actionFollowers($username)
 	{
-		$user = $this->userBaseLogic->findOneByUsername($username);
-		if ($user == NULL || ($this->userBaseLogic->findOneByUsername($username)->public == FALSE && !$this->getUser()->isLoggedIn())) {
+		$user = $this->userBaseLogic->findOneByUsernameUrl($username);
+		if ($user == NULL || ($this->userBaseLogic->findOneByUsernameUrl($username)->public == FALSE && !$this->getUser()->isLoggedIn())) {
 			$this->getPresenter()->redirect(':Backend:Homepage:default');
 		} else {
 			$this->username = $username;
@@ -128,7 +128,7 @@ class ProfilePresenter extends BasePresenter
 
 	protected function createComponentFollowing()
 	{
-		$user = $this->userBaseLogic->findOneByUsername($this->username);
+		$user = $this->userBaseLogic->findOneByUsernameUrl($this->username);
 
 		$profileContainer = $this->IProfileContainer->create();
 		foreach ($user->following as $followingUser) {
@@ -144,7 +144,7 @@ class ProfilePresenter extends BasePresenter
 
 	protected function createComponentFollowers()
 	{
-		$user = $this->userBaseLogic->findOneByUsername($this->username);
+		$user = $this->userBaseLogic->findOneByUsernameUrl($this->username);
 
 		$profileContainer = $this->IProfileContainer->create();
 		foreach ($user->followers as $followerUser) {
@@ -155,9 +155,9 @@ class ProfilePresenter extends BasePresenter
 
 	public function actionTracks($username)
 	{
-		$user = $this->userBaseLogic->findOneByUsername($username);
+		$user = $this->userBaseLogic->findOneByUsernameUrl($username);
 
-		if ($user == NULL || ($this->userBaseLogic->findOneByUsername($username)->public == FALSE && !$this->getUser()->isLoggedIn())) {
+		if ($user == NULL || ($this->userBaseLogic->findOneByUsernameUrl($username)->public == FALSE && !$this->getUser()->isLoggedIn())) {
 			$this->getPresenter()->redirect(':Backend:Homepage:default');
 		} else {
 			$this->username = $username;
@@ -172,7 +172,7 @@ class ProfilePresenter extends BasePresenter
 
 	protected function createComponentProfileTracks()
 	{
-		$profileUser = $this->userBaseLogic->findOneByUsername($this->username);
+		$profileUser = $this->userBaseLogic->findOneByUsernameUrl($this->username);
 		$loggedUser = $this->userBaseLogic->findOneById($this->getUser()->getId());
 
 		$profile = $this->IProfile->create($loggedUser, $this->user);
@@ -190,7 +190,7 @@ class ProfilePresenter extends BasePresenter
 
 	protected function createComponentProfilePlaces()
 	{
-		$profileUser = $this->userBaseLogic->findOneByUsername($this->username);
+		$profileUser = $this->userBaseLogic->findOneByUsernameUrl($this->username);
 		$loggedUser = $this->userBaseLogic->findOneById($this->getUser()->getId());
 
 		$profile = $this->IProfile->create($loggedUser, $this->user);
@@ -203,9 +203,9 @@ class ProfilePresenter extends BasePresenter
 
 	public function actionPlaces($username)
 	{
-		$user = $this->userBaseLogic->findOneByUsername($username);
+		$user = $this->userBaseLogic->findOneByUsernameUrl($username);
 
-		if ($user == NULL || ($this->userBaseLogic->findOneByUsername($username)->public == FALSE && !$this->getUser()->isLoggedIn())) {
+		if ($user == NULL || ($this->userBaseLogic->findOneByUsernameUrl($username)->public == FALSE && !$this->getUser()->isLoggedIn())) {
 			$this->getPresenter()->redirect(':Backend:Homepage:default');
 		} else {
 			$this->username = $username;
@@ -220,7 +220,7 @@ class ProfilePresenter extends BasePresenter
 
 	protected function createComponentProfilePhotos()
 	{
-		$profileUser = $this->userBaseLogic->findOneByUsername($this->username);
+		$profileUser = $this->userBaseLogic->findOneByUsernameUrl($this->username);
 		$loggedUser = $this->userBaseLogic->findOneById($this->getUser()->getId());
 
 		$profile = $this->IProfile->create($loggedUser, $this->user);
@@ -233,9 +233,9 @@ class ProfilePresenter extends BasePresenter
 
 	public function actionPhotos($username)
 	{
-		$user = $this->userBaseLogic->findOneByUsername($username);
+		$user = $this->userBaseLogic->findOneByUsernameUrl($username);
 
-		if ($user == NULL || ($this->userBaseLogic->findOneByUsername($username)->public == FALSE && !$this->getUser()->isLoggedIn())) {
+		if ($user == NULL || ($this->userBaseLogic->findOneByUsernameUrl($username)->public == FALSE && !$this->getUser()->isLoggedIn())) {
 			$this->getPresenter()->redirect(':Backend:Homepage:default');
 		} else {
 			$this->username = $username;

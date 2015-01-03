@@ -4,15 +4,15 @@
             <img src="{link getProfileImage}">
             {if count($profileUser->transports) > 0}
             <h2><a style="opacity: 1;"
-                   href="{plink :Backend:Profile:default, 'username' => $profileUser->username}">{$profileUser->getName()}</a><br/>
+                   href="{plink :Backend:Profile:default, 'username' => $profileUser->usernameUrl}">{$profileUser->getName()}</a><br/>
                 {else}
                 <h2 style="top: 225px;"><a style="opacity: 1;"
-                                           href="{plink :Backend:Profile:default, 'username' => $profileUser->username}">{$profileUser->getName()}</a><br/>
+                                           href="{plink :Backend:Profile:default, 'username' => $profileUser->usernameUrl}">{$profileUser->getName()}</a><br/>
                     {/if}
                     <span class="profile-tags">
                 {foreach $profileUser->transports as $transport}
                     {if $iterator->getCounter() < 3}
-                        {var $args = array('values' => [filterTransport => array($transport->name)], 'username' => $profileUser->username)}
+                        {var $args = array('values' => [filterTransport => array($transport->name)], 'username' => $profileUser->usernameUrl)}
                         <a href="{plink :Backend:Search:default (expand) $args}">#{$transport->name}</a>
                     {/if}
 
@@ -41,7 +41,7 @@
                 {foreach $pinnedTracks as $track}
                     <div class="activity-line">
                         <p class="name float-left"><a
-                                    href="{plink :Backend:Tracks:Default, 'id' => $track->getId(), 'username' => $profileUser->username}">{$track->getName()}</a>
+                                    href="{plink :Backend:Tracks:Default, 'id' => $track->getId(), 'username' => $profileUser->usernameUrl}">{$track->getName()}</a>
                         </p>
 
                         <p class="date float-right">{$track->getDate()|dateAgoNumber}{$track->getDate()|dateAgoText}</p>
@@ -55,7 +55,7 @@
                 {foreach $tracks as $track}
                     <div class="activity-line">
                         <p class="name float-left"><a
-                                    href="{plink :Backend:Tracks:Default, 'id' => $track->getId(), 'username' => $profileUser->username}">{$track->getName()}</a>
+                                    href="{plink :Backend:Tracks:Default, 'id' => $track->getId(), 'username' => $profileUser->usernameUrl}">{$track->getName()}</a>
                         </p>
 
                         <p class="date float-right">{$track->getDate()|dateAgoNumber}{$track->getDate()|dateAgoText}</p>
@@ -78,7 +78,7 @@
             </div>
         </div>
         <div style="text-align:center; padding-bottom: 40px;">
-            <a class="button" href="{plink :Backend:Profile:default, 'username' => $profileUser->username}">
+            <a class="button" href="{plink :Backend:Profile:default, 'username' => $profileUser->usernameUrl}">
                 full profile
             </a>
         </div>

@@ -63,4 +63,16 @@ class UserBaseLogic extends BaseLogic {
 
 		return $qb->getQuery()->getOneOrNullResult();
 	}
+
+	public function findOneByUsernameUrl($username)
+	{
+		$qb = $this->dao->createQueryBuilder();
+		$qb
+			->select('e')
+			->from('App\Model\User', 'e')
+			->where('e.usernameUrl = :username')
+			->setParameter('username', $username);
+
+		return $qb->getQuery()->getOneOrNullResult();
+	}
 } 
