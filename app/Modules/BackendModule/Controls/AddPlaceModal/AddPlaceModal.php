@@ -58,7 +58,7 @@ class AddPlaceModal extends Control
 			$values = $form->getValues();
 
 			/** Check if not exist */
-			$place = $this->placeBaseLogic->findOneByNameAndUserName($values->name, $user->username);
+			$place = $this->placeBaseLogic->findOneByNameAndUserName($values->name, $this->loggedUser->username);
 
 
 			/** Create new place */
