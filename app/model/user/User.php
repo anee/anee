@@ -118,7 +118,7 @@ class User extends BaseEntity {
 		$this->forename = $forename;
 		$this->surname = $surname;
 		$this->username = $username;
-		$this->username = Strings::webalize($username);
+		$this->usernameUrl = Strings::webalize($username);
 		$this->email = $email;
 		$this->public = $public;
 		$this->password = Passwords::hash($password);
