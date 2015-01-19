@@ -1,8 +1,14 @@
 [Anee](http://anee.drahnik-lukas.com)
 ===================================
 
+[![Build Status](https://travis-ci.org/ldrahnik/anee.svg)](https://travis-ci.org/ldrahnik/anee)
+
 Anee is place for sharing tracks and photos. I develop this service in free time and for non-commercial using.
 
+Requirements
+------------
+
+ldrahnik/anee requires PHP 5.5.11 or higher.
 
 Getting started
 ---------------
