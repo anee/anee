@@ -13,3 +13,6 @@ www/webtemp*
 !web.config
 app/config/config.local.neon
 composer.lock
+tests/temp
+*.expected
+*.actual
