@@ -13,7 +13,7 @@ Tester\Environment::setup();
 
 $configurator = new Nette\Configurator;
 $configurator->setDebugMode(FALSE);
-$configurator->setTempDirectory(__DIR__ . '/../../tests/temp');
+$configurator->setTempDirectory(__DIR__ . '/../temp');
 $configurator->createRobotLoader()
 	->addDirectory(__DIR__ . '/../../app')
 	->register();
