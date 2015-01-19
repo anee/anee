@@ -13,13 +13,10 @@ Tester\Environment::setup();
 
 $configurator = new Nette\Configurator;
 $configurator->setDebugMode(FALSE);
-$configurator->setTempDirectory(__DIR__ . '../../temp');
+$configurator->setTempDirectory(__DIR__ . '/../../tests/temp');
 $configurator->createRobotLoader()
 	->addDirectory(__DIR__ . '/../../app')
 	->register();
-
-
-// unused
 $configurator->addConfig(__DIR__ . '/config/config.neon');
 
 return $configurator->createContainer();
