@@ -11,6 +11,11 @@ if (!class_exists('Tester\Assert')) {
 
 Tester\Environment::setup();
 
+$temp = __DIR__ . '/temp/';
+if (!file_exists($temp)) {
+	mkdir($temp);
+}
+
 $configurator = new Nette\Configurator;
 $configurator->setDebugMode(FALSE);
 $configurator->setTempDirectory(__DIR__ . '/temp');
