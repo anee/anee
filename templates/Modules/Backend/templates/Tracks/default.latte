@@ -1,3 +1,11 @@
+{block head}
+    <meta property="og:site_name" content="Anee" />
+    <meta property="og:type" content="fitness.course" />
+    <meta property="og:title" content="{$track->name}">
+    <meta property="og:description" content="{$track->distance} km">
+    <meta name="author" http-equiv="content-type" content="@{$track->getUser()->getUsername()}"/>
+{/block}
+
 {block content}
     <div class="profile-page one-profil">
         {control profileTrack, $themeDir.'Modules/Backend/Controls/Profile/Profile.latte'}
