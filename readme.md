@@ -1,7 +1,7 @@
 [Anee](http://anee.drahnik-lukas.com)
 ===================================
 
-[![Build Status](https://travis-ci.org/ldrahnik/anee.svg)](https://travis-ci.org/ldrahnik/anee)
+[![Build Status](https://travis-ci.org/anee/anee.svg)](https://travis-ci.org/anee/anee)
 
 Anee is place for sharing tracks and photos. I develop this service in free time and for non-commercial using.
 
