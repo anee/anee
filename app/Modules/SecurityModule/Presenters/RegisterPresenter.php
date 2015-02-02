@@ -8,7 +8,10 @@ use Nette;
 class RegisterPresenter extends BasePresenter
 {
 
-	/** @var \App\Modules\SecurityModule\Controls\IRegisterInFactory @inject */
+	/**
+	 * @var \App\Modules\SecurityModule\Controls\IRegisterInFactory
+	 * @inject
+	 */
 	public $IRegisterIn;
 
 	public function createComponentRegisterIn()

@@ -34,19 +34,29 @@ interface IPlaceRowFactory
 class PlaceRow extends Control
 {
 
-	/** @var UserBaseLogic */
+	/**
+	 * @var UserBaseLogic
+	 */
 	public $userBaseLogic;
 
-	/** @var PlaceBaseLogic */
+	/**
+	 * @var PlaceBaseLogic
+	 */
 	public $placeBaseLogic;
 
-	/** @var User */
+	/**
+	 * @var User
+	 */
 	private $loggedUser;
 
-	/** @var User */
+	/**
+	 * @var User
+	 */
 	private $profileUser;
 
-	/** @var Place */
+	/**
+	 * @var Place
+	 */
 	private $place;
 
 	private $detail;

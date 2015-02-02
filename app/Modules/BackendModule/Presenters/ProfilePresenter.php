@@ -11,37 +11,68 @@ class ProfilePresenter extends BasePresenter
 {
 
 
-	/** @var  \App\Modules\BackendModule\Controls\IProfileFactory @inject */
+	/**
+	 * @var  \App\Modules\BackendModule\Controls\IProfileFactory
+	 * @inject
+	 */
 	public $IProfile;
 
-	/** Profile username */
+	/**
+	 * Profile username
+	 */
 	private $username;
 
-	/** @var \App\Model\User */
+	/**
+	 * @var \App\Model\User
+	 */
 	private $user;
 
-	/** @var \App\Model\TrackBaseLogic @inject */
+	/**
+	 * @var \App\Model\TrackBaseLogic
+	 * @inject
+	 */
 	public $trackBaseLogic;
 
-	/** @var \App\Model\PlaceBaseLogic @inject */
+	/**
+	 * @var \App\Model\PlaceBaseLogic
+	 * @inject
+	 */
 	public $placeBaseLogic;
 
-	/** @var \App\Model\PhotoBaseLogic @inject */
+	/**
+	 * @var \App\Model\PhotoBaseLogic
+	 * @inject
+	 */
 	public $photoBaseLogic;
 
-	/** @var  \App\Modules\BackendModule\Controls\IProfileContainerFactory @inject */
+	/**
+	 * @var  \App\Modules\BackendModule\Controls\IProfileContainerFactory
+	 * @inject
+	 */
 	public $IProfileContainer;
 
-	/** @var  \App\Modules\BackendModule\Controls\IProfilePreviewFactory @inject */
+	/**
+	 * @var  \App\Modules\BackendModule\Controls\IProfilePreviewFactory
+	 * @inject
+	 */
 	public $IProfilePreview;
 
-	/** @var  \App\Modules\BackendModule\Controls\ITrackRowFactory @inject */
+	/**
+	 * @var  \App\Modules\BackendModule\Controls\ITrackRowFactory
+	 * @inject
+	 */
 	public $ITrackRow;
 
-	/** @var \App\Modules\BackendModule\Controls\IPlaceRowFactory @inject */
+	/**
+	 * @var \App\Modules\BackendModule\Controls\IPlaceRowFactory
+	 * @inject
+	 */
 	public $IPlaceRow;
 
-	/** @var \App\Modules\BackendModule\Controls\IPhotoRowFactory @inject */
+	/**
+	 * @var \App\Modules\BackendModule\Controls\IPhotoRowFactory
+	 * @inject
+	 */
 	public $IPhotoRow;
 
 	protected function createComponentProfile()

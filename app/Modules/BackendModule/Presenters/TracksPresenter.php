@@ -11,16 +11,27 @@ use Nette;
 class TracksPresenter extends BasePresenter
 {
 
-	/** @var \App\Model\TrackBaseLogic @inject */
+	/**
+	 * @var \App\Model\TrackBaseLogic
+	 * @inject
+	 * */
 	public $trackBaseLogic;
 
-	/** @var \App\Model\Track */
+	/**
+	 * @var \App\Model\Track
+	 */
 	public $track;
 
-	/** @var \App\Modules\BackendModule\Controls\IProfileFactory @inject */
+	/**
+	 * @var \App\Modules\BackendModule\Controls\IProfileFactory
+	 * @inject
+	 */
 	public $IProfile;
 
-	/** @var \App\Modules\BackendModule\Controls\ITrackRowFactory @inject */
+	/**
+	 * @var \App\Modules\BackendModule\Controls\ITrackRowFactory
+	 * @inject
+	 */
 	public $ITrackRow;
 
 	private $username;

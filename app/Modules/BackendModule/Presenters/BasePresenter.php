@@ -11,19 +11,34 @@ use Nette;
 abstract class BasePresenter extends \App\Modules\BaseModule\Presenters\BasePresenter
 {
 
-	/** @var \App\Modules\BackendModule\Controls\ITopMenuFactory @inject */
+	/**
+	 * @var \App\Modules\BackendModule\Controls\ITopMenuFactory
+	 * @inject
+	 */
 	public $ITopMenu;
 
-	/** @var \App\Modules\BackendModule\Controls\ITopTopMenuFactory @inject */
+	/**
+	 * @var \App\Modules\BackendModule\Controls\ITopTopMenuFactory
+	 * @inject
+	 */
 	public $ITopTopMenu;
 
-	/** @var \App\Modules\BackendModule\Controls\IUserPanelFactory @inject */
+	/**
+	 * @var \App\Modules\BackendModule\Controls\IUserPanelFactory
+	 * @inject
+	 */
 	public $IUserPanel;
 
-	/** @var \Kappa\ThumbnailsHelper\ThumbnailsHelper @inject */
+	/**
+	 * @var \Kappa\ThumbnailsHelper\ThumbnailsHelper
+	 * @inject
+	 */
 	public $thumbnailsHelper;
 
-	/** @var \App\Model\UserBaseLogic @inject */
+	/**
+	 * @var \App\Model\UserBaseLogic
+	 * @inject
+	 */
 	public $userBaseLogic;
 
 	/**

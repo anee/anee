@@ -39,22 +39,34 @@ interface ITrackRowFactory
 class TrackRow extends Control
 {
 
-	/** @var \App\Model\UserBaseLogic */
+	/**
+	 * @var \App\Model\UserBaseLogic
+	 */
 	public $userBaseLogic;
 
-	/** @var \App\Model\TrackBaseLogic */
+	/**
+	 * @var \App\Model\TrackBaseLogic
+	 */
 	public $trackBaseLogic;
 
-	/** @var \App\Model\TransportBaseLogic */
+	/**
+	 * @var \App\Model\TransportBaseLogic
+	 */
 	public $transportBaseLogic;
 
-	/** @var \App\Model\PlaceBaseLogic */
+	/**
+	 * @var \App\Model\PlaceBaseLogic
+	 */
 	public $placeBaseLogic;
 
-	/** @var \App\Model\User */
+	/**
+	 * @var \App\Model\User
+	 */
 	private $loggedUser;
 
-	/** @var \App\Model\User */
+	/**
+	 * @var \App\Model\User
+	 */
 	private $profileUser;
 
 	/**
@@ -62,13 +74,18 @@ class TrackRow extends Control
 	 */
 	public $keeper;
 
-	/** @var \App\Model\Track */
+	/**
+	 * @var \App\Model\Track
+	 */
 	private $track;
 
-	/** @var bool which say if is home page or profile page */
+	/**
+	 * @var bool which say if is home page or profile page
+	 */
 	private $byName;
 
-	/** @var bool which say if is detail of concrete track or not */
+	/** @var bool which say if is detail of concrete track or not
+	 */
 	private $detail;
 
 	public function __construct(ViewKeeper $keeper, TransportBaseLogic $transportBaseLogic, PlaceBaseLogic $placeBaseLogic, TrackBaseLogic $trackBaseLogic, UserBaseLogic $userBaseLogic, Track $track, User $loggedUser, User $profileUser, $byName = NULL, $detail = NULL)

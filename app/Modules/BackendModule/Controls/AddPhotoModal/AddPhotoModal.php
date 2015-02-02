@@ -33,19 +33,28 @@ interface IAddPhotoModalFactory
 class AddPhotoModal extends Control
 {
 
-	/** @var UserBaseLogic */
+	/**
+	 * @var UserBaseLogic
+	 */
 	public $userBaseLogic;
 
-	/** @var PhotoBaseLogic */
+	/**
+	 * @var PhotoBaseLogic
+	 */
 	public $photoBaseLogic;
 
-	/** @var TrackBaseLogic  */
+	/**
+	 * @var TrackBaseLogic
+	 */
 	public $trackBaseLogic;
 
-	/** @var PlaceBaseLogic */
+	/**
+	 * @var PlaceBaseLogic
+	 */
 	public $placeBaseLogic;
 
-	/** @var User */
+	/**
+	 * @var User */
 	private $loggedUser;
 
 	/**

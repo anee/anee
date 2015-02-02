@@ -33,22 +33,34 @@ interface IPhotoRowFactory
 class PhotoRow extends Control
 {
 
-	/** @var \App\Model\UserBaseLogic */
+	/**
+	 * @var \App\Model\UserBaseLogic
+	 */
 	public $userBaseLogic;
 
-	/** @var \App\Model\PhotoBaseLogic */
+	/**
+	 * @var \App\Model\PhotoBaseLogic
+	 */
 	public $photoBaseLogic;
 
-	/** @var \App\Model\User */
+	/**
+	 * @var \App\Model\User
+	 */
 	private $loggedUser;
 
-	/** @var \App\Model\User */
+	/**
+	 * @var \App\Model\User
+	 */
 	private $profileUser;
 
-	/** @var \App\Model\Photo */
+	/**
+	 * @var \App\Model\Photo
+	 */
 	private $photo;
 
-	/** @var \Kappa\ThumbnailsHelper\ThumbnailsHelper */
+	/**
+	 * @var \Kappa\ThumbnailsHelper\ThumbnailsHelper
+	 */
 	public $thumbnailsHelper;
 
 	/**

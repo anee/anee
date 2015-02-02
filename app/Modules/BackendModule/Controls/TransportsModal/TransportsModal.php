@@ -32,13 +32,19 @@ interface ITransportsModalFactory
 class TransportsModal extends Control
 {
 
-	/** @var \App\Model\UserBaseLogic */
+	/**
+	 * @var \App\Model\UserBaseLogic
+	 */
 	public $userBaseLogic;
 
-	/** @var \App\Model\TransportBaseLogic  */
+	/**
+	 * @var \App\Model\TransportBaseLogic
+	 */
 	public $transportBaseLogic;
 
-	/** @var \App\Model\TrackBaseLogic */
+	/**
+	 * @var \App\Model\TrackBaseLogic
+	 */
 	public $trackBaseLogic;
 
 	/**
@@ -46,10 +52,14 @@ class TransportsModal extends Control
 	 */
 	public $keeper;
 
-	/** @var \App\Model\User */
+	/**
+	 * @var \App\Model\User
+	 */
 	private $loggedUser;
 
-	/** @var \App\Model\User */
+	/**
+	 * @var \App\Model\User
+	 */
 	private $profileUser;
 
 	public function __construct(ViewKeeper $keeper, TrackBaseLogic $trackBaseLogic,  UserBaseLogic $userBaseLogic, TransportBaseLogic $transportBaseLogic, User $profileUser, User $loggedUser)

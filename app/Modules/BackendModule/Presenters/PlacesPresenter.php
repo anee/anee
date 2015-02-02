@@ -11,16 +11,27 @@ use Nette;
 class PlacesPresenter extends BasePresenter
 {
 
-	/** @var \App\Model\PlaceBaseLogic @inject */
+	/**
+	 * @var \App\Model\PlaceBaseLogic
+	 * @inject
+	 */
 	public $placeBaseLogic;
 
-	/** @var \App\Model\Place */
+	/**
+	 * @var \App\Model\Place
+	 */
 	public $place;
 
-	/** @var \App\Modules\BackendModule\Controls\IProfileFactory @inject */
+	/**
+	 * @var \App\Modules\BackendModule\Controls\IProfileFactory
+	 * @inject
+	 */
 	public $IProfile;
 
-	/** @var \App\Modules\BackendModule\Controls\IPlaceRowFactory @inject */
+	/**
+	 * @var \App\Modules\BackendModule\Controls\IPlaceRowFactory
+	 * @inject
+	 */
 	public $IPlaceRow;
 
 	private $username;

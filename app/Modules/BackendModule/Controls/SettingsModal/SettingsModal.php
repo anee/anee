@@ -28,10 +28,14 @@ interface ISettingsModalFactory
 class SettingsModal extends Control
 {
 
-	/** @var \App\Model\UserBaseLogic */
+	/**
+	 * @var \App\Model\UserBaseLogic
+	 */
 	public $userBaseLogic;
 
-	/** @var \App\Model\User */
+	/**
+	 * @var \App\Model\User
+	 */
 	private $loggedUser;
 
 	/**

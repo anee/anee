@@ -28,7 +28,9 @@ interface IFeedbackModalFactory
 class FeedbackModal extends Control
 {
 
-	/** @var User */
+	/**
+	 * @var User
+	 */
 	private $loggedUser;
 
 	/**

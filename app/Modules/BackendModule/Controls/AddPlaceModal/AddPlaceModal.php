@@ -30,13 +30,19 @@ interface IAddPlaceModalFactory
 class AddPlaceModal extends Control
 {
 
-	/** @var UserBaseLogic */
+	/**
+	 * @var UserBaseLogic
+	 */
 	public $userBaseLogic;
 
-	/** @var PlaceBaseLogic */
+	/**
+	 * @var PlaceBaseLogic
+	 */
 	public $placeBaseLogic;
 
-	/** @var User */
+	/**
+	 * @var User
+	 */
 	private $loggedUser;
 
 	/**

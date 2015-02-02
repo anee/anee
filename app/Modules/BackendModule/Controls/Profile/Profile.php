@@ -35,42 +35,64 @@ interface IProfileFactory
 class Profile extends Control
 {
 
-	/** @var \Kappa\ThumbnailsHelper\ThumbnailsHelper */
+	/**
+	 * @var \Kappa\ThumbnailsHelper\ThumbnailsHelper
+	 */
 	public $thumbnailsHelper;
 
-	/** @var \App\Model\UserBaseLogic */
+	/**
+	 * @var \App\Model\UserBaseLogic
+	 */
 	public $userBaseLogic;
 
-	/** @var \App\Model\PlaceBaseLogic */
+	/**
+	 * @var \App\Model\PlaceBaseLogic
+	 */
 	public $placeBaseLogic;
 
-	/** @var \App\Model\PhotoBaseLogic */
+	/**
+	 * @var \App\Model\PhotoBaseLogic
+	 */
 	public $photoBaseLogic;
 
-	/** @var \App\Model\TrackBaseLogic */
+	/**
+	 * @var \App\Model\TrackBaseLogic
+	 */
 	public $trackBaseLogic;
 
-	/** @var \App\Model\User */
+	/**
+	 * @var \App\Model\User
+	 */
 	private $loggedUser;
 
-	/** @var \App\Model\User */
+	/**
+	 * @var \App\Model\User
+	 */
 	private $profileUser;
 
 	private $wwwDir;
 
-	/** @var \App\Modules\BackendModule\Controls\ITransportsModalFactory */
+	/**
+	 * @var \App\Modules\BackendModule\Controls\ITransportsModalFactory
+	 */
 	public $ITransportsModal;
 
-	/** @var \App\Modules\BackendModule\Controls\IAddTrackModalFactory */
+	/**
+	 * @var \App\Modules\BackendModule\Controls\IAddTrackModalFactory
+	 */
 	public $IAddTrackModal;
 
-	/** @var \App\Modules\BackendModule\Controls\IAddPhotoModalFactory */
+	/**
+	 * @var \App\Modules\BackendModule\Controls\IAddPhotoModalFactory
+	 */
 	public $IAddPhotoModal;
 
-	/** @var \App\Modules\BackendModule\Controls\IAddPlaceModalFactory */
+	/**
+	 * @var \App\Modules\BackendModule\Controls\IAddPlaceModalFactory
+	 */
 	public $IAddPlaceModal;
 
-	/** bool which say if we will display detail of one track or summary */
+	/** bool which say if we will display detail of one track or summary*/
 	private $detail;
 
 	/**

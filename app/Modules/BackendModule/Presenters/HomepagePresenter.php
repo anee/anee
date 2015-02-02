@@ -11,7 +11,10 @@ use Nette\Utils\DateTime;
 class HomepagePresenter extends BasePresenter
 {
 
-	/** @var \App\Modules\BackendModule\Controls\ITrackRowFactory @inject */
+	/**
+	 * @var \App\Modules\BackendModule\Controls\ITrackRowFactory
+	 * @inject
+	 */
 	public $ITrackRow;
 
 	public function actionDefault()

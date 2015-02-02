@@ -33,7 +33,9 @@ class TopMenu extends Control
 
 	private $usernameUrl;
 
-	/** @var \App\Model\UserBaseLogic */
+	/**
+     * @var \App\Model\UserBaseLogic
+     */
     public $userBaseLogic;
 
     public function __construct(ViewKeeper $keeper, UserBaseLogic $userBaseLogic)

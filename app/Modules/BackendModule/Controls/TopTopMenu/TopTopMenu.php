@@ -27,16 +27,23 @@ interface ITopTopMenuFactory
 class TopTopMenu extends Control
 {
 
-	/** @var \App\Modules\BackendModule\Controls\ISettingsModalFactory */
+	/**
+	 * @var \App\Modules\BackendModule\Controls\ISettingsModalFactory
+	 */
 	public $ISettingsModal;
 
-	/** @var \App\Modules\BackendModule\Controls\IFeedbackModalFactory */
+	/**
+	 * @var \App\Modules\BackendModule\Controls\IFeedbackModalFactory
+	 */
 	public $IFeedbackModal;
 
-	/** @var \App\Modules\BackendModule\Controls\IProfileModalFactory */
+	/** @var \App\Modules\BackendModule\Controls\IProfileModalFactory
+	 */
 	public $IProfileModal;
 
-	/** @var \App\Model\UserBaseLogic */
+	/**
+	 * @var \App\Model\UserBaseLogic
+	 * */
 	public $userBaseLogic;
 
 	/**
@@ -44,7 +51,9 @@ class TopTopMenu extends Control
 	 */
 	public $keeper;
 
-	/** @var \App\Model\User */
+	/**
+	 * @var \App\Model\User
+	 */
 	private $loggedUser;
 
 	public function __construct(ViewKeeper $keeper, IFeedbackModalFactory $IFeedbackModal, IProfileModalFactory $IProfileModal, ISettingsModalFactory $ISettingsModal, UserBaseLogic $userBaseLogic, $loggedUser = NULL)

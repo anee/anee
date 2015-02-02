@@ -8,19 +8,34 @@ namespace App\Modules\BackendModule\Presenters;
  */
 class SearchPresenter extends BasePresenter
 {
-	/** @var \App\Modules\BackendModule\Controls\ITrackRowFactory @inject */
+	/**
+	 * @var \App\Modules\BackendModule\Controls\ITrackRowFactory
+	 * @inject
+	 */
 	public $ITrackRow;
 
-	/** @var \App\Modules\BackendModule\Controls\IPlaceRowFactory @inject */
+	/**
+	 * @var \App\Modules\BackendModule\Controls\IPlaceRowFactory
+	 * @inject
+	 */
 	public $IPlaceRow;
 
-	/** @var \App\Modules\BackendModule\Controls\IPhotoRowFactory @inject */
+	/**
+	 * @var \App\Modules\BackendModule\Controls\IPhotoRowFactory
+	 * @inject
+	 */
 	public $IPhotoRow;
 
-	/** @var \App\Searching\SearchFactory @inject */
+	/**
+	 * @var \App\Searching\SearchFactory
+	 * @inject
+	 */
 	public $searchFactory;
 
-	/** @var  \App\Modules\BackendModule\Controls\ISearchTitleFactory @inject */
+	/**
+	 * @var \App\Modules\BackendModule\Controls\ISearchTitleFactory
+	 * @inject
+	 */
 	public $ISearchTitle;
 
 	public function actionDefault($username)

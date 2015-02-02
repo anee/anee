@@ -32,24 +32,36 @@ interface IProfilePreviewFactory
 class ProfilePreview extends Control
 {
 
-	/** @var \Kappa\ThumbnailsHelper\ThumbnailsHelper */
+	/**
+	 * @var \Kappa\ThumbnailsHelper\ThumbnailsHelper
+	 */
 	public $thumbnailsHelper;
 
-	/** @var \App\Model\UserBaseLogic */
+	/**
+	 * @var \App\Model\UserBaseLogic
+	 */
 	public $userBaseLogic;
 
-	/** @var \App\Model\User */
+	/**
+	 * @var \App\Model\User
+	 */
 	private $loggedUser;
 
-	/** @var \App\Model\User */
+	/**
+	 * @var \App\Model\User
+	 */
 	private $profileUser;
 
 	private $wwwDir;
 
-	/** @var \App\Modules\BackendModule\Controls\ITransportsModalFactory */
+	/**
+	 * @var \App\Modules\BackendModule\Controls\ITransportsModalFactory
+	 */
 	public $ITransportsModal;
 
-	/** @var \App\Modules\BackendModule\Controls\IProfileModalFactory */
+	/**
+	 * @var \App\Modules\BackendModule\Controls\IProfileModalFactory
+	 */
 	public $IProfileModal;
 
 	/**

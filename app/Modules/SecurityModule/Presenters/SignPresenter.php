@@ -8,7 +8,10 @@ use Nette;
 class SignPresenter extends BasePresenter
 {
 
-	/** @var \App\Modules\SecurityModule\Controls\ISignInFactory @inject */
+	/**
+	 * @var \App\Modules\SecurityModule\Controls\ISignInFactory
+	 * @inject
+	 */
 	public $ISignIn;
 
 	public function createComponentSignIn()

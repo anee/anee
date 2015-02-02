@@ -32,10 +32,14 @@ class SearchTitle extends Control {
 	 */
 	public $keeper;
 
-	/** @var array */
+	/**
+	 * @var array
+	 */
 	private $values;
 
-	/** @var SearchResults */
+	/**
+	 * @var SearchResults
+	 */
 	private $results;
 
 	public function __construct(ViewKeeper $keeper, Array $values, SearchResults $results)

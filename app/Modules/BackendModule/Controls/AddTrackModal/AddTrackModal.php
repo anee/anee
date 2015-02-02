@@ -35,19 +35,29 @@ interface IAddTrackModalFactory
 class AddTrackModal extends Control
 {
 
-	/** @var UserBaseLogic */
+	/**
+	 * @var UserBaseLogic
+	 */
 	public $userBaseLogic;
 
-	/** @var TrackBaseLogic */
+	/**
+	 * @var TrackBaseLogic
+	 */
 	public $trackBaseLogic;
 
-	/** @var PlaceBaseLogic */
+	/**
+	 * @var PlaceBaseLogic
+	 */
 	public $placeBaseLogic;
 
-	/** @var TransportBaseLogic */
+	/**
+	 * @var TransportBaseLogic
+	 */
 	public $transportBaseLogic;
 
-	/** @var User */
+	/**
+	 * @var User
+	 */
 	private $loggedUser;
 
 	/**

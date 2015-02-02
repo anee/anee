@@ -32,19 +32,29 @@ interface IProfileModalFactory
 class ProfileModal extends Control
 {
 
-	/** @var \Kappa\ThumbnailsHelper\ThumbnailsHelper */
+	/**
+	 * @var \Kappa\ThumbnailsHelper\ThumbnailsHelper
+	 */
 	public $thumbnailsHelper;
 
-	/** @var \App\Model\UserBaseLogic */
+	/**
+	 * @var \App\Model\UserBaseLogic
+	 */
 	public $userBaseLogic;
 
-	/** @var \App\Model\TrackBaseLogic */
+	/**
+	 * @var \App\Model\TrackBaseLogic
+	 */
 	public $trackBaseLogic;
 
-	/** @var \App\Model\User */
+	/**
+	 * @var \App\Model\User
+	 */
 	private $loggedUser;
 
-	/** @var \App\Model\User */
+	/**
+	 * @var \App\Model\User
+	 */
 	private $profileUser;
 
 	/**
@@ -54,7 +64,9 @@ class ProfileModal extends Control
 
 	private $wwwDir;
 
-	/** @var \App\Modules\BackendModule\Controls\ITransportsModalFactory */
+	/**
+	 * @var \App\Modules\BackendModule\Controls\ITransportsModalFactory
+	 */
 	public $ITransportsModal;
 
     public function __construct(ViewKeeper $keeper, ITransportsModalFactory $ITransportsModal, ThumbnailsHelper $thumbnailsHelper, TrackBaseLogic $trackBaseLogic, UserBaseLogic $userBaseLogic, $wwwDir, User $loggedUser, User $profileUser)
