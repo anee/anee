@@ -8,9 +8,9 @@
             <a data-toggle="modal" href="#settings">Settings</a>
             <a data-toggle="modal" href="#feedback">Support</a>
             <a href="{plink :Security:Sign:out}">Sign out</a>
-            {control settingsModal, $themeDir.'Modules/Backend/Controls/SettingsModal/SettingsModal.latte'}
-            {control profileModal, $themeDir.'Modules/Backend/Controls/ProfileModal/ProfileModal.latte'}
-            {control feedbackModal, $themeDir.'Modules/Backend/Controls/FeedbackModal/FeedbackModal.latte'}
+            {control settingsModal}
+            {control profileModal}
+            {control feedbackModal}
 
         {else}
             <a href="{plink :Security:Sign:in}">Sign in</a>

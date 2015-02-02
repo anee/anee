@@ -90,7 +90,7 @@
                     <h3>PINNED ACTIVITY</h3>
                     {foreach $control->components as $component}
                         {if $template->strpos($component->getName(), 'YES')}
-                            {control $component->getName(), $themeDir.'/Modules/Backend/Controls/TrackRow/TrackRow.latte'}
+                            {control $component->getName()}
                         {/if}
                     {/foreach}
                 </div>
@@ -100,7 +100,7 @@
                     <h3>RECENT ACTIVITY</h3>
                     {foreach $control->components as $component}
                         {if $template->strpos($component->getName(), 'NO')}
-                            {control $component->getName(), $themeDir.'/Modules/Backend/Controls/TrackRow/TrackRow.latte'}
+                            {control $component->getName()}
                         {/if}
                     {/foreach}
                 </div>
@@ -109,7 +109,7 @@
                 <div class="profile-activity">
                     <h3>TRACKS</h3>
                     {foreach $control->components as $component}
-                        {control $component->getName(), $themeDir.'/Modules/Backend/Controls/TrackRow/TrackRow.latte'}
+                        {control $component->getName()}
                     {/foreach}
                 </div>
             {/if}
@@ -117,7 +117,7 @@
                 <div class="profile-activity">
                     <h3>PLACES</h3>
                     {foreach $control->components as $component}
-                        {control $component->getName(), $themeDir.'/Modules/Backend/Controls/PlaceRow/PlaceRow.latte'}
+                        {control $component->getName()}
                     {/foreach}
                 </div>
             {/if}
@@ -125,7 +125,7 @@
                 <div class="profile-activity">
                     <h3>PHOTOS</h3>
                     {foreach $control->components as $component}
-                        {control $component->getName(), $themeDir.'/Modules/Backend/Controls/PhotoRow/PhotoRow.latte'}
+                        {control $component->getName()}
                     {/foreach}
                 </div>
             {/if}
@@ -133,21 +133,21 @@
             {if $tracks == TRUE}
                 <div class="profile-activity">
                     {foreach $control->components as $component}
-                        {control $component->getName(), $themeDir.'/Modules/Backend/Controls/TrackRow/TrackRow.latte'}
+                        {control $component->getName()}
                     {/foreach}
                 </div>
             {/if}
             {if $places == TRUE}
                 <div class="profile-activity">
                     {foreach $control->components as $component}
-                        {control $component->getName(), $themeDir.'/Modules/Backend/Controls/PlaceRow/PlaceRow.latte'}
+                        {control $component->getName()}
                     {/foreach}
                 </div>
             {/if}
             {if $photos == TRUE}
                 <div class="profile-activity">
                     {foreach $control->components as $component}
-                        {control $component->getName(), $themeDir.'/Modules/Backend/Controls/PhotoRow/PhotoRow.latte'}
+                        {control $component->getName()}
                     {/foreach}
                 </div>
             {/if}
@@ -155,12 +155,12 @@
     </div>
 </div>
 
-{control transportsModal, $themeDir.'Modules/Backend/Controls/TransportsModal/TransportsModal.latte'}
+{control transportsModal}
 
 {if $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
-    {control addTrackModal, $themeDir.'Modules/Backend/Controls/AddTrackModal/AddTrackModal.latte'}
-    {control addPhotoModal, $themeDir.'Modules/Backend/Controls/AddPhotoModal/AddPhotoModal.latte'}
-    {control addPlaceModal, $themeDir.'Modules/Backend/Controls/AddPlaceModal/AddPlaceModal.latte'}
+    {control addTrackModal}
+    {control addPhotoModal}
+    {control addPlaceModal}
 {/if}
 
 <script type="text/javascript">

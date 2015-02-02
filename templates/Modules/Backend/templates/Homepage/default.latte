@@ -7,7 +7,7 @@
                     <h3>TRACKS</h3>
                     {foreach $control->components as $component}
                         {if $template->strpos($component->name, 'Track')}
-                            {control $component->getName(), $themeDir.'/Modules/Backend/Controls/TrackRow/TrackRow.latte'}
+                            {control $component->getName()}
                         {/if}
                     {/foreach}
                 </div>

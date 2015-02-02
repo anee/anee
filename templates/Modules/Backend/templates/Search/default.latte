@@ -1,13 +1,13 @@
 {block content}
 
-    {control searchTitle, $themeDir.'Modules/Backend/Controls/SearchTitle/SearchTitle.latte'}
+    {control searchTitle}
 
     {if $results->getTracksCount() > 0}
         <div class="profile-activity">
             <h3>TRACKS</h3>
             {foreach $control->components as $component}
                 {if $template->strpos($component->name, 'Track')}
-                    {control $component->getName(), $themeDir.'/Modules/Backend/Controls/TrackRow/TrackRow.latte'}
+                    {control $component->getName()}
                 {/if}
             {/foreach}
         </div>
@@ -17,7 +17,7 @@
             <h3>PLACES</h3>
             {foreach $control->components as $component}
                 {if $template->strpos($component->name, 'Place')}
-                    {control $component->getName(), $themeDir.'/Modules/Backend/Controls/PlaceRow/PlaceRow.latte'}
+                    {control $component->getName()}
                 {/if}
             {/foreach}
         </div>
@@ -27,7 +27,7 @@
             <h3>PHOTOS</h3>
             {foreach $control->components as $component}
                 {if $template->strpos($component->name, 'Photo')}
-                    {control $component->getName(), $themeDir.'/Modules/Backend/Controls/PhotoRow/PhotoRow.latte'}
+                    {control $component->getName()}
                 {/if}
             {/foreach}
         </div>
