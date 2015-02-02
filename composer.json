@@ -24,7 +24,8 @@
 		"kappa/themes-manager": "@dev",
 		"kdyby/autowired": "~1.0",
 	  	"natxet/cssmin": "~3.0",
-	  	"tedivm/jshrink": "~1.0"
+	  	"tedivm/jshrink": "~1.0",
+		"ldrahnik/view-keeper": "~1.1"
 	},
 	"require-dev": {
 		"nette/tester": "~1.0"
