@@ -5,6 +5,7 @@ namespace App\Modules\BackendModule\Controls;
 use App\Model\UserBaseLogic;
 use Nette;
 use Nette\Application\UI\Control;
+use ViewKeeper\ViewKeeper;
 
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
@@ -24,17 +25,23 @@ interface IUserPanelFactory
 class UserPanel extends Control
 {
 
+	/**
+	 * @var \ViewKeeper\ViewKeeper
+	 */
+	public $keeper;
+
 	/** @var \App\Model\UserBaseLogic */
 	public $userBaseLogic;
 
-    public function __construct(UserBaseLogic $userBaseLogic)
+    public function __construct(ViewKeeper $keeper, UserBaseLogic $userBaseLogic)
     {
+		$this->keeper = $keeper;
 		$this->userBaseLogic = $userBaseLogic;
     }
 
-	public function render($file)
+	public function render()
 	{
-		$this->template->setFile($file);
+		$this->template->setFile($this->keeper->getView('Backend:' . $this->name, 'controls'));
 
 		$this->template->addFilter(NULL, 'App\TemplateHelpers::loader');
 

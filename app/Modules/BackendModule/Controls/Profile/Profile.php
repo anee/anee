@@ -12,6 +12,7 @@ use Nette;
 use Nette\Application\UI\Control;
 use Nette\Utils\Image;
 use App\Model\User;
+use ViewKeeper\ViewKeeper;
 
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
@@ -72,8 +73,14 @@ class Profile extends Control
 	/** bool which say if we will display detail of one track or summary */
 	private $detail;
 
-    public function __construct(IAddPlaceModalFactory $IAddPlaceModal, IAddPhotoModalFactory $IAddPhotoModal, IAddTrackModalFactory $IAddTrackModal, ITransportsModalFactory $ITransportsModal, ThumbnailsHelper $thumbnailsHelper, TrackBaseLogic $trackBaseLogic, UserBaseLogic $userBaseLogic, PlaceBaseLogic $placeBaseLogic, PhotoBaseLogic $photoBaseLogic, $wwwDir, User $loggedUser, User $profileUser, $detail = NULL)
+	/**
+	 * @var \ViewKeeper\ViewKeeper
+	 */
+	public $keeper;
+
+    public function __construct(ViewKeeper $keeper, IAddPlaceModalFactory $IAddPlaceModal, IAddPhotoModalFactory $IAddPhotoModal, IAddTrackModalFactory $IAddTrackModal, ITransportsModalFactory $ITransportsModal, ThumbnailsHelper $thumbnailsHelper, TrackBaseLogic $trackBaseLogic, UserBaseLogic $userBaseLogic, PlaceBaseLogic $placeBaseLogic, PhotoBaseLogic $photoBaseLogic, $wwwDir, User $loggedUser, User $profileUser, $detail = NULL)
     {
+		$this->keeper = $keeper;
 		$this->wwwDir = $wwwDir;
 		$this->thumbnailsHelper = $thumbnailsHelper;
 		$this->trackBaseLogic = $trackBaseLogic;
@@ -109,9 +116,9 @@ class Profile extends Control
 		return $this->IAddPlaceModal->create($this->loggedUser);
 	}
 
-	public function render($file)
+	public function render()
 	{
-		$this->template->setFile($file);
+		$this->template->setFile($this->keeper->getView('Backend:' . $this->name, 'controls'));
 
 		$this->template->addFilter(NULL, 'App\TemplateHelpers::loader');
 		$this->template->addFilter('thumb', array($this->thumbnailsHelper, 'process'));

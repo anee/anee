@@ -14,6 +14,7 @@ use App\Model\Track;
 use App\Model\User;
 use Nette\Application\UI\Form;
 use App\Model\Transport;
+use ViewKeeper\ViewKeeper;
 
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
@@ -56,6 +57,11 @@ class TrackRow extends Control
 	/** @var \App\Model\User */
 	private $profileUser;
 
+	/**
+	 * @var \ViewKeeper\ViewKeeper
+	 */
+	public $keeper;
+
 	/** @var \App\Model\Track */
 	private $track;
 
@@ -65,8 +71,9 @@ class TrackRow extends Control
 	/** @var bool which say if is detail of concrete track or not */
 	private $detail;
 
-	public function __construct(TransportBaseLogic $transportBaseLogic, PlaceBaseLogic $placeBaseLogic, TrackBaseLogic $trackBaseLogic, UserBaseLogic $userBaseLogic, Track $track, User $loggedUser, User $profileUser, $byName = NULL, $detail = NULL)
+	public function __construct(ViewKeeper $keeper, TransportBaseLogic $transportBaseLogic, PlaceBaseLogic $placeBaseLogic, TrackBaseLogic $trackBaseLogic, UserBaseLogic $userBaseLogic, Track $track, User $loggedUser, User $profileUser, $byName = NULL, $detail = NULL)
 	{
+		$this->keeper = $keeper;
 		$this->track = $track;
 		$this->transportBaseLogic = $transportBaseLogic;
 		$this->placeBaseLogic = $placeBaseLogic;
@@ -78,9 +85,9 @@ class TrackRow extends Control
 		$this->detail = $detail;
 	}
 
-	public function render($file)
+	public function render()
 	{
-		$this->template->setFile($file);
+		$this->template->setFile($this->keeper->getView('Backend:' . 'TrackRow', 'controls'));
 
 		$this->template->addFilter(NULL, 'App\TemplateHelpers::loader');
 

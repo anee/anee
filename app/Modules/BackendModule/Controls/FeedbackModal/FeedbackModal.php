@@ -7,6 +7,7 @@ use Nette\Application\UI\Control;
 use Nette\Application\UI\Form;
 use App\Model\User;
 use Nette\Mail\SendmailMailer;
+use ViewKeeper\ViewKeeper;
 
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
@@ -30,15 +31,21 @@ class FeedbackModal extends Control
 	/** @var User */
 	private $loggedUser;
 
+	/**
+	 * @var \ViewKeeper\ViewKeeper
+	 */
+	public $keeper;
 
-	public function __construct(User $loggedUser)
+
+	public function __construct(ViewKeeper $keeper, User $loggedUser)
 	{
+		$this->keeper = $keeper;
 		$this->loggedUser = $loggedUser;
 	}
 
-	public function render($file)
+	public function render()
 	{
-		$this->template->setFile($file);
+		$this->template->setFile($this->keeper->getView('Backend:' . 'FeedbackModal', 'controls'));
 		$this->template->loggedUser = $this->loggedUser;
 		$this->template->render();
 	}

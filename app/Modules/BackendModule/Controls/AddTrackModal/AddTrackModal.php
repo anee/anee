@@ -14,6 +14,7 @@ use App\Model\TransportBaseLogic;
 use App\Model\PlaceBaseLogic;
 use App\Model\TrackBaseLogic;
 use Nette\Utils\DateTime;
+use ViewKeeper\ViewKeeper;
 
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
@@ -49,11 +50,17 @@ class AddTrackModal extends Control
 	/** @var User */
 	private $loggedUser;
 
+	/**
+	 * @var \ViewKeeper\ViewKeeper
+	 */
+	public $keeper;
+
 	private $appDir;
 
 
-	public function __construct(TransportBaseLogic $transportBaseLogic, PlaceBaseLogic $placeBaseLogic, TrackBaseLogic $trackBaseLogic, UserBaseLogic $userBaseLogic, $appDir, User $loggedUser)
+	public function __construct(ViewKeeper $keeper, TransportBaseLogic $transportBaseLogic, PlaceBaseLogic $placeBaseLogic, TrackBaseLogic $trackBaseLogic, UserBaseLogic $userBaseLogic, $appDir, User $loggedUser)
 	{
+		$this->keeper = $keeper;
 		$this->transportBaseLogic = $transportBaseLogic;
 		$this->placeBaseLogic = $placeBaseLogic;
 		$this->trackBaseLogic = $trackBaseLogic;
@@ -62,9 +69,9 @@ class AddTrackModal extends Control
 		$this->appDir = $appDir;
 	}
 
-	public function render($file)
+	public function render()
 	{
-		$this->template->setFile($file);
+		$this->template->setFile($this->keeper->getView('Backend:' . 'AddTrackModal', 'controls'));
 		$this->template->loggedUser = $this->loggedUser;
 		$this->template->render();
 	}

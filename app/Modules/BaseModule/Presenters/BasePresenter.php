@@ -5,8 +5,6 @@ namespace App\Modules\BaseModule\Presenters;
 use Nette;
 use WebLoader\Nette\CssLoader;
 use WebLoader\Nette\JavaScriptLoader;
-use Kdyby\Autowired\AutowireProperties;
-
 
 
 /**
@@ -15,30 +13,20 @@ use Kdyby\Autowired\AutowireProperties;
 abstract class BasePresenter extends Nette\Application\UI\Presenter
 {
 
-	use AutowireProperties;
-
 	/**
-	 * @var \Kappa\ThemesManager\Theme
-	 * @autowire(default, factory=\Kappa\ThemesManager\ThemeFactory)
+	 * @var \ViewKeeper\ViewKeeper
+	 * @inject
 	 */
-	protected $theme;
+	public $keeper;
 
 	public function formatLayoutTemplateFiles()
 	{
-		return $this->theme->getFormatLayoutTemplateFiles();
+		return array($this->keeper->getView($this->name, 'layouts', 'layout'));
 	}
 
 	public function formatTemplateFiles()
 	{
-		return $this->theme->getFormatTemplateFiles();
-	}
-
-	public function getTemplateFactory()
-	{
-		$templateFactory = parent::getTemplateFactory();
-		$templateFactory->setTheme($this->theme);
-
-		return $templateFactory;
+		return array($this->keeper->getView($this->name, 'presenters', $this->action));
 	}
 
 	protected function createTemplate($class = NULL)

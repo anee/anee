@@ -7,3 +7,4 @@ includes:
 		- ../config/extension.themes-manager.neon
 		- ../config/extension.thumb.neon
 		- ../config/extension.kdyby.neon
+		- ../config/extension.view-keeper.neon

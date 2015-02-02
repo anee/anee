@@ -5,6 +5,7 @@ namespace App\Modules\SecurityModule\Controls;
 use Nette;
 use Nette\Application\UI\Form;
 use Nette\Security\AuthenticationException;
+use ViewKeeper\ViewKeeper;
 
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
@@ -24,9 +25,19 @@ interface ISignInFactory
 class SignIn extends Nette\Application\UI\Control
 {
 
-	public function render($file)
+	/**
+	 * @var \ViewKeeper\ViewKeeper
+	 */
+	public $keeper;
+
+	public function __construct(ViewKeeper $keeper)
 	{
-		$this->template->setFile($file);
+		$this->keeper = $keeper;
+	}
+
+	public function render()
+	{
+		$this->template->setFile($this->keeper->getView('Security:' . $this->name, 'controls'));
 		$this->template->render();
 	}
 

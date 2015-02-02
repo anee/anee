@@ -10,6 +10,7 @@ use Nette\Application\UI\Control;
 use App\Model\Place;
 use App\Model\User;
 use Nette\Application\UI\Form;
+use ViewKeeper\ViewKeeper;
 
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
@@ -50,8 +51,14 @@ class PlaceRow extends Control
 
 	private $detail;
 
-    public function __construct(PlaceBaseLogic $placeBaseLogic, UserBaseLogic $userBaseLogic, Place $place, User $loggedUser, User $profileUser, $detail = NULL)
+	/**
+	 * @var \ViewKeeper\ViewKeeper
+	 */
+	public $keeper;
+
+    public function __construct(ViewKeeper $keeper, PlaceBaseLogic $placeBaseLogic, UserBaseLogic $userBaseLogic, Place $place, User $loggedUser, User $profileUser, $detail = NULL)
     {
+		$this->keeper = $keeper;
 		$this->place = $place;
 		$this->placeBaseLogic = $placeBaseLogic;
 		$this->userBaseLogic = $userBaseLogic;
@@ -60,9 +67,9 @@ class PlaceRow extends Control
 		$this->detail = $detail;
     }
 
-	public function render($file)
+	public function render()
 	{
-		$this->template->setFile($file);
+		$this->template->setFile($this->keeper->getView('Backend:' . 'PlaceRow', 'controls'));
 
 		$this->template->addFilter(NULL, 'App\TemplateHelpers::loader');
 

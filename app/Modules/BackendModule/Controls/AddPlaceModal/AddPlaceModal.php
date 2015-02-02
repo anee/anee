@@ -9,6 +9,7 @@ use App\Model\PlaceBaseLogic;
 use Nette\Application\UI\Form;
 use App\Model\User;
 use App\Model\Place;
+use ViewKeeper\ViewKeeper;
 
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
@@ -38,16 +39,22 @@ class AddPlaceModal extends Control
 	/** @var User */
 	private $loggedUser;
 
-	public function __construct(PlaceBaseLogic $placeBaseLogic, UserBaseLogic $userBaseLogic, User $loggedUser)
+	/**
+	 * @var \ViewKeeper\ViewKeeper
+	 */
+	public $keeper;
+
+	public function __construct(ViewKeeper $keeper, PlaceBaseLogic $placeBaseLogic, UserBaseLogic $userBaseLogic, User $loggedUser)
 	{
+		$this->keeper = $keeper;
 		$this->placeBaseLogic = $placeBaseLogic;
 		$this->userBaseLogic = $userBaseLogic;
 		$this->loggedUser = $loggedUser;
 	}
 
-	public function render($file)
+	public function render()
 	{
-		$this->template->setFile($file);
+		$this->template->setFile($this->keeper->getView('Backend:' . 'AddPlaceModal', 'controls'));
 		$this->template->loggedUser = $this->loggedUser;
 		$this->template->render();
 	}

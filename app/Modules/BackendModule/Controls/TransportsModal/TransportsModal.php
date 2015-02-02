@@ -10,6 +10,7 @@ use Nette;
 use Nette\Application\UI\Control;
 use Nette\Application\UI\Form;
 use App\Model\User;
+use ViewKeeper\ViewKeeper;
 
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
@@ -40,14 +41,20 @@ class TransportsModal extends Control
 	/** @var \App\Model\TrackBaseLogic */
 	public $trackBaseLogic;
 
+	/**
+	 * @var \ViewKeeper\ViewKeeper
+	 */
+	public $keeper;
+
 	/** @var \App\Model\User */
 	private $loggedUser;
 
 	/** @var \App\Model\User */
 	private $profileUser;
 
-	public function __construct(TrackBaseLogic $trackBaseLogic,  UserBaseLogic $userBaseLogic, TransportBaseLogic $transportBaseLogic, User $profileUser, User $loggedUser)
+	public function __construct(ViewKeeper $keeper, TrackBaseLogic $trackBaseLogic,  UserBaseLogic $userBaseLogic, TransportBaseLogic $transportBaseLogic, User $profileUser, User $loggedUser)
 	{
+		$this->keeper = $keeper;
 		$this->trackBaseLogic = $trackBaseLogic;
 		$this->profileUser = $profileUser;
 		$this->userBaseLogic = $userBaseLogic;
@@ -55,9 +62,9 @@ class TransportsModal extends Control
 		$this->loggedUser = $loggedUser;
 	}
 
-	public function render($file)
+	public function render()
 	{
-		$this->template->setFile($file);
+		$this->template->setFile($this->keeper->getView('Backend:' . 'TransportsModal', 'controls'));
 		$this->template->profileUser = $this->profileUser;
 		$this->template->loggedUser = $this->loggedUser;
 		$this->template->render();

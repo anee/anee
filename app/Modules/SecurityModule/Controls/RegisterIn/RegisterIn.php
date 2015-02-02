@@ -8,6 +8,7 @@ use Kdyby\Doctrine\DuplicateEntryException;
 use Nette;
 use Nette\Application\UI\Form;;
 use App\Model\User;
+use ViewKeeper\ViewKeeper;
 
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
@@ -27,17 +28,25 @@ interface IRegisterInFactory
 class RegisterIn extends Nette\Application\UI\Control
 {
 
-	/** @var \App\Model\UserBaseLogic */
+	/**
+	 * @var \ViewKeeper\ViewKeeper
+	 */
+	public $keeper;
+
+	/**
+	 * @var \App\Model\UserBaseLogic
+	 */
 	public $userBaseLogic;
 
-	public function __construct(UserBaseLogic $userBaseLogic)
+	public function __construct(ViewKeeper $keeper, UserBaseLogic $userBaseLogic)
 	{
+		$this->keeper = $keeper;
 		$this->userBaseLogic = $userBaseLogic;
 	}
 
-	public function render($file)
+	public function render()
 	{
-		$this->template->setFile($file);
+		$this->template->setFile($this->keeper->getView('Security:' . $this->name, 'controls'));
 		$this->template->render();
 	}
 

@@ -7,6 +7,7 @@ use Nette\Application\UI\Control;
 use App\Model\UserBaseLogic;
 use Nette\Application\UI\Form;
 use App\Model\User;
+use ViewKeeper\ViewKeeper;
 
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
@@ -33,18 +34,24 @@ class SettingsModal extends Control
 	/** @var \App\Model\User */
 	private $loggedUser;
 
+	/**
+	 * @var \ViewKeeper\ViewKeeper
+	 */
+	public $keeper;
+
 	private $appDir;
 
-	public function __construct(UserBaseLogic $userBaseLogic, User $loggedUser, $appDir)
+	public function __construct(ViewKeeper $keeper, UserBaseLogic $userBaseLogic, User $loggedUser, $appDir)
 	{
+		$this->keeper = $keeper;
 		$this->appDir = $appDir;
 		$this->userBaseLogic = $userBaseLogic;
 		$this->loggedUser = $loggedUser;
 	}
 
-	public function render($file)
+	public function render()
 	{
-		$this->template->setFile($file);
+		$this->template->setFile($this->keeper->getView('Backend:' . 'SettingsModal', 'controls'));
 		$this->template->loggedUser = $this->loggedUser;
 		$this->template->render();
 	}

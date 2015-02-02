@@ -10,6 +10,7 @@ use App\Model\Photo;
 use App\Model\User;
 use Kappa\ThumbnailsHelper\ThumbnailsHelper;
 use Nette\Utils\Image;
+use ViewKeeper\ViewKeeper;
 
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
@@ -50,10 +51,16 @@ class PhotoRow extends Control
 	/** @var \Kappa\ThumbnailsHelper\ThumbnailsHelper */
 	public $thumbnailsHelper;
 
+	/**
+	 * @var \ViewKeeper\ViewKeeper
+	 */
+	public $keeper;
+
 	private $wwwDir;
 
-    public function __construct(ThumbnailsHelper $thumbnailsHelper, PhotoBaseLogic $photoBaseLogic, UserBaseLogic $userBaseLogic, $wwwDir, Photo $photo, User $loggedUser, User $profileUser)
+    public function __construct(ViewKeeper $keeper, ThumbnailsHelper $thumbnailsHelper, PhotoBaseLogic $photoBaseLogic, UserBaseLogic $userBaseLogic, $wwwDir, Photo $photo, User $loggedUser, User $profileUser)
     {
+		$this->keeper = $keeper;
 		$this->wwwDir = $wwwDir;
 		$this->thumbnailsHelper = $thumbnailsHelper;
 		$this->photo = $photo;
@@ -63,9 +70,9 @@ class PhotoRow extends Control
 		$this->profileUser = $profileUser;
     }
 
-	public function render($file)
+	public function render()
 	{
-		$this->template->setFile($file);
+		$this->template->setFile($this->keeper->getView('Backend:' . 'PhotoSRow', 'controls'));
 
 		$this->template->addFilter(NULL, 'App\TemplateHelpers::loader');
 

@@ -6,6 +6,7 @@ use App\Model\UserBaseLogic;
 use Nette;
 use Nette\Application\UI\Form;
 use Nette\Application\UI\Control;
+use ViewKeeper\ViewKeeper;
 
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
@@ -25,20 +26,25 @@ interface ITopMenuFactory
 class TopMenu extends Control
 {
 
+    /**
+     * @var \ViewKeeper\ViewKeeper
+     */
+    public $keeper;
 
 	private $usernameUrl;
 
 	/** @var \App\Model\UserBaseLogic */
     public $userBaseLogic;
 
-    public function __construct(UserBaseLogic $userBaseLogic)
+    public function __construct(ViewKeeper $keeper, UserBaseLogic $userBaseLogic)
     {
+        $this->keeper = $keeper;
         $this->userBaseLogic = $userBaseLogic;
     }
 
-	public function render($file)
+	public function render()
 	{
-		$this->template->setFile($file);
+        $this->template->setFile($this->keeper->getView('Backend:' . $this->name, 'controls'));
 		$this->template->render();
 	}
 

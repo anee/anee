@@ -1,0 +1,10 @@
+parameters:
+    themeDir: %wwwDir%/../templates/
+
+extensions:
+    keeper: ViewKeeper\DI\ViewKeeperHelperExtension
+
+keeper:
+    controls: %themeDir%/Modules/<module>/<category>/<name>/<view>
+    presenters: %themeDir%/Modules/<module>/<category>/<name>/<view>
+    layouts: %themeDir%/Modules/<module>/<category>/@<view>

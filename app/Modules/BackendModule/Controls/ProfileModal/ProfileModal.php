@@ -10,6 +10,7 @@ use Nette;
 use Nette\Application\UI\Control;
 use Nette\Utils\Image;
 use App\Model\User;
+use ViewKeeper\ViewKeeper;
 
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
@@ -46,13 +47,19 @@ class ProfileModal extends Control
 	/** @var \App\Model\User */
 	private $profileUser;
 
+	/**
+	 * @var \ViewKeeper\ViewKeeper
+	 */
+	public $keeper;
+
 	private $wwwDir;
 
 	/** @var \App\Modules\BackendModule\Controls\ITransportsModalFactory */
 	public $ITransportsModal;
 
-    public function __construct(ITransportsModalFactory $ITransportsModal, ThumbnailsHelper $thumbnailsHelper, TrackBaseLogic $trackBaseLogic, UserBaseLogic $userBaseLogic, $wwwDir, User $loggedUser, User $profileUser)
+    public function __construct(ViewKeeper $keeper, ITransportsModalFactory $ITransportsModal, ThumbnailsHelper $thumbnailsHelper, TrackBaseLogic $trackBaseLogic, UserBaseLogic $userBaseLogic, $wwwDir, User $loggedUser, User $profileUser)
     {
+		$this->keeper = $keeper;
 		$this->ITransportsModal = $ITransportsModal;
 		$this->wwwDir = $wwwDir;
 		$this->thumbnailsHelper = $thumbnailsHelper;
@@ -67,9 +74,9 @@ class ProfileModal extends Control
 		return $this->ITransportsModal->create($this->profileUser, $this->loggedUser);
 	}
 
-	public function render($file)
+	public function render()
 	{
-		$this->template->setFile($file);
+		$this->template->setFile($this->keeper->getView('Backend:' . $this->name, 'controls'));
 
 		$this->template->addFilter(NULL, 'App\TemplateHelpers::loader');
 		$this->template->addFilter('thumb', array($this->thumbnailsHelper, 'process'));

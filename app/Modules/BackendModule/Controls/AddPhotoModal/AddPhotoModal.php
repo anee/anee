@@ -12,6 +12,7 @@ use Nette\Application\UI\Form;
 use App\Model\User;
 use App\Model\Photo;
 use Nette\Utils\DateTime;
+use ViewKeeper\ViewKeeper;
 
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
@@ -47,10 +48,16 @@ class AddPhotoModal extends Control
 	/** @var User */
 	private $loggedUser;
 
+	/**
+	 * @var \ViewKeeper\ViewKeeper
+	 */
+	public $keeper;
+
 	private $appDir;
 
-	public function __construct(PlaceBaseLogic $placeBaseLogic, TrackBaseLogic $trackBaseLogic, PhotoBaseLogic $photoBaseLogic, UserBaseLogic $userBaseLogic, $appDir, User $loggedUser)
+	public function __construct(ViewKeeper $keeper, PlaceBaseLogic $placeBaseLogic, TrackBaseLogic $trackBaseLogic, PhotoBaseLogic $photoBaseLogic, UserBaseLogic $userBaseLogic, $appDir, User $loggedUser)
 	{
+		$this->keeper = $keeper;
 		$this->placeBaseLogic = $placeBaseLogic;
 		$this->trackBaseLogic = $trackBaseLogic;
 		$this->photoBaseLogic = $photoBaseLogic;
@@ -59,9 +66,9 @@ class AddPhotoModal extends Control
 		$this->loggedUser = $loggedUser;
 	}
 
-	public function render($file)
+	public function render()
 	{
-		$this->template->setFile($file);
+		$this->template->setFile($this->keeper->getView('Backend:' . $this->name, 'controls'));
 		$this->template->loggedUser = $this->loggedUser;
 		$this->template->render();
 	}

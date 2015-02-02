@@ -21,7 +21,6 @@ abstract class BasePresenter extends \App\Modules\BaseModule\Presenters\BasePres
 
 	public function formatLayoutTemplateFiles()
 	{
-		$themeDir = $this->theme->getParameter('themeDir');
-		return [$themeDir . '/Modules/Frontend/templates/@layout.latte'];
+		return array($this->keeper->getView('Frontend:Base', 'layouts', 'layout'));
 	}
 }

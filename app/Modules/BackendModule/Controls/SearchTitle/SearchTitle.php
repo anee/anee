@@ -6,6 +6,7 @@ namespace App\Modules\BackendModule\Controls;
 
 use App\Searching\SearchResults;
 use Nette\Application\UI\Control;
+use ViewKeeper\ViewKeeper;
 
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
@@ -26,21 +27,27 @@ interface ISearchTitleFactory
  */
 class SearchTitle extends Control {
 
+	/**
+	 * @var \ViewKeeper\ViewKeeper
+	 */
+	public $keeper;
+
 	/** @var array */
 	private $values;
 
 	/** @var SearchResults */
 	private $results;
 
-	public function __construct(Array $values, SearchResults $results)
+	public function __construct(ViewKeeper $keeper, Array $values, SearchResults $results)
 	{
+		$this->keeper = $keeper;
 		$this->values = $values;
 		$this->results = $results;
 	}
 
-	public function render($file)
+	public function render()
 	{
-		$this->template->setFile($file);
+		$this->template->setFile($this->keeper->getView('Backend:' . $this->name, 'controls'));
 
 		$this->template->setFile($file);
 		$this->template->addFilter(NULL, 'App\TemplateHelpers::loader');
