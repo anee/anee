@@ -11,7 +11,7 @@ use Nette;
 abstract class BasePresenter extends \App\Modules\BaseModule\Presenters\BasePresenter
 {
 
-	/** @var \App\Modules\BackendModule\Controls\ITopTopMenu @inject */
+	/** @var \App\Modules\BackendModule\Controls\ITopTopMenuFactory @inject */
 	public $ITopTopMenu;
 
 	protected function createComponentTopTopMenu()

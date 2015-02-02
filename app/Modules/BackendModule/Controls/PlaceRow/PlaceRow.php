@@ -14,7 +14,7 @@ use Nette\Application\UI\Form;
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
  */
-interface IPlaceRow
+interface IPlaceRowFactory
 {
 
 	/**

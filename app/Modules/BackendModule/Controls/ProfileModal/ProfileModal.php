@@ -14,7 +14,7 @@ use App\Model\User;
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
  */
-interface IProfileModal
+interface IProfileModalFactory
 {
 
 	/**
@@ -48,10 +48,10 @@ class ProfileModal extends Control
 
 	private $wwwDir;
 
-	/** @var \App\Modules\BackendModule\Controls\ITransportsModal */
+	/** @var \App\Modules\BackendModule\Controls\ITransportsModalFactory */
 	public $ITransportsModal;
 
-    public function __construct(ITransportsModal $ITransportsModal, ThumbnailsHelper $thumbnailsHelper, TrackBaseLogic $trackBaseLogic, UserBaseLogic $userBaseLogic, $wwwDir, User $loggedUser, User $profileUser)
+    public function __construct(ITransportsModalFactory $ITransportsModal, ThumbnailsHelper $thumbnailsHelper, TrackBaseLogic $trackBaseLogic, UserBaseLogic $userBaseLogic, $wwwDir, User $loggedUser, User $profileUser)
     {
 		$this->ITransportsModal = $ITransportsModal;
 		$this->wwwDir = $wwwDir;

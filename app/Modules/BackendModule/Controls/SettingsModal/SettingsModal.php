@@ -11,7 +11,7 @@ use App\Model\User;
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
  */
-interface ISettingsModal
+interface ISettingsModalFactory
 {
 
 	/**

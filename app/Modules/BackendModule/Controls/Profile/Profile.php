@@ -16,7 +16,7 @@ use App\Model\User;
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
  */
-interface IProfile
+interface IProfileFactory
 {
 
 	/**
@@ -57,22 +57,22 @@ class Profile extends Control
 
 	private $wwwDir;
 
-	/** @var \App\Modules\BackendModule\Controls\ITransportsModal */
+	/** @var \App\Modules\BackendModule\Controls\ITransportsModalFactory */
 	public $ITransportsModal;
 
-	/** @var \App\Modules\BackendModule\Controls\IAddTrackModal */
+	/** @var \App\Modules\BackendModule\Controls\IAddTrackModalFactory */
 	public $IAddTrackModal;
 
-	/** @var \App\Modules\BackendModule\Controls\IAddPhotoModal */
+	/** @var \App\Modules\BackendModule\Controls\IAddPhotoModalFactory */
 	public $IAddPhotoModal;
 
-	/** @var \App\Modules\BackendModule\Controls\IAddPlaceModal */
+	/** @var \App\Modules\BackendModule\Controls\IAddPlaceModalFactory */
 	public $IAddPlaceModal;
 
 	/** bool which say if we will display detail of one track or summary */
 	private $detail;
 
-    public function __construct(IAddPlaceModal $IAddPlaceModal, IAddPhotoModal $IAddPhotoModal, IAddTrackModal $IAddTrackModal, ITransportsModal $ITransportsModal, ThumbnailsHelper $thumbnailsHelper, TrackBaseLogic $trackBaseLogic, UserBaseLogic $userBaseLogic, PlaceBaseLogic $placeBaseLogic, PhotoBaseLogic $photoBaseLogic, $wwwDir, User $loggedUser, User $profileUser, $detail = NULL)
+    public function __construct(IAddPlaceModalFactory $IAddPlaceModal, IAddPhotoModalFactory $IAddPhotoModal, IAddTrackModalFactory $IAddTrackModal, ITransportsModalFactory $ITransportsModal, ThumbnailsHelper $thumbnailsHelper, TrackBaseLogic $trackBaseLogic, UserBaseLogic $userBaseLogic, PlaceBaseLogic $placeBaseLogic, PhotoBaseLogic $photoBaseLogic, $wwwDir, User $loggedUser, User $profileUser, $detail = NULL)
     {
 		$this->wwwDir = $wwwDir;
 		$this->thumbnailsHelper = $thumbnailsHelper;

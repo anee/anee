@@ -10,7 +10,7 @@ use Nette\Application\UI\Control;
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
  */
-interface ITopMenu
+interface ITopMenuFactory
 {
 
     /**

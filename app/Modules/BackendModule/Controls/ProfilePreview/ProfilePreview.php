@@ -14,7 +14,7 @@ use App\Model\User;
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
  */
-interface IProfilePreview
+interface IProfilePreviewFactory
 {
 
 	/**
@@ -45,13 +45,13 @@ class ProfilePreview extends Control
 
 	private $wwwDir;
 
-	/** @var \App\Modules\BackendModule\Controls\ITransportsModal */
+	/** @var \App\Modules\BackendModule\Controls\ITransportsModalFactory */
 	public $ITransportsModal;
 
-	/** @var \App\Modules\BackendModule\Controls\IProfileModal */
+	/** @var \App\Modules\BackendModule\Controls\IProfileModalFactory */
 	public $IProfileModal;
 
-    public function __construct(IProfileModal $IProfileModal, ITransportsModal $ITransportsModal, ThumbnailsHelper $thumbnailsHelper, UserBaseLogic $userBaseLogic, $wwwDir, User $loggedUser, User $profileUser)
+    public function __construct(IProfileModalFactory $IProfileModal, ITransportsModalFactory $ITransportsModal, ThumbnailsHelper $thumbnailsHelper, UserBaseLogic $userBaseLogic, $wwwDir, User $loggedUser, User $profileUser)
     {
 		$this->IProfileModal = $IProfileModal;
 		$this->ITransportsModal = $ITransportsModal;

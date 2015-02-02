@@ -13,7 +13,7 @@ use App\Model\Place;
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
  */
-interface IAddPlaceModal
+interface IAddPlaceModalFactory
 {
 
 	/**

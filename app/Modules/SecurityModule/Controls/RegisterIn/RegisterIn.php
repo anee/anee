@@ -12,7 +12,7 @@ use App\Model\User;
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
  */
-interface IRegisterIn
+interface IRegisterInFactory
 {
 
 	/**

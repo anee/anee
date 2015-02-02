@@ -5,11 +5,12 @@ namespace App\Modules\BackendModule\Controls;
 use Nette;
 use Nette\Application\UI\Control;
 use App\Model\UserBaseLogic;
+use App\Model\User;
 
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
  */
-interface ITopTopMenu
+interface ITopTopMenuFactory
 {
 
 	/**
@@ -25,13 +26,13 @@ interface ITopTopMenu
 class TopTopMenu extends Control
 {
 
-	/** @var \App\Modules\BackendModule\Controls\ISettingsModal */
+	/** @var \App\Modules\BackendModule\Controls\ISettingsModalFactory */
 	public $ISettingsModal;
 
-	/** @var \App\Modules\Backendmodule\Controls\IFeedbackModal */
+	/** @var \App\Modules\BackendModule\Controls\IFeedbackModalFactory */
 	public $IFeedbackModal;
 
-	/** @var \App\Modules\BackendModule\Controls\IProfileModal */
+	/** @var \App\Modules\BackendModule\Controls\IProfileModalFactory */
 	public $IProfileModal;
 
 	/** @var \App\Model\UserBaseLogic */
@@ -40,7 +41,7 @@ class TopTopMenu extends Control
 	/** @var \App\Model\User */
 	private $loggedUser;
 
-	public function __construct(IFeedbackModal $IFeedbackModal, IProfileModal $IProfileModal, ISettingsModal $ISettingsModal, UserBaseLogic $userBaseLogic, $loggedUser = NULL)
+	public function __construct(IFeedbackModalFactory $IFeedbackModal, IProfileModalFactory $IProfileModal, ISettingsModalFactory $ISettingsModal, UserBaseLogic $userBaseLogic, $loggedUser = NULL)
     {
 		$this->IFeedbackModal = $IFeedbackModal;
 		$this->IProfileModal = $IProfileModal;

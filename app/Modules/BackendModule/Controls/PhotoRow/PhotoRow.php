@@ -14,7 +14,7 @@ use Nette\Utils\Image;
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
  */
-interface IPhotoRow
+interface IPhotoRowFactory
 {
 
 	/**

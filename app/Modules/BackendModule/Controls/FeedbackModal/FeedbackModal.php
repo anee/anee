@@ -11,7 +11,7 @@ use Nette\Mail\SendmailMailer;
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
  */
-interface IFeedbackModal
+interface IFeedbackModalFactory
 {
 
 	/**

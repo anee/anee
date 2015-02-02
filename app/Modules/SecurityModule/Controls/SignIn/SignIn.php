@@ -9,7 +9,7 @@ use Nette\Security\AuthenticationException;
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
  */
-interface ISignIn
+interface ISignInFactory
 {
 
 	/**

@@ -17,10 +17,10 @@ class PlacesPresenter extends BasePresenter
 	/** @var \App\Model\Place */
 	public $place;
 
-	/** @var \App\Modules\BackendModule\Controls\IProfile @inject */
+	/** @var \App\Modules\BackendModule\Controls\IProfileFactory @inject */
 	public $IProfile;
 
-	/** @var \App\Modules\BackendModule\Controls\IPlaceRow @inject */
+	/** @var \App\Modules\BackendModule\Controls\IPlaceRowFactory @inject */
 	public $IPlaceRow;
 
 	private $username;

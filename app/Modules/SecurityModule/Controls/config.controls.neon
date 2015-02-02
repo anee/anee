@@ -1,8 +1,8 @@
 services:
 	RegisterIn:
 		class: App\Modules\SecurityModule\Controls\RegisterIn
-		implement: App\Modules\SecurityModule\Controls\IRegisterIn
+		implement: App\Modules\SecurityModule\Controls\IRegisterInFactory
 
 	SignIn:
 		class: App\Modules\SecurityModule\Controls\SignIn
-		implement: App\Modules\SecurityModule\Controls\ISignIn
+		implement: App\Modules\SecurityModule\Controls\ISignInFactory

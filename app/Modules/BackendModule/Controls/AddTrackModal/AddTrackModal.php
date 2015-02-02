@@ -18,7 +18,7 @@ use Nette\Utils\DateTime;
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
  */
-interface IAddTrackModal
+interface IAddTrackModalFactory
 {
 
 	/**

@@ -8,7 +8,7 @@ use Nette\Application\UI\Control;
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
  */
-interface IProfileContainer
+interface IProfileContainerFactory
 {
 
 	/**

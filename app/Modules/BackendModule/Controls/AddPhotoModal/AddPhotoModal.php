@@ -16,7 +16,7 @@ use Nette\Utils\DateTime;
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
  */
-interface IAddPhotoModal
+interface IAddPhotoModalFactory
 {
 
 	/**

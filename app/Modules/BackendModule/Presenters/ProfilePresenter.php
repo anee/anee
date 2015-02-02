@@ -11,7 +11,7 @@ class ProfilePresenter extends BasePresenter
 {
 
 
-	/** @var  \App\Modules\BackendModule\Controls\IProfile @inject */
+	/** @var  \App\Modules\BackendModule\Controls\IProfileFactory @inject */
 	public $IProfile;
 
 	/** Profile username */
@@ -29,19 +29,19 @@ class ProfilePresenter extends BasePresenter
 	/** @var \App\Model\PhotoBaseLogic @inject */
 	public $photoBaseLogic;
 
-	/** @var  \App\Modules\BackendModule\Controls\IProfileContainer @inject */
+	/** @var  \App\Modules\BackendModule\Controls\IProfileContainerFactory @inject */
 	public $IProfileContainer;
 
-	/** @var  \App\Modules\BackendModule\Controls\IProfilePreview @inject */
+	/** @var  \App\Modules\BackendModule\Controls\IProfilePreviewFactory @inject */
 	public $IProfilePreview;
 
-	/** @var  \App\Modules\BackendModule\Controls\ITrackRow @inject */
+	/** @var  \App\Modules\BackendModule\Controls\ITrackRowFactory @inject */
 	public $ITrackRow;
 
-	/** @var \App\Modules\BackendModule\Controls\IPlaceRow @inject */
+	/** @var \App\Modules\BackendModule\Controls\IPlaceRowFactory @inject */
 	public $IPlaceRow;
 
-	/** @var \App\Modules\BackendModule\Controls\IPhotoRow @inject */
+	/** @var \App\Modules\BackendModule\Controls\IPhotoRowFactory @inject */
 	public $IPhotoRow;
 
 	protected function createComponentProfile()

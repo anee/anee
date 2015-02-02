@@ -18,7 +18,7 @@ use App\Model\Transport;
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
  */
-interface ITrackRow
+interface ITrackRowFactory
 {
 
 	/**
