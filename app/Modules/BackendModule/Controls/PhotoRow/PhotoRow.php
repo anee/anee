@@ -11,6 +11,20 @@ use App\Model\User;
 use Kappa\ThumbnailsHelper\ThumbnailsHelper;
 use Nette\Utils\Image;
 
+/**
+ * Author Lukáš Drahník <L.Drahnik@gmail.com>
+ */
+interface IPhotoRow
+{
+
+	/**
+	 * @param Photo $photo
+	 * @param User $loggedUser
+	 * @param User $profileUser
+	 * @return PhotoRow
+	 */
+	function create(Photo $photo, User $loggedUser, User $profileUser);
+}
 
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>

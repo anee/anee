@@ -8,6 +8,18 @@ use App\Model\UserBaseLogic;
 use Nette\Application\UI\Form;
 use App\Model\User;
 
+/**
+ * Author Lukáš Drahník <L.Drahnik@gmail.com>
+ */
+interface ISettingsModal
+{
+
+	/**
+	 * @param User $loggedUser
+	 * @return SettingsModal
+	 */
+	function create(User $loggedUser);
+}
 
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>

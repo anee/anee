@@ -13,7 +13,18 @@ use App\Model\User;
 use App\Model\Photo;
 use Nette\Utils\DateTime;
 
+/**
+ * Author Lukáš Drahník <L.Drahnik@gmail.com>
+ */
+interface IAddPhotoModal
+{
 
+	/**
+	 * @param User $loggedUser
+	 * @return AddPhotoModal
+	 */
+	function create(User $loggedUser);
+}
 
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>

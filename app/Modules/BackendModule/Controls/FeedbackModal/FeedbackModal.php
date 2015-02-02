@@ -8,8 +8,18 @@ use Nette\Application\UI\Form;
 use App\Model\User;
 use Nette\Mail\SendmailMailer;
 
+/**
+ * Author Lukáš Drahník <L.Drahnik@gmail.com>
+ */
+interface IFeedbackModal
+{
 
-
+	/**
+	 * @param User $loggedUser
+	 * @return FeedbackModal
+	 */
+	function create(User $loggedUser);
+}
 
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>

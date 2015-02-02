@@ -11,6 +11,19 @@ use Nette\Application\UI\Control;
 use Nette\Utils\Image;
 use App\Model\User;
 
+/**
+ * Author Lukáš Drahník <L.Drahnik@gmail.com>
+ */
+interface IProfileModal
+{
+
+	/**
+	 * @param User $loggedUser
+	 * @param User $profileUser
+	 * @return ProfileModal
+	 */
+	function create(User $loggedUser, User $profileUser);
+}
 
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>

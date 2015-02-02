@@ -6,6 +6,17 @@ use Nette;
 use Nette\Application\UI\Form;
 use Nette\Security\AuthenticationException;
 
+/**
+ * Author Lukáš Drahník <L.Drahnik@gmail.com>
+ */
+interface ISignIn
+{
+
+	/**
+	 * @return SignIn
+	 */
+	function create();
+}
 
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>

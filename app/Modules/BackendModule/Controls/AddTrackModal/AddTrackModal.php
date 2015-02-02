@@ -15,6 +15,18 @@ use App\Model\PlaceBaseLogic;
 use App\Model\TrackBaseLogic;
 use Nette\Utils\DateTime;
 
+/**
+ * Author Lukáš Drahník <L.Drahnik@gmail.com>
+ */
+interface IAddTrackModal
+{
+
+	/**
+	 * @param User $loggedUser
+	 * @return AddTrackModal
+	 */
+	function create(User $loggedUser);
+}
 
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>

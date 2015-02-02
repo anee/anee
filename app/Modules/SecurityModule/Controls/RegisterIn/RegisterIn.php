@@ -9,6 +9,17 @@ use Nette;
 use Nette\Application\UI\Form;;
 use App\Model\User;
 
+/**
+ * Author Lukáš Drahník <L.Drahnik@gmail.com>
+ */
+interface IRegisterIn
+{
+
+	/**
+	 * @return RegisterIn
+	 */
+	function create();
+}
 
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>

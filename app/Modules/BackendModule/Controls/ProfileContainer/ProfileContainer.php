@@ -5,6 +5,17 @@ namespace App\Modules\BackendModule\Controls;
 use Nette;
 use Nette\Application\UI\Control;
 
+/**
+ * Author Lukáš Drahník <L.Drahnik@gmail.com>
+ */
+interface IProfileContainer
+{
+
+	/**
+	 * @return ProfileContainer
+	 */
+	function create();
+}
 
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>

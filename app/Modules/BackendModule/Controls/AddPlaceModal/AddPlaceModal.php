@@ -10,7 +10,18 @@ use Nette\Application\UI\Form;
 use App\Model\User;
 use App\Model\Place;
 
+/**
+ * Author Lukáš Drahník <L.Drahnik@gmail.com>
+ */
+interface IAddPlaceModal
+{
 
+	/**
+	 * @param User $loggedUser
+	 * @return AddPhotoModal
+	 */
+	function create(User $loggedUser);
+}
 
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>

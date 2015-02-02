@@ -6,6 +6,18 @@ use Nette;
 use Nette\Application\UI\Control;
 use App\Model\UserBaseLogic;
 
+/**
+ * Author Lukáš Drahník <L.Drahnik@gmail.com>
+ */
+interface ITopTopMenu
+{
+
+	/**
+	 * @param User $loggedUser
+	 * @return TopTopMenu
+	 */
+	function create($loggedUser = NULL);
+}
 
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>

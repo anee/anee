@@ -6,6 +6,17 @@ use App\Model\UserBaseLogic;
 use Nette;
 use Nette\Application\UI\Control;
 
+/**
+ * Author Lukáš Drahník <L.Drahnik@gmail.com>
+ */
+interface IUserPanel
+{
+
+	/**
+	 * @return /UserPanel
+	 */
+	function create();
+}
 
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>

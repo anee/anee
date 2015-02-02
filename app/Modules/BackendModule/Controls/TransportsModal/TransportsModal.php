@@ -11,6 +11,19 @@ use Nette\Application\UI\Control;
 use Nette\Application\UI\Form;
 use App\Model\User;
 
+/**
+ * Author Lukáš Drahník <L.Drahnik@gmail.com>
+ */
+interface ITransportsModal
+{
+
+	/**
+	 * @param User $profileUser
+	 * @param User $loggedUser
+	 * @return TransportsModal
+	 */
+	function create(User $profileUser, User $loggedUser);
+}
 
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>

@@ -7,6 +7,17 @@ use Nette;
 use Nette\Application\UI\Form;
 use Nette\Application\UI\Control;
 
+/**
+ * Author Lukáš Drahník <L.Drahnik@gmail.com>
+ */
+interface ITopMenu
+{
+
+    /**
+     * @return TopMenu
+     */
+    function create();
+}
 
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>

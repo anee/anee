@@ -13,6 +13,20 @@ use Nette\Application\UI\Control;
 use Nette\Utils\Image;
 use App\Model\User;
 
+/**
+ * Author Lukáš Drahník <L.Drahnik@gmail.com>
+ */
+interface IProfile
+{
+
+	/**
+	 * @param User $loggedUser
+	 * @param User $profileUser
+	 * @param bool $detail
+	 * @return Profile
+	 */
+	function create(User $loggedUser, User $profileUser, $detail = NULL);
+}
 
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
