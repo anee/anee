@@ -21,7 +21,6 @@
 		"kappa/thumbnails-helper": "@dev",
 		"janmarek/webloader": "@dev",
 		"leafo/lessphp": "~0.4",
-		"kappa/themes-manager": "@dev",
 		"kdyby/autowired": "~1.0",
 	  	"natxet/cssmin": "~3.0",
 	  	"tedivm/jshrink": "~1.0",
