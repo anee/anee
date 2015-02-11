@@ -28,7 +28,7 @@
                 <div style="clear: both;"></div>
             </div>
             {/foreach}
-            {if count($profileUser->transports) > 0}
+            {if $loggedUser != NULL && $loggedUser->username == $profileUser->username && count($profileUser->transports) > 0}
                 {input save}
             {/if}
             {/form}

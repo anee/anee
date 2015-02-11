@@ -85,10 +85,16 @@ class TransportsModal extends Control
 		$form = new Form;
 
 		foreach($this->profileUser->transports as $transport) {
-			$form->addText($transport->name)->setRequired('Please enter name.');
+			if($this->loggedUser == NULL) {
+				$form->addText($transport->name)->setRequired('Please enter name.')->setDisabled();
+			} else {
+				$form->addText($transport->name)->setRequired('Please enter name.');
+			}
 		}
-		$form->addSubmit('save', 'save');
-		$form->onSuccess[] = $this->success;
+		if($this->loggedUser != NULL) {
+			$form->addSubmit('save', 'save');
+			$form->onSuccess[] = $this->success;
+		}
 
 		$transports = array();
 		foreach($this->profileUser->transports as $transport) {
