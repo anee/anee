@@ -140,7 +140,7 @@ class Profile extends Control
 
 	public function render()
 	{
-		$this->template->setFile($this->keeper->getView('Backend:' . $this->name, 'controls'));
+		$this->template->setFile($this->keeper->getView('Backend:' . 'Profile', 'controls'));
 
 		$this->template->addFilter(NULL, 'App\TemplateHelpers::loader');
 		$this->template->addFilter('thumb', array($this->thumbnailsHelper, 'process'));

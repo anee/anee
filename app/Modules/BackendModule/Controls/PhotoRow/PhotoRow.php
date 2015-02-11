@@ -84,7 +84,7 @@ class PhotoRow extends Control
 
 	public function render()
 	{
-		$this->template->setFile($this->keeper->getView('Backend:' . 'PhotoSRow', 'controls'));
+		$this->template->setFile($this->keeper->getView('Backend:' . 'PhotoRow', 'controls'));
 
 		$this->template->addFilter(NULL, 'App\TemplateHelpers::loader');
 
