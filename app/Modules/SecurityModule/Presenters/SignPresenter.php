@@ -28,7 +28,7 @@ class SignPresenter extends BasePresenter
 
 	public function actionOut()
 	{
-		$this->getUser()->logout();
+		$this->getUser()->logout(TRUE);
 		$this->redirect(':Backend:Homepage:default');
 	}
 }
