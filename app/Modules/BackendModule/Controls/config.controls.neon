@@ -64,17 +64,17 @@ services:
 	TrackRow:
 		class: App\Modules\BackendModule\Controls\TrackRow(..., ..., ..., ..., ..., %track%, %loggedUser%, %profileUser%, %byName%, %detail%)
 		implement: App\Modules\BackendModule\Controls\ITrackRowFactory
-		parameters: [App\Model\Track track, App\Model\User loggedUser, App\Model\User profileUser, byName = NULL, detail = NULL]
+		parameters: [App\Model\Track track, App\Model\User loggedUser = NULL, App\Model\User profileUser, byName = NULL, detail = NULL]
 
 	PlaceRow:
 		class: App\Modules\BackendModule\Controls\PlaceRow(..., ..., ..., %place%, %loggedUser%, %profileUser%, %detail%)
 		implement: App\Modules\BackendModule\Controls\IPlaceRowFactory
-		parameters: [App\Model\Place place, App\Model\User loggedUser, App\Model\User profileUser, detail = NULL]
+		parameters: [App\Model\Place place, App\Model\User loggedUser = NULL, App\Model\User profileUser, detail = NULL]
 
 	PhotoRow:
 		class: App\Modules\BackendModule\Controls\PhotoRow(..., ..., ..., ..., %wwwDir%, %photo%, %loggedUser%, %profileUser%)
 		implement: App\Modules\BackendModule\Controls\IPhotoRowFactory
-		parameters: [App\Model\Photo photo, App\Model\User loggedUser, App\Model\User profileUser]
+		parameters: [App\Model\Photo photo, App\Model\User loggedUser = NULL, App\Model\User profileUser]
 
 	FeedbackModal:
 		class: App\Modules\BackendModule\Controls\FeedbackModal(..., %loggedUser%)

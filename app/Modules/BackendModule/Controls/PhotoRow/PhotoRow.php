@@ -24,7 +24,7 @@ interface IPhotoRowFactory
 	 * @param User $profileUser
 	 * @return PhotoRow
 	 */
-	function create(Photo $photo, User $loggedUser, User $profileUser);
+	function create(Photo $photo, User $loggedUser = NULL, User $profileUser);
 }
 
 /**
@@ -70,7 +70,7 @@ class PhotoRow extends Control
 
 	private $wwwDir;
 
-    public function __construct(ViewKeeper $keeper, ThumbnailsHelper $thumbnailsHelper, PhotoBaseLogic $photoBaseLogic, UserBaseLogic $userBaseLogic, $wwwDir, Photo $photo, User $loggedUser, User $profileUser)
+    public function __construct(ViewKeeper $keeper, ThumbnailsHelper $thumbnailsHelper, PhotoBaseLogic $photoBaseLogic, UserBaseLogic $userBaseLogic, $wwwDir, Photo $photo, User $loggedUser = NULL, User $profileUser)
     {
 		$this->keeper = $keeper;
 		$this->wwwDir = $wwwDir;

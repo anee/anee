@@ -30,7 +30,7 @@ interface ITrackRowFactory
 	 * @param bool $detail
 	 * @return TrackRow
 	 */
-	function create(Track $track, User $loggedUser, User $profileUser, $byName = NULL, $detail = NULL);
+	function create(Track $track, User $loggedUser = NULL, User $profileUser, $byName = NULL, $detail = NULL);
 }
 
 /**
@@ -88,7 +88,7 @@ class TrackRow extends Control
 	 */
 	private $detail;
 
-	public function __construct(ViewKeeper $keeper, TransportBaseLogic $transportBaseLogic, PlaceBaseLogic $placeBaseLogic, TrackBaseLogic $trackBaseLogic, UserBaseLogic $userBaseLogic, Track $track, User $loggedUser, User $profileUser, $byName = NULL, $detail = NULL)
+	public function __construct(ViewKeeper $keeper, TransportBaseLogic $transportBaseLogic, PlaceBaseLogic $placeBaseLogic, TrackBaseLogic $trackBaseLogic, UserBaseLogic $userBaseLogic, Track $track, User $loggedUser = NULL, User $profileUser, $byName = NULL, $detail = NULL)
 	{
 		$this->keeper = $keeper;
 		$this->track = $track;
