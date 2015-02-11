@@ -43,7 +43,7 @@ class UserPanel extends Control
 
 	public function render()
 	{
-		$this->template->setFile($this->keeper->getView('Backend:' . $this->name, 'controls'));
+		$this->template->setFile($this->keeper->getView('Backend:' . 'UserPanel', 'controls'));
 
 		$this->template->addFilter(NULL, 'App\TemplateHelpers::loader');
 

@@ -77,7 +77,7 @@ class AddPhotoModal extends Control
 
 	public function render()
 	{
-		$this->template->setFile($this->keeper->getView('Backend:' . $this->name, 'controls'));
+		$this->template->setFile($this->keeper->getView('Backend:' . 'AddPhotoModal', 'controls'));
 		$this->template->loggedUser = $this->loggedUser;
 		$this->template->render();
 	}

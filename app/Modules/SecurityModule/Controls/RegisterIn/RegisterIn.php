@@ -46,7 +46,7 @@ class RegisterIn extends Nette\Application\UI\Control
 
 	public function render()
 	{
-		$this->template->setFile($this->keeper->getView('Security:' . $this->name, 'controls'));
+		$this->template->setFile($this->keeper->getView('Security:' . 'RegisterIn', 'controls'));
 		$this->template->render();
 	}
 

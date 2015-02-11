@@ -83,7 +83,7 @@ class TopTopMenu extends Control
 
 	public function render()
 	{
-		$this->template->setFile($this->keeper->getView('Backend:' . $this->name, 'controls'));
+		$this->template->setFile($this->keeper->getView('Backend:' . 'TopTopMenu', 'controls'));
 		$this->template->loggedUser = $this->loggedUser;
 		$this->template->render();
 	}

@@ -36,7 +36,7 @@ class ProfileContainer extends Control
 
 	public function render()
 	{
-		$this->template->setFile($this->keeper->getView('Backend:' . $this->name, 'controls'));
+		$this->template->setFile($this->keeper->getView('Backend:' . 'ProfileContainer', 'controls'));
 		$this->template->render();
 	}
 }

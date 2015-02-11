@@ -46,7 +46,7 @@ class TopMenu extends Control
 
 	public function render()
 	{
-        $this->template->setFile($this->keeper->getView('Backend:' . $this->name, 'controls'));
+        $this->template->setFile($this->keeper->getView('Backend:' . 'TopMenu', 'controls'));
 		$this->template->render();
 	}
 

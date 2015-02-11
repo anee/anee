@@ -37,7 +37,7 @@ class SignIn extends Nette\Application\UI\Control
 
 	public function render()
 	{
-		$this->template->setFile($this->keeper->getView('Security:' . $this->name, 'controls'));
+		$this->template->setFile($this->keeper->getView('Security:' . 'SignIn', 'controls'));
 		$this->template->render();
 	}
 
