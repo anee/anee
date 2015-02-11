@@ -26,7 +26,7 @@ interface IProfileFactory
 	 * @param bool $detail
 	 * @return Profile
 	 */
-	function create(User $loggedUser, User $profileUser, $detail = NULL);
+	function create(User $loggedUser = NULL, User $profileUser, $detail = NULL);
 }
 
 /**
@@ -100,7 +100,7 @@ class Profile extends Control
 	 */
 	public $keeper;
 
-    public function __construct(ViewKeeper $keeper, IAddPlaceModalFactory $IAddPlaceModal, IAddPhotoModalFactory $IAddPhotoModal, IAddTrackModalFactory $IAddTrackModal, ITransportsModalFactory $ITransportsModal, ThumbnailsHelper $thumbnailsHelper, TrackBaseLogic $trackBaseLogic, UserBaseLogic $userBaseLogic, PlaceBaseLogic $placeBaseLogic, PhotoBaseLogic $photoBaseLogic, $wwwDir, User $loggedUser, User $profileUser, $detail = NULL)
+    public function __construct(ViewKeeper $keeper, IAddPlaceModalFactory $IAddPlaceModal, IAddPhotoModalFactory $IAddPhotoModal, IAddTrackModalFactory $IAddTrackModal, ITransportsModalFactory $ITransportsModal, ThumbnailsHelper $thumbnailsHelper, TrackBaseLogic $trackBaseLogic, UserBaseLogic $userBaseLogic, PlaceBaseLogic $placeBaseLogic, PhotoBaseLogic $photoBaseLogic, $wwwDir, User $loggedUser = NULL, User $profileUser, $detail = NULL)
     {
 		$this->keeper = $keeper;
 		$this->wwwDir = $wwwDir;

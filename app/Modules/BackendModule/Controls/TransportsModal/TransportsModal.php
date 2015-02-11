@@ -23,7 +23,7 @@ interface ITransportsModalFactory
 	 * @param User $loggedUser
 	 * @return TransportsModal
 	 */
-	function create(User $profileUser, User $loggedUser);
+	function create(User $profileUser, User $loggedUser = NULL);
 }
 
 /**
@@ -62,7 +62,7 @@ class TransportsModal extends Control
 	 */
 	private $profileUser;
 
-	public function __construct(ViewKeeper $keeper, TrackBaseLogic $trackBaseLogic,  UserBaseLogic $userBaseLogic, TransportBaseLogic $transportBaseLogic, User $profileUser, User $loggedUser)
+	public function __construct(ViewKeeper $keeper, TrackBaseLogic $trackBaseLogic,  UserBaseLogic $userBaseLogic, TransportBaseLogic $transportBaseLogic, User $profileUser, User $loggedUser = NULL)
 	{
 		$this->keeper = $keeper;
 		$this->trackBaseLogic = $trackBaseLogic;
@@ -83,6 +83,7 @@ class TransportsModal extends Control
 	protected function createComponentTransportsForm()
 	{
 		$form = new Form;
+
 		foreach($this->profileUser->transports as $transport) {
 			$form->addText($transport->name)->setRequired('Please enter name.');
 		}
