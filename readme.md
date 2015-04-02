@@ -5,19 +5,14 @@
 
 Anee is place for sharing tracks and photos. I develop this service in free time and for non-commercial using.
 
-Requirements
-------------
-
-ldrahnik/anee requires PHP 5.5.11 or higher.
-
 Getting started
 ---------------
 
-Interface tries to be intuitive. If you dont know anything do not be shy to contact me. 
+Interface tries to be intuitive. Just [register](http://anee.drahnik-lukas.com/Register/In) and try it yourself. If you dont know anything do not be shy to contact me. 
 
 
 Reporting bugs
 ---------------
 
-If something is wrong, use support form in application or if you think that it's bug you can report issue [here](https://github.com/ldrahnik/anee/issues) or if you know how fix it you should send [pull request](https://github.com/ldrahnik/anee/pulls).
+If something is wrong, use feedback form in application or if you think that it's bug you can report issue [here](https://github.com/anee/app/issues) or if you know how fix that you could send [pull request](https://github.com/anee/app/pulls).
 
