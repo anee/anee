@@ -22,13 +22,13 @@ class TracksPresenter extends BasePresenter
 	/** @var Converter @inject */
 	public $converter;
 
-	public function actionRead($username = null, $id = null, $count = null)
+	public function actionRead($username = null, $id = null, $limit = null)
 	{
 		$user = $this->userFacade->getOneByUsername($username);
 		if($user && $user->public) {
 
 			if ($id == null) {
-				$result = $this->trackFacade->getAll($user->id)->applyPaging(0, $count);
+				$result = $this->trackFacade->getAll($user->id)->applyPaging(0, $limit);
 
 				if ($result != null) {
 					$resource = array();
