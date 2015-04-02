@@ -13,9 +13,6 @@ use Kappa\Doctrine\Converters\Converter;
 class PlacesPresenter extends BasePresenter
 {
 
-	/** @var \App\Model\UserFacade @inject */
-	public $userFacade;
-
 	/** @var \App\Model\PlaceFacade @inject */
 	public $placeFacade;
 

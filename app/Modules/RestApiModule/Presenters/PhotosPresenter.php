@@ -13,9 +13,6 @@ use Kappa\Doctrine\Converters\Converter;
 class PhotosPresenter extends BasePresenter
 {
 
-	/** @var \App\Model\UserFacade @inject */
-	public $userFacade;
-
 	/** @var \App\Model\PhotoFacade @inject */
 	public $photoFacade;
 

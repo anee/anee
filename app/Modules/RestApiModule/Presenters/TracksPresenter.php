@@ -13,9 +13,6 @@ use Kappa\Doctrine\Converters\Converter;
 class TracksPresenter extends BasePresenter
 {
 
-	/** @var \App\Model\UserFacade @inject */
-	public $userFacade;
-
 	/** @var \App\Model\TrackFacade @inject */
 	public $trackFacade;
 

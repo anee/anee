@@ -12,6 +12,9 @@ use Drahak\Restful\Application\UI\ResourcePresenter;
 class BasePresenter extends ResourcePresenter {
 
 
+	/** @var \App\Model\UserFacade @inject */
+	public $userFacade;
+
 	protected function setError($message = 'Result has not been found.', $type = '404')
 	{
 		$this->resource->error = $type;
