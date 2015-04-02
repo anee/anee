@@ -7,3 +7,8 @@ services:
 	placeSearchLogic: App\Model\placeSearchLogic(@doctrine.dao(App\Model\Place), @doctrine.dao(App\Model\Track), @trackBaseLogic)
 	transportBaseLogic: App\Model\transportBaseLogic(@doctrine.dao(App\Model\Transport))
 	userBaseLogic: App\Model\userBaseLogic(@doctrine.dao(App\Model\User))
+
+	placeFacade: App\Model\PlaceFacade(@doctrine.dao(App\Model\Place))
+	userFacade: App\Model\UserFacade(@doctrine.dao(App\Model\User))
+	trackFacade: App\Model\TrackFacade(@doctrine.dao(App\Model\Track))
+	photoFacade: App\Model\PhotoFacade(@doctrine.dao(App\Model\Photo))

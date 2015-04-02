@@ -3,6 +3,7 @@
 namespace App;
 
 
+use App\Modules\FrontendModule\Routes\RestApiRoutes;
 use Nette;
 use	Nette\Application\Routers\RouteList;
 use App\Modules\SecurityModule\Routes\SecurityRoutes;
@@ -22,6 +23,7 @@ class RouterFactory
 	{
 		$router = new RouteList();
 
+		$router = RestApiRoutes::create($router);
 		$router = FrontendRoutes::create($router);
 		$router = SecurityRoutes::create($router);
 		$router = BackendRoutes::create($router);

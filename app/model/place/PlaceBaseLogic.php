@@ -15,6 +15,17 @@ class PlaceBaseLogic extends BaseLogic {
         $this->dao->delete($this->findOneById($id));
     }
 
+	public function findAllByCount($userId, $count)
+	{
+		$qb = $this->dao->createQueryBuilder();
+		$qb
+			->select('e')
+			->from('App\Model\Place', 'e')
+			->orderBy('e.name', 'ASC');
+
+		return $this->addFilterByUser($qb, $userId)->getMaxResults($count);
+	}
+
     public function findAll($userId)
     {
         $qb = $this->dao->createQueryBuilder();

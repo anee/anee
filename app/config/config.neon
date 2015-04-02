@@ -6,4 +6,6 @@ includes:
 		- ../config/extension.webloader.neon
 		- ../config/extension.thumb.neon
 		- ../config/extension.kdyby.neon
+		- ../config/extension.kappa.neon
 		- ../config/extension.view-keeper.neon
+		- ../config/extension.drahak.restful.neon

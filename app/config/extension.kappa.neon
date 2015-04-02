@@ -1,0 +1,2 @@
+extensions:
+	- Kappa\Doctrine\DI\DoctrineExtension
