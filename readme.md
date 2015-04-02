@@ -5,6 +5,12 @@
 
 Anee is place for sharing tracks and photos. I develop this service in free time and for non-commercial using.
 
+Links
+-----
++ [Project page on Github](https://github.com/anee/app)
++ [Wiki page on Github](https://github.com/ldrahnik/anee/wiki)
++ [Project page on Apiary](http://docs.anee.apiary.io/)
+ 
 Getting started
 ---------------
 
