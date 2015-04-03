@@ -19,7 +19,7 @@ class RestApiRoutes
 	 */
 	public static function create(RouteList $router)
 	{
-		$router[] = new CrudRoute('//api.anee.dev/v1/<username>/<presenter>[/<id>[/<relation>[/<relationId>]]]', array(
+		$router[] = new CrudRoute('//api.anee.cz/v1/<username>/<presenter>[/<id>[/<relation>[/<relationId>]]]', array(
 			'module' => 'RestApi'
 		));
 		return $router;
