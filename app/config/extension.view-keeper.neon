@@ -2,9 +2,9 @@ parameters:
     themeDir: %wwwDir%/../templates/
 
 extensions:
-    keeper: ViewKeeper\DI\ViewKeeperHelperExtension
+    keeper: ViewKeeper\DI\ViewKeeperExtension
 
 keeper:
-    controls: %themeDir%/Modules/<module>/<category>/<name>/<view>
-    presenters: %themeDir%/Modules/<module>/<category>/<name>/<view>
-    layouts: %themeDir%/Modules/<module>/<category>/@<view>
+    controls: %themeDir%/Modules/<module>/controls/<name>/<view>
+    presenters: %themeDir%/Modules/<module>/presenters/<name>/<view>
+    layouts: %themeDir%/Modules/<module>/layouts/@<view>
