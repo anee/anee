@@ -5,7 +5,7 @@ Anee is place for sharing tracks and photos. I develop Anee in my free time and 
 
 Getting started
 ---------------
-Interface tries to be intuitive. Just [register](http://anee.cz/register/in) and try it yourself. If you dont know anything do not be shy to contact me. 
+Interface tries to be intuitive. Just [register](http://anee.cz/Register/In) and try it yourself. If you dont know anything do not be shy to contact me. 
 
 API
 -----
