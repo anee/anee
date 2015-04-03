@@ -1,6 +1,5 @@
 [Anee](http://anee.drahnik-lukas.com)
 ===================================
 
-[![Build Status](https://travis-ci.org/ldrahnik/anee.svg)](https://travis-ci.org/ldrahnik/anee)
-
+[![Build Status](https://magnum.travis-ci.com/ldrahnik/anee.svg?token=BhpAsybJLTcobExzxgxa&branch=master)](https://magnum.travis-ci.com/ldrahnik/anee)
 
