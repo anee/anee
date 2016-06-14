@@ -1,2 +1,5 @@
 php:
 	date.timezone: Europe/Prague
+
+application:
+    scanComposer: FALSE
