@@ -2,7 +2,7 @@
     <div class="track-row">
         <div class="line">
             <p class="track-name float-left">
-                <a href="{plink :Backend:Places:Default, 'url' => $place->nameUrl, 'username' => $profileUser->usernameUrl}">{$place->name}</a>
+                <a href="{plink :Backend:Places:default, 'url' => $place->nameUrl, 'username' => $profileUser->usernameUrl}">{$place->name}</a>
             </p>
 
             <p class="options float-right">
@@ -46,7 +46,7 @@
                     {if $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
                         {input name class => autosize}
                     {else}
-                        <a href="{plink :Backend:Places:Default, 'url' => $place->nameUrl, 'username' => $profileUser->usernameUrl}">{$place->name}</a>
+                        <a href="{plink :Backend:Places:default, 'url' => $place->nameUrl, 'username' => $profileUser->usernameUrl}">{$place->name}</a>
                     {/if}
                 </p>
 

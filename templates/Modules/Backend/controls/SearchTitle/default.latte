@@ -26,12 +26,12 @@
         {if ($values['filterEntity'] == "Track" || $values['filterEntity'] == "Event") && $template->arrayContainsOneOrMore(array('Photos', 'Places'), $values['filterCategory'])}
             during
             <span class="highlight"><a href="
-            					{plink :Backend:Tracks:Default, 'url' => $results->getEntityObject()->id, 'username' => $values['usernameUrl']}
+            					{plink :Backend:Tracks:default, 'url' => $results->getEntityObject()->id, 'username' => $values['usernameUrl']}
                                                         *}">{$results->getEntityObject()->getName()}</a></span>
         {elseif $values['filterEntity'] == "Place" && $template->arrayContainsOneOrMore(array('Tracks', 'Events', 'Photos', 'Places'), $values['filterCategory'])}
             near
             <span class="highlight"><a href="
-            					    {plink :Backend:Places:Default, 'url' => $results->getEntityObject()->name, 'username' => $values['usernameUrl']}
+            					    {plink :Backend:Places:default, 'url' => $results->getEntityObject()->name, 'username' => $values['usernameUrl']}
                                 ">{$results->getEntityObject()->name}</a></span>
         {/if}
         {var $first = 0}
