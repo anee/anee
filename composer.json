@@ -1,35 +1,38 @@
 {
-	"name": "nette/sandbox",
-	"description": "The sandbox is a pre-packaged Nette Framework project, basic configured structure for your application.",
-	"homepage": "http://nette.org",
-	"type": "project",
-	"license": ["Unlicense"],
-	"authors": [
-		{
-			"name": "David Grudl",
-			"homepage": "http://davidgrudl.com"
-		},
-		{
-			"name": "Nette Community",
-			"homepage": "http://nette.org/contributors"
-		}
-	],
-	"require": {
-	  "php": ">= 5.5.11",
-		"nette/nette": "~2.2.3",
-	    "kdyby/doctrine": "v2.2.0",
-		"kappa/thumbnails-helper": "@dev",
-		"janmarek/webloader": "@dev",
-		"leafo/lessphp": "~0.4",
-		"kdyby/autowired": "~1.0",
-	  	"natxet/cssmin": "~3.0",
-	  	"tedivm/jshrink": "~1.0",
-		"ldrahnik/view-keeper": "@dev",
-		"drahak/restful": "@dev",
-		"kappa/doctrine": "@dev"
-	},
-	"require-dev": {
-		"nette/tester": "~1.0"
-	},
-	"minimum-stability": "stable"
+  "name": "nette/sandbox",
+  "description": "The sandbox is a pre-packaged Nette Framework project, basic configured structure for your application.",
+  "homepage": "http://nette.org",
+  "type": "project",
+  "license": [
+    "Unlicense"
+  ],
+  "authors": [
+    {
+      "name": "David Grudl",
+      "homepage": "http://davidgrudl.com"
+    },
+    {
+      "name": "Nette Community",
+      "homepage": "http://nette.org/contributors"
+    }
+  ],
+  "require": {
+    "php": ">= 5.5.11",
+    "nette/nette": "~2.3.0",
+    "kdyby/doctrine": "~v3.1.1",
+    "kdyby/console": "v2.6.0",
+    "kappa/thumbnails-helper": "@dev",
+    "janmarek/webloader": "@dev",
+    "leafo/lessphp": "~0.4",
+    "kdyby/autowired": "~1.0",
+    "natxet/cssmin": "~3.0",
+    "tedivm/jshrink": "~1.0",
+    "ldrahnik/view-keeper": "@dev",
+    "drahak/restful": "@dev",
+    "kappa/doctrine": "@dev"
+  },
+  "require-dev": {
+    "nette/tester": "@dev"
+  },
+  "minimum-stability": "stable"
 }

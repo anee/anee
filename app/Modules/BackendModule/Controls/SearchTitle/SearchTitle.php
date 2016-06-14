@@ -52,8 +52,7 @@ class SearchTitle extends Control {
 	public function render()
 	{
 		$this->template->setFile($this->keeper->getView('Backend:' . 'SearchTitle', 'controls'));
-
-		$this->template->setFile($file);
+		
 		$this->template->addFilter(NULL, 'App\TemplateHelpers::loader');
 
 		$this->template->results = $this->results;

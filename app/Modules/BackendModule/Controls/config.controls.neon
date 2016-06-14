@@ -20,7 +20,7 @@ services:
 
 	TransportsModal:
 		class: App\Modules\BackendModule\Controls\TransportsModal(..., ...,  ..., ..., %profileUser%, %loggedUser%)
-		implement: App\Modules\BackendMOdule\Controls\ITransportsModalFactory
+		implement: App\Modules\BackendModule\Controls\ITransportsModalFactory
 		parameters: [App\Model\User profileUser, App\Model\User loggedUser = NULL]
 
 	UserPanel:

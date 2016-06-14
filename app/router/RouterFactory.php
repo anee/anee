@@ -2,7 +2,6 @@
 
 namespace App;
 
-
 use App\Modules\FrontendModule\Routes\RestApiRoutes;
 use Nette;
 use	Nette\Application\Routers\RouteList;

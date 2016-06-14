@@ -180,4 +180,5 @@ class User extends BaseEntity {
 	public function getLastVisitedHome() {
 		return $this->lastVisitedHome;
 	}
+
 }
