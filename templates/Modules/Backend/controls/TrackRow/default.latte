@@ -1,196 +1,207 @@
 {if $detail != TRUE}
-    <div class="track-row">
-        <div class="line">
-            <p class="track-name float-left">
-                <a href="{plink :Backend:Tracks:default, 'url' => $track->id, 'username' => $profileUser->usernameUrl}">{$track->getName()}
-                    {if $track->transport != NULL}
-                        <span class="transport">by {$track->transport->name}</span>
-                    {/if}
-                </a>
-            </p>
+  <div class="track-row">
+    <div class="line">
+      <p class="track-name float-left">
+        <a
+          href="{plink :Backend:Tracks:default, 'url' => $track->id, 'username' => $profileUser->usernameUrl}">{$track->getName()}
+          {if $track->transport != NULL}
+            <span class="transport">by {$track->transport->name}</span>
+          {/if}
+        </a>
+      </p>
 
-            <p class="options float-right">
+      <p class="options float-right">
 
-                {if $byName != NULL}
-                    by
-                    <a href="{plink :Backend:Profile:default, 'username' => $profileUser->usernameUrl}">{$profileUser->getName()}</a>
-                    ·
-                {/if}
-                {$track->date|dateAgoNumber}
-                {$track->date|dateAgoText}
-                {if count($track->withUsers) > 0}
-                    · with
-                {/if}
-                {if count($track->photos) > 0}
-                    · {count($track->photos)} photos
-                {/if}
-                {foreach $track->withUsers as $friend}
-                    {if $iterator->first}
-                        <a href="{plink :Backend:Profile:default, 'username' => $friend->username}"
-                           class="ajax"> {$friend->getName()}</a>
-                    {else}
-                        <a href="{plink :Backend:Profile:default, 'username' => $friend->username}" class="ajax">
-                            ,{$friend->getName()}</a>
-                    {/if}
-                {/foreach}
-                {if $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
-                    ·
-                    <a href="{link remove!, 'id' => $track->id}" class="ajax">remove</a>
-                    {if $track->pinned == TRUE}
-                        ·
-                        <a href="{link unpin!, 'id' => $track->id}" class="ajax">unpin</a>
-                    {else}
-                        ·
-                        <a href="{link pin!, 'id' => $track->id}" class="ajax">pin</a>
-                    {/if}
-                {/if}
-            </p>
+        {if $byName != NULL}
+          by
+          <a
+            href="{plink :Backend:Profile:default, 'username' => $profileUser->usernameUrl}">{$profileUser->getName()}</a>
+          ·
+        {/if}
+        {$track->date|dateAgoNumber}
+        {$track->date|dateAgoText}
+        {if count($track->withUsers) > 0}
+          · with
+        {/if}
+        {if count($track->photos) > 0}
+          · {count($track->photos)} photos
+        {/if}
+        {foreach $track->withUsers as $friend}
+          {if $iterator->first}
+            <a href="{plink :Backend:Profile:default, 'username' => $friend->username}"
+              class="ajax"> {$friend->getName()}</a>
+          {else}
+            <a href="{plink :Backend:Profile:default, 'username' => $friend->username}" class="ajax">
+              ,{$friend->getName()}</a>
+          {/if}
+        {/foreach}
+        {if $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
+          ·
+          <a href="{link remove!, 'id' => $track->id}" class="ajax">remove</a>
+          {if $track->pinned == TRUE}
+            ·
+            <a href="{link unpin!, 'id' => $track->id}" class="ajax">unpin</a>
+          {else}
+            ·
+            <a href="{link pin!, 'id' => $track->id}" class="ajax">pin</a>
+          {/if}
+        {/if}
+      </p>
 
-            <div style="clear: both;"></div>
-        </div>
-        <div class="part">
-            <div class="bar overall-bg float-left">
-                <span class="bar-value">{$track->getDistance()}</span> km
-            </div>
-            <div class="track-date overall float-left text-align-center">
-                <p>{$track->getTimeInSeconds()|fromSecondsHours}</p>
-
-                <p>HOURS</p>
-            </div>
-            <div class="track-date overall float-left text-align-center">
-                <p>{$track->getTimeInSeconds()|fromSecondsMinutes}</p>
-
-                <p>MINS</p>
-            </div>
-            <div class="track-date track-date-end overall float-left text-align-center">
-                <p>{$track->getTimeInSeconds()|fromSecondsSeconds}</p>
-
-                <p>SECS</p>
-            </div>
-            <div class="bar partial-bg float-right">
-                <span class="bar-value">{$track->getAvgSpeed()}</span>
-                km/h
-            </div>
-            <div class="info partial float-right text-align-right">
-                {if $track->getMaxSpeed() != 0}
-                    <p>{$track->getMaxSpeed()}</p>
-                {else}
-                    <p>N/A</p>
-                {/if}
-                <p>MAX KM/H</p>
-            </div>
-        </div>
+      <div style="clear: both;"></div>
     </div>
+    <div class="part">
+      <div class="bar overall-bg float-left">
+        <span class="bar-value">{$track->getDistance()}</span> km
+      </div>
+      {if $track->getTimeInSeconds()}
+        <div class="track-date overall float-left text-align-center">
+          <p>{$track->getTimeInSeconds()|fromSecondsHours}</p>
+
+          <p>HOURS</p>
+        </div>
+        <div class="track-date overall float-left text-align-center">
+          <p>{$track->getTimeInSeconds()|fromSecondsMinutes}</p>
+
+          <p>MINS</p>
+        </div>
+        <div class="track-date track-date-end overall float-left text-align-center">
+          <p>{$track->getTimeInSeconds()|fromSecondsSeconds}</p>
+
+          <p>SECS</p>
+        </div>
+      {else}
+        <div class="track-date track-date-end overall float-left text-align-center">
+          <p>N/A</p>
+          <p>INTERVAL</p>
+        </div>
+      {/if}
+      <div class="bar partial-bg float-right">
+        <span class="bar-value">{$track->getAvgSpeed()}</span>
+        km/h
+      </div>
+      <div class="info partial float-right text-align-right">
+        {if $track->getMaxSpeed() != 0}
+          <p>{$track->getMaxSpeed()}</p>
+        {else}
+          <p>N/A</p>
+        {/if}
+        <p>MAX KM/H</p>
+      </div>
+    </div>
+  </div>
 {else}
-    <div class="track-row">
-        {form trackEditForm class => ajax}
-            <div class="line">
-                <p class="track-name float-left">
-                    {if $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
-                        <span class="inline-change">From {input place class => autosize}
-                            to {input placeTo class => autosize}</span>
-                        {if $track->transport != NULL}
-                            <span class="inline-change transport">by {input transport class => autosize}</span>
-                        {/if}
-                    {else}
-                        <a href="{plink :Backend:Tracks:default, 'url' => $track->id, 'username' => $profileUser->usernameUrl}">{$track->name}
-                            {if $track->transport != NULL}
-                                <span class="transport">by {$track->transport->name}</span>
-                            {/if}
-                        </a>
-                    {/if}
-                </p>
+  <div class="track-row">
+    {form trackEditForm class => ajax}
+      <div class="line">
+        <p class="track-name float-left">
+          {if $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
+            <span class="inline-change">From {input place class => autosize}
+              to {input placeTo class => autosize}</span>
+            {if $track->transport != NULL}
+              <span class="inline-change transport">by {input transport class => autosize}</span>
+            {/if}
+          {else}
+            <a
+              href="{plink :Backend:Tracks:default, 'url' => $track->id, 'username' => $profileUser->usernameUrl}">{$track->name}
+              {if $track->transport != NULL}
+                <span class="transport">by {$track->transport->name}</span>
+              {/if}
+            </a>
+          {/if}
+        </p>
 
-                <p class="options float-right">
+        <p class="options float-right">
 
-                    {if $byName != NULL}
-                        by
-                        <a href="{plink :Backend:Profile:default, 'username' => $profileUser->usernameUrl}">{$profileUser->getName()}</a>
-                        ·
-                    {/if}
-                    {$track->date|dateAgoNumber}
-                    {$track->date|dateAgoText}
-                    {if count($track->withUsers) > 0}
-                        · with
-                    {/if}
-                    {foreach $track->withUsers as $friend}
-                        {if $iterator->first}
-                            <a href="{plink :Backend:Profile:default, 'username' => $friend->usernameUrl}"
-                               class="ajax"> {$friend->getName()}</a>
-                        {else}
-                            <a href="{plink :Backend:Profile:default, 'username' => $friend->usernameUrl}" class="ajax">
-                                ,{$friend->getName()}</a>
-                        {/if}
-                    {/foreach}
-                    {if $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
-                        ·
-                        <a href="" class="inline-save-change">{input save}</a>
-                        ·
-                        <a href="{link remove!, 'id' => $track->id}" class="ajax">remove</a>
-                        {if $track->pinned == TRUE}
-                            ·
-                            <a href="{link unpin!, 'id' => $track->id}" class="ajax">unpin</a>
-                        {else}
-                            ·
-                            <a href="{link pin!, 'id' => $track->id}" class="ajax">pin</a>
-                        {/if}
-                    {/if}
-                </p>
+          {if $byName != NULL}
+            by
+            <a
+              href="{plink :Backend:Profile:default, 'username' => $profileUser->usernameUrl}">{$profileUser->getName()}</a>
+            ·
+          {/if}
+          {$track->date|dateAgoNumber}
+          {$track->date|dateAgoText}
+          {if count($track->withUsers) > 0}
+            · with
+          {/if}
+          {foreach $track->withUsers as $friend}
+            {if $iterator->first}
+              <a href="{plink :Backend:Profile:default, 'username' => $friend->usernameUrl}"
+                class="ajax"> {$friend->getName()}</a>
+            {else}
+              <a href="{plink :Backend:Profile:default, 'username' => $friend->usernameUrl}" class="ajax">
+                ,{$friend->getName()}</a>
+            {/if}
+          {/foreach}
+          {if $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
+            ·
+            <a href="" class="inline-save-change">{input save}</a>
+            ·
+            <a href="{link remove!, 'id' => $track->id}" class="ajax">remove</a>
+            {if $track->pinned == TRUE}
+              ·
+              <a href="{link unpin!, 'id' => $track->id}" class="ajax">unpin</a>
+            {else}
+              ·
+              <a href="{link pin!, 'id' => $track->id}" class="ajax">pin</a>
+            {/if}
+          {/if}
+        </p>
 
-                <div style="clear: both;"></div>
-            </div>
-            <div class="part">
-                <div class="bar overall-bg float-left">
-                    {if $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
-                        <span class="bar-value">{input distance class => autosize}</span>
-                        km
-                    {else}
-                        <span class="bar-value">{$track->getDistance()}</span>
-                        km
-                    {/if}
-                </div>
-                <div style="margin-top: 6px;" class="track-date overall float-left text-align-center">
-                    {if $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
-                        <p>{input dateHours class => autosize}</p>
-                    {else}
-                        <p>{$track->getTimeInSeconds()|fromSecondsHours}</p>
-                    {/if}
-                    <p>HOURS</p>
-                </div>
-                <div style="margin-top: 6px;" class="track-date overall float-left text-align-center">
-                    {if $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
-                        <p>{input dateMinutes class => autosize}</p>
-                    {else}
-                        <p>{$track->getTimeInSeconds()|fromSecondsMinutes}</p>
-                    {/if}
-                    <p>MINS</p>
-                </div>
-                <div style="margin-top: 6px;" class="track-date track-date-end overall float-left text-align-center">
-                    {if $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
-                        <p>{input dateSeconds class => autosize}</p>
-                    {else}
-                        <p>{$track->getTimeInSeconds()|fromSecondsSeconds}</p>
-                    {/if}
-                    <p>SECS</p>
-                </div>
-                <div class="bar partial-bg float-right">
-                    <span class="bar-value">{$track->getAvgSpeed()}</span>
-                    km/h{*{$track->getTimeInSeconds()|getSpanTimeFromSecondsNumber} {$track->getTimeInSeconds()|getSpanTimeFromSecondsText|strtolower}*}
-                </div>
-                <div class="info partial float-right text-align-right">
+        <div style="clear: both;"></div>
+      </div>
+      <div class="part">
+        <div class="bar overall-bg float-left">
+          {if $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
+            <span class="bar-value">{input distance class => autosize}</span>
+            km
+          {else}
+            <span class="bar-value">{$track->getDistance()}</span>
+            km
+          {/if}
+        </div>
+        <div style="margin-top: 6px;" class="track-date overall float-left text-align-center">
+          {if $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
+            <p>{input dateHours class => autosize}</p>
+          {else}
+            <p>{$track->getTimeInSeconds()|fromSecondsHours}</p>
+          {/if}
+          <p>HOURS</p>
+        </div>
+        <div style="margin-top: 6px;" class="track-date overall float-left text-align-center">
+          {if $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
+            <p>{input dateMinutes class => autosize}</p>
+          {else}
+            <p>{$track->getTimeInSeconds()|fromSecondsMinutes}</p>
+          {/if}
+          <p>MINS</p>
+        </div>
+        <div style="margin-top: 6px;" class="track-date track-date-end overall float-left text-align-center">
+          {if $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
+            <p>{input dateSeconds class => autosize}</p>
+          {else}
+            <p>{$track->getTimeInSeconds()|fromSecondsSeconds}</p>
+          {/if}
+          <p>SECS</p>
+        </div>
+        <div class="bar partial-bg float-right">
+          <span class="bar-value">{$track->getAvgSpeed()}</span>
+          km/h{*{$track->getTimeInSeconds()|getSpanTimeFromSecondsNumber} {$track->getTimeInSeconds()|getSpanTimeFromSecondsText|strtolower}*}
+        </div>
+        <div class="info partial float-right text-align-right">
 
-                    {if $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
-                        <p>{input maxSpeed class => autosize}</p>
-                    {else}
-                        {if $track->getMaxSpeed() != 0}
-                            <p>{$track->getMaxSpeed()}</p>
-                        {else}
-                            <p>N/A</p>
-                        {/if}
-                    {/if}
-                    <p>MAX KM/H</p>
-                </div>
-            </div>
-        {/form}
-    </div>
+          {if $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
+            <p>{input maxSpeed class => autosize}</p>
+          {else}
+            {if $track->getMaxSpeed() != 0}
+              <p>{$track->getMaxSpeed()}</p>
+            {else}
+              <p>N/A</p>
+            {/if}
+          {/if}
+          <p>MAX KM/H</p>
+        </div>
+      </div>
+    {/form}
+  </div>
 {/if}
