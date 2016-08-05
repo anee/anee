@@ -1,7 +1,7 @@
 [Anee](http://anee.cz)
 ===================================
 
-[![Build Status](https://magnum.travis-ci.com/ldrahnik/anee.svg?token=BhpAsybJLTcobExzxgxa)](https://magnum.travis-ci.com/ldrahnik/anee)
+[![Build Status](https://travis-ci.org/anee/anee.svg?branch=master)](https://travis-ci.org/anee/anee)
 
 Anee is place for sharing tracks and photos. I develop Anee in my free time and for non-commercial using.
 
