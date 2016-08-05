@@ -2,7 +2,6 @@
 ===================================
 
 [![Build Status](https://magnum.travis-ci.com/ldrahnik/anee.svg?token=BhpAsybJLTcobExzxgxa)](https://magnum.travis-ci.com/ldrahnik/anee)
-[![Join the chat at https://gitter.im/anee/anee](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/anee/anee?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Anee is place for sharing tracks and photos. I develop Anee in my free time and for non-commercial using.
 
