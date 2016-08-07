@@ -219,6 +219,7 @@ input[type="submit"]:active, input[type="submit"]:hover {
     font-weight: normal;
     font-family: "Verdana";
     border: none;
+    background-color: white;
 }
 .fileUpload {
     position: relative;
