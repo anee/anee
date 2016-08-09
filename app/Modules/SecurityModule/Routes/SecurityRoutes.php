@@ -38,6 +38,12 @@ class SecurityRoutes
 			'action' => 'out',
 		));
 
+		$router[] = new Route('Account/Remove', array(
+			'module' => 'Security',
+			'presenter' => 'Account',
+			'action' => 'remove',
+		));
+
 		return $router;
 	}
 

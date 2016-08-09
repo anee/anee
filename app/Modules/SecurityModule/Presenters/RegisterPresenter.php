@@ -2,7 +2,6 @@
 
 namespace App\Modules\SecurityModule\Presenters;
 
-use Nette;
 
 
 class RegisterPresenter extends BasePresenter
