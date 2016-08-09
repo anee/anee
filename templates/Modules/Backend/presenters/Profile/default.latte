@@ -1,3 +1,9 @@
+{block title}
+    {if $loggedUser->isLoggedIn()}
+        {$user->getName()}
+    {/if}
+{/block}
+
 {block content}
     <div class="profile-page one-profil">
         {control profile}

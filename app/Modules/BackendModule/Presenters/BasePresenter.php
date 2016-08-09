@@ -86,4 +86,11 @@ abstract class BasePresenter extends \App\Modules\BaseModule\Presenters\BasePres
 			return NULL;
 		}
 	}
+
+	protected function beforeRender() {
+		parent::beforeRender();
+        $this->template->user = $this->userBaseLogic->findOneById($this->getUser()->getId());
+		$this->template->loggedUser = $this->getUser();
+	}
+
 }

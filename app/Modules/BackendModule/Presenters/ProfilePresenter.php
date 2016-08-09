@@ -122,6 +122,7 @@ class ProfilePresenter extends BasePresenter
 	public function renderDefault($username)
 	{
 		$this->template->background = $this->getBackgroundImage($this->user);
+        $this->template->user = $this->user;
 	}
 
 	public function actionFollowing($username)
