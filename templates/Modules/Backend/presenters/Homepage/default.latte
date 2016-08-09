@@ -1,6 +1,6 @@
 {block content}
 
-    {if $user->isLoggedIn()}
+    {if $loggedUser->isLoggedIn()}
         <div style="margin: 50px 0 0 0;">
             {if count($control->components) > 0}
                 <div class="profile-activity">

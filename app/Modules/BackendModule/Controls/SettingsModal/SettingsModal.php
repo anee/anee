@@ -2,7 +2,7 @@
 
 namespace App\Modules\BackendModule\Controls;
 
-use Nette;
+use Nette\Application\LinkGenerator;
 use Nette\Application\UI\Control;
 use App\Model\UserBaseLogic;
 use Nette\Application\UI\Form;
@@ -43,14 +43,20 @@ class SettingsModal extends Control
 	 */
 	public $keeper;
 
+	/**
+	 * @var LinkGenerator
+	 */
+	private $linkGenerator;
+
 	private $appDir;
 
-	public function __construct(ViewKeeper $keeper, UserBaseLogic $userBaseLogic, User $loggedUser, $appDir)
+	public function __construct(ViewKeeper $keeper, UserBaseLogic $userBaseLogic, LinkGenerator $linkGenerator, User $loggedUser, $appDir)
 	{
 		$this->keeper = $keeper;
 		$this->appDir = $appDir;
 		$this->userBaseLogic = $userBaseLogic;
 		$this->loggedUser = $loggedUser;
+		$this->linkGenerator = $linkGenerator;
 	}
 
 	public function render()
@@ -72,6 +78,14 @@ class SettingsModal extends Control
 		$form->addUpload('profileImage');
 		$form->addUpload('backgroundImage');
 		$form->addSubmit('save', 'save');
+
+		$removeAccountLink = $this->linkGenerator->link('Security:Account:remove');
+		$form->addButton('remove')
+			->getControlPrototype()
+			->setName("a href='$removeAccountLink'")
+			->setType()
+			->setHtml('Remove');
+
 		$form->onSuccess[] = $this->success;
 
 		$form->setDefaults($this->userBaseLogic->findOneByIdArray($this->loggedUser->id)[0]);
