@@ -3,7 +3,8 @@
 namespace App\Modules\BackendModule\Controls;
 
 use App\Model\UserBaseLogic;
-use Nette;
+use App\Searching\Utils;
+use App\Utils\TimeUtils;
 use Nette\Application\UI\Form;
 use Nette\Application\UI\Control;
 use ViewKeeper\ViewKeeper;
@@ -66,27 +67,19 @@ class TopMenu extends Control
 
 		$form = new Form;
         $form->addText('search')->setAttribute('placeholder', 'Search...');
-        $category = array(
-            'Events' => 'Events',
-            'Tracks' => 'Tracks',
-            'Places' => 'Places',
-            'Photos' => 'Photos',
-        );
+        $category = Utils::getCategories();
         $time = array(
-            '' => 'Any time',
-			'Past hour' => 'Past hour',
-            'Past week' => 'Past week',
-            'Past month' => 'Past month',
-            'Past year' => 'Past year',
+            '' => 'Any time'
         /* 'Custom range...' => 'Custom range...',*/
         );
-		$sort = array(
+        $times = array_merge($time, Utils::getFromStartStrings());
+        $sorts = array(
 			'' => 'DateTime'
 		);
-        $form->addMultiSelect('filterCategory', NULL, $category);
+        $form->addMultiSelect('filterCategory', NULL, $category)->getControlPrototype()->setClass('filter-multiselect');
         $form->addMultiSelect('filterTransport', NULL, $transports);
-        $form->addSelect('filterTime', NULL, $time);
-		$form->addSelect('filterSortBy', NULL, $sort);
+        $form->addSelect('filterTime', NULL, $times);
+		$form->addSelect('filterSortBy', NULL, $sorts);
         $form->addSubmit('send', '');
         $form->onSuccess[] = $this->success;
         return $form;

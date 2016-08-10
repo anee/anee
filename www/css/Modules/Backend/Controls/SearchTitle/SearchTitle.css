@@ -15,3 +15,24 @@
 .highlight a:hover {
     font-size: 16px;
 }
+.detail-info {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.detail-info li {
+    padding-right: 5px;
+}
+.detail-info li a {
+    color: #55676e;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    font-family: "Verdana";
+}
+.highlight li a:hover {
+    font-size: 16px;
+}
+.detail-info .selected {
+    font-weight: bold;
+}

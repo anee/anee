@@ -2,7 +2,7 @@
 
     {control searchTitle}
 
-    {if $results->getTracksCount() > 0}
+    {if count($results->getTracks()) > 0}
         <div class="profile-activity">
             <h3>TRACKS</h3>
             {foreach $control->components as $component}
@@ -12,7 +12,7 @@
             {/foreach}
         </div>
     {/if}
-    {if $results->getPlacesCount() > 0}
+    {if count($results->getPlaces()) > 0}
         <div class="profile-activity">
             <h3>PLACES</h3>
             {foreach $control->components as $component}
@@ -22,7 +22,7 @@
             {/foreach}
         </div>
     {/if}
-    {if $results->getPhotosCount() > 0}
+    {if count($results->getPhotos()) > 0}
         <div class="profile-activity">
             <h3>PHOTOS</h3>
             {foreach $control->components as $component}

@@ -172,6 +172,15 @@ class TemplateHelpers {
         return $value;
     }
 
+    public static function isSelected($value, $array) {
+        foreach($array as $i => $v) {
+            if($v == $value) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static function selectedOrNothing($value, $array)
     {
         foreach($array as $i => $v) {

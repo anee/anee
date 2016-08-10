@@ -45,4 +45,30 @@ class Utils {
 			'filterEntityId' => ''
 		);
 	}
+
+    /**
+     * @return array
+     */
+    public static function getFromStartStrings() {
+        return array(
+            'Past hour' => 'Past hour',
+            'Today' => 'Today',
+            'Yesterday' => 'Yesterday',
+            'Past week' => 'Past week',
+            'Past month' => 'Past month',
+            'Past year' => 'Past year',
+        );
+    }
+
+    /**
+     * @return array
+     */
+    public static function getCategories()
+    {
+        return array(
+            'Tracks' => 'Tracks',
+            'Places' => 'Places',
+            'Photos' => 'Photos',
+        );
+    }
 } 

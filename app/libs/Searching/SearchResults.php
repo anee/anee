@@ -10,8 +10,6 @@ namespace App\Searching;
  */
 class SearchResults {
 
-
-
 	private $entityObject;
 	private $entityUrl;
 
@@ -38,7 +36,12 @@ class SearchResults {
 		$this->entityUrl = '';
 	}
 
-	public function getCount()
+	public function getTotalCount()
+	{
+		return $this->tracksCount + $this->placesCount + $this->photosCount;
+	}
+
+	public function getSelectedCount()
 	{
 		return $this->count;
 	}
@@ -123,6 +126,18 @@ class SearchResults {
 
 	public function getEntityUrl()
 	{
-		return $this->getEntityUrl();
+		return $this->entityUrl;
 	}
-} 
+
+    public function getCountForCategory($category)
+    {
+        if($category == 'Tracks') {
+            return $this->getTracksCount();
+        } elseif($category == 'Places') {
+            return $this->getPlacesCount();
+        } elseif($category == 'Photos') {
+            return $this->getPhotosCount();
+        }
+        return null;
+    }
+}

@@ -4,7 +4,7 @@ namespace App\Searching;
 
 use App\Model;
 use Nette;
-
+use Tracy\Debugger;
 
 
 /**
@@ -62,7 +62,7 @@ class SearchFactory extends Nette\Object
 	public function getResults()
 	{
 		$values = $this->values;
-		$results = $this->results;
+		$results = new SearchResults();
 
 		$results = $this->trackSearchLogic->findByFilters($values, $results);
 		$results = $this->trackSearchLogic->findByFiltersCount($values, $results);
@@ -89,12 +89,14 @@ class SearchFactory extends Nette\Object
 	 */
 	public function setValues($values)
 	{
+		$values['filterTimeStart'] = isset($values['filterTime']) ? $values['filterTime'] : "";
 		$this->values = Utils::checkValuesArray($values);
 	}
 
 	/**
 	 * Returns the searching output without new calculate.
-	 * @return array
+	 *
+	 * @return \App\Searching\SearchResults
 	 */
 	public function getLastResults()
 	{
@@ -115,8 +117,9 @@ class SearchFactory extends Nette\Object
 	 */
 	public function setUser($usernameUrl)
 	{
+		$user = $this->userBaseLogic->findOneByUsernameUrl($usernameUrl);
 		$this->values['usernameUrl'] = $usernameUrl;
-		$this->values['username'] = $this->userBaseLogic->findOneByUsernameUrl($usernameUrl)->username;
-		$this->values['userId']= $this->userBaseLogic->findOneByUsernameUrl($usernameUrl)->id;
+		$this->values['username'] = $user->username;
+		$this->values['userId']= $user->id;
 	}
 }

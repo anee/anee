@@ -2,7 +2,7 @@
     <div class="profile-image" style="height: 200px;">
         <h2 style="top: 100px;"><a style="opacity: 1;"
                                    href="{plink :Backend:Profile:default, 'username' => $profileUser->usernameUrl}">{$profileUser->getName()}</a><br/>
-                <span class="profile-tags">
+            <span class="profile-tags">
                 {foreach $profileUser->transports as $transport}
                     {if $iterator->getCounter() < 6}
                         {var $args = array('values' => [filterTransport => array($transport->name)], 'username' => $profileUser->usernameUrl)}
@@ -10,7 +10,7 @@
                     {/if}
 
                 {/foreach}
-                    <a class="tags-etc" style="color: transparent;" data-toggle="modal" href="#transports{$profileUser->id}">mana</a>
+                <a class="tags-etc" style="color: transparent;" data-toggle="modal" href="#transports{$profileUser->id}">mana</a>
                 </span>
         </h2>
         {if $user->isLoggedIn()}

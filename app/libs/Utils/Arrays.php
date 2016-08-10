@@ -18,7 +18,11 @@ class Arrays {
     public static function timeSubFilterTime($filterTime)
     {
         $time = new \DateTime;
-        if($filterTime == 'Past hour') {
+        if($filterTime == 'Today') {
+            return new \DateTime("midnight today");
+        } elseif($filterTime == 'Yesterday') {
+            return new \DateTime("midnight yesterday");
+        } elseif($filterTime == 'Past hour') {
             return $time->sub(new \DateInterval('PT1H'));
         } else if ($filterTime == 'Past week') {
             return $time->sub(new \DateInterval('P7D'));
