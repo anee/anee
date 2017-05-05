@@ -2,13 +2,14 @@ app/data*
 www/images/thumbs/*
 .idea/*
 log/*
-temp/*
+temp/cache/*
 vendor/*
 !vendor/others
-www/webtemp*
+www/webtemp/*
 
 .DS_Store
 !.gitignore
+!.gitkeep
 !.htaccess
 !web.config
 app/config/config.local.neon
