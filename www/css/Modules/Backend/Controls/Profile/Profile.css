@@ -14,6 +14,16 @@
 .main-profile .profile-tags {
     font-size: 16px;
 }
+.profile-menu {
+    float: left;
+    width: 300px;
+}
+.profile-menu a {
+    float: left;
+}
+.profile-menu a:first-child {
+    float: left; width: 130px;
+}
 .main-profile .profile-menu {
     width: 300px;
     margin: 15px 35px 35px 35px;
@@ -63,6 +73,16 @@
 .main-profile .profile-menu ul .places:hover {
     background-position: -48px -126px;
 }
+.main-profile .profile-menu ul .add {
+    padding-left: 35px;
+    padding-right: 35px;
+    background: url('../../../../images/add_.png') white center no-repeat;
+}
+.main-profile .profile-menu ul .add:hover{
+    padding-left: 35px;
+    padding-right: 35px;
+    background: #293c4b url('../../../../images/add_invert.png') no-repeat center;
+}
 .main-profile .profile-activity {
     min-height: 100px;
     margin: 0 50px 0 50px;
@@ -88,6 +108,9 @@
 }
 .main-profile .profile-activity .activity-line p a:hover {
     font-weight: bold;
+}
+.profile-summary {
+    float: left;
 }
 .main-profile .profile-summary {
     width: 300px; height: 83px;
@@ -200,6 +223,7 @@
     padding-bottom: 30px;
 }
 .wall-summary {
+    width: 300px;
     float: left;
     background-color: white;
 }
