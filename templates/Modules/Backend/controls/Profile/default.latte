@@ -8,7 +8,6 @@
                         {var $args = array('values' => [filterTransport => array($transport->name)], 'username' => $profileUser->usernameUrl)}
                         <a href="{plink :Backend:Search:default (expand) $args}">#{$transport->name}</a>
                     {/if}
-
                 {/foreach}
                 <a class="tags-etc" style="color: transparent;" data-toggle="modal" href="#transports{$profileUser->id}">mana</a>
                 </span>
@@ -27,31 +26,42 @@
     </div>
 
     <div class="wall-summary float-left" id="wall-summary">
+        {var $isUserLoggedIn = $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
+        {var $aHrefLength = $isUserLoggedIn ? 'width: 130px;' : 'width: 215px;'}
         <div class="profile-menu">
             <ul>
                 <li>
-                    <a class="icon tracks" href="{plink :Backend:Profile:tracks, 'username' => $profileUser->usernameUrl}">
+                    <a style="{$aHrefLength|noescape}" class="icon tracks" href="{plink :Backend:Profile:tracks, 'username' => $profileUser->usernameUrl}">
                         <span class="float-left">Tracks</span>
                         <span class="float-right">{count($profileUser->tracks)}</span>
 
                         <div style="clear: both;"></div>
                     </a>
+                    {if $isUserLoggedIn}
+                        <a class="icon add" data-toggle="modal" href="#addTrack"></a>
+                    {/if}
                 </li>
                 <li>
-                    <a class="icon photos" href="{plink :Backend:Profile:photos, 'username' => $profileUser->usernameUrl}">
+                    <a style="{$aHrefLength|noescape}" class="icon photos" href="{plink :Backend:Profile:photos, 'username' => $profileUser->usernameUrl}">
                         <span class="float-left">Photos</span>
                         <span class="float-right">{count($profileUser->photos)}</span>
 
                         <div style="clear: both;"></div>
                     </a>
+                    {if $isUserLoggedIn}
+                        <a class="icon add" data-toggle="modal" href="#addPhoto"></a>
+                    {/if}
                 </li>
                 <li>
-                    <a class="icon places" href="{plink :Backend:Profile:places, 'username' => $profileUser->usernameUrl}">
+                    <a style="{$aHrefLength|noescape}" class="icon places" href="{plink :Backend:Profile:places, 'username' => $profileUser->usernameUrl}">
                         <span class="float-left">Places</span>
                         <span class="float-right">{count($profileUser->places)}</span>
 
                         <div style="clear: both;"></div>
                     </a>
+                    {if $isUserLoggedIn}
+                        <a class="icon add" data-toggle="modal" href="#addPlace"></a>
+                    {/if}
                 </li>
             </ul>
         </div>
@@ -70,20 +80,6 @@
         </div>
     </div>
     <div class="wall">
-        {if $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
-            <div class="wall-title">
-                <div class="title-line">
-                    <p class="name float-left">
-                        <a data-toggle="modal" href="#addTrack">New Track</a>
-                        <a data-toggle="modal" href="#addPhoto">New Photo</a>
-                        <a data-toggle="modal" href="#addPlace">New Place</a></p>
-
-                    <p class="name float-right"></p>
-
-                    <div style="clear: both;"></div>
-                </div>
-            </div>
-        {/if}
         {if $detail != TRUE}
             {if count($pinnedTracks) > 0}
                 <div class="profile-activity">
