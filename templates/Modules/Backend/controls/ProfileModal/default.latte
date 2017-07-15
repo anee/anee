@@ -23,7 +23,7 @@
             {/if}
                 </span>
         </h2>
-        {if $user->isLoggedIn()}
+        {if $user->isLoggedIn() && $loggedUser->username != $profileUser->username}
           {if $loggedUser->following->contains($profileUser)}
             <div class="following-status following">
               <a href="{link unfollow!}">following</a>
