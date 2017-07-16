@@ -112,6 +112,8 @@
                 var avgSpeed = ((distanceInput.val() * 1000) / seconds * 3.6).toFixed(2);
 
                 avgSpeedInput.val(avgSpeed + ' km/h');
+            } else {
+                avgSpeedInput.val('0.00 km/h');
             }
         }
     }
