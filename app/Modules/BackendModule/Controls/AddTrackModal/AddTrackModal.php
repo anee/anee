@@ -117,7 +117,9 @@ class AddTrackModal extends Control
 		$date = new DateTime();
 		$form->addText('date')->setDefaultValue($date->format('Y-m-d H:i:s'));
 		$form->addCheckbox('pinned');
-
+		$form->addText('avgSpeed')
+			->setAttribute('placeholder', '0.00 km/h')
+			->setDisabled();
 		$form->addSubmit('save', 'save');
 		$form->onSuccess[] = $this->success;
 
@@ -150,4 +152,5 @@ class AddTrackModal extends Control
 			$this->getPresenter()->redirect('this');
 		}
 	}
+
 }
