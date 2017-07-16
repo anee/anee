@@ -65,6 +65,13 @@
 
                 <div style="clear: both;"></div>
             </div>
+            <div class="line border">
+                <p class="name float-left">Avg speed</p>
+
+                <p class="input float-right">{input avgSpeed}</p>
+
+                <div style="clear: both;"></div>
+            </div>
             <h3>FRIENDS</h3>
 
             <div class="line border">
@@ -87,4 +94,27 @@
         autoclose: true,
         todayBtn: true
     });
+    $("#frm-profile-addTrackModal-addTrackForm-distance").on("keyup", function() {
+        avgSpeedRecalculate();
+    });
+    $("#frm-profile-addTrackModal-addTrackForm-timeInSeconds").on("keyup", function() {
+        avgSpeedRecalculate();
+    });
+    function avgSpeedRecalculate() {
+        var timeInSecondsInput = $("#frm-profile-addTrackModal-addTrackForm-timeInSeconds");
+        var avgSpeedInput = $("#frm-profile-addTrackModal-addTrackForm-avgSpeed");
+        var distanceInput = $("#frm-profile-addTrackModal-addTrackForm-distance");
+
+        var timeInSeconds = timeInSecondsInput.val();
+        if (timeInSeconds.length > 10) {
+            var seconds = parseInt(timeInSeconds.substr(0, 2)) * 3600 + parseInt(timeInSeconds.substr(4, 2) * 60) + parseInt(timeInSeconds.substr(8, 2));
+            if (seconds && seconds !== 'undefined') {
+                var avgSpeed = ((distanceInput.val() * 1000) / seconds * 3.6).toFixed(2);
+
+                avgSpeedInput.val(avgSpeed + ' km/h');
+            } else {
+                avgSpeedInput.val('0.00 km/h');
+            }
+        }
+    }
 </script>
