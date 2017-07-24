@@ -8,9 +8,9 @@
 }
 .top-menu #search {
     width: 130px; height: 70px;
-    border-right: 1px solid #adbfcd;
 }
 .top-menu #search a {
+    border-right: 1px solid #adbfcd;
     display: block;
     width: 130px; height: 70px;
     background: url('../../../../images/top_menu_search.png') no-repeat 53px 23px;
