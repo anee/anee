@@ -5,6 +5,7 @@
     <div class="refs float-right">
         {if $user->isLoggedIn()}
             <a href="#profile{$loggedUser->id}" data-toggle="modal">{$loggedUser->getName()}</a>
+            <a href="{plink :Backend:Profile:default, 'username' => $loggedUser->usernameUrl}">Full profile</a>
             <a data-toggle="modal" href="#settings">Settings</a>
             <a data-toggle="modal" href="#feedback">Support</a>
             <a href="{plink :Security:Sign:out}">Sign out</a>
@@ -22,7 +23,6 @@
 {if $user->isLoggedIn()}
     <script type="text/javascript">
         $(window).scroll(function () {
-            var header_height = 10;
             var current_scroll = $(window).scrollTop();
 
             if (current_scroll > 35) {
