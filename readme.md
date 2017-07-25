@@ -5,6 +5,8 @@
 
 Anee is place for sharing tracks and photos. I develop Anee in my free time and for non-commercial using.
 
+![ScreenShot](https://raw.github.com/anee/anee/master/examples/anee.png)
+
 Getting started
 ---------------
 Interface tries to be intuitive. Just [register](http://anee.cz/Register/In) and try it yourself. If you dont know anything do not be shy to contact me.
