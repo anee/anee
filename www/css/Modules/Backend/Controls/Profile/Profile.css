@@ -11,8 +11,16 @@
 .main-profile .profile-image img {
     width: 100%; height: 300px;
 }
+.main-profile .profile-image h2 {
+    font-size: 44px;
+    font-family: "MuseoSans";
+}
 .main-profile .profile-tags {
-    font-size: 16px;
+    color: #cae2e3;;
+    float: left;
+    margin-top: 5px;
+    font-size: 18px;
+    font-family: "ProximaNova-Light";
 }
 .profile-menu {
     float: left;
@@ -26,7 +34,7 @@
 }
 .main-profile .profile-menu {
     width: 300px;
-    margin: 15px 35px 35px 35px;
+    margin: 40px 35px 30px 35px;
     padding-bottom: 15px;
 }
 .main-profile .profile-menu ul {
@@ -84,9 +92,10 @@
     background: #293c4b url('../../../../images/add_invert.png') no-repeat center;
 }
 .main-profile .profile-activity {
+    min-width: 100%;
     min-height: 100px;
-    margin: 0 50px 0 50px;
-    padding-bottom: 30px;
+    float: right;
+    padding: 0 50px 0 0px;
 }
 .main-profile .profile-activity .name {
     color: #293c4b;
@@ -142,6 +151,9 @@
 .main-profile .profile-summary .right-box {
     width: 150px;
 }
+.main-profile .profile-image {
+    background-color: #293c4b;
+}
 .main-profile .profile-image .following-status {
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
@@ -171,8 +183,14 @@
     display: block;
     height: 28px;
 }
-.main-profile .profile-image h2 a, .main-profile .profile-image h2 a:hover {
-    color: #55676e;
+.main-profile .profile-image h2 { /*, .main-profile .profile-image h2 a:hover {*/
+    font-family: "Verdana";
+    /*color: #55676e;*/
+}
+.main-profile .profile-image h2 a .main-profile .profile-image h2 a:hover {
+    /*color: #55676e;*/
+    font-family: "Verdana";
+    color: #cae2e3;
 }
 
 .main-profile .profile-image .no-following a:hover {
@@ -217,11 +235,6 @@
 .title-line .name a:hover {
     font-weight: bold;
 }
-.profile-activity {
-    min-height: 100px;
-    margin: 0 50px 0 50px;
-    padding-bottom: 30px;
-}
 .wall-summary {
     width: 370px;
     float: left;
@@ -230,5 +243,5 @@
 .wall {
     position: absolute;
     right: 0;
-    left: 400px;
+    left: 440px;
 }

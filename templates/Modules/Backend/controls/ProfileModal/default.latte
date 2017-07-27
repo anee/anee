@@ -1,9 +1,9 @@
 <div id="profile{$profileUser->id}" class="modal fade" tabindex="-1" style="display: none;">
   <div class="modal-profile">
     <div class="profile-image">
-      <img src="{link getProfileImage}">
+      {*<img src="{link getProfileImage}">*}
       {if count($profileUser->transports) > 0}
-      <h2><a style="opacity: 1;"
+      <h2 style="top: 200px;"><a
           href="{plink :Backend:Profile:default, 'username' => $profileUser->usernameUrl}">{$profileUser->getName()}</a><br/>
         {else}
         <h2 style="top: 225px;"><a style="opacity: 1;"

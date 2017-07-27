@@ -1,7 +1,6 @@
 <div class="main-profile">
-    <div class="profile-image" style="height: 200px;">
-        <h2 style="top: 100px;"><a style="opacity: 1;"
-                                   href="{plink :Backend:Profile:default, 'username' => $profileUser->usernameUrl}">{$profileUser->getName()}</a><br/>
+    <div class="profile-image" style="height: 250px;">
+        <h2><a href="{plink :Backend:Profile:default, 'username' => $profileUser->usernameUrl}">{$profileUser->getName()}</a><br/>
             <span class="profile-tags">
                 {foreach $profileUser->transports as $transport}
                     {if $iterator->getCounter() < 6}
@@ -161,12 +160,11 @@
 
 <script type="text/javascript">
     $(window).scroll(function () {
-        var header_height = 10;
         var current_scroll = $(window).scrollTop();
 
-        if (current_scroll > 150) {
+        if (current_scroll > 275) {
             var s = document.getElementById('wall-summary');
-            s.style.top = "100px";
+            s.style.top = "75px";
             s.style.position = "fixed";
         } else {
             var s = document.getElementById('wall-summary');
