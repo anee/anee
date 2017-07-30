@@ -1,17 +1,17 @@
 <div class="top-menu" id="under-top" role="navigation" style="top: 36px;">
 
     <div id="user-panel-ref">
-        <a onclick="userPanel();"></a>
+        <a class="right-menu-href"></a>
     </div>
 
     <div id="search">
-        <a onclick="searchBar();"></a>
+        <a id="search-bar-href"></a>
     </div>
 
     {form searchForForm}
         <div id="search-bar" style="display:none;">
             <div class="filters-ref float-left">
-                <a onclick="searchBarFilters();">Filters</a> |
+                <a id="search-bar-filters-href">Filters</a> |
             </div>
             {input search class => search}
         </div>

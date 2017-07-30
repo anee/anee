@@ -2,8 +2,9 @@ RewriteEngine On
 RewriteRule (.*) www/$1 [L]
 
 # BEGIN Security Headers
+Header set Referrer-Policy: "no-referrer"
 Header set X-Content-Type-Options "nosniff"
 Header set X-Frame-Options "SAMEORIGIN"
 Header set X-XSS-Protection "1; mode=block"
-Header set Content-Security-Policy: "default-src 'none'; font-src 'self'; img-src 'self' 'unsafe-inline' www.google-analytics.com ajax.googleapis.com; script-src 'self' www.google-analytics.com ajax.googleapis.com 'unsafe-inline'; style-src 'self' 'unsafe-inline';"
+Header set Content-Security-Policy: "default-src 'none'; font-src 'self'; img-src 'self' www.google-analytics.com ajax.googleapis.com; script-src 'sha256-wGakFKP3oNZCj6fLFtEESupqseQpC26DRaheqRmnKk0=' 'self' www.google-analytics.com ajax.googleapis.com; style-src 'unsafe-inline' 'self';"
 # END Security Headers

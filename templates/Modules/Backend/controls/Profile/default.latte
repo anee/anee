@@ -157,19 +157,3 @@
     {control addPhotoModal}
     {control addPlaceModal}
 {/if}
-
-<script type="text/javascript">
-    $(window).scroll(function () {
-        var current_scroll = $(window).scrollTop();
-
-        if (current_scroll > 275) {
-            var s = document.getElementById('wall-summary');
-            s.style.top = "75px";
-            s.style.position = "fixed";
-        } else {
-            var s = document.getElementById('wall-summary');
-            s.style.top = "";
-            s.style.position = "";
-        }
-    });
-</script>

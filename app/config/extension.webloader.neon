@@ -47,7 +47,7 @@ webloader:
 					- app.js
 
 					# /Modules
-					- {files: ["*.js"], from: %wwwDir%/js/Modules/}
+					#- {files: ["*.js"], from: %wwwDir%/js/Modules/}
 
 				filters:
 					- @jsMin
