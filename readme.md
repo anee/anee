@@ -2,8 +2,8 @@
 ===================================
 
 [![Build Status](https://travis-ci.org/anee/anee.svg?branch=master)](https://travis-ci.org/anee/anee)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) 
 [![SecurityHeaders.io](https://securityheadersiobadges.azurewebsites.net/create/badge?domain=http://anee.cz)](https://securityheaders.io/?q=http%3A%2F%2Fanee.cz&hide=on)
-
 
 Anee is place for sharing tracks and photos. I develop Anee in my free time and for non-commercial using.
 
