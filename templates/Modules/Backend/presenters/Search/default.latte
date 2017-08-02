@@ -3,7 +3,7 @@
     {control searchTitle}
 
     {if count($results->getTracks()) > 0}
-        <div class="profile-activity">
+        <div class="search-profile-activity">
             <h3>TRACKS</h3>
             {foreach $control->components as $component}
                 {if $template->strpos($component->name, 'Track')}
@@ -13,7 +13,7 @@
         </div>
     {/if}
     {if count($results->getPlaces()) > 0}
-        <div class="profile-activity">
+        <div class="search-profile-activity">
             <h3>PLACES</h3>
             {foreach $control->components as $component}
                 {if $template->strpos($component->name, 'Place')}
@@ -23,7 +23,7 @@
         </div>
     {/if}
     {if count($results->getPhotos()) > 0}
-        <div class="profile-activity">
+        <div class="search-profile-activity">
             <h3>PHOTOS</h3>
             {foreach $control->components as $component}
                 {if $template->strpos($component->name, 'Photo')}
