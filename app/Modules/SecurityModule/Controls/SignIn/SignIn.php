@@ -49,7 +49,8 @@ class SignIn extends Nette\Application\UI\Control
 		$form->addPassword('password')
 			->setRequired('Please enter your password.')
 			->setAttribute('placeholder', 'Password');
-		$form->addCheckbox('remember', 'Remember me');
+		$form->addCheckbox('remember', 'Remember me')
+			->setDefaultValue(true);
 		$form->addSubmit('send', 'sign');
 		$form->onSuccess[] = $this->success;
 		return $form;
