@@ -72,10 +72,10 @@ class SearchFactory extends Nette\Object
 		$results = $this->placeSearchLogic->findByFiltersCount($values, $results);
 
 		if ($values['filterEntity'] == 'Track') {
-			$results->setEntityObject($this->trackBaseLogic->findById($values['filterEntityId']));
+			$results->setEntityObject($this->trackBaseLogic->findOneById($values['filterEntityId']));
 			$results->setEntityUrl('Track:detail');
 		} elseif ($values['filterEntity'] == 'Place') {
-			$results->setEntityObject($this->placeBaseLogic->findById($values['filterEntityId']));
+			$results->setEntityObject($this->placeBaseLogic->findOneById($values['filterEntityId']));
 		}
 
 		$this->results = $results;

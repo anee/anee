@@ -12,6 +12,13 @@
                     {$place->getLastUpdate()|dateAgoText}
                     ·
                 {/if}
+                {if count($place->photos) > 0}
+                    {var $args = array('username' => $profileUser->username, 'values' => ['filterCategory' => array('Photos'), 'filterEntity' => 'Place', 'filterEntityId' => $place->id, 'filterEntityUrl' => '/places/' . $place->id])}
+                    <a href="{plink Search:default (expand) $args}">{count($place->photos)} photos</a>
+                {/if}
+                {if count($place->photos) > 0 && $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
+                    ·
+                {/if}
                 {if $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
                     <a href="{link remove!, 'id' => $place->id}" class="ajax">remove</a>
                 {/if}
@@ -57,13 +64,18 @@
                         {$place->getLastUpdate()|dateAgoText}
                         ·
                     {/if}
+                    {if count($place->photos) > 0}
+                        {var $args = array('username' => $profileUser->username, 'values' => ['filterCategory' => array('Photos'), 'filterEntity' => 'Place', 'filterEntityId' => $place->id, 'filterEntityUrl' => '/places/' . $place->id])}
+                        <a href="{plink Search:default (expand) $args}">{count($place->photos)} photos</a>
+                    {/if}
+                    {if count($place->photos) > 0 && $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
+                        ·
+                    {/if}
                     {if $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
                         <a href="" class="inline-save-change">{input save}</a>
                         ·
                         <a href="{link remove!, 'id' => $place->id}" class="ajax">remove</a>
                     {/if}
-
-
                 </p>
 
                 <div style="clear: both;"></div>
