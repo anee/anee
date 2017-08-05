@@ -148,28 +148,29 @@ class TemplateHelpers {
 	 */
     public static function dateAgoText($date)
     {
-        $value = null;
         $seconds = round((date('U') - $date->format('U')));
+        $value = self::dateAgoNumber($date);
 
-        if ($seconds < 60)
-            $value = " sec";
-        else if($seconds < 60*60)
-            $value = " min";
-        else if($seconds < 60*60*24)
-            $value = " hour";
-        else if($seconds < 60*60*24*30)
-            $value = " day";
-        else
-            $value = " month";
+        if ($seconds < 60) {
+            $valueText = " sec";
+        } else if($seconds < 60*60) {
+            $valueText = " min";
+        } else if($seconds < 60*60*24) {
+            $valueText = " hour";
+        } else if($seconds < 60*60*24*30) {
+            $valueText = " day";
+        } else {
+            $valueText = " month";
+        }
 
         // if is value another from "1" add "s"
         if ($value != 1)
-            $value = $value."s";
+            $valueText = $valueText."s";
 
         // end of date
-        $value = $value." ago";
+        $valueText = $valueText." ago";
 
-        return $value;
+        return $valueText;
     }
 
     public static function isSelected($value, $array) {
