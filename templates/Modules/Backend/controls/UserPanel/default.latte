@@ -64,15 +64,11 @@
         <div class="user-summary">
             <div class="left-box float-left">
                 <p class="number">{count($user->following)}</p>
-
-                <p class="description"><a href="{plink :Backend:Profile:Following, 'username' => $user->usernameUrl}">following</a>
-                </p>
+                <p class="description">following</p>
             </div>
             <div class="right-box float-left">
                 <p class="number">{count($user->followers)}</p>
-
-                <p class="description"><a href="{plink :Backend:Profile:Followers, 'username' => $user->usernameUrl}">followers</a>
-                </p>
+                <p class="description">followers</p>
             </div>
         </div>
     </div>
