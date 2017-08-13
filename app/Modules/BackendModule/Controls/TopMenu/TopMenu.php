@@ -85,8 +85,8 @@ class TopMenu extends Control
         return $form;
     }
 
-    public function success($form)
+    public function success(Form $form)
     {
-        $this->presenter->redirect(':Backend:Search:default', array('values' => $form->values, 'username' => $this->usernameUrl));
+        $this->presenter->redirect(':Backend:Search:default', array('values' => array_filter($form->getValues(true)), 'username' => $this->usernameUrl));
     }
 }
