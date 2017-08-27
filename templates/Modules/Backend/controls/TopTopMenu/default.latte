@@ -2,6 +2,9 @@
     <div class="project-description float-left">
 
     </div>
+    <div class="refs float-left">
+        <a href="https://github.com/anee/anee">Github</a>
+    </div>
     <div class="refs float-right">
         {if $user->isLoggedIn()}
             <a href="#profile{$loggedUser->id}" data-toggle="modal">{$loggedUser->getName()}</a>
@@ -15,7 +18,6 @@
         {else}
             <a href="{plink :Security:Sign:in}">Sign in</a>
             <a href="{plink :Security:Register:in}">Register</a>
-            <a href="https://github.com/anee/anee">Github</a>
         {/if}
     </div>
 </div>
