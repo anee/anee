@@ -9,9 +9,19 @@ Anee is place for sharing tracks and photos. I develop Anee in my free time and 
 
 ![ScreenShot](https://raw.github.com/anee/anee/master/examples/anee.png)
 
-Getting started
+User getting started
 ---------------
 Interface tries to be intuitive. Just [register](http://anee.cz/Register/In) and try it yourself. If you dont know anything do not be shy to contact me.
+
+Dev getting started
+--------------
+```
+  git clone git@github.com:anee/anee.git
+  cd anee
+  sh init.sh (composer update, mkdirs, local config copy, permissions ..)
+  # create manually database with name `anee`
+  php ./www/index.php orm:schema-tool:create
+```
 
 API
 -----
