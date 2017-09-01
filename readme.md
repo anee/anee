@@ -18,7 +18,7 @@ Dev getting started
 ```
   git clone git@github.com:anee/anee.git
   cd anee
-  sh init.sh (composer update, mkdirs, local config copy, permissions ..)
+  sh init.sh
   # create manually database with name `anee`
   php ./www/index.php orm:schema-tool:create
 ```
