@@ -20,12 +20,12 @@
         {/if}
         {$track->date|dateAgoNumber}
         {$track->date|dateAgoText}
-        {if count($track->withUsers) > 0}
-          · with
-        {/if}
         {if count($track->photos) > 0}
             {var $args = array('username' => $profileUser->username, 'values' => ['filterCategory' => array('Photos'), 'filterEntity' => 'Track', 'filterEntityId' => $track->id, 'filterEntityUrl' => '/tracks/' . $track->id])}
           · <a href="{plink Search:default (expand) $args}">{count($track->photos)} photos</a>
+        {/if}
+        {if count($track->withUsers) > 0}
+          · with
         {/if}
         {foreach $track->withUsers as $friend}
           {if $friend->getId() != $profileUser->getId()}
@@ -128,12 +128,12 @@
           {/if}
           {$track->date|dateAgoNumber}
           {$track->date|dateAgoText}
-          {if count($track->withUsers) > 0}
-            · with
-          {/if}
           {if count($track->photos) > 0}
             {var $args = array('username' => $profileUser->username, 'values' => ['filterCategory' => array('Photos'), 'filterEntity' => 'Track', 'filterEntityId' => $track->id, 'filterEntityUrl' => '/tracks/' . $track->id])}
             · <a href="{plink Search:default (expand) $args}">{count($track->photos)} photos</a>
+          {/if}
+          {if count($track->withUsers) > 0}
+            · with
           {/if}
           {foreach $track->withUsers as $friend}
               {if $friend->getId() != $profileUser->getId()}
