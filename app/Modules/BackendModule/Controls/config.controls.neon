@@ -67,7 +67,7 @@ services:
 		parameters: [App\Model\Track track, App\Model\User loggedUser = NULL, App\Model\User profileUser, byName = NULL, detail = NULL]
 
 	PlaceRow:
-		class: App\Modules\BackendModule\Controls\PlaceRow(..., ..., ..., %place%, %loggedUser%, %profileUser%, %detail%)
+		class: App\Modules\BackendModule\Controls\PlaceRow(..., ..., ..., ..., %place%, %loggedUser%, %profileUser%, %detail%)
 		implement: App\Modules\BackendModule\Controls\IPlaceRowFactory
 		parameters: [App\Model\Place place, App\Model\User loggedUser = NULL, App\Model\User profileUser, detail = NULL]
 

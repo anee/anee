@@ -29,14 +29,14 @@
         </div>
         <div class="part">
             <div class="bar overall-bg float-left">
-                <span class="bar-value">{$place->getDistance()}</span> km
+                <span class="bar-value">{$placeDistance}</span> km
             </div>
             {*<div class="info overall float-left">
                 <p>{$track->getTimeInSeconds()|getSpanTimeFromSecondsNumber}</p>
                 <p>{$track->getTimeInSeconds()|getSpanTimeFromSecondsText}</p>
             </div>*}
             <div class="bar partial-bg float-right">
-                <span class="bar-value">{count($place->tracks)}</span>
+                <span class="bar-value">{count($placeTracks)}</span>
                 tracks{*{$track->getTimeInSeconds()|getSpanTimeFromSecondsNumber} {$track->getTimeInSeconds()|getSpanTimeFromSecondsText|strtolower}*}
             </div>
             {*<div class="info partial float-right text-align-right">
@@ -82,14 +82,14 @@
             </div>
             <div class="part">
                 <div class="bar overall-bg float-left">
-                    <span class="bar-value">{$place->getDistance()}</span> km
+                    <span class="bar-value">{$placeDistance}</span> km
                 </div>
                 {*<div class="info overall float-left">
                     <p>{$track->getTimeInSeconds()|getSpanTimeFromSecondsNumber}</p>
                     <p>{$track->getTimeInSeconds()|getSpanTimeFromSecondsText}</p>
                 </div>*}
                 <div class="bar partial-bg float-right">
-                    <span class="bar-value">{count($place->tracks)}</span>
+                    <span class="bar-value">{count($placeTracks)}</span>
                     tracks{*{$track->getTimeInSeconds()|getSpanTimeFromSecondsNumber} {$track->getTimeInSeconds()|getSpanTimeFromSecondsText|strtolower}*}
                 </div>
                 {*<div class="info partial float-right text-align-right">

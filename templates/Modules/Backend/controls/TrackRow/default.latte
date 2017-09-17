@@ -3,7 +3,7 @@
     <div class="line">
       <p class="track-name float-left">
         <a
-          href="{plink :Backend:Tracks:default, 'url' => $track->id, 'username' => $profileUser->usernameUrl}">{$track->getName()}
+          href="{plink :Backend:Tracks:default, 'url' => $track->id, 'username' => $track->getUser()->usernameUrl}">{$track->getName()}
           {if $track->transport != NULL}
             <span class="transport">by {$track->transport->name}</span>
           {/if}
@@ -15,7 +15,7 @@
         {if $byName != NULL}
           by
           <a
-            href="{plink :Backend:Profile:default, 'username' => $profileUser->usernameUrl}">{$profileUser->getName()}</a>
+            href="{plink :Backend:Profile:default, 'username' => $track->getUser()->usernameUrl}">{$track->getUser()->getName()}</a>
           ·
         {/if}
         {$track->date|dateAgoNumber}
@@ -28,12 +28,18 @@
           · <a href="{plink Search:default (expand) $args}">{count($track->photos)} photos</a>
         {/if}
         {foreach $track->withUsers as $friend}
-          {if $iterator->first}
-            <a href="{plink :Backend:Profile:default, 'username' => $friend->username}"
-              class="ajax"> {$friend->getName()}</a>
-          {else}
-            <a href="{plink :Backend:Profile:default, 'username' => $friend->username}" class="ajax">
-              ,{$friend->getName()}</a>
+          {if $friend->getId() != $profileUser->getId()}
+            {if $iterator->first}
+              <a href="{plink :Backend:Profile:default, 'username' => $friend->usernameUrl}"> {$friend->getName()}</a>
+            {else}
+              <a href="{plink :Backend:Profile:default, 'username' => $friend->usernameUrl}"> ,{$friend->getName()}</a>
+            {/if}
+          {elseif $friend->getId() != $track->getUser()->getId()}
+             {if $iterator->first}
+                <a href="{plink :Backend:Profile:default, 'username' => $profileUser->usernameUrl}"> {$profileUser->getName()}</a>
+             {else}
+                <a href="{plink :Backend:Profile:default, 'username' => $profileUser->usernameUrl}"> ,{$profileUser->getName()}</a>
+             {/if}
           {/if}
         {/foreach}
         {if $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
@@ -104,7 +110,7 @@
             {/if}
           {else}
             <a
-              href="{plink :Backend:Tracks:default, 'url' => $track->id, 'username' => $profileUser->usernameUrl}">{$track->name}
+              href="{plink :Backend:Tracks:default, 'url' => $track->id, 'username' => $track->getUser()->usernameUrl}">{$track->name}
               {if $track->transport != NULL}
                 <span class="transport">by {$track->transport->name}</span>
               {/if}
@@ -117,7 +123,7 @@
           {if $byName != NULL}
             by
             <a
-              href="{plink :Backend:Profile:default, 'username' => $profileUser->usernameUrl}">{$profileUser->getName()}</a>
+              href="{plink :Backend:Profile:default, 'username' => $track->getUser()->usernameUrl}">{$track->getUser()->getName()}</a>
             ·
           {/if}
           {$track->date|dateAgoNumber}
@@ -130,13 +136,19 @@
             · <a href="{plink Search:default (expand) $args}">{count($track->photos)} photos</a>
           {/if}
           {foreach $track->withUsers as $friend}
-            {if $iterator->first}
-              <a href="{plink :Backend:Profile:default, 'username' => $friend->usernameUrl}"
-                class="ajax"> {$friend->getName()}</a>
-            {else}
-              <a href="{plink :Backend:Profile:default, 'username' => $friend->usernameUrl}" class="ajax">
-                ,{$friend->getName()}</a>
-            {/if}
+              {if $friend->getId() != $profileUser->getId()}
+                  {if $iterator->first}
+                      <a href="{plink :Backend:Profile:default, 'username' => $friend->usernameUrl}"> {$friend->getName()}</a>
+                  {else}
+                      <a href="{plink :Backend:Profile:default, 'username' => $friend->usernameUrl}"> ,{$friend->getName()}</a>
+                  {/if}
+              {else}
+                  {if $iterator->first}
+                      <a href="{plink :Backend:Profile:default, 'username' => $track->getUser()->usernameUrl}"> {$track->getUser()->getName()}</a>
+                  {else}
+                      <a href="{plink :Backend:Profile:default, 'username' => $track->getUser()->usernameUrl}"> ,{$track->getUser()->getName()}</a>
+                  {/if}
+              {/if}
           {/foreach}
           {if $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
             ·

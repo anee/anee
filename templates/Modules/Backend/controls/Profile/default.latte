@@ -32,7 +32,7 @@
                 <li>
                     <a style="{$aHrefLength|noescape}" class="icon tracks" href="{plink :Backend:Profile:tracks, 'username' => $profileUser->usernameUrl}">
                         <span class="float-left">Tracks</span>
-                        <span class="float-right">{count($profileUser->tracks)}</span>
+                        <span class="float-right">{count($profileTracks)}</span>
 
                         <div style="clear: both;"></div>
                     </a>
@@ -67,12 +67,12 @@
 
         <div class="profile-summary">
             <div class="left-box float-left">
-                <p class="number">{$profileUser->getTotalDistance()}</p>
+                <p class="number">{$profileTrackTotalDistance}</p>
 
                 <p class="description">total km</p>
             </div>
             <div class="right-box float-left">
-                <p class="number">{count($profileUser->getTracks())}</p>
+                <p class="number">{count($profileTracks)}</p>
 
                 <p class="description">tracks</p>
             </div>

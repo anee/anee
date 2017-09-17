@@ -17,6 +17,12 @@ class HomepagePresenter extends BasePresenter
 	 */
 	public $ITrackRow;
 
+    /**
+     * @var \App\Model\TrackBaseLogic
+     * @inject
+     */
+	public $trackBaseLogic;
+
 	public function actionDefault()
 	{
 		if ($this->user->isLoggedIn()) {
@@ -24,7 +30,8 @@ class HomepagePresenter extends BasePresenter
 
 			/** Added all tracks from following users BUT ignore tracks from myself */
 			foreach ($loggedUser->following as $followingUser) {
-				foreach ($followingUser->tracks as $track) {
+                $tracks = $this->trackBaseLogic->findAllByUserId($followingUser->id);
+				foreach ($tracks as $track) {
 					if ($loggedUser->id != $followingUser->id) {
 						$this->addComponent($this->createComponentTrackRow($track, $loggedUser, $followingUser, TRUE), 'Track' . $track->id);
 					}

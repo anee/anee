@@ -65,8 +65,8 @@ class Track extends BaseEntity
 	/**
 	 * @ORM\ManyToMany(targetEntity="App\Model\User", inversedBy="App\Model\Track", cascade={"persist"})
 	 * @ORM\JoinTable(name="track_user",
-	 *        joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
-	 *        inverseJoinColumns={@ORM\JoinColumn(name="track_id", referencedColumnName="id")}
+	 *        joinColumns={@ORM\JoinColumn(name="track_id", referencedColumnName="id")},
+	 *        inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")}
 	 *    )
 	 * @var []|\Doctrine\Common\Collections\ArrayCollection
 	 */
@@ -109,5 +109,26 @@ class Track extends BaseEntity
 	public function getWithUsers()
 	{
 		return $this->withUsers;
+	}
+
+    /**
+     * @return \App\Model\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+	}
+
+    /**
+     * @return bool
+     */
+    public function isPinned()
+    {
+        return $this->pinned;
+	}
+
+    public function getDistance()
+    {
+        return $this->distance;
 	}
 }

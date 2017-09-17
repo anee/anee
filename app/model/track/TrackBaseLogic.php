@@ -16,7 +16,7 @@ class TrackBaseLogic extends BaseLogic {
         $this->dao->delete($this->findOneById($id));
     }
 
-    public function findAll($userId)
+    public function findAll()
     {
         $qb = $this->dao->createQueryBuilder();
         $qb
@@ -24,7 +24,7 @@ class TrackBaseLogic extends BaseLogic {
             ->from('App\Model\Track', 'e')
             ->orderBy('e.date', 'DESC');
 
-        return $this->addFilterByUser($qb, $userId)->getQuery()->getResult();
+        return $qb->getQuery()->getResult();
     }
 
     public function findLast($userId)
@@ -50,13 +50,45 @@ class TrackBaseLogic extends BaseLogic {
 
     public function findLastByCount($count, $userId)
     {
-        $qb = $this->dao->createQueryBuilder();
-        $qb
-            ->select('e')
-            ->from('App\Model\Track', 'e')
-            ->orderBy('e.date', 'DESC');
+        $results = [];
+        $counter = 0;
+        foreach($this->findAllByUserId($userId) as $track) {
+            if($counter < $count) {
+                $results[] = $track;
+            } else {
+                break;
+            }
+            $counter++;
+        }
+        return $results;
+    }
 
-        return $this->addFilterByUser($qb, $userId)->getQuery()->setMaxResults($count)->getResult();
+    public function findAllByUserId($userId)
+    {
+        $profileTracks = [];
+        foreach ($this->findAll() as $track) {
+            /** @var $track Track */
+            if ($track->getUser()->getId() == $userId) {
+                $profileTracks[] = $track;
+            } else {
+                foreach ($track->getWithUsers() as $user) {
+                    /** @var $user User */
+                    if ($user->getId() == $userId) {
+                        $profileTracks[] = $track;
+                    }
+                }
+            }
+        }
+        return $profileTracks;
+    }
+
+    public function getTotalDistance($tracks)
+    {
+        $distance = 0;
+        foreach($tracks as $track) {
+            $distance += $track->distance;
+        }
+        return round($distance);
     }
 
 	public function findLastPinnedByCount($count, $userId)
@@ -73,26 +105,24 @@ class TrackBaseLogic extends BaseLogic {
 
 	public function findAllPinnedByUserId($userId)
 	{
-		$qb = $this->dao->createQueryBuilder();
-		$qb
-			->select('e')
-			->from('App\Model\Track', 'e')
-			->where('e.pinned = TRUE')
-			->orderBy('e.date', 'DESC');
-
-		return $this->addFilterByUser($qb, $userId)->getQuery()->getResult();
+        $pinnedTracks = [];
+        foreach($this->findAllByUserId($userId) as $track) {
+            if($track->isPinned()) {
+                $pinnedTracks[] = $track;
+            }
+        }
+        return $pinnedTracks;
 	}
 
 	public function findAllUnpinnedByUserId($userId)
 	{
-		$qb = $this->dao->createQueryBuilder();
-		$qb
-			->select('e')
-			->from('App\Model\Track', 'e')
-			->where('e.pinned = FALSE')
-			->orderBy('e.date', 'DESC');
-
-		return $this->addFilterByUser($qb, $userId)->getQuery()->getResult();
+        $pinnedTracks = [];
+        foreach($this->findAllByUserId($userId) as $track) {
+            if(!$track->isPinned()) {
+                $pinnedTracks[] = $track;
+            }
+        }
+        return $pinnedTracks;
 	}
 
 	public function findOneById($id)
@@ -107,16 +137,16 @@ class TrackBaseLogic extends BaseLogic {
         return $qb->getQuery()->getOneOrNullResult();
     }
 
-	public function findAllByUserId($userId)
-	{
-		$qb = $this->dao->createQueryBuilder();
-		$qb
-			->select('e')
-			->from('App\Model\Track', 'e')
-			->orderBy('e.date', 'DESC');
-
-		return $this->addFilterByUser($qb, $userId)->getQuery()->getResult();
-	}
+    public function findAllByUserIdAndPlace($userId, Place $place)
+    {
+        $results = [];
+        foreach($this->findAllByUserId($userId) as $track) {
+            if($track->getPlace()->getName() == $place->getName()) {
+                $results[] = $track;
+            }
+        }
+        return $results;
+    }
 
 	public function findOneByIdAndUserId($id, $userId)
 	{

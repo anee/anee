@@ -125,15 +125,6 @@ class User extends BaseEntity {
 		$this->lastLogin = new DateTime();
 	}
 
-	public function getTotalDistance()
-	{
-		$distance = 0;
-		foreach($this->tracks as $track) {
-			$distance += $track->distance;
-		}
-		return round($distance);
-	}
-
 	public function getName()
 	{
 		if($this->forename != "" && $this->surname != "") {
