@@ -109,4 +109,9 @@ class Place extends BaseEntity
 		$this->name = $name;
 		$this->nameUrl = Strings::webalize($name);
 	}
+
+    public function getName()
+    {
+        return $this->name;
+	}
 }

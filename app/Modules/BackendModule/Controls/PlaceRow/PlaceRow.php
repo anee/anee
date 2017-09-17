@@ -3,6 +3,8 @@
 namespace App\Modules\BackendModule\Controls;
 
 use App\Model\PlaceBaseLogic;
+use App\Model\Track;
+use App\Model\TrackBaseLogic;
 use App\Model\UserBaseLogic;
 use Kdyby\Doctrine\DuplicateEntryException;
 use Nette;
@@ -44,7 +46,12 @@ class PlaceRow extends Control
 	 */
 	public $placeBaseLogic;
 
-	/**
+    /**
+     * @var TrackBaseLogic
+     */
+    public $trackBaseLogic;
+
+    /**
 	 * @var User
 	 */
 	private $loggedUser;
@@ -66,12 +73,13 @@ class PlaceRow extends Control
 	 */
 	public $keeper;
 
-    public function __construct(ViewKeeper $keeper, PlaceBaseLogic $placeBaseLogic, UserBaseLogic $userBaseLogic, Place $place, User $loggedUser = NULL, User $profileUser, $detail = NULL)
+    public function __construct(ViewKeeper $keeper, PlaceBaseLogic $placeBaseLogic, UserBaseLogic $userBaseLogic, TrackBaseLogic $trackBaseLogic, Place $place, User $loggedUser = NULL, User $profileUser, $detail = NULL)
     {
 		$this->keeper = $keeper;
 		$this->place = $place;
 		$this->placeBaseLogic = $placeBaseLogic;
 		$this->userBaseLogic = $userBaseLogic;
+		$this->trackBaseLogic = $trackBaseLogic;
 		$this->loggedUser = $loggedUser;
 		$this->profileUser = $profileUser;
 		$this->detail = $detail;
@@ -82,6 +90,15 @@ class PlaceRow extends Control
 		$this->template->setFile($this->keeper->getView('Backend:' . 'PlaceRow', 'controls'));
 
 		$this->template->addFilter(NULL, 'App\TemplateHelpers::loader');
+
+		$filteredTracks = $this->trackBaseLogic->findAllByUserIdAndPlace($this->profileUser->getId(), $this->place);
+		$placeDistance = 0;
+		foreach ($filteredTracks as $track) {
+		    /** @var Track $track */
+            $placeDistance += $track->getDistance();
+        }
+		$this->template->placeDistance = $placeDistance;
+        $this->template->placeTracks = $filteredTracks;
 
 		$this->template->profileUser = $this->profileUser;
 		$this->template->loggedUser = $this->loggedUser;

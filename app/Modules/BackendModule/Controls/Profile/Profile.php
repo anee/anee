@@ -2,6 +2,7 @@
 
 namespace App\Modules\BackendModule\Controls;
 
+use App\Model\Track;
 use App\Model\TrackBaseLogic;
 use App\Model\PhotoBaseLogic;
 use App\Model\PlaceBaseLogic;
@@ -146,6 +147,10 @@ class Profile extends Control
 		$this->template->addFilter('thumb', array($this->thumbnailsHelper, 'process'));
 
 		$this->template->profileUser = $this->profileUser;
+
+		$profileTracks = $this->trackBaseLogic->findAllByUserId($this->profileUser->getId());
+		$this->template->profileTracks = $profileTracks;
+		$this->template->profileTrackTotalDistance = $this->trackBaseLogic->getTotalDistance($profileTracks);
 		$this->template->loggedUser = $this->loggedUser;
 
 		$unpinnedTracks = Array();
@@ -160,8 +165,8 @@ class Profile extends Control
 		} elseif ($this->getPresenter()->getAction() == 'photos' || ($this->getPresenter()->getName() == 'Backend:Photos' && $this->getPresenter()->getAction() == 'default')) {
 			$photos = TRUE;
 		} elseif($this->getPresenter()->getAction() == 'default') {
-			$unpinnedTracks = $this->trackBaseLogic->findAllUnpinnedByUserId($this->profileUser->id);
-			$pinnedTracks = $this->trackBaseLogic->findAllPinnedByUserId($this->profileUser->id);
+            $pinnedTracks = $this->trackBaseLogic->findAllPinnedByUserId($this->profileUser->getId());
+            $unpinnedTracks = $this->trackBaseLogic->findAllUnpinnedByUserId($this->profileUser->getId());
 		}
 		$this->template->unpinnedTracks = $unpinnedTracks;
 		$this->template->pinnedTracks = $pinnedTracks;
@@ -201,4 +206,5 @@ class Profile extends Control
 		$this->userBaseLogic->save($this->loggedUser, $this->profileUser);
 		$this->getPresenter()->redirect('this');
 	}
+
 }

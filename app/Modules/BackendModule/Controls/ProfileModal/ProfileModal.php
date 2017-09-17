@@ -94,6 +94,9 @@ class ProfileModal extends Control
 		$this->template->addFilter('thumb', array($this->thumbnailsHelper, 'process'));
 
 		$this->template->profileUser = $this->profileUser;
+        $profileTracks = $this->trackBaseLogic->findAllByUserId($this->profileUser->getId());
+        $this->template->profileTracks = $profileTracks;
+        $this->template->profileTrackTotalDistance = $this->trackBaseLogic->getTotalDistance($profileTracks);
 		$this->template->loggedUser = $this->loggedUser;
 		$this->template->tracks = $this->trackBaseLogic->findLastByCount(2, $this->profileUser->id);
 		$this->template->pinnedTracks = $this->trackBaseLogic->findLastPinnedByCount(2, $this->profileUser->id);

@@ -2,6 +2,7 @@
 
 
 namespace App\Modules\BackendModule\Presenters;
+use App\Model\Track;
 
 
 /**
@@ -81,11 +82,12 @@ class ProfilePresenter extends BasePresenter
 		$loggedUser = $this->userBaseLogic->findOneById($this->getUser()->getId());
 
 		$profile = $this->IProfile->create($loggedUser, $user);
-		$tracks = $this->trackBaseLogic->findAll($user->id);
+		$tracks = $this->trackBaseLogic->findAllByUserId($user->id);
 		foreach ($tracks as $track) {
-			if ($track->pinned == NULL) {
+		    /** @var $track Track */
+			if (!$track->isPinned()) {
 				$profile->addComponent($this->createComponentTrackRow($track, $loggedUser, $user), 'NO' . $track->id);
-			} elseif ($track->pinned == TRUE) {
+			} elseif ($track->isPinned()) {
 				$profile->addComponent($this->createComponentTrackRow($track, $loggedUser, $user), 'YES' . $track->id);
 			}
 		}
@@ -208,7 +210,7 @@ class ProfilePresenter extends BasePresenter
 		$loggedUser = $this->userBaseLogic->findOneById($this->getUser()->getId());
 
 		$profile = $this->IProfile->create($loggedUser, $this->user);
-		$tracks = $this->trackBaseLogic->findAll($profileUser->id);
+		$tracks = $this->trackBaseLogic->findAllByUserId($profileUser->id);
 		foreach ($tracks as $track) {
 			$profile->addComponent($this->createComponentTrackRow($track, $loggedUser, $this->user), $track->id);
 		}
