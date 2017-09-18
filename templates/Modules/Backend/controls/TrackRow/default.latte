@@ -12,7 +12,7 @@
 
       <p class="options float-right">
 
-        {if $byName != NULL}
+        {if $byName != NULL && $track->getUser()->id != $profileUser->id}
           by
           <a
             href="{plink :Backend:Profile:default, 'username' => $track->getUser()->usernameUrl}">{$track->getUser()->getName()}</a>
@@ -120,7 +120,9 @@
 
         <p class="options float-right">
 
-          {if $byName != NULL}
+          {dump($profileUser->getName())}
+          {dump($track->getUser()->getName())}
+          {if $byName != NULL && $track->getUser()->id != $profileUser->id}
             by
             <a
               href="{plink :Backend:Profile:default, 'username' => $track->getUser()->usernameUrl}">{$track->getUser()->getName()}</a>

@@ -96,7 +96,7 @@ class ProfilePresenter extends BasePresenter
 
 	protected function createComponentTrackRow($track, $loggedUser, $profileUser)
 	{
-		return $this->ITrackRow->create($track, $loggedUser, $profileUser);
+		return $this->ITrackRow->create($track, $loggedUser, $profileUser, TRUE);
 	}
 
 	protected function createComponentPhotoRow($photo, $loggedUser, $profileUser)
