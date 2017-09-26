@@ -127,6 +127,7 @@
         {else}
             {if $tracks == TRUE}
                 <div class="profile-activity">
+                    <h3>TRACK</h3>
                     {foreach $control->components as $component}
                         {control $component->getName()}
                     {/foreach}
@@ -134,6 +135,7 @@
             {/if}
             {if $places == TRUE}
                 <div class="profile-activity">
+                    <h3>PLACE</h3>
                     {foreach $control->components as $component}
                         {control $component->getName()}
                     {/foreach}
@@ -141,6 +143,7 @@
             {/if}
             {if $photos == TRUE}
                 <div class="profile-activity">
+                    <h3>PHOTO</h3>
                     {foreach $control->components as $component}
                         {control $component->getName()}
                     {/foreach}
