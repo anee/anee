@@ -93,10 +93,13 @@ class PlaceRow extends Control
 
 		$filteredTracks = $this->trackBaseLogic->findAllByUserIdAndPlace($this->profileUser->getId(), $this->place);
 		$placeDistance = 0;
+		$placeTimeInSeconds = 0;
 		foreach ($filteredTracks as $track) {
 		    /** @var Track $track */
             $placeDistance += $track->getDistance();
+            $placeTimeInSeconds += $track->getTimeInSeconds();
         }
+        $this->template->placeTimeInSeconds = $placeTimeInSeconds;
 		$this->template->placeDistance = $placeDistance;
         $this->template->placeTracks = $filteredTracks;
 

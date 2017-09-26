@@ -131,4 +131,12 @@ class Track extends BaseEntity
     {
         return $this->distance;
 	}
+
+    /**
+     * @return float
+     */
+    public function getTimeInSeconds()
+    {
+        return $this->timeInSeconds;
+    }
 }

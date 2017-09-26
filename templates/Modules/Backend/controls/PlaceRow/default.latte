@@ -33,10 +33,28 @@
             <div class="bar overall-bg float-left">
                 <span class="bar-value">{$placeDistance}</span> km
             </div>
-            {*<div class="info overall float-left">
-                <p>{$track->getTimeInSeconds()|getSpanTimeFromSecondsNumber}</p>
-                <p>{$track->getTimeInSeconds()|getSpanTimeFromSecondsText}</p>
-            </div>*}
+            {if $placeTimeInSeconds}
+                <div class="track-date overall float-left text-align-center">
+                    <p>{$place->getTimeInSeconds()|fromSecondsHours}</p>
+
+                    <p>HOURS</p>
+                </div>
+                <div class="track-date overall float-left text-align-center">
+                    <p>{$place->getTimeInSeconds()|fromSecondsMinutes}</p>
+
+                    <p>MINS</p>
+                </div>
+                <div class="track-date track-date-end overall float-left text-align-center">
+                    <p>{$place->getTimeInSeconds()|fromSecondsSeconds}</p>
+
+                    <p>SECS</p>
+                </div>
+            {else}
+                <div class="track-date track-date-end overall float-left text-align-center">
+                    <p>N/A</p>
+                    <p>INTERVAL</p>
+                </div>
+            {/if}
             <div class="bar partial-bg float-right">
                 <span class="bar-value">{count($placeTracks)}</span>
                 tracks{*{$track->getTimeInSeconds()|getSpanTimeFromSecondsNumber} {$track->getTimeInSeconds()|getSpanTimeFromSecondsText|strtolower}*}
@@ -88,10 +106,28 @@
                 <div class="bar overall-bg float-left">
                     <span class="bar-value">{$placeDistance}</span> km
                 </div>
-                {*<div class="info overall float-left">
-                    <p>{$track->getTimeInSeconds()|getSpanTimeFromSecondsNumber}</p>
-                    <p>{$track->getTimeInSeconds()|getSpanTimeFromSecondsText}</p>
-                </div>*}
+                {if $placeTimeInSeconds}
+                    <div class="track-date overall float-left text-align-center">
+                        <p>{$place->getTimeInSeconds()|fromSecondsHours}</p>
+
+                        <p>HOURS</p>
+                    </div>
+                    <div class="track-date overall float-left text-align-center">
+                        <p>{$place->getTimeInSeconds()|fromSecondsMinutes}</p>
+
+                        <p>MINS</p>
+                    </div>
+                    <div class="track-date track-date-end overall float-left text-align-center">
+                        <p>{$place->getTimeInSeconds()|fromSecondsSeconds}</p>
+
+                        <p>SECS</p>
+                    </div>
+                {else}
+                    <div class="track-date track-date-end overall float-left text-align-center">
+                        <p>N/A</p>
+                        <p>INTERVAL</p>
+                    </div>
+                {/if}
                 <div class="bar partial-bg float-right">
                     <span class="bar-value">{count($placeTracks)}</span>
                     tracks{*{$track->getTimeInSeconds()|getSpanTimeFromSecondsNumber} {$track->getTimeInSeconds()|getSpanTimeFromSecondsText|strtolower}*}
