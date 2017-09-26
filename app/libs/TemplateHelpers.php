@@ -221,4 +221,18 @@ class TemplateHelpers {
 			return false;
 		}
 	}
+
+    /**
+     * For example "photos" / "photo"
+     *
+     * @param int $count
+     *
+     * @return string
+     */
+	public static function photosText($count) {
+	    if ($count === 1) {
+	        return 'photo';
+        }
+        return 'photos';
+    }
 }

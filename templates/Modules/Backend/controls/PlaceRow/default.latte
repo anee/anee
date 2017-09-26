@@ -12,9 +12,11 @@
                     {$place->getLastUpdate()|dateAgoText}
                     ·
                 {/if}
-                {if count($place->photos) > 0}
+
+                {var $placePhotosCount = count($place->photos)}
+                {if $placePhotosCount > 0}
                     {var $args = array('username' => $profileUser->username, 'values' => ['filterCategory' => array('Photos'), 'filterEntity' => 'Place', 'filterEntityId' => $place->id, 'filterEntityUrl' => '/places/' . $place->id])}
-                    <a href="{plink Search:default (expand) $args}">{count($place->photos)} photos</a>
+                    <a href="{plink Search:default (expand) $args}">{$placePhotosCount} {$placePhotosCount|photosText}</a>
                 {/if}
                 {if count($place->photos) > 0 && $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
                     ·
@@ -64,9 +66,11 @@
                         {$place->getLastUpdate()|dateAgoText}
                         ·
                     {/if}
-                    {if count($place->photos) > 0}
+
+                    {var $placePhotosCount = count($place->photos)}
+                    {if $placePhotosCount > 0}
                         {var $args = array('username' => $profileUser->username, 'values' => ['filterCategory' => array('Photos'), 'filterEntity' => 'Place', 'filterEntityId' => $place->id, 'filterEntityUrl' => '/places/' . $place->id])}
-                        <a href="{plink Search:default (expand) $args}">{count($place->photos)} photos</a>
+                        <a href="{plink Search:default (expand) $args}">{$placePhotosCount} {$placePhotosCount|photosText}</a>
                     {/if}
                     {if count($place->photos) > 0 && $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
                         ·

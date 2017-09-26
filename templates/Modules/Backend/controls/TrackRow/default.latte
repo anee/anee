@@ -20,9 +20,11 @@
         {/if}
         {$track->date|dateAgoNumber}
         {$track->date|dateAgoText}
-        {if count($track->photos) > 0}
+
+        {var $trackPhotosCount = count($track->photos)}
+        {if $trackPhotosCount > 0}
             {var $args = array('username' => $track->getUser()->username, 'values' => ['filterCategory' => array('Photos'), 'filterEntity' => 'Track', 'filterEntityId' => $track->id, 'filterEntityUrl' => '/tracks/' . $track->id])}
-          · <a href="{plink Search:default (expand) $args}">{count($track->photos)} photos</a>
+          · <a href="{plink Search:default (expand) $args}">{$trackPhotosCount} {$trackPhotosCount|photosText}</a>
         {/if}
         {if count($track->withUsers) > 0}
           · with
@@ -119,9 +121,6 @@
         </p>
 
         <p class="options float-right">
-
-          {dump($profileUser->getName())}
-          {dump($track->getUser()->getName())}
           {if $byName != NULL && $track->getUser()->id != $profileUser->id}
             by
             <a
@@ -130,9 +129,11 @@
           {/if}
           {$track->date|dateAgoNumber}
           {$track->date|dateAgoText}
-          {if count($track->photos) > 0}
+
+          {var $trackPhotosCount = count($track->photos)}
+          {if $trackPhotosCount > 0}
             {var $args = array('username' => $track->getUser()->username, 'values' => ['filterCategory' => array('Photos'), 'filterEntity' => 'Track', 'filterEntityId' => $track->id, 'filterEntityUrl' => '/tracks/' . $track->id])}
-            · <a href="{plink Search:default (expand) $args}">{count($track->photos)} photos</a>
+            · <a href="{plink Search:default (expand) $args}">{$trackPhotosCount} {$trackPhotosCount|photosText}</a>
           {/if}
           {if count($track->withUsers) > 0}
             · with
