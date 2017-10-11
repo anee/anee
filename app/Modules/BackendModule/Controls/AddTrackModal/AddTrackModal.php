@@ -101,10 +101,10 @@ class AddTrackModal extends Control
 
 		$form = new Form;
 		$form->addText('distance')
-			->setAttribute('placeholder', 'km')
+			->setAttribute('placeholder', '0.00 [km]')
 			->setRequired('You have not filled distance.');
 		$form->addText('maxSpeed')
-			->setAttribute('placeholder', 'km/h');
+			->setAttribute('placeholder', '0.00 [km/h]');
 		$form->addSelect('place', NULL, $places)
 			->setRequired('You have not filled start place.');
 		$form->addSelect('placeTo', NULL, $places);
