@@ -12,3 +12,4 @@ services:
 	userFacade: App\Model\UserFacade(@doctrine.dao(App\Model\User))
 	trackFacade: App\Model\TrackFacade(@doctrine.dao(App\Model\Track))
 	photoFacade: App\Model\PhotoFacade(@doctrine.dao(App\Model\Photo))
+	roleFacade: App\Model\RoleFacade(@doctrine.dao(App\Model\Role))

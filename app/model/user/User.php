@@ -104,6 +104,11 @@ class User extends BaseEntity {
 	 */
 	protected $lastVisitedHome;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Model\Role", inversedBy="user")
+     */
+	protected $role;
+
 	/**
 	 * @param $username
 	 * @param $public
