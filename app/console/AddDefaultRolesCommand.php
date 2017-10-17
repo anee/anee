@@ -38,18 +38,22 @@ class AddDefaultRolesCommand extends Command {
         try {
 
             $roleAdmin = new Role(Role::ADMIN);
-            $this->roleFacade->save($roleAdmin);
+            $admin = $this->roleFacade->save($roleAdmin);
+            $adminId = $admin->getId();
+
+            $output->writeln("Role with name: `admin` and id: `$adminId` has been successfully added.");
 
             $roleUser = new Role(Role::USER);
-            $this->roleFacade->save($roleUser);
+            $user = $this->roleFacade->save($roleUser);
+            $userId = $user->getId();
 
-            $output->writeln("Default roles `admin` and `user` has been successfully added.");
+            $output->writeln("Role with name: `admin` and id: `$userId` has been successfully added.");
 
             return 0;
         } catch (UniqueConstraintViolationException $exception) {
             Debugger::log($exception, ILogger::EXCEPTION);
 
-            $output->writeln("Default roles `admin` and `user` have been already added.");
+            $output->writeln("Default roles with name: `admin` and `user` have been already added.");
 
             return 1;
         } catch(\Exception $exception) {
