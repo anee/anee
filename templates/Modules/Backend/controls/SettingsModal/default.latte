@@ -26,6 +26,15 @@
 
                 <div style="clear: both;"></div>
             </div>
+            {if $loggedUser->getRole()}
+                <div class="line">
+                    <p class="name float-left">Role</p>
+
+                    <p class="name float-right">{$loggedUser->getRole()->getName()}</p>
+
+                    <div style="clear: both;"></div>
+                </div>
+            {/if}
             <div class="line">
                 <p class="name float-left"></p>
 

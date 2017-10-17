@@ -187,4 +187,8 @@ class User extends BaseEntity {
         return $this->username;
 	}
 
+    public function getRole() {
+        return $this->role;
+	}
+
 }
