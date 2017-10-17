@@ -2,6 +2,7 @@
 
 namespace App\Modules\BackendModule\Controls;
 
+use App\Model\RoleFacade;
 use Nette\Application\LinkGenerator;
 use Nette\Application\UI\Control;
 use App\Model\UserBaseLogic;
@@ -43,6 +44,11 @@ class SettingsModal extends Control
 	 */
 	public $keeper;
 
+    /**
+     * @var \App\Model\RoleFacade
+     */
+	public $roleFacade;
+
 	/**
 	 * @var LinkGenerator
 	 */
@@ -50,19 +56,21 @@ class SettingsModal extends Control
 
 	private $appDir;
 
-	public function __construct(ViewKeeper $keeper, UserBaseLogic $userBaseLogic, LinkGenerator $linkGenerator, User $loggedUser, $appDir)
+	public function __construct(ViewKeeper $keeper, UserBaseLogic $userBaseLogic, LinkGenerator $linkGenerator, RoleFacade $roleFacade, User $loggedUser, $appDir)
 	{
 		$this->keeper = $keeper;
 		$this->appDir = $appDir;
 		$this->userBaseLogic = $userBaseLogic;
 		$this->loggedUser = $loggedUser;
 		$this->linkGenerator = $linkGenerator;
+		$this->roleFacade = $roleFacade;
 	}
 
 	public function render()
 	{
 		$this->template->setFile($this->keeper->getView('Backend:' . 'SettingsModal', 'controls'));
 		$this->template->loggedUser = $this->loggedUser;
+		$this->template->roles = $this->roleFacade->getAll();
 		$this->template->render();
 	}
 
