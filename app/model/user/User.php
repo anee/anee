@@ -2,6 +2,7 @@
 
 namespace App\Model;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Nette\Security\Passwords;
 use Doctrine\ORM\Mapping as ORM;
 use Nette\Utils\DateTime;
@@ -110,15 +111,16 @@ class User extends BaseEntity {
 	protected $role;
 
 	/**
-	 * @param $username
-	 * @param $public
-	 * @param $email
-	 * @param $password
+	 * @param string $username
+     * @param string $forename
+	 * @param bool $public
+	 * @param string $email
+	 * @param string $password
 	 */
 	public function __construct($username, $forename, $surname, $public, $email, $password)
 	{
-		$this->followers = new \Doctrine\Common\Collections\ArrayCollection();
-		$this->following = new \Doctrine\Common\Collections\ArrayCollection();
+		$this->followers = new ArrayCollection();
+		$this->following = new ArrayCollection();
 
 		$this->forename = $forename;
 		$this->surname = $surname;
@@ -175,6 +177,10 @@ class User extends BaseEntity {
 
 	public function getLastVisitedHome() {
 		return $this->lastVisitedHome;
+	}
+
+    public function getUsername() {
+        return $this->username;
 	}
 
 }
