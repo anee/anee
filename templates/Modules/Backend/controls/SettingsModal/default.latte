@@ -26,6 +26,15 @@
 
                 <div style="clear: both;"></div>
             </div>
+            {if $loggedUser->getRole()}
+                <div class="line">
+                    <p class="name float-left">Role</p>
+
+                    <p class="name float-right">{$loggedUser->getRole()->getName()}</p>
+
+                    <div style="clear: both;"></div>
+                </div>
+            {/if}
             <div class="line">
                 <p class="name float-left"></p>
 
@@ -33,6 +42,29 @@
 
                 <div style="clear: both;"></div>
             </div>
+
+            {if $loggedUser->getRole() && $loggedUser->getRole()->getName() == \App\Model\Role::ADMIN}
+                <h3>ROLES</h3>
+
+                {foreach $roles as $role}
+                    <div class="line">
+                        <p class="name float-left">Name</p>
+
+                        <p class="name float-right">{$role->getName()} (1x)</p>
+
+                        <div style="clear: both;"></div>
+                    </div>
+                    {if !$role->isDefaultOne()}
+                        <div class="line">
+                            <p class="name float-left"></p>
+
+                            <p class="name float-right"><a class="ajax" href={link removeRole, $role->id}>Remove</a></p>
+
+                            <div style="clear: both;"></div>
+                        </div>
+                    {/if}
+                {/foreach}
+            {/if}
 
             <h3>PROFILE</h3>
 

@@ -19,8 +19,13 @@ class BaseFacade {
 		$this->dao = $dao;
 	}
 
+    /**
+     * @param $entity
+     *
+     * @return array
+     */
 	public function save($entity)
 	{
-		$this->dao->save($entity);
+		return $this->dao->save($entity);
 	}
 }

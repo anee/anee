@@ -1,0 +1,5 @@
+console:
+    commands:
+        - App\Command\AddDefaultRolesCommand
+        - App\Command\AddUserCommand
+        - App\Command\AddRoleCommand
