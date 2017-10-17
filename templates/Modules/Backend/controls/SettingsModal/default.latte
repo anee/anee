@@ -54,6 +54,15 @@
 
                         <div style="clear: both;"></div>
                     </div>
+                    {if !$role->isDefaultOne()}
+                        <div class="line">
+                            <p class="name float-left"></p>
+
+                            <p class="name float-right"><a class="ajax" href={link removeRole, $role->id}>Remove</a></p>
+
+                            <div style="clear: both;"></div>
+                        </div>
+                    {/if}
                 {/foreach}
             {/if}
 

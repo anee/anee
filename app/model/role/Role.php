@@ -29,4 +29,8 @@ class Role extends BaseEntity {
         return $this->name;
 	}
 
+    public function isDefaultOne() {
+        return $this->name == self::ADMIN || $this->name == self::USER;
+	}
+
 }
