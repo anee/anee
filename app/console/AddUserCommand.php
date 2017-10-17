@@ -2,6 +2,7 @@
 
 namespace App\Command;
 
+use App\Model\RoleFacade;
 use App\Model\User;
 use App\Model\UserFacade;
 use Doctrine;
@@ -23,15 +24,20 @@ class AddUserCommand extends Command
     /** @var UserFacade */
     private $userFacade;
 
+    /** @var RoleFacade */
+    private $roleFacade;
+
     /**
      * AddUserCommand constructor.
      *
      * @param UserFacade $userFacade
+     * @param RoleFacade $roleFacade
      */
-    public function __construct(UserFacade $userFacade)
+    public function __construct(UserFacade $userFacade, RoleFacade $roleFacade)
     {
         parent::__construct();
         $this->userFacade = $userFacade;
+        $this->roleFacade = $roleFacade;
     }
 
     protected function configure()
@@ -44,6 +50,7 @@ class AddUserCommand extends Command
                 new InputArgument('surname', InputArgument::REQUIRED, 'Surname'),
                 new InputArgument('email', InputArgument::REQUIRED, 'Email'),
                 new InputArgument('password', InputArgument::REQUIRED, 'Password'),
+                new InputArgument('role', InputArgument::REQUIRED, 'Role'),
                 new InputOption('public', 'p', InputOption::VALUE_REQUIRED, 'Public profile', false),
             ));
     }
@@ -55,16 +62,18 @@ class AddUserCommand extends Command
         $surname = $input->getArgument('surname');
         $email = $input->getArgument('email');
         $password = $input->getArgument('password');
+        $roleName = $input->getArgument('role');
 
         $public = $input->getOption('public');
 
-        $user = new User($username, $forename, $surname, $public, $email, $password);
+        $role = $this->roleFacade->getOneByName($roleName);
+        $user = new User($username, $forename, $surname, $public, $email, $password, $role);
 
         try {
             $this->userFacade->save($user);
 
             $name = $user->getName();
-            $output->writeln("User with name: `$name`, username: `$username` and email: `$email` has been added.");
+            $output->writeln("User with name: `$name`, username: `$username`, email: `$email` and role: `$roleName` has been added.");
 
             return 0;
         } catch (UniqueConstraintViolationException $exception) {

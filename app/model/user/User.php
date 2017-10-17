@@ -110,14 +110,16 @@ class User extends BaseEntity {
      */
 	protected $role;
 
-	/**
-	 * @param string $username
+    /**
+     * @param string $username
      * @param string $forename
-	 * @param bool $public
-	 * @param string $email
-	 * @param string $password
-	 */
-	public function __construct($username, $forename, $surname, $public, $email, $password)
+     * @param string $surname
+     * @param bool $public
+     * @param string $email
+     * @param string $password
+     * @param Role $role
+     */
+	public function __construct($username, $forename, $surname, $public, $email, $password, Role $role)
 	{
 		$this->followers = new ArrayCollection();
 		$this->following = new ArrayCollection();
@@ -129,6 +131,8 @@ class User extends BaseEntity {
 		$this->email = $email;
 		$this->public = $public;
 		$this->password = Passwords::hash($password);
+		$this->role = $role;
+
 		$this->lastLogin = new DateTime();
 	}
 
