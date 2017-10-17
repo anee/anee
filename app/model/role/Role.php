@@ -9,6 +9,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Role extends BaseEntity {
 
+    const ADMIN = 'admin';
+    const USER = 'user';
+
 	/**
 	 * @ORM\Column(type="string", length=128, unique=true)
 	 */

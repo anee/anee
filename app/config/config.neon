@@ -1,5 +1,6 @@
 includes:
 		- ../model/config.model.neon
+		- ../console/config.console.neon
 		- ../config/config.nette.neon
 		- ../Modules/BackendModule/Controls/config.controls.neon
 		- ../Modules/SecurityModule/Controls/config.controls.neon
