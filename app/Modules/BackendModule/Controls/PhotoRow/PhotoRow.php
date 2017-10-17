@@ -70,7 +70,7 @@ class PhotoRow extends Control
 
 	private $wwwDir;
 
-    public function __construct(ViewKeeper $keeper, ThumbnailsHelper $thumbnailsHelper, PhotoBaseLogic $photoBaseLogic, UserBaseLogic $userBaseLogic, $wwwDir, Photo $photo, User $loggedUser = NULL, User $profileUser)
+    public function __construct($wwwDir, Photo $photo, User $loggedUser = NULL, User $profileUser, ViewKeeper $keeper, ThumbnailsHelper $thumbnailsHelper, PhotoBaseLogic $photoBaseLogic, UserBaseLogic $userBaseLogic)
     {
 		$this->keeper = $keeper;
 		$this->wwwDir = $wwwDir;

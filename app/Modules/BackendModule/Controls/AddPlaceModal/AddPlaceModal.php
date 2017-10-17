@@ -50,7 +50,7 @@ class AddPlaceModal extends Control
 	 */
 	public $keeper;
 
-	public function __construct(ViewKeeper $keeper, PlaceBaseLogic $placeBaseLogic, UserBaseLogic $userBaseLogic, User $loggedUser)
+	public function __construct(User $loggedUser, ViewKeeper $keeper, PlaceBaseLogic $placeBaseLogic, UserBaseLogic $userBaseLogic)
 	{
 		$this->keeper = $keeper;
 		$this->placeBaseLogic = $placeBaseLogic;

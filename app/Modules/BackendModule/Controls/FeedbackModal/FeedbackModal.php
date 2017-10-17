@@ -39,7 +39,7 @@ class FeedbackModal extends Control
 	public $keeper;
 
 
-	public function __construct(ViewKeeper $keeper, User $loggedUser)
+	public function __construct(User $loggedUser, ViewKeeper $keeper)
 	{
 		$this->keeper = $keeper;
 		$this->loggedUser = $loggedUser;

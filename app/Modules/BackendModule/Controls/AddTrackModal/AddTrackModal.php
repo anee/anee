@@ -68,7 +68,7 @@ class AddTrackModal extends Control
 	private $appDir;
 
 
-	public function __construct(ViewKeeper $keeper, TransportBaseLogic $transportBaseLogic, PlaceBaseLogic $placeBaseLogic, TrackBaseLogic $trackBaseLogic, UserBaseLogic $userBaseLogic, $appDir, User $loggedUser)
+	public function __construct($appDir, User $loggedUser, ViewKeeper $keeper, TransportBaseLogic $transportBaseLogic, PlaceBaseLogic $placeBaseLogic, TrackBaseLogic $trackBaseLogic, UserBaseLogic $userBaseLogic)
 	{
 		$this->keeper = $keeper;
 		$this->transportBaseLogic = $transportBaseLogic;

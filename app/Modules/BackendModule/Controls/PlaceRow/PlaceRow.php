@@ -73,7 +73,7 @@ class PlaceRow extends Control
 	 */
 	public $keeper;
 
-    public function __construct(ViewKeeper $keeper, PlaceBaseLogic $placeBaseLogic, UserBaseLogic $userBaseLogic, TrackBaseLogic $trackBaseLogic, Place $place, User $loggedUser = NULL, User $profileUser, $detail = NULL)
+    public function __construct(Place $place, User $loggedUser = NULL, User $profileUser, $detail = NULL, ViewKeeper $keeper, PlaceBaseLogic $placeBaseLogic, UserBaseLogic $userBaseLogic, TrackBaseLogic $trackBaseLogic)
     {
 		$this->keeper = $keeper;
 		$this->place = $place;

@@ -69,7 +69,7 @@ class ProfilePreview extends Control
 	 */
 	public $keeper;
 
-    public function __construct(ViewKeeper $keeper, IProfileModalFactory $IProfileModal, ITransportsModalFactory $ITransportsModal, ThumbnailsHelper $thumbnailsHelper, UserBaseLogic $userBaseLogic, $wwwDir, User $loggedUser, User $profileUser)
+    public function __construct($wwwDir, User $loggedUser, User $profileUser, ViewKeeper $keeper, IProfileModalFactory $IProfileModal, ITransportsModalFactory $ITransportsModal, ThumbnailsHelper $thumbnailsHelper, UserBaseLogic $userBaseLogic)
     {
 		$this->keeper = $keeper;
 		$this->IProfileModal = $IProfileModal;

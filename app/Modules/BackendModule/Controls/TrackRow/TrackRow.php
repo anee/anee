@@ -88,7 +88,7 @@ class TrackRow extends Control
 	 */
 	private $detail;
 
-	public function __construct(ViewKeeper $keeper, TransportBaseLogic $transportBaseLogic, PlaceBaseLogic $placeBaseLogic, TrackBaseLogic $trackBaseLogic, UserBaseLogic $userBaseLogic, Track $track, User $loggedUser = NULL, User $profileUser, $byName = NULL, $detail = NULL)
+	public function __construct(Track $track, User $loggedUser = NULL, User $profileUser, $byName = NULL, $detail = NULL, ViewKeeper $keeper, TransportBaseLogic $transportBaseLogic, PlaceBaseLogic $placeBaseLogic, TrackBaseLogic $trackBaseLogic, UserBaseLogic $userBaseLogic)
 	{
 		$this->keeper = $keeper;
 		$this->track = $track;

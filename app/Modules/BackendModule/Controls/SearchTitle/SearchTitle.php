@@ -42,7 +42,7 @@ class SearchTitle extends Control {
 	 */
 	private $results;
 
-	public function __construct(ViewKeeper $keeper, Array $values, SearchResults $results)
+	public function __construct(Array $values, SearchResults $results, ViewKeeper $keeper)
 	{
 		$this->keeper = $keeper;
 		$this->values = $values;

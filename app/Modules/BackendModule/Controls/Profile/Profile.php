@@ -101,7 +101,7 @@ class Profile extends Control
 	 */
 	public $keeper;
 
-    public function __construct(ViewKeeper $keeper, IAddPlaceModalFactory $IAddPlaceModal, IAddPhotoModalFactory $IAddPhotoModal, IAddTrackModalFactory $IAddTrackModal, ITransportsModalFactory $ITransportsModal, ThumbnailsHelper $thumbnailsHelper, TrackBaseLogic $trackBaseLogic, UserBaseLogic $userBaseLogic, PlaceBaseLogic $placeBaseLogic, PhotoBaseLogic $photoBaseLogic, $wwwDir, User $loggedUser = NULL, User $profileUser, $detail = NULL)
+    public function __construct($wwwDir, User $loggedUser = NULL, User $profileUser, $detail = NULL, ViewKeeper $keeper, IAddPlaceModalFactory $IAddPlaceModal, IAddPhotoModalFactory $IAddPhotoModal, IAddTrackModalFactory $IAddTrackModal, ITransportsModalFactory $ITransportsModal, ThumbnailsHelper $thumbnailsHelper, TrackBaseLogic $trackBaseLogic, UserBaseLogic $userBaseLogic, PlaceBaseLogic $placeBaseLogic, PhotoBaseLogic $photoBaseLogic)
     {
 		$this->keeper = $keeper;
 		$this->wwwDir = $wwwDir;

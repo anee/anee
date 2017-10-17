@@ -2,7 +2,6 @@
 
 namespace App\Modules\BackendModule\Controls;
 
-use Nette;
 use Nette\Application\UI\Control;
 use App\Model\UserBaseLogic;
 use App\Model\PhotoBaseLogic;
@@ -64,7 +63,7 @@ class AddPhotoModal extends Control
 
 	private $appDir;
 
-	public function __construct(ViewKeeper $keeper, PlaceBaseLogic $placeBaseLogic, TrackBaseLogic $trackBaseLogic, PhotoBaseLogic $photoBaseLogic, UserBaseLogic $userBaseLogic, $appDir, User $loggedUser)
+	public function __construct($appDir, User $loggedUser, ViewKeeper $keeper, PlaceBaseLogic $placeBaseLogic, TrackBaseLogic $trackBaseLogic, PhotoBaseLogic $photoBaseLogic, UserBaseLogic $userBaseLogic)
 	{
 		$this->keeper = $keeper;
 		$this->placeBaseLogic = $placeBaseLogic;

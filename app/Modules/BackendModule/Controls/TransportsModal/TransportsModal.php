@@ -62,7 +62,7 @@ class TransportsModal extends Control
 	 */
 	private $profileUser;
 
-	public function __construct(ViewKeeper $keeper, TrackBaseLogic $trackBaseLogic,  UserBaseLogic $userBaseLogic, TransportBaseLogic $transportBaseLogic, User $profileUser, User $loggedUser = NULL)
+	public function __construct(User $profileUser, User $loggedUser = NULL, ViewKeeper $keeper, TrackBaseLogic $trackBaseLogic,  UserBaseLogic $userBaseLogic, TransportBaseLogic $transportBaseLogic)
 	{
 		$this->keeper = $keeper;
 		$this->trackBaseLogic = $trackBaseLogic;

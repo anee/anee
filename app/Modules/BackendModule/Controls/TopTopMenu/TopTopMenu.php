@@ -18,7 +18,7 @@ interface ITopTopMenuFactory
 	 * @param User $loggedUser
 	 * @return TopTopMenu
 	 */
-	function create($loggedUser = NULL);
+	function create(User $loggedUser = NULL);
 }
 
 /**
@@ -56,7 +56,7 @@ class TopTopMenu extends Control
 	 */
 	private $loggedUser;
 
-	public function __construct(ViewKeeper $keeper, IFeedbackModalFactory $IFeedbackModal, IProfileModalFactory $IProfileModal, ISettingsModalFactory $ISettingsModal, UserBaseLogic $userBaseLogic, $loggedUser = NULL)
+	public function __construct(User $loggedUser = NULL, ViewKeeper $keeper, IFeedbackModalFactory $IFeedbackModal, IProfileModalFactory $IProfileModal, ISettingsModalFactory $ISettingsModal, UserBaseLogic $userBaseLogic)
     {
 		$this->keeper = $keeper;
 		$this->IFeedbackModal = $IFeedbackModal;

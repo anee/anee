@@ -62,7 +62,7 @@ class SettingsModal extends Control
 
 	private $appDir;
 
-	public function __construct(ViewKeeper $keeper, UserBaseLogic $userBaseLogic, LinkGenerator $linkGenerator, RoleFacade $roleFacade, RoleBaseLogic $roleBaseLogic, User $loggedUser, $appDir)
+	public function __construct(User $loggedUser, $appDir, ViewKeeper $keeper, UserBaseLogic $userBaseLogic, LinkGenerator $linkGenerator, RoleFacade $roleFacade, RoleBaseLogic $roleBaseLogic)
 	{
 		$this->keeper = $keeper;
 		$this->appDir = $appDir;

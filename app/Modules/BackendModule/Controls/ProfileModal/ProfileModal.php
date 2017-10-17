@@ -69,7 +69,7 @@ class ProfileModal extends Control
 	 */
 	public $ITransportsModal;
 
-    public function __construct(ViewKeeper $keeper, ITransportsModalFactory $ITransportsModal, ThumbnailsHelper $thumbnailsHelper, TrackBaseLogic $trackBaseLogic, UserBaseLogic $userBaseLogic, $wwwDir, User $loggedUser, User $profileUser)
+    public function __construct($wwwDir, User $loggedUser, User $profileUser, ViewKeeper $keeper, ITransportsModalFactory $ITransportsModal, ThumbnailsHelper $thumbnailsHelper, TrackBaseLogic $trackBaseLogic, UserBaseLogic $userBaseLogic)
     {
 		$this->keeper = $keeper;
 		$this->ITransportsModal = $ITransportsModal;

@@ -1,6 +1,6 @@
 services:
 	SearchTitle:
-		class: App\Modules\BackendModule\Controls\SearchTitle(..., %values%, %results%)
+		class: App\Modules\BackendModule\Controls\SearchTitle(%values%, %results%)
 		implement: App\Modules\BackendModule\Controls\ISearchTitleFactory
 		parameters: [Array values, App\Searching\SearchResults results]
 
@@ -9,17 +9,17 @@ services:
 		implement: App\Modules\BackendModule\Controls\ITopMenuFactory
 
 	TopTopMenu:
-		class: App\Modules\BackendModule\Controls\TopTopMenu(..., ..., ..., ..., ..., %loggedUser%)
+		class: App\Modules\BackendModule\Controls\TopTopMenu(%loggedUser%)
 		implement: App\Modules\BackendModule\Controls\ITopTopMenuFactory
-		parameters: [loggedUser = NULL]
+		parameters: [App\Model\User loggedUser = NULL]
 
 	SettingsModal:
-		class: App\Modules\BackendModule\Controls\SettingsModal(..., ..., ..., ..., ..., %loggedUser%, %appDir%)
+		class: App\Modules\BackendModule\Controls\SettingsModal(%loggedUser%, %appDir%)
 		implement: App\Modules\BackendModule\Controls\ISettingsModalFactory
 		parameters: [App\Model\User loggedUser]
 
 	TransportsModal:
-		class: App\Modules\BackendModule\Controls\TransportsModal(..., ...,  ..., ..., %profileUser%, %loggedUser%)
+		class: App\Modules\BackendModule\Controls\TransportsModal(%profileUser%, %loggedUser%)
 		implement: App\Modules\BackendModule\Controls\ITransportsModalFactory
 		parameters: [App\Model\User profileUser, App\Model\User loggedUser = NULL]
 
@@ -28,17 +28,17 @@ services:
 		implement: App\Modules\BackendModule\Controls\IUserPanelFactory
 
 	Profile:
-		class: App\Modules\BackendModule\Controls\Profile(..., ..., ..., ..., ..., ..., ..., ..., ..., ..., %wwwDir%, %loggedUser%, %profileUser%, %detail%)
+		class: App\Modules\BackendModule\Controls\Profile(%wwwDir%, %loggedUser%, %profileUser%, %detail%)
 		implement: App\Modules\BackendModule\Controls\IProfileFactory
 		parameters: [App\Model\User loggedUser = NULL, App\Model\User profileUser, detail = NULL]
 
 	ProfileModal:
-		class: App\Modules\BackendModule\Controls\ProfileModal(..., ..., ..., ..., ..., %wwwDir%, %loggedUser%, %profileUser%)
+		class: App\Modules\BackendModule\Controls\ProfileModal(%wwwDir%, %loggedUser%, %profileUser%)
 		implement: App\Modules\BackendModule\Controls\IProfileModalFactory
 		parameters: [App\Model\User loggedUser, App\Model\User profileUser]
 
 	ProfilePreview:
-		class: App\Modules\BackendModule\Controls\ProfilePreview(..., ..., ..., ..., ..., %wwwDir%, %loggedUser%, %profileUser%)
+		class: App\Modules\BackendModule\Controls\ProfilePreview(%wwwDir%, %loggedUser%, %profileUser%)
 		implement: App\Modules\BackendModule\Controls\IProfilePreviewFactory
 		parameters: [App\Model\User loggedUser, App\Model\User profileUser]
 
@@ -47,36 +47,36 @@ services:
 		implement: App\Modules\BackendModule\Controls\IProfileContainerFactory
 
 	AddTrackModal:
-		class: App\Modules\BackendModule\Controls\AddTrackModal(..., ..., ..., ..., ..., %appDir%, %loggedUser%)
+		class: App\Modules\BackendModule\Controls\AddTrackModal(%appDir%, %loggedUser%)
 		implement: App\Modules\BackendModule\Controls\IAddTrackModalFactory
 		parameters: [App\Model\User loggedUser]
 
 	AddPhotoModal:
-		class: App\Modules\BackendModule\Controls\AddPhotoModal(..., ..., ..., ..., ..., %appDir%, %loggedUser%)
+		class: App\Modules\BackendModule\Controls\AddPhotoModal(%appDir%, %loggedUser%)
 		implement: App\Modules\BackendModule\Controls\IAddPhotoModalFactory
 		parameters: [App\Model\User loggedUser]
 
 	AddPlaceModal:
-		class: App\Modules\BackendModule\Controls\AddPlaceModal(..., ..., ..., %loggedUser%)
+		class: App\Modules\BackendModule\Controls\AddPlaceModal(%loggedUser%)
 		implement: App\Modules\BackendModule\Controls\IAddPlaceModalFactory
 		parameters: [App\Model\User loggedUser]
 
 	TrackRow:
-		class: App\Modules\BackendModule\Controls\TrackRow(..., ..., ..., ..., ..., %track%, %loggedUser%, %profileUser%, %byName%, %detail%)
+		class: App\Modules\BackendModule\Controls\TrackRow(%track%, %loggedUser%, %profileUser%, %byName%, %detail%)
 		implement: App\Modules\BackendModule\Controls\ITrackRowFactory
 		parameters: [App\Model\Track track, App\Model\User loggedUser = NULL, App\Model\User profileUser, byName = NULL, detail = NULL]
 
 	PlaceRow:
-		class: App\Modules\BackendModule\Controls\PlaceRow(..., ..., ..., ..., %place%, %loggedUser%, %profileUser%, %detail%)
+		class: App\Modules\BackendModule\Controls\PlaceRow(%place%, %loggedUser%, %profileUser%, %detail%)
 		implement: App\Modules\BackendModule\Controls\IPlaceRowFactory
 		parameters: [App\Model\Place place, App\Model\User loggedUser = NULL, App\Model\User profileUser, detail = NULL]
 
 	PhotoRow:
-		class: App\Modules\BackendModule\Controls\PhotoRow(..., ..., ..., ..., %wwwDir%, %photo%, %loggedUser%, %profileUser%)
+		class: App\Modules\BackendModule\Controls\PhotoRow(%wwwDir%, %photo%, %loggedUser%, %profileUser%)
 		implement: App\Modules\BackendModule\Controls\IPhotoRowFactory
 		parameters: [App\Model\Photo photo, App\Model\User loggedUser = NULL, App\Model\User profileUser]
 
 	FeedbackModal:
-		class: App\Modules\BackendModule\Controls\FeedbackModal(..., %loggedUser%)
+		class: App\Modules\BackendModule\Controls\FeedbackModal(%loggedUser%)
 		implement: App\Modules\BackendModule\Controls\IFeedbackModalFactory
 		parameters: [App\Model\User loggedUser]
