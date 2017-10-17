@@ -31,7 +31,9 @@ class AddDefaultRolesCommand extends Command {
     }
 
     protected function configure() {
-        $this->setName('app:add-roles')->setDescription('Adds default roles');
+        $this
+            ->setName('app:add-roles')
+            ->setDescription('Adds default roles');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output) {

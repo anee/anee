@@ -42,7 +42,8 @@ class AddUserCommand extends Command
 
     protected function configure()
     {
-        $this->setName('app:add-user')
+        $this
+            ->setName('app:add-user')
             ->setDescription('Add user')
             ->setDefinition(array(
                 new InputArgument('username', InputArgument::REQUIRED, 'Username'),
