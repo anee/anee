@@ -43,7 +43,7 @@
                 <div style="clear: both;"></div>
             </div>
 
-            {if $loggedUser->getRole()->getName() == \App\Model\Role::ADMIN}
+            {if $loggedUser->getRole() && $loggedUser->getRole()->getName() == \App\Model\Role::ADMIN}
                 <h3>ROLES</h3>
 
                 {foreach $roles as $role}
