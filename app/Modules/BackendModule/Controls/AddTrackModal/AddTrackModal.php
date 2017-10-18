@@ -115,8 +115,15 @@ class AddTrackModal extends Control
 			->setRequired('You have not selected transport type.');
 		$form->addText('timeInSeconds')
 			->setAttribute('placeholder', '00h 00m 00s');
+
+        $friendNameValidator = function($textInput) {
+            return $this->userBaseLogic->findOneByUsername($textInput->value);
+        };
+
 		$form->addText('friendName')
-			->setAttribute('placeholder', 'username');
+			->setAttribute('placeholder', 'username')
+            ->addCondition(Form::FILLED)
+            ->addRule($friendNameValidator, 'You have filled nonexistent friend username');
 		$date = new DateTime();
 		$form->addText('date')->setDefaultValue($date->format('Y-m-d H:i:s'));
 		$form->addCheckbox('pinned');
@@ -136,10 +143,11 @@ class AddTrackModal extends Control
 
 			$user = $this->loggedUser;
 			$place = $this->placeBaseLogic->findOneById($values->place);
+			$placeTo = $this->placeBaseLogic->findOneById($values->placeTo);
 			$transport = $this->transportBaseLogic->findById($values->transport);
 
 			$seconds = intval(substr($values->timeInSeconds, 0, -9)) * 3600 + intval(substr($values->timeInSeconds, 4, -5) * 60) + intval(substr($values->timeInSeconds, 8, -1));
-			$track = new Track($user, $transport, $values->distance, $seconds, $place, new DateTime($values->date), $values->pinned, $values->maxSpeed, $this->placeBaseLogic->findOneById($values->placeTo));
+			$track = new Track($user, $transport, $values->distance, $seconds, $place, new DateTime($values->date), $values->pinned, $placeTo, $values->maxSpeed);
 			if($values->friendName != NULL) {
 				$friend = $this->userBaseLogic->findOneByUsername($values->friendName);
 				$track->getWithUsers()->add($friend);

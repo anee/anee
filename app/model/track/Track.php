@@ -85,6 +85,7 @@ class Track extends BaseEntity
 		$this->maxSpeed = $maxSpeed;
         $this->date = $date;
         $this->place = $place;
+        $this->placeTo = $placeTo;
     }
 
     public function getName()
