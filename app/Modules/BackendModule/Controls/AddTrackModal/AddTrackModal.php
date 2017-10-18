@@ -2,14 +2,11 @@
 
 namespace App\Modules\BackendModule\Controls;
 
-use App\Utils\Strings;
-use Nette;
 use Nette\Application\UI\Control;
 use App\Model\UserBaseLogic;
 use Nette\Application\UI\Form;
 use App\Model\User;
 use App\Model\Track;
-use App\Model\Photo;
 use App\Model\TransportBaseLogic;
 use App\Model\PlaceBaseLogic;
 use App\Model\TrackBaseLogic;
