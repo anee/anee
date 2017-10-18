@@ -102,9 +102,12 @@ class AddTrackModal extends Control
 		$form = new Form;
 		$form->addText('distance')
 			->setAttribute('placeholder', '0.00 [km]')
+            ->addRule(Form::FLOAT, 'You have not filled distance correctly.')
 			->setRequired('You have not filled distance.');
 		$form->addText('maxSpeed')
-			->setAttribute('placeholder', '0.00 [km/h]');
+			->setAttribute('placeholder', '0.00 [km/h]')
+            ->addCondition(Form::FILLED)
+            ->addRule(Form::FLOAT, 'You have not filled max speed correctly.');
 		$form->addSelect('place', NULL, $places)
 			->setRequired('You have not filled start place.');
 		$form->addSelect('placeTo', NULL, $places);
@@ -136,13 +139,7 @@ class AddTrackModal extends Control
 			$transport = $this->transportBaseLogic->findById($values->transport);
 
 			$seconds = intval(substr($values->timeInSeconds, 0, -9)) * 3600 + intval(substr($values->timeInSeconds, 4, -5) * 60) + intval(substr($values->timeInSeconds, 8, -1));
-			$track = new Track($user, $transport, $values->distance, $seconds, $place, new DateTime($values->date), $values->pinned);
-			if($values->maxSpeed != '') {
-				$track->maxSpeed = $values->maxSpeed;
-			}
-			if($values->placeTo != '') {
-				$track->placeTo = $this->placeBaseLogic->findOneById($values->placeTo);
-			}
+			$track = new Track($user, $transport, $values->distance, $seconds, $place, new DateTime($values->date), $values->pinned, $values->maxSpeed, $this->placeBaseLogic->findOneById($values->placeTo));
 			if($values->friendName != NULL) {
 				$friend = $this->userBaseLogic->findOneByUsername($values->friendName);
 				$track->getWithUsers()->add($friend);

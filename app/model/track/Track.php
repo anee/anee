@@ -33,7 +33,7 @@ class Track extends BaseEntity
     protected $timeInSeconds;
 
     /**
-     * @ORM\Column(type="float", nullable=false)
+     * @ORM\Column(type="float", nullable=true)
      */
     protected $maxSpeed;
 
