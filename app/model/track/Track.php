@@ -33,7 +33,7 @@ class Track extends BaseEntity
     protected $timeInSeconds;
 
     /**
-     * @ORM\Column(type="float", nullable=false)
+     * @ORM\Column(type="float", nullable=true)
      */
     protected $maxSpeed;
 
@@ -85,6 +85,7 @@ class Track extends BaseEntity
 		$this->maxSpeed = $maxSpeed;
         $this->date = $date;
         $this->place = $place;
+        $this->placeTo = $placeTo;
     }
 
     public function getName()
