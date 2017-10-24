@@ -1,0 +1,44 @@
+<div id="userRoles" class="modal fade" tabindex="-1" style="display: none;">
+
+    <div class="modal-header">
+        <h2>User roles</h2>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+    </div>
+    <div class="modal-body">
+
+        {form userRolesForm class => ajax}
+        {foreach $roles as $role}
+        {if $iterator->last}
+        <div class="line border">
+            {else}
+            <div class="line">
+                {/if}
+                <p class="input float-left">{input $role->getName()}</p>
+
+                <p class="name float-right">{count($role->getUsers())} users
+                    {if !$role->isDefaultOne()}
+                        |
+                        <a href="{link remove!, 'id' => $role->id}" class="ajax">Remove</a>
+                    {/if}
+                </p>
+
+                <div style="clear: both;"></div>
+            </div>
+            {/foreach}
+            {if count($roles) > 2}
+                {input save}
+            {/if}
+            {/form}
+            {form addUserRoleForm class => ajax}
+                <div class="line border">
+                    <p class="name float-left">Name</p>
+
+                    <p class="input float-right">{input name}</p>
+
+                    <div style="clear: both;"></div>
+                </div>
+            {input add}
+            {/form}
+        </div>
+    </div>
+</div>

@@ -10,9 +10,13 @@
             <a href="#profile{$loggedUser->id}" data-toggle="modal">{$loggedUser->getName()}</a>
             <a href="{plink :Backend:Profile:default, 'username' => $loggedUser->usernameUrl}">Full profile</a>
             <a data-toggle="modal" href="#settings">Settings</a>
+            {if $loggedUser->getRole() && $loggedUser->getRole()->getName() == \App\Model\Role::ADMIN}
+                <a data-toggle="modal" href="#userRoles">User roles</a>
+            {/if}
             <a data-toggle="modal" href="#feedback">Support</a>
             <a href="{plink :Security:Sign:out}">Sign out</a>
             {control settingsModal}
+            {control userRolesModal}
             {control profileModal}
             {control feedbackModal}
         {else}

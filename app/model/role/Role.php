@@ -2,6 +2,7 @@
 
 namespace App\Model;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -17,16 +18,34 @@ class Role extends BaseEntity {
 	 */
 	protected $name;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Model\User", mappedBy="role")
+     */
+    protected $users;
+
 	/**
 	 * @param string $name
      */
 	public function __construct($name)
 	{
 	    $this->name = $name;
+
+        $this->users = new ArrayCollection();
 	}
 
     public function getName() {
         return $this->name;
+	}
+
+    /**
+     * @param string $name
+     */
+    public function setName($name) {
+        $this->name = $name;
+	}
+
+    public function getUsers() {
+        return $this->users;
 	}
 
     public function isDefaultOne() {
