@@ -3,6 +3,8 @@
 
 namespace App\Modules\SecurityModule\Controls;
 
+use App\Model\Role;
+use App\Model\RoleFacade;
 use App\Model\UserBaseLogic;
 use Kdyby\Doctrine\DuplicateEntryException;
 use Nette;
@@ -38,10 +40,16 @@ class RegisterIn extends Nette\Application\UI\Control
 	 */
 	public $userBaseLogic;
 
-	public function __construct(ViewKeeper $keeper, UserBaseLogic $userBaseLogic)
+    /**
+     * @var \App\Model\RoleFacade
+     */
+	public $roleFacade;
+
+	public function __construct(ViewKeeper $keeper, UserBaseLogic $userBaseLogic, RoleFacade $roleFacade)
 	{
 		$this->keeper = $keeper;
 		$this->userBaseLogic = $userBaseLogic;
+		$this->roleFacade = $roleFacade;
 	}
 
 	public function render()
@@ -80,7 +88,8 @@ class RegisterIn extends Nette\Application\UI\Control
 	{
 		try {
 			$values = $form->getValues();
-			$this->userBaseLogic->save(new User($values->username, $values->forename, $values->surname, $values->public, $values->email, $values->password));
+            $role = $this->roleFacade->getOneByName(Role::USER);
+			$this->userBaseLogic->save(new User($values->username, $values->forename, $values->surname, $values->public, $values->email, $values->password, $role));
 			$this->getPresenter()->redirect(':Security:Sign:in');
 		} catch(DuplicateEntryException $e) {
 			$form->addError('User with this username or email already exist.');
