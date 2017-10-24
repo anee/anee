@@ -106,7 +106,7 @@ class User extends BaseEntity {
 	protected $lastVisitedHome;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Model\Role", inversedBy="user")
+     * @ORM\ManyToOne(targetEntity="App\Model\Role", inversedBy="users")
      */
 	protected $role;
 

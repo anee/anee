@@ -37,9 +37,15 @@ class TopTopMenu extends Control
 	 */
 	public $IFeedbackModal;
 
-	/** @var \App\Modules\BackendModule\Controls\IProfileModalFactory
+	/**
+     * @var \App\Modules\BackendModule\Controls\IProfileModalFactory
 	 */
 	public $IProfileModal;
+
+    /**
+     * @var \App\Modules\BackendModule\Controls\IUserRolesModalFactory
+     */
+	public $IUserRolesModal;
 
 	/**
 	 * @var \App\Model\UserBaseLogic
@@ -56,12 +62,13 @@ class TopTopMenu extends Control
 	 */
 	private $loggedUser;
 
-	public function __construct(User $loggedUser = NULL, ViewKeeper $keeper, IFeedbackModalFactory $IFeedbackModal, IProfileModalFactory $IProfileModal, ISettingsModalFactory $ISettingsModal, UserBaseLogic $userBaseLogic)
+	public function __construct(User $loggedUser = NULL, ViewKeeper $keeper, IFeedbackModalFactory $IFeedbackModal, IProfileModalFactory $IProfileModal, ISettingsModalFactory $ISettingsModal, IUserRolesModalFactory $IUserRolesModal, UserBaseLogic $userBaseLogic)
     {
 		$this->keeper = $keeper;
 		$this->IFeedbackModal = $IFeedbackModal;
 		$this->IProfileModal = $IProfileModal;
 		$this->ISettingsModal = $ISettingsModal;
+		$this->IUserRolesModal = $IUserRolesModal;
 		$this->userBaseLogic = $userBaseLogic;
 		$this->loggedUser = $loggedUser;
     }
@@ -80,6 +87,11 @@ class TopTopMenu extends Control
 	{
 		return $this->IFeedbackModal->create($this->loggedUser);
 	}
+
+	protected function createComponentUserRolesModal()
+    {
+        return $this->IUserRolesModal->create($this->loggedUser);
+    }
 
 	public function render()
 	{

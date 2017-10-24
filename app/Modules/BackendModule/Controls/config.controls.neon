@@ -80,3 +80,8 @@ services:
 		class: App\Modules\BackendModule\Controls\FeedbackModal(%loggedUser%)
 		implement: App\Modules\BackendModule\Controls\IFeedbackModalFactory
 		parameters: [App\Model\User loggedUser]
+
+	UserRolesModal:
+		class: App\Modules\BackendModule\Controls\UserRolesModal(%profileUser%, %loggedUser%)
+		implement: App\Modules\BackendModule\Controls\IUserRolesModalFactory
+		parameters: [App\Model\User profileUser, App\Model\User loggedUser = NULL]
