@@ -91,7 +91,7 @@ class UserRolesModal extends Control
 			if(!$role->isDefaultOne()) {
 				$form->addText($role->getName())->setRequired('Please enter name.');
 			} else {
-                $form->addText($role->getName())->setRequired('Please enter name.')->isDisabled();
+                $form->addText($role->getName())->setRequired('Please enter name.')->setDisabled();
             }
 		}
 		if(count($roles) > 2) {
