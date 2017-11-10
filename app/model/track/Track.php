@@ -48,7 +48,7 @@ class Track extends BaseEntity
     protected $place;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Model\Place", inversedBy="tracks")
+     * @ORM\ManyToOne(targetEntity="App\Model\Place")
      */
     protected $placeTo;
 
