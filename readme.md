@@ -27,6 +27,11 @@ Dev getting started
   php ./www/index.php orm:schema-tool:create
 ```
 
+
+```
+  sh clean.sh
+```
+
 API
 -----
 + [Wiki](https://github.com/anee/anee/wiki/Rest-API)

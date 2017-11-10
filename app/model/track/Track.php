@@ -48,7 +48,7 @@ class Track extends BaseEntity
     protected $place;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Model\Place", inversedBy="tracks")
+     * @ORM\ManyToOne(targetEntity="App\Model\Place")
      */
     protected $placeTo;
 
@@ -63,7 +63,7 @@ class Track extends BaseEntity
 	protected $pinned;
 
 	/**
-	 * @ORM\ManyToMany(targetEntity="App\Model\User", inversedBy="App\Model\Track", cascade={"persist"})
+	 * @ORM\ManyToMany(targetEntity="App\Model\User", cascade={"persist"})
 	 * @ORM\JoinTable(name="track_user",
 	 *        joinColumns={@ORM\JoinColumn(name="track_id", referencedColumnName="id")},
 	 *        inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")}
