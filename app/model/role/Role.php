@@ -19,7 +19,7 @@ class Role extends BaseEntity {
 	protected $name;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Model\User", mappedBy="role")
+     * @ORM\OneToMany(targetEntity="App\Model\User", mappedBy="role", cascade={"persist", "remove"})
      */
     protected $users;
 
