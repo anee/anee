@@ -81,6 +81,12 @@
 .main-profile .profile-menu ul .places:hover {
     background-position: -48px -126px;
 }
+.main-profile .profile-menu ul .statistics {
+    background-position: 0 -166px;
+}
+.main-profile .profile-menu ul .statistics:hover {
+    background-position: -48px -166px;
+}
 .main-profile .profile-menu ul .add {
     padding-left: 35px;
     padding-right: 35px;

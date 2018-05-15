@@ -86,6 +86,12 @@
 #right-menu-preview .user-menu ul .home:hover {
     background-position: 0 -34px;
 }
+#right-menu-preview .user-menu ul .statistics {
+    background-position: -48px -166px;
+}
+#right-menu-preview .user-menu ul .statistics:hover {
+    background-position: 0px -166px;
+}
 #right-menu-preview .user-summary {
     position: fixed;
     bottom: 0;
@@ -215,6 +221,12 @@
 }
 #right-menu .user-menu ul .home:hover {
     background-position: 0 -34px;
+}
+#right-menu .user-menu ul .statistics {
+    background-position: -48 -166px;
+}
+#right-menu .user-menu ul .statistics:hover {
+    background-position: 0px -166px;
 }
 #right-menu .user-summary {
     position: fixed;

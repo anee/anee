@@ -20,6 +20,9 @@
                 <li>
                     <a class="icon places" href="{plink :Backend:Profile:places, 'username' => $user->usernameUrl}"></a>
                 </li>
+                <li>
+                    <a class="icon statistics" href="{plink :Backend:Profile:statistics, 'username' => $user->usernameUrl}"></a>
+                </li>
             </ul>
         </div>
 
@@ -56,6 +59,13 @@
                     <a class="icon places" href="{plink :Backend:Profile:places, 'username' => $user->usernameUrl}">
                         <span class="float-left">Places</span>
                         <span class="float-right">{count($user->places)}</span>
+                        <div style="clear: both;"></div>
+                    </a>
+                </li>
+                <li>
+                    <a class="icon statistics" href="{plink :Backend:Profile:statistics, 'username' => $user->usernameUrl}">
+                        <span class="float-left">Statistics</span>
+                        <span class="float-right"></span>
                         <div style="clear: both;"></div>
                     </a>
                 </li>
