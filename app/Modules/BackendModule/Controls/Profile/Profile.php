@@ -24,10 +24,11 @@ interface IProfileFactory
 	/**
 	 * @param User $loggedUser
 	 * @param User $profileUser
+	 * @param string $year
 	 * @param bool $detail
 	 * @return Profile
 	 */
-	function create(User $loggedUser = NULL, User $profileUser, $detail = NULL);
+	function create(User $loggedUser = NULL, User $profileUser, $year = NULL, $detail = NULL);
 }
 
 /**
@@ -101,8 +102,10 @@ class Profile extends Control
 	 */
 	public $keeper;
 
-    public function __construct($wwwDir, User $loggedUser = NULL, User $profileUser, $detail = NULL, ViewKeeper $keeper, IAddPlaceModalFactory $IAddPlaceModal, IAddPhotoModalFactory $IAddPhotoModal, IAddTrackModalFactory $IAddTrackModal, ITransportsModalFactory $ITransportsModal, ThumbnailsHelper $thumbnailsHelper, TrackBaseLogic $trackBaseLogic, UserBaseLogic $userBaseLogic, PlaceBaseLogic $placeBaseLogic, PhotoBaseLogic $photoBaseLogic)
-    {
+	private $year;
+
+  public function __construct($wwwDir, User $loggedUser = NULL, User $profileUser, $year = NULL, $detail = NULL, ViewKeeper $keeper, IAddPlaceModalFactory $IAddPlaceModal, IAddPhotoModalFactory $IAddPhotoModal, IAddTrackModalFactory $IAddTrackModal, ITransportsModalFactory $ITransportsModal, ThumbnailsHelper $thumbnailsHelper, TrackBaseLogic $trackBaseLogic, UserBaseLogic $userBaseLogic, PlaceBaseLogic $placeBaseLogic, PhotoBaseLogic $photoBaseLogic)
+  {
 		$this->keeper = $keeper;
 		$this->wwwDir = $wwwDir;
 		$this->thumbnailsHelper = $thumbnailsHelper;
@@ -117,7 +120,8 @@ class Profile extends Control
 		$this->placeBaseLogic = $placeBaseLogic;
 		$this->photoBaseLogic = $photoBaseLogic;
 		$this->detail = $detail;
-    }
+		$this->year = $year;
+  }
 
 	protected function createComponentTransportsModal()
 	{
@@ -158,15 +162,18 @@ class Profile extends Control
 		$tracks = FALSE;
 		$places = FALSE;
 		$photos = FALSE;
+		$statistics = FALSE;
 		if($this->getPresenter()->getAction() == 'tracks' || ($this->getPresenter()->getName() == 'Backend:Tracks' && $this->getPresenter()->getAction() == 'default')) {
 			$tracks = TRUE;
 		} elseif ($this->getPresenter()->getAction() == 'places' || ($this->getPresenter()->getName() == 'Backend:Places' && $this->getPresenter()->getAction() == 'default')) {
 			$places = TRUE;
 		} elseif ($this->getPresenter()->getAction() == 'photos' || ($this->getPresenter()->getName() == 'Backend:Photos' && $this->getPresenter()->getAction() == 'default')) {
 			$photos = TRUE;
+		} elseif ($this->getPresenter()->getAction() == 'statistics' || ($this->getPresenter()->getName() == 'Backend:Statistics' && $this->getPresenter()->getAction() == 'default')) {
+			$statistics = TRUE;
 		} elseif($this->getPresenter()->getAction() == 'default') {
-            $pinnedTracks = $this->trackBaseLogic->findAllPinnedByUserId($this->profileUser->getId());
-            $unpinnedTracks = $this->trackBaseLogic->findAllUnpinnedByUserId($this->profileUser->getId());
+      $pinnedTracks = $this->trackBaseLogic->findAllPinnedByUserId($this->profileUser->getId());
+      $unpinnedTracks = $this->trackBaseLogic->findAllUnpinnedByUserId($this->profileUser->getId());
 		}
 		$this->template->unpinnedTracks = $unpinnedTracks;
 		$this->template->pinnedTracks = $pinnedTracks;
@@ -174,6 +181,8 @@ class Profile extends Control
 		$this->template->places = $places;
 		$this->template->photos = $photos;
 		$this->template->detail = $this->detail;
+		$this->template->year = $this->year;
+		$this->template->statistics = $statistics;
 
 		$this->template->render();
 	}

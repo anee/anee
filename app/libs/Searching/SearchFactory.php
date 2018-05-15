@@ -5,6 +5,7 @@ namespace App\Searching;
 use App\Model;
 use Nette;
 use Tracy\Debugger;
+use App\Utils\Arrays;
 
 
 /**
@@ -90,6 +91,7 @@ class SearchFactory extends Nette\Object
 	public function setValues($values)
 	{
 		$values['filterTimeStart'] = isset($values['filterTime']) ? $values['filterTime'] : "";
+		$values['filterTimeEnd'] = isset($values['filterTime']) ? $values['filterTime'] : "";
 		$this->values = Utils::checkValuesArray($values);
 	}
 

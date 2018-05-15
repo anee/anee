@@ -84,7 +84,8 @@ class TrackRow extends Control
 	 */
 	private $byName;
 
-	/** @var bool which say if is detail of concrete track or not
+	/**
+	 * @var bool which say if is detail of concrete track or not
 	 */
 	private $detail;
 

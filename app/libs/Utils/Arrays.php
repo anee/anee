@@ -15,9 +15,8 @@ class Arrays {
 	 * @param $filterTime
 	 * @return \DateTime
 	 */
-    public static function timeSubFilterTime($filterTime)
+    public static function returnTimeStart($filterTime)
     {
-        $time = new \DateTime;
         if($filterTime == 'Today') {
             return new \DateTime("midnight today");
         } elseif($filterTime == 'Yesterday') {
@@ -30,9 +29,26 @@ class Arrays {
             return $time->sub(new \DateInterval('P30D'));
         } else if ($filterTime == 'Past year') {
             return $time->sub(new \DateInterval('P365D'));
-        } else {
-            return $time;
+        } else if (explode(" ", $filterTime)[1] > 0) {
+          $date = new \DateTime;
+          $date->setDate(explode(" ", $filterTime)[1] - 1,12,31);
+          $date->setTime(23, 59, 59);
+          return $date;
         }
+    }
+
+    /**
+  	 * @param $filterTime
+  	 * @return \DateTime
+  	 */
+    public static function returnTimeEnd($filterTime)
+    {
+      if (explode(" ", $filterTime)[1] > 0) {
+        $date = new \DateTime;
+        $date->setDate(explode(" ", $filterTime)[1],12,31);
+        $date->setTime(23, 59, 59);
+        return $date;
+      }
     }
 
 	/**
@@ -86,4 +102,4 @@ class Arrays {
 		}
 		return false;
 	}
-} 
+}

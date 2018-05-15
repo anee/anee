@@ -1,0 +1,54 @@
+    <div class="track-row">
+        <div class="line">
+
+            <p class="track-name float-left">
+                <a href="{plink :Backend:Statistics:default, 'url' => $year, 'username' => $profileUser->usernameUrl}">{$year}</a>
+            </p>
+
+            <p class="options float-right">
+
+                {if $lastUpdate != NULL}
+                    {$lastUpdate|dateAgoNumber}
+                    {$lastUpdate|dateAgoText}
+                    ·
+                {/if}
+            </p>
+
+            <div style="clear: both;"></div>
+        </div>
+        <div class="part">
+            <div class="bar overall-bg float-left">
+                <span class="bar-value">{$yearDistance}</span> km
+            </div>
+            {if $yearTimeInSeconds}
+                <div class="track-date overall float-left text-align-center">
+                    <p>{$yearTimeInSeconds|fromSecondsHours}</p>
+
+                    <p>HOURS</p>
+                </div>
+                <div class="track-date overall float-left text-align-center">
+                    <p>{$yearTimeInSeconds|fromSecondsMinutes}</p>
+
+                    <p>MINS</p>
+                </div>
+                <div class="track-date track-date-end overall float-left text-align-center">
+                    <p>{$yearTimeInSeconds|fromSecondsSeconds}</p>
+
+                    <p>SECS</p>
+                </div>
+            {else}
+                <div class="track-date track-date-end overall float-left text-align-center">
+                    <p>N/A</p>
+                    <p>INTERVAL</p>
+                </div>
+            {/if}
+            <div class="bar partial-bg float-right">
+                <span class="bar-value">{count($yearTracks)}</span>
+                tracks{*{$track->getTimeInSeconds()|getSpanTimeFromSecondsNumber} {$track->getTimeInSeconds()|getSpanTimeFromSecondsText|strtolower}*}
+            </div>
+            {*<div class="info partial float-right text-align-right">
+                <p>{$track->getAvgSpeed()}</p>
+                <p></p>
+            </div>*}
+        </div>
+    </div>

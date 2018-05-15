@@ -137,12 +137,14 @@ class TrackBaseLogic extends BaseLogic {
         return $qb->getQuery()->getOneOrNullResult();
     }
 
-    public function findAllByUserIdAndPlace($userId, Place $place)
+    public function findAllByUserIdAndPlaceAndYear($userId, Place $place, $year = NULL)
     {
         $results = [];
         foreach($this->findAllByUserId($userId) as $track) {
             if($track->getPlace()->getName() == $place->getName()) {
+              if($year == NULL || $year == $track->date->format('Y')) {
                 $results[] = $track;
+              }
             }
         }
         return $results;
@@ -186,11 +188,39 @@ class TrackBaseLogic extends BaseLogic {
 	}
 
 	public function distanceSum($userId)
-    {
-        $distance = 0;
-        foreach ($this->findAll($userId) as $track) {
-            $distance += $track->getDistance();
-        }
-        return $distance;
+  {
+    $distance = 0;
+    foreach ($this->findAll($userId) as $track) {
+      $distance += $track->getDistance();
     }
+    return $distance;
+  }
+
+  public function findAllPerYears($userId)
+  {
+    $distinctsYears = array();
+    $tracks = $this->findAllByUserId($userId);
+    foreach($tracks as $track) {
+      $date = $track->date->format('Y');
+      if(!array_key_exists($date, $distinctsYears)) {
+        $distinctsYears[$date][] = $track;
+      } else {
+        $distinctsYears[$date][] = $track;
+      }
+    }
+    return $distinctsYears;
+  }
+
+  public function findAllYears($userId)
+  {
+    $distinctsYears = array();
+    $tracks = $this->findAllByUserId($userId);
+    foreach($tracks as $track) {
+      $date = $track->date->format('Y');
+      if(!array_key_exists($date, $distinctsYears)) {
+        $distinctsYears["Year $date"] = "Year $date";
+      }
+    }
+    return $distinctsYears;
+  }
 }

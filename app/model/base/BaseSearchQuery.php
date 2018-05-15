@@ -36,12 +36,12 @@ class BaseSearchQuery extends QueryObject
 			if($start != '') {
 				$qb
 					->andWhere('e.date >= :start')
-					->setParameter('start', Arrays::timeSubFilterTime($start));
+					->setParameter('start', Arrays::returnTimeStart($start));
 			}
 			if($end != '') {
 				$qb
 					->andWhere('e.date <= :end')
-					->setParameter('end', Arrays::timeSubFilterTime($start));
+					->setParameter('end', Arrays::returnTimeEnd($end));
 			}
 		};
 		return $this;

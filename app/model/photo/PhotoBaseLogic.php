@@ -9,7 +9,7 @@ namespace App\Model;
  */
 class PhotoBaseLogic extends BaseLogic {
 
-	
+
     public function remove($id)
     {
         $this->dao->delete($this->findOneById($id));
@@ -58,27 +58,40 @@ class PhotoBaseLogic extends BaseLogic {
         return $this->addFilterByUser($qb, $userId)->getQuery()->getSingleScalarResult();
     }
 
-	public function findOneById($id)
-	{
-		$qb = $this->dao->createQueryBuilder();
-		$qb
-			->select('e')
-			->from('App\Model\Photo', 'e')
-			->where('e.id = :id')
-			->setParameter('id', $id);
+		public function findOneById($id)
+		{
+			$qb = $this->dao->createQueryBuilder();
+			$qb
+				->select('e')
+				->from('App\Model\Photo', 'e')
+				->where('e.id = :id')
+				->setParameter('id', $id);
 
-		return $qb->getQuery()->getOneOrNullResult();
-	}
+			return $qb->getQuery()->getOneOrNullResult();
+		}
 
-    public function findOneByIdAndUserId($id, $userId)
-    {
-        $qb = $this->dao->createQueryBuilder();
-        $qb
-            ->select('e')
-            ->from('App\Model\Photo', 'e')
-            ->where('e.id = :id')
-            ->setParameter('id', $id);
+  	public function findOneByIdAndUserId($id, $userId)
+  	{
+    	$qb = $this->dao->createQueryBuilder();
+    	$qb
+      	->select('e')
+      	->from('App\Model\Photo', 'e')
+      	->where('e.id = :id')
+      	->setParameter('id', $id);
 
-        return $this->addFilterByUser($qb, $userId)->getQuery()->getOneOrNullResult();
-    }
+    	return $this->addFilterByUser($qb, $userId)->getQuery()->getOneOrNullResult();
+  	}
+
+		public function findAllYears($userId)
+		{
+			$distinctsYears = array();
+			$photos = $this->findAll($userId);
+			foreach($photos as $photo) {
+				$date = $photo->date->format('Y');
+				if(!array_key_exists($date, $distinctsYears)) {
+      		$distinctsYears["Year $date"] = "Year $date";
+		  	}
+	  	}
+			return $distinctsYears;
+		}
 }

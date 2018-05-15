@@ -23,11 +23,11 @@ class Place extends BaseEntity
      */
     protected $name;
 
-	/**
-	 * @ORM\Column(type="string", nullable=TRUE)
-	 * @var string
-	 */
-	protected $nameUrl;
+		/**
+	 	 * @ORM\Column(type="string", nullable=TRUE)
+	 	 * @var string
+	 	 */
+		protected $nameUrl;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Model\Track", mappedBy="place", cascade={"remove"})
@@ -43,17 +43,19 @@ class Place extends BaseEntity
     public function __construct($name, $user)
     {
         $this->name = $name;
-		$this->nameUrl = Strings::webalize($name);
-		$this->user = $user;
+				$this->nameUrl = Strings::webalize($name);
+				$this->user = $user;
         $this->tracks = new ArrayCollection();
-		$this->photos = new ArrayCollection();
+				$this->photos = new ArrayCollection();
     }
 
     public function getDistance()
     {
         $distance = 0;
         foreach ($this->tracks as $track) {
+
             $distance += $track->distance;
+
         }
         return $distance;
     }
@@ -62,7 +64,9 @@ class Place extends BaseEntity
     {
         $time = 0;
         foreach ($this->tracks as $track) {
+
             $time += $track->getTimeInSeconds();
+
         }
         return $time;
     }
@@ -99,6 +103,16 @@ class Place extends BaseEntity
         }
     }
 
+	public function hasAtleastOneTrackInYear($year)
+	{
+		foreach($this->tracks as $track) {
+			if($track->getDate()->format('Y') == $year) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	public function getUrl()
 	{
 		return Strings::webalize($this->name);
@@ -110,8 +124,20 @@ class Place extends BaseEntity
 		$this->nameUrl = Strings::webalize($name);
 	}
 
-    public function getName()
-    {
-        return $this->name;
+  public function getName()
+  {
+    return $this->name;
 	}
+
+	public function getPhotosCount($year)
+	{
+		$count = 0;
+		foreach($this->photos as $photo) {
+			if($photo->getDate()->format('Y') == $year) {
+				$count++;
+			}
+		}
+		return $count;
+	}
+
 }

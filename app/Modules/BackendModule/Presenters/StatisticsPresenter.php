@@ -8,8 +8,13 @@ use Nette;
 /**
  * Author Lukáš Drahník <L.Drahnik@gmail.com>
  */
-class PlacesPresenter extends BasePresenter
+class StatisticsPresenter extends BasePresenter
 {
+
+	/**
+	 * @var string
+	 */
+	public $year;
 
 	/**
 	 * @var \App\Model\PlaceBaseLogic
@@ -17,10 +22,10 @@ class PlacesPresenter extends BasePresenter
 	 */
 	public $placeBaseLogic;
 
-	/**
-	 * @var \App\Model\Place
+  /**
+	 * @var []Place|Null
 	 */
-	public $place;
+	public $places;
 
 	/**
 	 * @var \App\Modules\BackendModule\Controls\IProfileFactory
@@ -34,6 +39,12 @@ class PlacesPresenter extends BasePresenter
 	 */
 	public $IPlaceRow;
 
+	/**
+	 * @var \App\Modules\BackendModule\Controls\IStatisticsRowFactory
+	 * @inject
+	 */
+	public $IStatisticsRow;
+
 	private $username;
 
 	private $user;
@@ -43,21 +54,17 @@ class PlacesPresenter extends BasePresenter
 	 * @param $url = id
 	 * @throws Nette\Application\BadRequestException
 	 */
-	public function actionDefault($username, $url)
+	public function actionDefault($username, $year)
 	{
 		$user = $this->userBaseLogic->findOneByUsernameUrl($username);
-		$place = $this->placeBaseLogic->findOneByNameUrlAndUserNameUrl($url, $username);
+		$this->year = $year;
+		$this->places = $this->placeBaseLogic->findAllByUserIdAndYear($user->getId(), $year);
 
 		if ($user == NULL || ($this->userBaseLogic->findOneByUsernameUrl($username)->public == FALSE && !$this->getUser()->isLoggedIn())) {
 			$this->getPresenter()->redirect(':Backend:Homepage:default');
 		} else {
-			if ($place == null) {
-				throw new Nette\Application\BadRequestException;
-			} else {
 				$this->username = $username;
 				$this->user = $user;
-				$this->place = $place;
-			}
 		}
 	}
 
@@ -65,24 +72,26 @@ class PlacesPresenter extends BasePresenter
 	 * @param $username
 	 * @param $url = id
 	 */
-	public function renderDefault($username, $url)
+	public function renderDefault($username, $year)
 	{
-		$this->template->place = $this->place;
 		$this->template->background = $this->getBackgroundImage($this->userBaseLogic->findOneByUsernameUrl($username));
 	}
 
-	protected function createComponentProfilePlace()
+	protected function createComponentProfilePlaces()
 	{
 		$loggedUser = $this->userBaseLogic->findOneById($this->getUser()->getId());
 
-		$profile = $this->IProfile->create($loggedUser, $this->user, TRUE);
-		$profile->addComponent($this->createComponentPlaceRow($this->place, $loggedUser, $this->user), $this->place->id);
+		$profile = $this->IProfile->create($loggedUser, $this->user, $this->year, TRUE);
+
+		foreach($this->places as $place) {
+			$profile->addComponent($this->createComponentPlaceRow($place, $loggedUser, $this->user, $this->year), $place->id);
+		}
 
 		return $profile;
 	}
 
-	protected function createComponentPlaceRow($place, $loggedUser, $profileUser)
+	protected function createComponentPlaceRow($place, $loggedUser, $profileUser, $year)
 	{
-		return $this->IPlaceRow->create($place, $loggedUser, $profileUser, TRUE);
+		return $this->IPlaceRow->create($place, $loggedUser, $profileUser, $year, FALSE);
 	}
 }

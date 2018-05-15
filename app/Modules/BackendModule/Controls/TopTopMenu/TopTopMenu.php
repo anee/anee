@@ -63,7 +63,7 @@ class TopTopMenu extends Control
 	private $loggedUser;
 
 	public function __construct(User $loggedUser = NULL, ViewKeeper $keeper, IFeedbackModalFactory $IFeedbackModal, IProfileModalFactory $IProfileModal, ISettingsModalFactory $ISettingsModal, IUserRolesModalFactory $IUserRolesModal, UserBaseLogic $userBaseLogic)
-    {
+  {
 		$this->keeper = $keeper;
 		$this->IFeedbackModal = $IFeedbackModal;
 		$this->IProfileModal = $IProfileModal;
@@ -71,7 +71,7 @@ class TopTopMenu extends Control
 		$this->IUserRolesModal = $IUserRolesModal;
 		$this->userBaseLogic = $userBaseLogic;
 		$this->loggedUser = $loggedUser;
-    }
+  }
 
 	protected function createComponentSettingsModal()
 	{

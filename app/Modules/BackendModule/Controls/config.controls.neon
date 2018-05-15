@@ -28,9 +28,9 @@ services:
 		implement: App\Modules\BackendModule\Controls\IUserPanelFactory
 
 	Profile:
-		class: App\Modules\BackendModule\Controls\Profile(%wwwDir%, %loggedUser%, %profileUser%, %detail%)
+		class: App\Modules\BackendModule\Controls\Profile(%wwwDir%, %loggedUser%, %profileUser%, %year%, %detail%)
 		implement: App\Modules\BackendModule\Controls\IProfileFactory
-		parameters: [App\Model\User loggedUser = NULL, App\Model\User profileUser, detail = NULL]
+		parameters: [App\Model\User loggedUser = NULL, App\Model\User profileUser, year = NULL, detail = NULL]
 
 	ProfileModal:
 		class: App\Modules\BackendModule\Controls\ProfileModal(%wwwDir%, %loggedUser%, %profileUser%)
@@ -67,9 +67,9 @@ services:
 		parameters: [App\Model\Track track, App\Model\User loggedUser = NULL, App\Model\User profileUser, byName = NULL, detail = NULL]
 
 	PlaceRow:
-		class: App\Modules\BackendModule\Controls\PlaceRow(%place%, %loggedUser%, %profileUser%, %detail%)
+		class: App\Modules\BackendModule\Controls\PlaceRow(%place%, %loggedUser%, %profileUser%, %year%, %detail%)
 		implement: App\Modules\BackendModule\Controls\IPlaceRowFactory
-		parameters: [App\Model\Place place, App\Model\User loggedUser = NULL, App\Model\User profileUser, detail = NULL]
+		parameters: [App\Model\Place place, App\Model\User loggedUser = NULL, App\Model\User profileUser, year = NULL, detail = NULL]
 
 	PhotoRow:
 		class: App\Modules\BackendModule\Controls\PhotoRow(%wwwDir%, %photo%, %loggedUser%, %profileUser%)
@@ -85,3 +85,8 @@ services:
 		class: App\Modules\BackendModule\Controls\UserRolesModal(%profileUser%, %loggedUser%)
 		implement: App\Modules\BackendModule\Controls\IUserRolesModalFactory
 		parameters: [App\Model\User profileUser, App\Model\User loggedUser = NULL]
+
+	StatisticsRow:
+		class: App\Modules\BackendModule\Controls\StatisticsRow(%year%, %tracks%, %loggedUser%, %profileUser%)
+		implement: App\Modules\BackendModule\Controls\IStatisticsRowFactory
+		parameters: [year, tracks, App\Model\User loggedUser = NULL, App\Model\User profileUser]

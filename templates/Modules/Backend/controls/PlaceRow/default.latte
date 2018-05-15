@@ -2,7 +2,7 @@
     <div class="track-row">
         <div class="line">
             <p class="track-name float-left">
-                <a href="{plink :Backend:Places:default, 'url' => $place->nameUrl, 'username' => $profileUser->usernameUrl}">{$place->name}</a>
+                <a>{$place->name}</a>
             </p>
 
             <p class="options float-right">
@@ -13,12 +13,11 @@
                     ·
                 {/if}
 
-                {var $placePhotosCount = count($place->photos)}
                 {if $placePhotosCount > 0}
-                    {var $args = array('username' => $profileUser->username, 'values' => ['filterCategory' => array('Photos'), 'filterEntity' => 'Place', 'filterEntityId' => $place->id, 'filterEntityUrl' => '/places/' . $place->id])}
+                    {var $args = array('username' => $profileUser->username, 'values' => ['filterCategory' => array('Photos'), 'filterTime' => "Year " . $year, 'filterEntity' => 'Place', 'filterEntityId' => $place->id, 'filterEntityUrl' => '/places/' . $place->id])}
                     <a href="{plink Search:default (expand) $args}">{$placePhotosCount} {$placePhotosCount|photosText}</a>
                 {/if}
-                {if count($place->photos) > 0 && $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
+                {if $placePhotosCount > 0 && $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
                     ·
                 {/if}
                 {if $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
@@ -35,17 +34,17 @@
             </div>
             {if $placeTimeInSeconds}
                 <div class="track-date overall float-left text-align-center">
-                    <p>{$place->getTimeInSeconds()|fromSecondsHours}</p>
+                    <p>{$placeTimeInSeconds|fromSecondsHours}</p>
 
                     <p>HOURS</p>
                 </div>
                 <div class="track-date overall float-left text-align-center">
-                    <p>{$place->getTimeInSeconds()|fromSecondsMinutes}</p>
+                    <p>{$placeTimeInSeconds|fromSecondsMinutes}</p>
 
                     <p>MINS</p>
                 </div>
                 <div class="track-date track-date-end overall float-left text-align-center">
-                    <p>{$place->getTimeInSeconds()|fromSecondsSeconds}</p>
+                    <p>{$placeTimeInSeconds|fromSecondsSeconds}</p>
 
                     <p>SECS</p>
                 </div>
@@ -85,12 +84,11 @@
                         ·
                     {/if}
 
-                    {var $placePhotosCount = count($place->photos)}
                     {if $placePhotosCount > 0}
                         {var $args = array('username' => $profileUser->username, 'values' => ['filterCategory' => array('Photos'), 'filterEntity' => 'Place', 'filterEntityId' => $place->id, 'filterEntityUrl' => '/places/' . $place->id])}
                         <a href="{plink Search:default (expand) $args}">{$placePhotosCount} {$placePhotosCount|photosText}</a>
                     {/if}
-                    {if count($place->photos) > 0 && $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
+                    {if $placePhotosCount > 0 && $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
                         ·
                     {/if}
                     {if $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
@@ -108,17 +106,17 @@
                 </div>
                 {if $placeTimeInSeconds}
                     <div class="track-date overall float-left text-align-center">
-                        <p>{$place->getTimeInSeconds()|fromSecondsHours}</p>
+                        <p>{$placeTimeInSeconds|fromSecondsHours}</p>
 
                         <p>HOURS</p>
                     </div>
                     <div class="track-date overall float-left text-align-center">
-                        <p>{$place->getTimeInSeconds()|fromSecondsMinutes}</p>
+                        <p>{$placeTimeInSeconds|fromSecondsMinutes}</p>
 
                         <p>MINS</p>
                     </div>
                     <div class="track-date track-date-end overall float-left text-align-center">
-                        <p>{$place->getTimeInSeconds()|fromSecondsSeconds}</p>
+                        <p>{$placeTimeInSeconds|fromSecondsSeconds}</p>
 
                         <p>SECS</p>
                     </div>

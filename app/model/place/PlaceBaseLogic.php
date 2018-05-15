@@ -9,7 +9,7 @@ namespace App\Model;
  */
 class PlaceBaseLogic extends BaseLogic {
 
-	
+
     public function remove($id)
     {
         $this->dao->delete($this->findOneById($id));
@@ -105,5 +105,22 @@ class PlaceBaseLogic extends BaseLogic {
 			->setParameter('name', $name);
 
 		return $this->addFilterByUserName($qb, $username)->getQuery()->getOneOrNullResult();
+	}
+
+	public function findAllByUserIdAndYear($userId, $year)
+	{
+		$qb = $this->dao->createQueryBuilder();
+		$qb
+			->select('e')
+			->from('App\Model\Place', 'e');
+
+    $result = [];
+		$places = $this->addFilterByUser($qb, $userId)->getQuery()->getResult();
+		foreach($places as $place) {
+			if($place->hasAtleastOneTrackInYear($year)) {
+        $result[] = $place;
+			}
+		}
+		return $result;
 	}
 }

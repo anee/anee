@@ -48,4 +48,4 @@ class BaseLogic extends Object
 			->andWhere('eUser.usernameUrl = :username')
 			->setParameter('username', $username);
 	}
-} 
+}

@@ -76,6 +76,12 @@ class ProfilePresenter extends BasePresenter
 	 */
 	public $IPhotoRow;
 
+	/**
+	 * @var \App\Modules\BackendModule\Controls\IStatisticsRowFactory
+	 * @inject
+	 */
+	public $IStatisticsRow;
+
 	protected function createComponentProfile()
 	{
 		$user = $this->userBaseLogic->findOneByUsernameUrl($this->username);
@@ -124,7 +130,25 @@ class ProfilePresenter extends BasePresenter
 	public function renderDefault($username)
 	{
 		$this->template->background = $this->getBackgroundImage($this->user);
-        $this->template->user = $this->user;
+    $this->template->user = $this->user;
+	}
+
+	public function actionStatistics($username)
+	{
+		$user = $this->userBaseLogic->findOneByUsernameUrl($username);
+
+		if ($user == NULL || ($this->userBaseLogic->findOneByUsernameUrl($username)->public == FALSE && !$this->getUser()->isLoggedIn())) {
+			$this->getPresenter()->redirect(':Backend:Homepage:default');
+		} else {
+			$this->username = $username;
+			$this->user = $user;
+		}
+	}
+
+	public function renderStatistics($username)
+	{
+		$this->template->background = $this->getBackgroundImage($this->user);
+		$this->template->user = $this->user;
 	}
 
 	public function actionFollowing($username)
@@ -235,6 +259,25 @@ class ProfilePresenter extends BasePresenter
 		return $profile;
 	}
 
+	protected function createComponentProfileStatistics()
+	{
+		$profileUser = $this->userBaseLogic->findOneByUsernameUrl($this->username);
+		$loggedUser = $this->userBaseLogic->findOneById($this->getUser()->getId());
+
+		$profile = $this->IProfile->create($loggedUser, $this->user);
+		$years = $this->trackBaseLogic->findAllPerYears($profileUser->id);
+
+		foreach ($years as $year => $tracks) {
+			$profile->addComponent($this->createComponentStatisticsRow($year, $tracks, $loggedUser, $this->user), $year);
+		}
+		return $profile;
+	}
+
+	protected function createComponentStatisticsRow($year, $tracks, $loggedUser, $profileUser)
+	{
+		return $this->IStatisticsRow->create($year, $tracks, $loggedUser, $profileUser);
+	}
+
 	public function actionPlaces($username)
 	{
 		$user = $this->userBaseLogic->findOneByUsernameUrl($username);
@@ -276,4 +319,4 @@ class ProfilePresenter extends BasePresenter
 			$this->user = $user;
 		}
 	}
-} 
+}

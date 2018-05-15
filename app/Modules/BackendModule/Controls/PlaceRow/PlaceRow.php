@@ -46,12 +46,12 @@ class PlaceRow extends Control
 	 */
 	public $placeBaseLogic;
 
-    /**
-     * @var TrackBaseLogic
-     */
-    public $trackBaseLogic;
+  /**
+   * @var TrackBaseLogic
+   */
+  public $trackBaseLogic;
 
-    /**
+  /**
 	 * @var User
 	 */
 	private $loggedUser;
@@ -68,13 +68,15 @@ class PlaceRow extends Control
 
 	private $detail;
 
+	private $year;
+
 	/**
 	 * @var \ViewKeeper\ViewKeeper
 	 */
 	public $keeper;
 
-    public function __construct(Place $place, User $loggedUser = NULL, User $profileUser, $detail = NULL, ViewKeeper $keeper, PlaceBaseLogic $placeBaseLogic, UserBaseLogic $userBaseLogic, TrackBaseLogic $trackBaseLogic)
-    {
+  public function __construct(Place $place, User $loggedUser = NULL, User $profileUser, $year = NULL, $detail = NULL, ViewKeeper $keeper, PlaceBaseLogic $placeBaseLogic, UserBaseLogic $userBaseLogic, TrackBaseLogic $trackBaseLogic)
+  {
 		$this->keeper = $keeper;
 		$this->place = $place;
 		$this->placeBaseLogic = $placeBaseLogic;
@@ -83,7 +85,8 @@ class PlaceRow extends Control
 		$this->loggedUser = $loggedUser;
 		$this->profileUser = $profileUser;
 		$this->detail = $detail;
-    }
+		$this->year = $year;
+  }
 
 	public function render()
 	{
@@ -91,22 +94,24 @@ class PlaceRow extends Control
 
 		$this->template->addFilter(NULL, 'App\TemplateHelpers::loader');
 
-		$filteredTracks = $this->trackBaseLogic->findAllByUserIdAndPlace($this->profileUser->getId(), $this->place);
+		$filteredTracks = $this->trackBaseLogic->findAllByUserIdAndPlaceAndYear($this->profileUser->getId(), $this->place, $this->year);
 		$placeDistance = 0;
 		$placeTimeInSeconds = 0;
 		foreach ($filteredTracks as $track) {
 		    /** @var Track $track */
-            $placeDistance += $track->getDistance();
-            $placeTimeInSeconds += $track->getTimeInSeconds();
-        }
-        $this->template->placeTimeInSeconds = $placeTimeInSeconds;
+        $placeDistance += $track->getDistance();
+        $placeTimeInSeconds += $track->getTimeInSeconds();
+    }
+    $this->template->placeTimeInSeconds = $placeTimeInSeconds;
 		$this->template->placeDistance = $placeDistance;
-        $this->template->placeTracks = $filteredTracks;
+    $this->template->placeTracks = $filteredTracks;
+		$this->template->placePhotosCount = $this->place->getPhotosCount($this->year);
 
 		$this->template->profileUser = $this->profileUser;
 		$this->template->loggedUser = $this->loggedUser;
 		$this->template->place = $this->place;
 		$this->template->detail = $this->detail;
+		$this->template->year = $this->year;
 
 		$this->template->render();
 	}
