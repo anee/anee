@@ -17,20 +17,20 @@ class Arrays {
 	 */
     public static function returnTimeStart($filterTime)
     {
+        $date = new \DateTime;
         if($filterTime == 'Today') {
             return new \DateTime("midnight today");
         } elseif($filterTime == 'Yesterday') {
             return new \DateTime("midnight yesterday");
         } elseif($filterTime == 'Past hour') {
-            return $time->sub(new \DateInterval('PT1H'));
+            return $date->sub(new \DateInterval('PT1H'));
         } else if ($filterTime == 'Past week') {
-            return $time->sub(new \DateInterval('P7D'));
+            return $date->sub(new \DateInterval('P7D'));
         } else if ($filterTime == 'Past month') {
-            return $time->sub(new \DateInterval('P30D'));
+            return $date->sub(new \DateInterval('P30D'));
         } else if ($filterTime == 'Past year') {
-            return $time->sub(new \DateInterval('P365D'));
+            return $date->sub(new \DateInterval('P365D'));
         } else if (explode(" ", $filterTime)[1] > 0) {
-          $date = new \DateTime;
           $date->setDate(explode(" ", $filterTime)[1] - 1,12,31);
           $date->setTime(23, 59, 59);
           return $date;

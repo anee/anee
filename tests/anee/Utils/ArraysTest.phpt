@@ -22,30 +22,30 @@ require __DIR__ . '/../bootstrap.php';
 class ArraysTest extends Tester\TestCase
 {
 
-	function testTimeSubFilterTime()
+	function testReturnTimeStart()
 	{
 		$filterTime = 'Past hour';
 		$time = new Nette\Utils\DateTime();
 		$out = $time->sub(new \DateInterval('PT1H'));
-		$time = Arrays::timeSubFilterTime($filterTime);
+		$time = Arrays::returnTimeStart($filterTime);
 		Assert::Equal(true, $time->diff($out)->m < 2);
 
 		$filterTime = 'Past week';
 		$time = new Nette\Utils\DateTime();
 		$out = $time->sub(new \DateInterval('P7D'));
-		$time = Arrays::timeSubFilterTime($filterTime);
+		$time = Arrays::returnTimeStart($filterTime);
 		Assert::Equal(true, $time->diff($out)->m < 2);
 
 		$filterTime = 'Past month';
 		$time = new Nette\Utils\DateTime();
 		$out = $time->sub(new \DateInterval('P30D'));
-		$time = Arrays::timeSubFilterTime($filterTime);
+		$time = Arrays::returnTimeStart($filterTime);
 		Assert::Equal(true, $time->diff($out)->m < 2);
 
 		$filterTime = 'Past year';
 		$time = new Nette\Utils\DateTime();
 		$out = $time->sub(new \DateInterval('P365D'));
-		$time = Arrays::timeSubFilterTime($filterTime);
+		$time = Arrays::returnTimeStart($filterTime);
 		Assert::Equal(true, $time->diff($out)->m < 2);
 	}
 
