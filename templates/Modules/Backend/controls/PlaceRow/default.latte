@@ -17,10 +17,10 @@
                     {var $args = array('username' => $profileUser->username, 'values' => ['filterCategory' => array('Photos'), 'filterTime' => "Year " . $year, 'filterEntity' => 'Place', 'filterEntityId' => $place->id, 'filterEntityUrl' => '/places/' . $place->id])}
                     <a href="{plink Search:default (expand) $args}">{$placePhotosCount} {$placePhotosCount|photosText}</a>
                 {/if}
-                {if $placePhotosCount > 0 && $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
+                {if !$year && $placePhotosCount > 0 && $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
                     ·
                 {/if}
-                {if $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
+                {if !$year && $user->isLoggedIn() && $loggedUser->username == $profileUser->username}
                     <a href="{link remove!, 'id' => $place->id}" class="ajax">remove</a>
                 {/if}
 

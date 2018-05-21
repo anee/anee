@@ -57,35 +57,35 @@ class Track extends BaseEntity
      */
     protected $photos;
 
-	/**
-	 * @ORM\Column(type="boolean", nullable=TRUE)
-	 */
-	protected $pinned;
+	 	/**
+	 	 * @ORM\Column(type="boolean", nullable=TRUE)
+	 	 */
+		protected $pinned;
 
-	/**
-	 * @ORM\ManyToMany(targetEntity="App\Model\User", cascade={"persist"})
-	 * @ORM\JoinTable(name="track_user",
-	 *        joinColumns={@ORM\JoinColumn(name="track_id", referencedColumnName="id")},
-	 *        inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")}
-	 *    )
-	 * @var []|\Doctrine\Common\Collections\ArrayCollection
-	 */
-	protected $withUsers;
+	 	/**
+	   * @ORM\ManyToMany(targetEntity="App\Model\User", cascade={"persist"})
+	   * @ORM\JoinTable(name="track_user",
+	 	 *        joinColumns={@ORM\JoinColumn(name="track_id", referencedColumnName="id")},
+	   *        inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")}
+	 	 *    )
+	 	 * @var []|\Doctrine\Common\Collections\ArrayCollection
+	 	 */
+		protected $withUsers;
 
 
     public function __construct($user, $transport, $distance, $timeInSeconds, $place, $date, $pinned, $placeTo = NULL, $maxSpeed = NULL)
     {
-		$this->withUsers = new \Doctrine\Common\Collections\ArrayCollection();
+			$this->withUsers = new \Doctrine\Common\Collections\ArrayCollection();
 
-		$this->pinned = $pinned;
-		$this->user = $user;
-        $this->transport = $transport;
-        $this->distance = $distance;
-        $this->timeInSeconds = $timeInSeconds;
-		$this->maxSpeed = $maxSpeed;
-        $this->date = $date;
-        $this->place = $place;
-        $this->placeTo = $placeTo;
+			$this->pinned = $pinned;
+			$this->user = $user;
+      $this->transport = $transport;
+      $this->distance = $distance;
+      $this->timeInSeconds = $timeInSeconds;
+			$this->maxSpeed = $maxSpeed;
+      $this->date = $date;
+      $this->place = $place;
+      $this->placeTo = $placeTo;
     }
 
     public function getName()

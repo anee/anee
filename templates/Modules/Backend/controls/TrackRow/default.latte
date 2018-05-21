@@ -2,11 +2,19 @@
   <div class="track-row">
     <div class="line">
       <p class="track-name float-left">
-        <a
-          href="{plink :Backend:Tracks:default, 'url' => $track->id, 'username' => $track->getUser()->usernameUrl}">{$track->getName()}
-          {if $track->transport != NULL}
-            <span class="transport">by {$track->transport->name}</span>
-          {/if}
+        {if $track->id}
+          <a
+            href="{plink :Backend:Tracks:default, 'url' => $track->id, 'username' => $track->getUser()->usernameUrl}">{$track->getName()}
+            {if $track->transport != NULL}
+              <span class="transport">by {$track->transport->name}</span>
+            {/if}
+        {else}
+          <a
+            >
+            {if $track->transport != NULL}
+              <span class="transport">by {$track->transport->name}</span>
+            {/if}
+        {/if}
         </a>
       </p>
 
@@ -18,6 +26,8 @@
             href="{plink :Backend:Profile:default, 'username' => $track->getUser()->usernameUrl}">{$track->getUser()->getName()}</a>
           ·
         {/if}
+
+        {if $byName != "statistics"}
         {$track->date|dateAgoNumber}
         {$track->date|dateAgoText}
 
@@ -55,6 +65,7 @@
             <a href="{link pin!, 'id' => $track->id}" class="ajax">pin</a>
           {/if}
         {/if}
+        {/if}
       </p>
 
       <div style="clear: both;"></div>
@@ -90,12 +101,14 @@
         km/h
       </div>
       <div class="info partial float-right text-align-right">
+      {if $byName != "statistics"}
         {if $track->getMaxSpeed() != 0}
           <p>{$track->getMaxSpeed()}</p>
         {else}
           <p>N/A</p>
         {/if}
         <p>MAX KM/H</p>
+      {/if}
       </div>
     </div>
   </div>

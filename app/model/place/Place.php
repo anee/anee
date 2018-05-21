@@ -13,10 +13,10 @@ use Nette\Utils\Strings;
 class Place extends BaseEntity
 {
 
-	/**
-	 * @ORM\ManyToOne(targetEntity="App\Model\User", inversedBy="places")
-	 */
-	protected $user;
+		/**
+	 	 * @ORM\ManyToOne(targetEntity="App\Model\User", inversedBy="places")
+	 	 */
+		protected $user;
 
     /**
      * @ORM\Column(type="string", nullable=false)
@@ -111,6 +111,17 @@ class Place extends BaseEntity
 			}
 		}
 		return false;
+	}
+
+	public function getTracks($year)
+	{
+		$tracks = [];
+		foreach($this->tracks as $track) {
+			if($track->getDate()->format('Y') == $year) {
+				$tracks[] = $track;
+			}
+		}
+		return $tracks;
 	}
 
 	public function getUrl()
