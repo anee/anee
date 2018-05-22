@@ -27,7 +27,7 @@
           ·
         {/if}
 
-        {if $byName != "statistics"}
+        {if ($byName !== "statistics")}
         {$track->date|dateAgoNumber}
         {$track->date|dateAgoText}
 
