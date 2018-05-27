@@ -59,12 +59,12 @@ class BackendRoutes
 		));
 
 		// STATISTICS
-		$router[] = new Route('<username>/<presenter>/<year>', array(
+		$router[] = new Route('<username>/<presenter>/<url>', array(
 			'module' => 'Backend',
 			'action' => 'default',
 			'presenter' => 'Statistics',
 		));
-		
+
 		// PLACES && TRACKS
 		$router[] = new Route('<username>/<presenter>/<url>', array(
 			'module' => 'Backend',

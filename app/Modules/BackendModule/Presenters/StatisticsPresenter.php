@@ -78,11 +78,11 @@ class StatisticsPresenter extends BasePresenter
 	 * @param $url = id
 	 * @throws Nette\Application\BadRequestException
 	 */
-	public function actionDefault($username, $year)
+	public function actionDefault($username, $url)
 	{
 		$user = $this->userBaseLogic->findOneByUsernameUrl($username);
-		$this->year = $year;
-		$this->places = $this->placeBaseLogic->findAllByUserIdAndYear($user->getId(), $year);
+		$this->year = $url;
+		$this->places = $this->placeBaseLogic->findAllByUserIdAndYear($user->getId(), $url);
 		$this->transports = $this->transportBaseLogic->findAll($user->getId());
 
 		if ($user == NULL || ($this->userBaseLogic->findOneByUsernameUrl($username)->public == FALSE && !$this->getUser()->isLoggedIn())) {
